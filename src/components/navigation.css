@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    display: flex;
+    ;
+}
+
+.navbar .all-category {
+    margin-right: 50px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex; 
+    gap: 20px; 
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    display: inline-block;
+}
+  
+.navbar ul li Link {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
