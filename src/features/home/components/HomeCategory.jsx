@@ -1,37 +1,42 @@
 import React from 'react';
 import './homeCategory.css';
-import gaming from '../../../static/home/game.svg';
-import smartphone from '../../../static/home/smartphone.svg';
-import laptop from '../../../static/home/laptop.svg';
-import tv from '../../../static/home/tv.svg';
-import camera from '../../../static/home/camera.svg';
-import more from '../../../static/home/more.svg';
+import gameIcon from '../../../static/home/game.svg';
+import smartphoneIcon from '../../../static/home/smartphone.svg';
+import laptopIcon from '../../../static/home/laptop.svg';
+import tvIcon from '../../../static/home/tv.svg';
+import cameraIcon from '../../../static/home/camera.svg';
+import moreIcon from '../../../static/home/more.svg';
 
 function HomeCategory() {
   return (
     <ul className="categories">
       <li className="category-item">
-        <img src={gaming} alt="Gaming"></img>
+        <img src={gameIcon} alt="Gaming" width="94px" height="70px"></img>
         <span className="category-title">Gaming</span>
       </li>
       <li className="category-item">
-        <img src={smartphone} alt="Smartphone"></img>
+        <img
+          src={smartphoneIcon}
+          alt="Smartphone"
+          width="70px"
+          height="70px"
+        ></img>
         <span className="category-title">Smartphone</span>
       </li>
       <li className="category-item">
-        <img src={laptop} alt="Laptop"></img>
+        <img src={laptopIcon} alt="Laptop" width="87px" height="70px"></img>
         <span className="category-title">Laptop</span>
       </li>
       <li className="category-item">
-        <img src={tv} alt="TV"></img>
+        <img src={tvIcon} alt="TV" width="90px" height="68px"></img>
         <span className="category-title">TV</span>
       </li>
       <li className="category-item">
-        <img src={camera} alt="Camera"></img>
+        <img src={cameraIcon} alt="Camera" width="88px" height="68px"></img>
         <span className="category-title">Camera</span>
       </li>
       <li className="category-item">
-        <img src={more} alt="More"></img>
+        <img src={moreIcon} alt="More" width="68px" height="68px"></img>
         <span className="category-title">More</span>
       </li>
     </ul>
