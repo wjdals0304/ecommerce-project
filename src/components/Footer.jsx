@@ -5,7 +5,7 @@ import linkedInIcon from '../static/home/linkedin.svg';
 
 function Footer() {
   return (
-    <div className="footer-container">
+    <footer className="footer-container">
       <div className="footer-content">
         <div className="footer-content-title">
           <h1 className="footer-content-title-text">ECOMMERCE</h1>
@@ -15,13 +15,18 @@ function Footer() {
             Suspendisse sed lectus ex.
           </p>
           <div className="footer-content-title-social">
-            <img src={linkedInIcon} alt="linkedIn" />
-            <img src={facebookIcon} alt="facebook" />
-            <img src={instagramIcon} alt="instagram" />
+            <img src={linkedInIcon} alt="linkedIn" width="25px" height="25px" />
+            <img src={facebookIcon} alt="facebook" width="25px" height="25px" />
+            <img
+              src={instagramIcon}
+              alt="instagram"
+              width="25px"
+              height="25px"
+            />
           </div>
         </div>
         <div className="footer-content-shop">
-          <h2 className="footer-content-shop-title">Shop</h2>
+          <div className="footer-content-shop-title">Shop</div>
           <ul className="footer-content-shop-list">
             <li className="footer-content-shop-item">
               <a href="#" className="footer-content-shop-link">
@@ -51,7 +56,7 @@ function Footer() {
           </ul>
         </div>
         <div className="footer-content-services">
-          <h2 className="footer-content-shop-title">Services</h2>
+          <div className="footer-content-shop-title">Services</div>
           <ul className="footer-content-shop-list">
             <li className="footer-content-shop-item">
               <a href="#" className="footer-content-shop-link">
@@ -76,7 +81,7 @@ function Footer() {
           </ul>
         </div>
         <div className="footer-content-contact">
-          <h2 className="footer-content-shop-title">Contact</h2>
+          <div className="footer-content-shop-title">Contact</div>
           <ul className="footer-content-shop-list">
             <li className="footer-content-shop-item">
               <a href="#" className="footer-content-shop-link">
@@ -100,7 +105,7 @@ function Footer() {
           Term & Condition
         </a>
       </div>
-    </div>
+    </footer>
   );
 }
 
