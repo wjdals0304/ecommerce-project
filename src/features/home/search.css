@@ -2,10 +2,11 @@
   display: flex;
   align-items: center;
   gap: 25px;
-  margin: 20px 100px;
+  max-width: 1240px;
+  margin: 20px auto;
 }
 
-.search-container > .search-title {
+.search-container .search-title {
   flex: none;
   font-weight: bold;
   font-size: 18px;
@@ -21,21 +22,22 @@
   display: flex;
   align-items: center;
   gap: 25px;
+  height: 48px;
 }
 
 .search-bar input {
   flex: 1;
-  height: 48px;
   border: 2px solid #e0e0e0;
   border-radius: 24px;
   padding: 0 20px;
   font-size: 16px;
   outline: none;
+  height: 100%;
 }
 
 .search-button {
   flex: none;
-  height: 48px;
+  height: 100%;
   padding: 0 25px;
   background-color: #0f172a;
   color: white;
@@ -50,5 +52,5 @@
 }
 
 .search-button:hover {
-  background-color: #1e293b;
+  background-color: #e0e0e0;
 }
