@@ -8,10 +8,10 @@ function HomeHeader() {
     <div className="header-container">
       <div className="carousel">
         <button class="left">
-          <img src={leftIcon} alt="left" />
+          <img src={leftIcon} alt="left" width="26px" height="26px" />
         </button>
         <button class="right">
-          <img src={rightIcon} alt="right" />
+          <img src={rightIcon} alt="right" width="26px" height="26px" />
         </button>
       </div>
       <div className="right-card">
