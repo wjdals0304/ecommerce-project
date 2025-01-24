@@ -8,6 +8,11 @@
   align-items: center;
 }
 
+.sale-group-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .timer {
   background-color: #f9d849;
   color: black;

@@ -1,21 +1,19 @@
 import React from 'react';
 import './homePromo.css';
-import bag from '../../../static/home/bag.svg';
-import heart from '../../../static/home/heart.svg';
-import arrow from '../../../static/home/rightIcon.svg';
+import bagIcon from '../../../static/home/bag.svg';
+import heartIcon from '../../../static/home/heart.svg';
+import rightIcon from '../../../static/home/rightIcon.svg';
 
 function HomeProme() {
   return (
     <section className="container">
       <div className="header">
         <div className="sale-group">
-          <h1 style={{fontSize: '24px', fontWeight: 'bold'}}>
-            Flash Sale Deals
-          </h1>
+          <h1 className="sale-group-title">Flash Sale Deals</h1>
           <div className="timer">05:02:00</div>
         </div>
         <a href="#" className="view-all">
-          View All <img src={arrow} alt="arrow" />
+          View All <img src={rightIcon} alt="rightIcon" />
         </a>
       </div>
       <div className="products">
@@ -41,11 +39,11 @@ function HomeProme() {
             </div>
             <div className="button-group">
               <button className="add-to-cart">
-                <img src={bag} alt="bag" />
+                <img src={bagIcon} alt="bag" width="16px" height="16px" />
                 Add to Cart
               </button>
               <button className="wishlist">
-                <img src={heart} alt="heart" />
+                <img src={heartIcon} alt="heart" width="16px" height="16px" />
               </button>
             </div>
           </div>
