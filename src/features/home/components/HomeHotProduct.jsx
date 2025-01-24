@@ -1,8 +1,8 @@
 import './homeHotProduct.css';
 import React from 'react';
-import arrow from '../../../static/home/rightIcon.svg';
-import star from '../../../static/home/star.svg';
-import heart from '../../../static/home/heart.svg';
+import rightIcon from '../../../static/home/rightIcon.svg';
+import starIcon from '../../../static/home/star.svg';
+import heartIcon from '../../../static/home/heart.svg';
 
 function HomeHotProduct() {
   return (
@@ -10,7 +10,7 @@ function HomeHotProduct() {
       <div className="home-hot-product-header">
         <h2 className="home-hot-product-title">Hot News Electronics</h2>
         <a href="#" className="view-all">
-          View All <img src={arrow} alt="arrow" />
+          View All <img src={rightIcon} alt="rightIcon" />
         </a>
       </div>
       <div className="home-hot-product-content">
@@ -25,14 +25,14 @@ function HomeHotProduct() {
             />
             <div className="home-hot-product-item-rating">
               <img
-                src={star}
+                src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
               />
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heart} alt="heart" />
+              <img src={heartIcon} alt="heart" />
             </div>
           </div>
 
