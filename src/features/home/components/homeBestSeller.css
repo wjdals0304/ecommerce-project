@@ -18,7 +18,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
-  flex: 2;
 }
 
 .best-seller-product {
@@ -69,18 +68,16 @@
   background-color: #d7d7d7;
   padding: 33px;
   border-radius: 15px;
-  flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
-  text-align: right;
+  padding-left: 175px;
 }
 
 .new-arrival-tag {
   margin-top: 30px;
   font-size: 16px;
   color: #fff;
-  margin-right: 175px;
   margin-bottom: 10px;
 }
 
@@ -102,12 +99,12 @@
 
 .title-line:first-child {
   font-size: 36px;
-  margin-right: 25px;
+  /* margin-right: 25px; */
 }
 
 .title-line:last-child {
   font-size: 36px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 .buy-now-btn {
