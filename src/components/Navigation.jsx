@@ -11,7 +11,7 @@ function Navigation() {
     <div className="navbar">
       <div className="all-category">
         <a>
-          <img src={menu} alt="menu" />
+          <img src={menu} alt="menu" width="24px" height="24px" />
           All Category
         </a>
       </div>
@@ -37,13 +37,13 @@ function Navigation() {
       <div>
         <ul>
           <li>
-            <img src={heart} alt="heart" />
+            <img src={heart} alt="heart" width="24px" height="24px" />
           </li>
           <li>
-            <img src={bag} alt="bag" />
+            <img src={bag} alt="bag" width="24px" height="24px" />
           </li>
           <li>
-            <img src={profile} alt="profile" />
+            <img src={profile} alt="profile" width="24px" height="24px" />
           </li>
         </ul>
       </div>
