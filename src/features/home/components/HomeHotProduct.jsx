@@ -58,14 +58,14 @@ function HomeHotProduct() {
             />
             <div className="home-hot-product-item-rating">
               <img
-                src={star}
+                src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
               />
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heart} alt="heart" />
+              <img src={heartIcon} alt="heart" />
             </div>
           </div>
 
@@ -91,14 +91,14 @@ function HomeHotProduct() {
             />
             <div className="home-hot-product-item-rating">
               <img
-                src={star}
+                src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
               />
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heart} alt="heart" />
+              <img src={heartIcon} alt="heart" />
             </div>
           </div>
 
@@ -124,14 +124,14 @@ function HomeHotProduct() {
             />
             <div className="home-hot-product-item-rating">
               <img
-                src={star}
+                src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
               />
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heart} alt="heart" />
+              <img src={heartIcon} alt="heart" />
             </div>
           </div>
 
