@@ -3,6 +3,7 @@ import HomeHeader from './components/HomeHeader';
 import HomeCategory from './components/HomeCategory';
 import HomeProme from './components/HomePromo';
 import HomeBestSeller from './components/HomeBestSeller';
+import HomeHotProduct from './components/HomeHotProduct';
 import './home.css';
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
       <HomeCategory />
       <HomeProme />
       <HomeBestSeller />
+      <HomeHotProduct />
     </div>
   );
 }
