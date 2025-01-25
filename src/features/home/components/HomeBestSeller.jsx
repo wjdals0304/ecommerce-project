@@ -1,14 +1,15 @@
 import React from 'react';
 import './homeBestSeller.css';
-import arrow from '../../../static/home/rightIcon.svg';
-import arrowRight from '../../../static/home/arrow.svg';
+import rightIcon from '../../../static/home/rightIcon.svg';
+import arrowIcon from '../../../static/home/arrow.svg';
+
 function HomeBestSeller() {
   return (
     <section className="best-seller">
       <div className="best-seller-title">
         <h2 className="best-seller-title-text">Best Seller by Category</h2>
         <a href="#" className="view-all">
-          View All <img src={arrow} alt="arrow" />
+          View All <img src={rightIcon} alt="rightIcon" />
         </a>
       </div>
       <div className="best-seller-products">
@@ -26,7 +27,7 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowRight} alt="arrow" />
+                <img src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>
@@ -43,7 +44,7 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowRight} alt="arrow" />
+                <img src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>
@@ -60,7 +61,7 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowRight} alt="arrow" />
+                <img src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>
@@ -77,7 +78,7 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowRight} alt="arrow" />
+                <img src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>
