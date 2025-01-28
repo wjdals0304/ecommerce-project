@@ -5,7 +5,6 @@ import HomeProme from './components/HomePromo';
 import HomeBestSeller from './components/HomeBestSeller';
 import HomeHotProduct from './components/HomeHotProduct';
 import HomeBlog from './components/homeBlog';
-import './home.css';
 
 function Home() {
   return (

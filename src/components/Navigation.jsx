@@ -1,49 +1,49 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import './navigation.css';
-import heart from '../static/home/heart.svg';
-import bag from '../static/home/bag.svg';
-import profile from '../static/home/profile.svg';
-import menu from '../static/home/menu.svg';
+import heart from 'public/images/home/heart.svg';
+import bag from 'public/images/home/bag.svg';
+import profile from 'public/images/home/profile.svg';
+import menu from 'public/images/home/menu.svg';
+import Link from 'next/link';
+import Image from 'next/image';
 
 function Navigation() {
   return (
     <div className="navbar">
       <div className="all-category">
         <a>
-          <img src={menu} alt="menu" />
+          <Image src={menu} alt="menu" />
           All Category
         </a>
       </div>
       <ul>
         <li className="home">
-          <Link className="home-link" to="/">
+          <Link className="home-link" href="/">
             Home
           </Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link href="/about">About</Link>
         </li>
         <li>
-          <Link to="/shop">Shop</Link>
+          <Link href="/shop">Shop</Link>
         </li>
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link href="/blog">Blog</Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link href="/contact">Contact</Link>
         </li>
       </ul>
       <div>
         <ul>
           <li>
-            <img src={heart} alt="heart" />
+            <Image src={heart} alt="heart" />
           </li>
           <li>
-            <img src={bag} alt="bag" />
+            <Image src={bag} alt="bag" />
           </li>
           <li>
-            <img src={profile} alt="profile" />
+            <Image src={profile} alt="profile" />
           </li>
         </ul>
       </div>

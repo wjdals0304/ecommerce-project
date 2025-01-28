@@ -1,22 +1,21 @@
-import './homeHotProduct.css';
 import React from 'react';
-import rightIcon from '../../../static/home/rightIcon.svg';
-import starIcon from '../../../static/home/star.svg';
-import heartIcon from '../../../static/home/heart.svg';
-
+import rightIcon from 'public/images/home/rightIcon.svg';
+import starIcon from 'public/images/home/star.svg';
+import heartDarkIcon from 'public/images/home/heartDark.svg';
+import Image from 'next/image';
 function HomeHotProduct() {
   return (
     <div className="home-hot-product-container">
       <div className="home-hot-product-header">
         <h2 className="home-hot-product-title">Hot News Electronics</h2>
         <a href="#" className="view-all">
-          View All <img src={rightIcon} alt="rightIcon" />
+          View All <Image src={rightIcon} alt="rightIcon" />
         </a>
       </div>
       <div className="home-hot-product-content">
         <div className="home-hot-product-item">
           <div className="home-hot-product-item-image-container">
-            <img
+            <Image
               src=""
               alt=""
               className="home-hot-product-item-image"
@@ -24,7 +23,7 @@ function HomeHotProduct() {
               height="250"
             />
             <div className="home-hot-product-item-rating">
-              <img
+              <Image
                 src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
@@ -32,7 +31,7 @@ function HomeHotProduct() {
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heartIcon} alt="heart" />
+              <Image src={heartDarkIcon} alt="heart" />
             </div>
           </div>
 
@@ -49,7 +48,7 @@ function HomeHotProduct() {
         </div>
         <div className="home-hot-product-item">
           <div className="home-hot-product-item-image-container">
-            <img
+            <Image
               src=""
               alt=""
               className="home-hot-product-item-image"
@@ -57,7 +56,7 @@ function HomeHotProduct() {
               height="250"
             />
             <div className="home-hot-product-item-rating">
-              <img
+              <Image
                 src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
@@ -65,7 +64,7 @@ function HomeHotProduct() {
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heartIcon} alt="heart" />
+              <Image src={heartDarkIcon} alt="heart" />
             </div>
           </div>
 
@@ -82,7 +81,7 @@ function HomeHotProduct() {
         </div>
         <div className="home-hot-product-item">
           <div className="home-hot-product-item-image-container">
-            <img
+            <Image
               src=""
               alt=""
               className="home-hot-product-item-image"
@@ -90,7 +89,7 @@ function HomeHotProduct() {
               height="250"
             />
             <div className="home-hot-product-item-rating">
-              <img
+              <Image
                 src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
@@ -98,7 +97,7 @@ function HomeHotProduct() {
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heartIcon} alt="heart" />
+              <Image src={heartDarkIcon} alt="heart" />
             </div>
           </div>
 
@@ -115,7 +114,7 @@ function HomeHotProduct() {
         </div>
         <div className="home-hot-product-item">
           <div className="home-hot-product-item-image-container">
-            <img
+            <Image
               src=""
               alt=""
               className="home-hot-product-item-image"
@@ -123,7 +122,7 @@ function HomeHotProduct() {
               height="250"
             />
             <div className="home-hot-product-item-rating">
-              <img
+              <Image
                 src={starIcon}
                 alt="star"
                 className="home-hot-product-item-star"
@@ -131,7 +130,7 @@ function HomeHotProduct() {
               <span className="home-hot-product-item-rating-value">5.0</span>
             </div>
             <div className="home-hot-product-item-heart">
-              <img src={heartIcon} alt="heart" />
+              <Image src={heartDarkIcon} alt="heart" />
             </div>
           </div>
 
