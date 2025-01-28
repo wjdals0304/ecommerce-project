@@ -1,22 +1,22 @@
 import React from 'react';
-import './homeHeader.css';
-import leftIcon from '../../../static/home/leftIcon.svg';
-import rightIcon from '../../../static/home/rightIcon.svg';
+import Image from 'next/image';
+import leftIcon from 'public/images/home/leftIcon.svg';
+import rightIcon from 'public/images/home/rightIcon.svg';
 
 function HomeHeader() {
   return (
     <div className="header-container">
       <div className="carousel">
-        <button class="left">
-          <img src={leftIcon} alt="left" width="26px" height="26px" />
+        <button className="left">
+          <Image src={leftIcon} alt="left" width={26} height={26} />
         </button>
-        <button class="right">
-          <img src={rightIcon} alt="right" width="26px" height="26px" />
+        <button className="right">
+          <Image src={rightIcon} alt="right" width={26} height={26} />
         </button>
       </div>
       <div className="right-card">
-        <image className="card" src="" />
-        <image className="card" src="" />
+        <Image className="card" src="" />
+        <Image className="card" src="" />
       </div>
     </div>
   );

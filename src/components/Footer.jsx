@@ -1,7 +1,8 @@
-import './footer.css';
-import facebookIcon from '../static/home/facebook.svg';
-import instagramIcon from '../static/home/instagram.svg';
-import linkedInIcon from '../static/home/linkedin.svg';
+// import './footer.css';
+import Image from 'next/image';
+import facebookIcon from '/public/images/home/facebook.svg';
+import instagramIcon from '/public/images/home/instagram.svg';
+import linkedInIcon from '/public/images/home/linkedin.svg';
 
 function Footer() {
   return (
@@ -15,14 +16,9 @@ function Footer() {
             Suspendisse sed lectus ex.
           </p>
           <div className="footer-content-title-social">
-            <img src={linkedInIcon} alt="linkedIn" width="25px" height="25px" />
-            <img src={facebookIcon} alt="facebook" width="25px" height="25px" />
-            <img
-              src={instagramIcon}
-              alt="instagram"
-              width="25px"
-              height="25px"
-            />
+            <Image src={linkedInIcon} alt="linkedIn" width={24} height={24} />
+            <Image src={facebookIcon} alt="facebook" width={24} height={24} />
+            <Image src={instagramIcon} alt="instagram" width={24} height={24} />
           </div>
         </div>
         <div className="footer-content-shop">

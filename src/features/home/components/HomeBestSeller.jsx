@@ -1,7 +1,7 @@
 import React from 'react';
-import './homeBestSeller.css';
-import rightIcon from '../../../static/home/rightIcon.svg';
-import arrowIcon from '../../../static/home/arrow.svg';
+import Image from 'next/image';
+import rightIcon from 'public/images/home/rightIcon.svg';
+import arrowIcon from 'public/images/home/arrow.svg';
 
 function HomeBestSeller() {
   return (
@@ -9,13 +9,13 @@ function HomeBestSeller() {
       <div className="best-seller-title">
         <h2 className="best-seller-title-text">Best Seller by Category</h2>
         <a href="#" className="view-all">
-          View All <img src={rightIcon} alt="rightIcon" />
+          View All <Image src={rightIcon} alt="rightIcon" />
         </a>
       </div>
       <div className="best-seller-products">
         <div className="best-seller-left">
           <div className="best-seller-product">
-            <img
+            <Image
               className="best-seller-product-image"
               src=""
               alt=""
@@ -27,12 +27,12 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowIcon} alt="arrow" />
+                <Image src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>
           <div className="best-seller-product">
-            <img
+            <Image
               className="best-seller-product-image"
               src=""
               alt=""
@@ -44,12 +44,12 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowIcon} alt="arrow" />
+                <Image src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>
           <div className="best-seller-product">
-            <img
+            <Image
               className="best-seller-product-image"
               src=""
               alt=""
@@ -61,12 +61,12 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowIcon} alt="arrow" />
+                <Image src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>
           <div className="best-seller-product">
-            <img
+            <Image
               className="best-seller-product-image"
               src=""
               alt=""
@@ -78,7 +78,7 @@ function HomeBestSeller() {
               <span className="product-title">AND MORE</span>
               <a href="#" className="shop-now-btn">
                 Shop Now
-                <img src={arrowIcon} alt="arrow" />
+                <Image src={arrowIcon} alt="arrow" />
               </a>
             </div>
           </div>

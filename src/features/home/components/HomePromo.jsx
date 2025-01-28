@@ -1,9 +1,8 @@
 import React from 'react';
-import './homePromo.css';
-import bagIcon from '../../../static/home/bag.svg';
-import heartIcon from '../../../static/home/heart.svg';
-import rightIcon from '../../../static/home/rightIcon.svg';
-
+import bagIcon from 'public/images/home/bag.svg';
+import heartDarkIcon from 'public/images/home/heartDark.svg';
+import rightIcon from 'public/images/home/rightIcon.svg';
+import Image from 'next/image';
 function HomeProme() {
   return (
     <section className="container">
@@ -13,13 +12,13 @@ function HomeProme() {
           <div className="timer">05:02:00</div>
         </div>
         <a href="#" className="view-all">
-          View All <img src={rightIcon} alt="rightIcon" />
+          View All <Image src={rightIcon} alt="rightIcon" />
         </a>
       </div>
       <div className="products">
         <div className="product">
           <div className="product-image">
-            <img src="/path/to/headset-image.jpg" alt="Headset T50RP MK3N" />
+            <Image src="" alt="Headset T50RP MK3N" />
           </div>
           <div className="product-info">
             <h2>Headset T50RP MK3N</h2>
@@ -39,11 +38,11 @@ function HomeProme() {
             </div>
             <div className="button-group">
               <button className="add-to-cart">
-                <img src={bagIcon} alt="bag" width="16px" height="16px" />
+                <Image src={bagIcon} alt="bag" width={16} height={16} />
                 Add to Cart
               </button>
               <button className="wishlist">
-                <img src={heartIcon} alt="heart" width="16px" height="16px" />
+                <Image src={heartDarkIcon} alt="heart" width={16} height={16} />
               </button>
             </div>
           </div>

@@ -1,0 +1,130 @@
+.best-seller {
+  margin: 50px 100px;
+}
+
+.best-seller-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.best-seller-products {
+  margin-top: 25px;
+  display: flex;
+  gap: 25px;
+}
+
+.best-seller-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.best-seller-product {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 15px;
+  width: calc(50% - 12.5px);
+  height: 148px;
+  display: flex;
+}
+
+.best-seller-product-image {
+  background-color: #d9d9d9;
+  border-radius: 15px;
+}
+
+.best-seller-product-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 13px;
+}
+
+.product-category {
+  color: #666;
+  font-size: 14px;
+}
+
+.product-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.shop-now-btn {
+  background-color: #0a142f;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: 15px;
+}
+
+.best-seller-new-product {
+  background-color: #d7d7d7;
+  padding: 33px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 175px;
+}
+
+.new-arrival-tag {
+  margin-top: 30px;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.new-product-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.2;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.title-line:first-child {
+  font-size: 36px;
+  /* margin-right: 25px; */
+}
+
+.title-line:last-child {
+  font-size: 36px;
+  /* margin-right: 10px; */
+}
+
+.buy-now-btn {
+  background-color: #677a87;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  width: fit-content;
+  margin-left: auto;
+  margin-top: 15px;
+}
+
+.best-seller-title-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.view-all {
+  font-size: 24px;
+  font-weight: medium;
+  color: #0a142f;
+}
