@@ -1,107 +1,171 @@
 // import './footer.css';
+import React from 'react';
+import styled from 'styled-components';
 import Image from 'next/image';
 import facebookIcon from '/public/images/home/facebook.svg';
 import instagramIcon from '/public/images/home/instagram.svg';
 import linkedInIcon from '/public/images/home/linkedin.svg';
 
+const FooterContainer = styled.footer`
+  background-color: #001c30;
+  padding: 50px 100px;
+  width: 100%;
+`;
+
+const FooterContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+`;
+
+const TitleSection = styled.div`
+  max-width: 300px;
+`;
+
+const TitleHeading = styled.h1`
+  color: #fff;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 20px;
+`;
+
+const TitleText = styled.p`
+  color: #fff;
+  font-weight: lighter;
+  font-size: 14px;
+  margin-bottom: 15px;
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+const SectionTitle = styled.div`
+  color: #ffffff80;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 25px;
+`;
+
+const LinkList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const LinkItem = styled.li`
+  list-style: none;
+`;
+
+const StyledLink = styled.a`
+  color: #fff;
+  font-weight: lighter;
+  font-size: 17px;
+  text-decoration: none;
+
+  &:hover {
+    color: #ffffff80;
+    transition: color 0.3s ease;
+  }
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background-color: #fff;
+  margin: 50px 0;
+`;
+
+const Copyright = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+`;
+
+const CopyrightLink = styled.a`
+  color: #fff;
+  text-decoration: none;
+`;
+
 function Footer() {
   return (
-    <footer className="footer-container">
-      <div className="footer-content">
-        <div className="footer-content-title">
-          <h1 className="footer-content-title-text">ECOMMERCE</h1>
-          <p className="footer-content-title-text">
+    <FooterContainer>
+      <FooterContent>
+        <TitleSection>
+          <TitleHeading>ECOMMERCE</TitleHeading>
+          <TitleText>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             at congue risus. Sed commodo dapibus urna eget malesuada.
             Suspendisse sed lectus ex.
-          </p>
-          <div className="footer-content-title-social">
+          </TitleText>
+          <SocialIcons>
             <Image src={linkedInIcon} alt="linkedIn" width={24} height={24} />
             <Image src={facebookIcon} alt="facebook" width={24} height={24} />
             <Image src={instagramIcon} alt="instagram" width={24} height={24} />
-          </div>
+          </SocialIcons>
+        </TitleSection>
+
+        <div>
+          <SectionTitle>Shop</SectionTitle>
+          <LinkList>
+            <LinkItem>
+              <StyledLink href="#">Gaming</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">Computer</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">Laptop</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">Handphone</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">Accesories</StyledLink>
+            </LinkItem>
+          </LinkList>
         </div>
-        <div className="footer-content-shop">
-          <div className="footer-content-shop-title">Shop</div>
-          <ul className="footer-content-shop-list">
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Gaming
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Computer
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Laptop
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Handphone
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Accesories
-              </a>
-            </li>
-          </ul>
+
+        <div>
+          <SectionTitle>Services</SectionTitle>
+          <LinkList>
+            <LinkItem>
+              <StyledLink href="#">Shop</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">Service Device</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">Training</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">Bussines</StyledLink>
+            </LinkItem>
+          </LinkList>
         </div>
-        <div className="footer-content-services">
-          <div className="footer-content-shop-title">Services</div>
-          <ul className="footer-content-shop-list">
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Shop
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Service Device
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Training
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                Bussines
-              </a>
-            </li>
-          </ul>
+
+        <div>
+          <SectionTitle>Contact</SectionTitle>
+          <LinkList>
+            <LinkItem>
+              <StyledLink href="#">+62342342234</StyledLink>
+            </LinkItem>
+            <LinkItem>
+              <StyledLink href="#">admin@gmail.com</StyledLink>
+            </LinkItem>
+          </LinkList>
         </div>
-        <div className="footer-content-contact">
-          <div className="footer-content-shop-title">Contact</div>
-          <ul className="footer-content-shop-list">
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                +62342342234
-              </a>
-            </li>
-            <li className="footer-content-shop-item">
-              <a href="#" className="footer-content-shop-link">
-                admin@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="line"></div>
-      <div className="footer-content-copyright">
-        <p className="footer-content-copyright-text">
-          Copyright 2023. All rights reserved.
-        </p>
-        <a href="#" className="footer-content-copyright-link">
-          Term & Condition
-        </a>
-      </div>
-    </footer>
+      </FooterContent>
+
+      <Divider />
+
+      <Copyright>
+        <p>Copyright 2023. All rights reserved.</p>
+        <CopyrightLink href="#">Term & Condition</CopyrightLink>
+      </Copyright>
+    </FooterContainer>
   );
 }
 
