@@ -37,8 +37,8 @@ function HomeBlog() {
               className="home-blog-item-image"
               src=""
               alt=""
-              width="396px"
-              height="229px"
+              width={396}
+              height={229}
             />
             <div className="home-blog-item-content">
               <span className="home-blog-item-date">08 June 2024</span>
@@ -55,8 +55,8 @@ function HomeBlog() {
               className="home-blog-item-image"
               src=""
               alt=""
-              width="396px"
-              height="229px"
+              width={396}
+              height={229}
             />
             <div className="home-blog-item-content">
               <span className="home-blog-item-date">08 June 2024</span>
