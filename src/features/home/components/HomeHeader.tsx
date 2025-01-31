@@ -15,8 +15,8 @@ function HomeHeader() {
         </button>
       </div>
       <div className="right-card">
-        <Image className="card" src="" />
-        <Image className="card" src="" />
+        <Image className="card" src="" alt="" />
+        <Image className="card" src="" alt="" />
       </div>
     </div>
   );
