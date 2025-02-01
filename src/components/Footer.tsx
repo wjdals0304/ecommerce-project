@@ -1,4 +1,3 @@
-// import './footer.css';
 import Image from 'next/image';
 import facebookIcon from '/public/images/home/facebook.svg';
 import instagramIcon from '/public/images/home/instagram.svg';
