@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import gameIcon from 'public/images/home/game.svg';
 import smartphoneIcon from 'public/images/home/smartphone.svg';
 import laptopIcon from 'public/images/home/laptop.svg';
@@ -6,34 +7,63 @@ import tvIcon from 'public/images/home/tv.svg';
 import cameraIcon from 'public/images/home/camera.svg';
 import moreIcon from 'public/images/home/more.svg';
 import Image from 'next/image';
+
+const CategoryList = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 100px 100px;
+  gap: 25px;
+`;
+
+const CategoryItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 35px 45px;
+  width: 185px;
+  height: 169px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+`;
+
+const CategoryTitle = styled.span`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+`;
+
 function HomeCategory() {
   return (
-    <ul className="categories">
-      <li className="category-item">
+    <CategoryList>
+      <CategoryItem>
         <Image src={gameIcon} alt="Gaming" width={94} height={70} />
-        <span className="category-title">Gaming</span>
-      </li>
-      <li className="category-item">
+        <CategoryTitle>Gaming</CategoryTitle>
+      </CategoryItem>
+      <CategoryItem>
         <Image src={smartphoneIcon} alt="Smartphone" width={70} height={70} />
-        <span className="category-title">Smartphone</span>
-      </li>
-      <li className="category-item">
+        <CategoryTitle>Smartphone</CategoryTitle>
+      </CategoryItem>
+      <CategoryItem>
         <Image src={laptopIcon} alt="Laptop" width={87} height={70} />
-        <span className="category-title">Laptop</span>
-      </li>
-      <li className="category-item">
+        <CategoryTitle>Laptop</CategoryTitle>
+      </CategoryItem>
+      <CategoryItem>
         <Image src={tvIcon} alt="TV" width={90} height={68} />
-        <span className="category-title">TV</span>
-      </li>
-      <li className="category-item">
+        <CategoryTitle>TV</CategoryTitle>
+      </CategoryItem>
+      <CategoryItem>
         <Image src={cameraIcon} alt="Camera" width={88} height={68} />
-        <span className="category-title">Camera</span>
-      </li>
-      <li className="category-item">
+        <CategoryTitle>Camera</CategoryTitle>
+      </CategoryItem>
+      <CategoryItem>
         <Image src={moreIcon} alt="More" width={68} height={68} />
-        <span className="category-title">More</span>
-      </li>
-    </ul>
+        <CategoryTitle>More</CategoryTitle>
+      </CategoryItem>
+    </CategoryList>
   );
 }
 

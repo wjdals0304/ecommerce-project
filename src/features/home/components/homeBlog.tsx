@@ -1,75 +1,119 @@
 import rightIcon from 'public/images/home/rightIcon.svg';
 import Image from 'next/image';
+import styled from 'styled-components';
+
 function HomeBlog() {
   return (
-    <div className="home-blog-container">
-      <div className="home-blog-title">
-        <span className="home-blog-title-text">
-          News Blog About Electronics
-        </span>
-        <a href="#" className="view-all">
+    <BlogContainer>
+      <BlogTitle>
+        <TitleText>News Blog About Electronics</TitleText>
+        <ViewAll href="#">
           View All{' '}
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
-        </a>
-      </div>
-      <div className="home-blog-contents">
-        <div className="home-blog-content">
-          <div className="home-blog-item">
-            <img
-              className="home-blog-item-image"
-              src=""
-              alt=""
-              width="396"
-              height="229"
-            />
-            <div className="home-blog-item-content">
-              <span className="home-blog-item-date">08 June 2024</span>
-              <span className="home-blog-item-title">
-                The Best Laptop For Your Work
-              </span>
-              <button className="home-blog-item-btn">Read More</button>
-            </div>
-          </div>
-        </div>
-        <div className="home-blog-content">
-          <div className="home-blog-item">
-            <Image
-              className="home-blog-item-image"
-              src=""
-              alt=""
-              width={396}
-              height={229}
-            />
-            <div className="home-blog-item-content">
-              <span className="home-blog-item-date">08 June 2024</span>
-              <span className="home-blog-item-title">
-                The Best Laptop For Your Work
-              </span>
-              <button className="home-blog-item-btn">Read More</button>
-            </div>
-          </div>
-        </div>
-        <div className="home-blog-content">
-          <div className="home-blog-item">
-            <Image
-              className="home-blog-item-image"
-              src=""
-              alt=""
-              width={396}
-              height={229}
-            />
-            <div className="home-blog-item-content">
-              <span className="home-blog-item-date">08 June 2024</span>
-              <span className="home-blog-item-title">
-                The Best Laptop For Your Work
-              </span>
-              <button className="home-blog-item-btn">Read More</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        </ViewAll>
+      </BlogTitle>
+      <BlogContents>
+        {[1, 2, 3].map((_, index) => (
+          <BlogContent key={index}>
+            <BlogItem>
+              <BlogImage src="" alt="" width={396} height={229} />
+              <ItemContent>
+                <ItemDate>08 June 2024</ItemDate>
+                <ItemTitle>The Best Laptop For Your Work</ItemTitle>
+                <ItemButton>Read More</ItemButton>
+              </ItemContent>
+            </BlogItem>
+          </BlogContent>
+        ))}
+      </BlogContents>
+    </BlogContainer>
   );
 }
+
+const BlogContainer = styled.div`
+  margin: auto;
+  padding: 80px 120px;
+`;
+
+const BlogTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TitleText = styled.span`
+  font-size: 24px;
+  font-weight: 600;
+`;
+
+const ViewAll = styled.a`
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+`;
+
+const BlogContents = styled.div`
+  display: flex;
+  gap: 25px;
+`;
+
+const BlogContent = styled.div``;
+
+const BlogItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0;
+  width: 100%;
+  max-width: 396px;
+  cursor: pointer;
+`;
+
+const BlogImage = styled(Image)`
+  width: 100%;
+  height: 229px;
+  object-fit: cover;
+  background-color: #d7d7d7;
+  border-radius: 8px;
+`;
+
+const ItemContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  gap: 8px;
+`;
+
+const ItemDate = styled.span`
+  font-size: 14px;
+  color: #6b7280;
+`;
+
+const ItemTitle = styled.span`
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+`;
+
+const ItemButton = styled.button`
+  width: 100%;
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #333;
+  }
+`;
 
 export default HomeBlog;
