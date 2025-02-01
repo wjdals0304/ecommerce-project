@@ -1,6 +1,5 @@
-import './homeBlog.css';
-import rightIcon from '../../../static/home/rightIcon.svg';
-
+import rightIcon from 'public/images/home/rightIcon.svg';
+import Image from 'next/image';
 function HomeBlog() {
   return (
     <div className="home-blog-container">
@@ -10,7 +9,7 @@ function HomeBlog() {
         </span>
         <a href="#" className="view-all">
           View All{' '}
-          <img src={rightIcon} alt="rightIcon" width="24" height="24" />
+          <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </a>
       </div>
       <div className="home-blog-contents">
@@ -20,8 +19,8 @@ function HomeBlog() {
               className="home-blog-item-image"
               src=""
               alt=""
-              width="396px"
-              height="229px"
+              width="396"
+              height="229"
             />
             <div className="home-blog-item-content">
               <span className="home-blog-item-date">08 June 2024</span>
@@ -34,12 +33,12 @@ function HomeBlog() {
         </div>
         <div className="home-blog-content">
           <div className="home-blog-item">
-            <img
+            <Image
               className="home-blog-item-image"
               src=""
               alt=""
-              width="396px"
-              height="229px"
+              width={396}
+              height={229}
             />
             <div className="home-blog-item-content">
               <span className="home-blog-item-date">08 June 2024</span>
@@ -52,12 +51,12 @@ function HomeBlog() {
         </div>
         <div className="home-blog-content">
           <div className="home-blog-item">
-            <img
+            <Image
               className="home-blog-item-image"
               src=""
               alt=""
-              width="396px"
-              height="229px"
+              width={396}
+              height={229}
             />
             <div className="home-blog-item-content">
               <span className="home-blog-item-date">08 June 2024</span>
