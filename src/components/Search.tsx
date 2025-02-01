@@ -4,6 +4,11 @@ import Image from 'next/image';
 import search from 'public/images/home/search.svg';
 
 const SearchContainer = styled.div`
+  width: 100%;
+  background-color: #ffffff;
+`;
+
+const SearchInner = styled.div`
   display: flex;
   align-items: center;
   gap: 25px;
@@ -64,14 +69,16 @@ const SearchButton = styled.button`
 function Search() {
   return (
     <SearchContainer>
-      <SearchTitle>ECOMMERCE</SearchTitle>
-      <SearchForm>
-        <SearchInput placeholder="Search..." />
-        <SearchButton>
-          <Image src={search} alt="search" />
-          Search
-        </SearchButton>
-      </SearchForm>
+      <SearchInner>
+        <SearchTitle>ECOMMERCE</SearchTitle>
+        <SearchForm>
+          <SearchInput placeholder="Search..." />
+          <SearchButton>
+            <Image src={search} alt="search" />
+            Search
+          </SearchButton>
+        </SearchForm>
+      </SearchInner>
     </SearchContainer>
   );
 }

@@ -1,11 +1,11 @@
-import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import heart from 'public/images/home/heart.svg';
-import bag from 'public/images/home/bag.svg';
-import profile from 'public/images/home/profile.svg';
-import menu from 'public/images/home/menu.svg';
+import heartIcon from 'public/images/home/heart.svg';
+import bagIcon from 'public/images/home/bag.svg';
+import profileIcon from 'public/images/home/profile.svg';
+import menuIcon from 'public/images/home/menu.svg';
+import {usePathname} from 'next/navigation';
 
 const Nav = styled.nav`
   display: flex;
@@ -44,58 +44,82 @@ const NavList = styled.ul`
 
 const NavItem = styled.li`
   display: inline-block;
+
+  &.active {
+    background-color: #f4ce14;
+    padding: 10px 15px;
+    border-radius: 35px;
+  }
 `;
 
 const NavLink = styled(Link)`
   text-decoration: none;
   color: #ffffff;
-`;
 
-const HomeItem = styled(NavItem)`
-  background-color: #f4ce14;
-  padding: 10px 15px;
-  border-radius: 35px;
-`;
-
-const HomeLink = styled(NavLink)`
-  color: #001c3d;
+  &.active {
+    color: #001c3d;
+  }
 `;
 
 function Navigation() {
+  const pathname = usePathname();
+
   return (
     <Nav>
       <AllCategory>
         <a>
-          <Image src={menu} alt="menu" />
+          <Image src={menuIcon} alt="menu" />
           All Category
         </a>
       </AllCategory>
       <NavList>
-        <HomeItem>
-          <HomeLink href="/">Home</HomeLink>
-        </HomeItem>
-        <NavItem>
-          <NavLink href="/about">About</NavLink>
+        <NavItem className={pathname === '/' ? 'active' : ''}>
+          <NavLink href="/" className={pathname === '/' ? 'active' : ''}>
+            Home
+          </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink href="/shop">Shop</NavLink>
+        <NavItem className={pathname === '/about' ? 'active' : ''}>
+          <NavLink
+            href="/about"
+            className={pathname === '/about' ? 'active' : ''}
+          >
+            About
+          </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink href="/blog">Blog</NavLink>
+        <NavItem className={pathname === '/shop' ? 'active' : ''}>
+          <NavLink
+            href="/shop"
+            className={pathname === '/shop' ? 'active' : ''}
+          >
+            Shop
+          </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink href="/contact">Contact</NavLink>
+        <NavItem className={pathname === '/blog' ? 'active' : ''}>
+          <NavLink
+            href="/blog"
+            className={pathname === '/blog' ? 'active' : ''}
+          >
+            Blog
+          </NavLink>
+        </NavItem>
+        <NavItem className={pathname === '/contact' ? 'active' : ''}>
+          <NavLink
+            href="/contact"
+            className={pathname === '/contact' ? 'active' : ''}
+          >
+            Contact
+          </NavLink>
         </NavItem>
       </NavList>
       <NavList>
         <NavItem>
-          <Image src={heart} alt="heart" />
+          <Image src={heartIcon} alt="heart" />
         </NavItem>
         <NavItem>
-          <Image src={bag} alt="bag" />
+          <Image src={bagIcon} alt="bag" />
         </NavItem>
         <NavItem>
-          <Image src={profile} alt="profile" />
+          <Image src={profileIcon} alt="profile" />
         </NavItem>
       </NavList>
     </Nav>

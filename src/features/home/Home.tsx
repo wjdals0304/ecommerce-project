@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Search from './Search';
+import Search from '../../components/Search';
 import HomeHeader from './components/HomeHeader';
 import HomeCategory from './components/HomeCategory';
 import HomeProme from './components/HomePromo';
