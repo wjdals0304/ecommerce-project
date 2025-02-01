@@ -94,10 +94,10 @@ function Navigation() {
             Shop
           </NavLink>
         </NavItem>
-        <NavItem className={pathname === '/blog' ? 'active' : ''}>
+        <NavItem className={pathname?.startsWith('/blog') ? 'active' : ''}>
           <NavLink
             href="/blog"
-            className={pathname === '/blog' ? 'active' : ''}
+            className={pathname?.startsWith('/blog') ? 'active' : ''}
           >
             Blog
           </NavLink>
