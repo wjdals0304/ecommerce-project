@@ -33,7 +33,8 @@ const Title = styled.h1`
 const BlogContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  max-width: 1240px;
   gap: 50px;
-  padding: 50px 100px;
+  margin: auto;
+  padding: 50px 0;
 `;

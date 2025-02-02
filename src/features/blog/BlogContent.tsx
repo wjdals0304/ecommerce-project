@@ -3,36 +3,29 @@ import Image from 'next/image';
 
 function BlogContent() {
   return (
-    <>
-      <BlogContainer>
-        <BlogItem>
-          <BlogImage
-            src="/images/blog/blog-1.jpg"
-            alt="Blog 1"
-            width={380}
-            height={229}
-          />
-          <BlogDate>08 June 2024 Rodrigo</BlogDate>
-          <BlogTitle>TI gets $4.6bn in Chips Act funding</BlogTitle>
-          <BlogDescription>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-            interdum ultrices velit, in facilisis nisl luctus a. Donec felis
-            ipsum, eleifend lacinia fringilla sit amet, dictum eu...{' '}
-          </BlogDescription>
-          <ReadMore>Read More</ReadMore>
-        </BlogItem>
-      </BlogContainer>
-    </>
+    <BlogItem>
+      <BlogImage
+        src="/images/blog/blog-1.jpg"
+        alt="Blog 1"
+        width={380}
+        height={229}
+      />
+      <BlogDate>08 June 2024 Rodrigo</BlogDate>
+      <BlogTitle>TI gets $4.6bn in Chips Act funding</BlogTitle>
+      <BlogDescription>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum
+        ultrices velit, in facilisis nisl luctus a. Donec felis ipsum, eleifend
+        lacinia fringilla sit amet, dictum eu...{' '}
+      </BlogDescription>
+      <ReadMore>Read More</ReadMore>
+    </BlogItem>
   );
 }
-
-const BlogContainer = styled.div`
-  width: 380px;
-`;
 
 const BlogItem = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 380px;
   width: 100%;
 `;
 
@@ -40,6 +33,8 @@ const BlogImage = styled(Image)`
   border-radius: 10px;
   background-color: #d7d7d7;
   width: 100%;
+  height: auto;
+  max-width: 100%;
 `;
 
 const BlogDate = styled.span`
@@ -75,7 +70,6 @@ const ReadMore = styled.button`
   width: 100%;
   height: 39px;
   white-space: nowrap;
-  text-align: center;
 `;
 
 export default BlogContent;
