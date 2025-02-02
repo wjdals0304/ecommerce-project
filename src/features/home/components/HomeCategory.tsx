@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import gameIcon from 'public/images/home/game.svg';
 import smartphoneIcon from 'public/images/home/smartphone.svg';
