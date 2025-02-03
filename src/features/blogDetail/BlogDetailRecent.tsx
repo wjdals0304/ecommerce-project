@@ -26,8 +26,6 @@ const BlogItem = styled.div`
 const BlogImage = styled(Image)`
   border-radius: 15px;
   background-color: #d7d7d7;
-  width: 91px !important;
-  height: 91px !important;
   object-fit: cover;
   display: block;
 `;
