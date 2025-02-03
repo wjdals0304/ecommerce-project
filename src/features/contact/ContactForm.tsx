@@ -7,7 +7,7 @@ const Title = styled.h1`
 `;
 
 const TitleLine = styled.div`
-  width: 100px;
+  width: 200px;
   height: 2px;
   background-color: #f4ce14;
   margin-top: 25px;
@@ -28,9 +28,8 @@ const NameEmailContainer = styled.div`
   gap: 25px;
 `;
 
-// width: 100% 주는게 맞는지
 const NameInput = styled.input`
-  width: 100%;
+  flex: 1;
   height: 49px;
   border: 1px solid #b6bbc4;
   border-radius: 25px;
@@ -42,7 +41,7 @@ const NameInput = styled.input`
 `;
 
 const EmailInput = styled.input`
-  width: 100%;
+  flex: 1;
   height: 49px;
   border: 1px solid #b6bbc4;
   border-radius: 25px;
@@ -60,7 +59,7 @@ const AddressPhoneContainer = styled.div`
 `;
 
 const AddressInput = styled.input`
-  width: 100%;
+  flex: 1;
   height: 49px;
   border: 1px solid #b6bbc4;
   border-radius: 25px;
@@ -72,7 +71,7 @@ const AddressInput = styled.input`
 `;
 
 const PhoneInput = styled.input`
-  width: 100%;
+  flex: 1;
   height: 49px;
   border: 1px solid #b6bbc4;
   border-radius: 25px;
@@ -88,8 +87,9 @@ const MessageInput = styled.input`
   height: 111px;
   border: 1px solid #b6bbc4;
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px;
   margin-top: 25px;
+  margin-bottom: 30px;
 
   &::placeholder {
     color: #8e96a4;

@@ -9,6 +9,12 @@ const Title = styled.h1`
   text-align: center;
 `;
 
+const InnerContainer = styled.div`
+  background-color: #f5f7f8;
+  width: 1240px;
+  margin: auto;
+`;
+
 const Container = styled.div`
   background-color: #f5f7f8;
 `;
@@ -17,9 +23,10 @@ function Contact() {
   return (
     <Container>
       <Search />
-
-      <Title>Contact Us</Title>
-      <ContactForm />
+      <InnerContainer>
+        <Title>Contact Us</Title>
+        <ContactForm />
+      </InnerContainer>
     </Container>
   );
 }
