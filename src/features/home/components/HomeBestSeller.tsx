@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import rightIcon from 'public/images/home/rightIcon.svg';
