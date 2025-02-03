@@ -42,14 +42,15 @@ const NavList = styled.ul`
   align-items: center;
 `;
 
-const NavItem = styled.li`
+const NavItem = styled.div<{active: boolean}>`
   display: inline-block;
-
-  &.active {
+  ${({active}) =>
+    active &&
+    `
     background-color: #f4ce14;
     padding: 10px 15px;
     border-radius: 35px;
-  }
+  `}
 `;
 
 const NavLink = styled(Link)`
@@ -73,12 +74,12 @@ function Navigation() {
         </a>
       </AllCategory>
       <NavList>
-        <NavItem className={pathname === '/' ? 'active' : ''}>
+        <NavItem active={pathname === '/'}>
           <NavLink href="/" className={pathname === '/' ? 'active' : ''}>
             Home
           </NavLink>
         </NavItem>
-        <NavItem className={pathname === '/about' ? 'active' : ''}>
+        <NavItem active={pathname === '/about'}>
           <NavLink
             href="/about"
             className={pathname === '/about' ? 'active' : ''}
@@ -86,7 +87,7 @@ function Navigation() {
             About
           </NavLink>
         </NavItem>
-        <NavItem className={pathname === '/shop' ? 'active' : ''}>
+        <NavItem active={pathname === '/shop'}>
           <NavLink
             href="/shop"
             className={pathname === '/shop' ? 'active' : ''}
@@ -94,15 +95,15 @@ function Navigation() {
             Shop
           </NavLink>
         </NavItem>
-        <NavItem className={pathname === '/blog' ? 'active' : ''}>
+        <NavItem active={pathname?.startsWith('/blog')}>
           <NavLink
             href="/blog"
-            className={pathname === '/blog' ? 'active' : ''}
+            className={pathname?.startsWith('/blog') ? 'active' : ''}
           >
             Blog
           </NavLink>
         </NavItem>
-        <NavItem className={pathname === '/contact' ? 'active' : ''}>
+        <NavItem active={pathname === '/contact'}>
           <NavLink
             href="/contact"
             className={pathname === '/contact' ? 'active' : ''}
@@ -112,13 +113,13 @@ function Navigation() {
         </NavItem>
       </NavList>
       <NavList>
-        <NavItem>
+        <NavItem active={false}>
           <Image src={heartIcon} alt="heart" />
         </NavItem>
-        <NavItem>
+        <NavItem active={false}>
           <Image src={bagIcon} alt="bag" />
         </NavItem>
-        <NavItem>
+        <NavItem active={false}>
           <Image src={profileIcon} alt="profile" />
         </NavItem>
       </NavList>
