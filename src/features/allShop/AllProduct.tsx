@@ -4,26 +4,24 @@ import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 
 const Container = styled.div`
-  flex: 3;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 0px 100px 25px 25px;
+  margin-left: 25px;
 `;
 
 const Title = styled.h2`
   font-size: 24px;
   font-weight: bold;
   color: #001c30;
-  padding: 50px 25px 25px 0px;
+  margin: 50px auto 25px 0px;
 `;
 
 const ProductContainer = styled.div`
   display: flex;
-  max-width: 898px;
+  // max-width: 898px;
   flex-wrap: wrap;
   gap: 18.5px;
-  padding: 25px auto 25px 25px;
+  margin: 0px auto 25px 0px;
 `;
 
 const ProductItem = styled.div`

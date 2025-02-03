@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import Brand from './Brand';
 import Price from './Price';
 import Warrenty from './Warrenty';
+
 const Container = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 25px;
   background-color: #f5f7f8;
 `;
 
@@ -14,7 +13,7 @@ const FilterTitle = styled.h2`
   font-size: 24px;
   font-weight: bold;
   color: #001c30;
-  padding: 50px 25px 25px 100px;
+  margin: 50px 25px 25px 0;
 `;
 
 const CategoryContainer = styled.div`
@@ -25,9 +24,8 @@ const CategoryContainer = styled.div`
 const CategoryItem = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 30px;
   list-style: none;
-  padding: 0px 25px 25px 100px;
+  margin: 0px 25px 25px 0;
   background-color: #ffffff;
   width: 291px;
   height: auto;
@@ -37,14 +35,15 @@ const CategoryTitle = styled.li`
   font-size: 18px;
   font-weight: bold;
   color: #001c30;
-  margin-bottom: 10px;
+  padding: 15px;
+  border-bottom: 1px solid #001c30;
 `;
 
 const CategoryOption = styled.li`
   font-size: 16px;
   color: #8e96a4;
   cursor: pointer;
-  padding: 5px 0;
+  padding: 15px;
 
   &:hover {
     color: #001c30;
@@ -62,7 +61,7 @@ const FilterButton = styled.button`
   font-weight: bold;
   width: 291px;
   height: 49px;
-  margin: 0px 25px 25px 100px;
+  margin: 0px 25px 25px 0;
 `;
 
 export default function FilterProduct() {

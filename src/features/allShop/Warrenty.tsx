@@ -3,22 +3,23 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
   background-color: #f5f7f8;
-  padding: 0px 25px 25px 100px;
+  padding: 0px 25px 25px 0;
 `;
 
 const FilterTitle = styled.h2`
   font-size: 24px;
   font-weight: bold;
   color: #001c30;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #001c30;
 `;
 
 const WarrentyList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   list-style: none;
   padding: 0;
   margin: 0;

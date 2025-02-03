@@ -7,12 +7,17 @@ import profileIcon from 'public/images/home/profile.svg';
 import menuIcon from 'public/images/home/menu.svg';
 import {usePathname} from 'next/navigation';
 
+const Container = styled.div`
+  background-color: #001c3d;
+`;
+
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 100px;
   background-color: #001c3d;
+  max-width: 1240px;
+  margin: 0 auto;
   height: 54px;
 `;
 
@@ -66,64 +71,66 @@ function Navigation() {
   const pathname = usePathname();
 
   return (
-    <Nav>
-      <AllCategory>
-        <a>
-          <Image src={menuIcon} alt="menu" />
-          All Category
-        </a>
-      </AllCategory>
-      <NavList>
-        <NavItem active={pathname === '/'}>
-          <NavLink href="/" className={pathname === '/' ? 'active' : ''}>
-            Home
-          </NavLink>
-        </NavItem>
-        <NavItem active={pathname === '/about'}>
-          <NavLink
-            href="/about"
-            className={pathname === '/about' ? 'active' : ''}
-          >
-            About
-          </NavLink>
-        </NavItem>
-        <NavItem active={pathname === '/shop'}>
-          <NavLink
-            href="/shop"
-            className={pathname === '/shop' ? 'active' : ''}
-          >
-            Shop
-          </NavLink>
-        </NavItem>
-        <NavItem active={pathname?.startsWith('/blog')}>
-          <NavLink
-            href="/blog"
-            className={pathname?.startsWith('/blog') ? 'active' : ''}
-          >
-            Blog
-          </NavLink>
-        </NavItem>
-        <NavItem active={pathname === '/contact'}>
-          <NavLink
-            href="/contact"
-            className={pathname === '/contact' ? 'active' : ''}
-          >
-            Contact
-          </NavLink>
-        </NavItem>
-      </NavList>
-      <NavList>
-        <NavItem active={false}>
-          <Image src={heartIcon} alt="heart" />
-        </NavItem>
-        <NavItem active={false}>
-          <Image src={bagIcon} alt="bag" />
-        </NavItem>
-        <NavItem active={false}>
-          <Image src={profileIcon} alt="profile" />
-        </NavItem>
-      </NavList>
-    </Nav>
+    <Container>
+      <Nav>
+        <AllCategory>
+          <a>
+            <Image src={menuIcon} alt="menu" />
+            All Category
+          </a>
+        </AllCategory>
+        <NavList>
+          <NavItem active={pathname === '/'}>
+            <NavLink href="/" className={pathname === '/' ? 'active' : ''}>
+              Home
+            </NavLink>
+          </NavItem>
+          <NavItem active={pathname === '/about'}>
+            <NavLink
+              href="/about"
+              className={pathname === '/about' ? 'active' : ''}
+            >
+              About
+            </NavLink>
+          </NavItem>
+          <NavItem active={pathname === '/shop'}>
+            <NavLink
+              href="/shop"
+              className={pathname === '/shop' ? 'active' : ''}
+            >
+              Shop
+            </NavLink>
+          </NavItem>
+          <NavItem active={pathname?.startsWith('/blog')}>
+            <NavLink
+              href="/blog"
+              className={pathname?.startsWith('/blog') ? 'active' : ''}
+            >
+              Blog
+            </NavLink>
+          </NavItem>
+          <NavItem active={pathname === '/contact'}>
+            <NavLink
+              href="/contact"
+              className={pathname === '/contact' ? 'active' : ''}
+            >
+              Contact
+            </NavLink>
+          </NavItem>
+        </NavList>
+        <NavList>
+          <NavItem active={false}>
+            <Image src={heartIcon} alt="heart" />
+          </NavItem>
+          <NavItem active={false}>
+            <Image src={bagIcon} alt="bag" />
+          </NavItem>
+          <NavItem active={false}>
+            <Image src={profileIcon} alt="profile" />
+          </NavItem>
+        </NavList>
+      </Nav>
+    </Container>
   );
 }
 

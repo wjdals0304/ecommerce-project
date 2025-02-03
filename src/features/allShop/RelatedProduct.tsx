@@ -11,14 +11,14 @@ const Container = styled.div`
 const Title = styled.h2`
   font-size: 24px;
   font-weight: bold;
-  padding: 50px 100px 25px 100px;
+  margin: 50px 0 25px 0;
 `;
 
 const ProductContainer = styled.div`
   display: flex;
   max-width: 1240px;
   gap: 25px;
-  margin: 25px auto;
+  margin: 25px auto 50px;
 `;
 
 const ProductItem = styled.div`

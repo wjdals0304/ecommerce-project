@@ -9,6 +9,11 @@ const Container = styled.div`
   border: 1px solid transparent;
 `;
 
+const InnerContainer = styled.div`
+  max-width: 1240px;
+  margin: 0 auto;
+`;
+
 const ProductContainer = styled.div`
   display: flex;
 `;
@@ -17,11 +22,13 @@ export default function Shop() {
   return (
     <Container>
       <Search />
-      <ProductContainer>
-        <FilterProduct />
-        <AllProduct />
-      </ProductContainer>
-      <RelatedProduct />
+      <InnerContainer>
+        <ProductContainer>
+          <FilterProduct />
+          <AllProduct />
+        </ProductContainer>
+        <RelatedProduct />
+      </InnerContainer>
     </Container>
   );
 }

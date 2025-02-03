@@ -5,18 +5,20 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f5f7f8;
-  padding: 25px 25px 25px 100px;
+  padding: 25px 25px 25px 0;
 `;
 
 const FilterTitle = styled.h2`
   font-size: 24px;
   font-weight: bold;
   color: #001c30;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #001c30;
 `;
 
 const RangeContainer = styled.div`
   width: 100%;
-  padding: 20px 0;
+  padding: 15px 0;
 `;
 
 const RangeInput = styled.input`
