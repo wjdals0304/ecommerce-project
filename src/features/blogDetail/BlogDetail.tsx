@@ -6,7 +6,7 @@ import BlogDetailRecent from './BlogDetailRecent';
 const Container = styled.div`
   background-color: #f5f7f8;
 `;
-const Title = styled.h1`
+const Title = styled.h2`
   font-size: 40px;
   font-weight: bold;
   text-align: center;
