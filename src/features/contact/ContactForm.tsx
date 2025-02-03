@@ -82,12 +82,12 @@ const PhoneInput = styled.input`
   }
 `;
 
-const MessageInput = styled.input`
+const MessageInput = styled.textarea`
   width: 100%;
   height: 111px;
   border: 1px solid #b6bbc4;
   border-radius: 15px;
-  padding: 10px;
+  padding: 15px;
   margin-top: 25px;
   margin-bottom: 30px;
 
