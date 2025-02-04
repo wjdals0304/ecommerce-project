@@ -18,7 +18,6 @@ const Title = styled.h2`
 
 const ProductContainer = styled.div`
   display: flex;
-  // max-width: 898px;
   flex-wrap: wrap;
   gap: 18.5px;
   margin: 0px auto 25px 0px;
