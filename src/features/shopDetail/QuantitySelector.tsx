@@ -63,7 +63,7 @@ const TotalPrice = styled.span`
 
 export default function QuantitySelector() {
   const [quantity, setQuantity] = useState(1);
-  const pricePerItem = 100.0;
+  const pricePerItem = 100;
   const totalPrice = (quantity * pricePerItem).toFixed(2);
 
   const increaseQuantity = () => setQuantity(quantity + 1);
