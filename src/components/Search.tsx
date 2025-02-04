@@ -14,7 +14,7 @@ const SearchInner = styled.div`
   gap: 25px;
   max-width: 1240px;
   margin: auto;
-  padding: 20px;
+  padding: 20px 0;
 `;
 
 const SearchTitle = styled.span`
