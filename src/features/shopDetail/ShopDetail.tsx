@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ShopProductImage from './ShopProductImage';
-import {useState} from 'react';
 import ShopProductDesc from './ShopProductDesc';
 import SearchBar from '../../components/Search';
 
@@ -28,24 +27,13 @@ const ShopProductContainer = styled.div`
 `;
 
 export default function ShopDetail() {
-  const [mainImage, setMainImage] = useState('메인이미지.jpg');
-
   return (
     <Container>
       <SearchBar />
       <InnerContainer>
         <ShopSection>Shop</ShopSection>
         <ShopProductContainer>
-          <ShopProductImage
-            images={[
-              '이미지1.jpg',
-              '이미지2.jpg',
-              '이미지3.jpg',
-              '이미지4.jpg',
-            ]}
-            mainImage={mainImage}
-            onImageSelect={image => setMainImage(image)}
-          />
+          <ShopProductImage />
           <ShopProductDesc />
         </ShopProductContainer>
       </InnerContainer>

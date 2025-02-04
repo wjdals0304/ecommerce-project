@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {useState} from 'react';
 
 const Container = styled.div`
   width: 595px;
@@ -31,17 +32,10 @@ const Thumbnail = styled.img`
   }
 `;
 
-interface ShopProductBuyProps {
-  images: string[];
-  mainImage: string;
-  onImageSelect: (image: string) => void;
-}
+export default function ShopProductBuy() {
+  const [mainImage, setMainImage] = useState('메인이미지.jpg');
+  const images = ['이미지1.jpg', '이미지2.jpg', '이미지3.jpg', '이미지4.jpg'];
 
-const ShopProductBuy = ({
-  images,
-  mainImage,
-  onImageSelect,
-}: ShopProductBuyProps) => {
   return (
     <Container>
       <ProductImage
@@ -58,12 +52,10 @@ const ShopProductBuy = ({
             alt={`상품 이미지 ${index + 1}`}
             width={131}
             height={131}
-            onClick={() => onImageSelect(image)}
+            onClick={() => setMainImage(image)}
           />
         ))}
       </ThumbnailContainer>
     </Container>
   );
-};
-
-export default ShopProductBuy;
+}
