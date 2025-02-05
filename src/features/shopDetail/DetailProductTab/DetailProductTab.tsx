@@ -14,13 +14,17 @@ const TabContainer = styled.div`
   border-bottom: 1px solid #e0e0e0;
 `;
 
+const TabContentContainer = styled.div`
+  padding: 20px;
+`;
+
 const Tab = styled.div<{isActive: boolean}>`
   flex: 1;
   padding: 15px;
   text-align: center;
   cursor: pointer;
-  background-color: ${props => (props.isActive ? '#F7D358' : 'D7D7D7')};
-  font-weight: ${props => (props.isActive ? 'bold' : 'normal')};
+  background-color: ${({isActive}) => (isActive ? '#F7D358' : 'D7D7D7')};
+  font-weight: ${({isActive}) => (isActive ? 'bold' : 'normal')};
 `;
 
 export default function DetailProductTab() {
@@ -50,7 +54,9 @@ export default function DetailProductTab() {
           Review
         </Tab>
       </TabContainer>
-      <TabContent activeTab={activeTab} />
+      <TabContentContainer>
+        <TabContent activeTab={activeTab} />
+      </TabContentContainer>
     </Container>
   );
 }

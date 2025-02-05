@@ -3,10 +3,6 @@ import DetailSpesificationTab from './DetailSpesificationTab';
 import DetailReviewTab from './DetailReviewTab';
 import styled from 'styled-components';
 
-const ContentContainer = styled.div`
-  padding: 20px;
-`;
-
 export enum ShopDetailTabType {
   Description = 'description',
   Specification = 'specification',
@@ -18,13 +14,12 @@ interface TabContentProps {
 }
 
 export default function TabContent({activeTab}: TabContentProps) {
-  return (
-    <ContentContainer>
-      {activeTab === ShopDetailTabType.Description && <DescriptionTab />}
-      {activeTab === ShopDetailTabType.Specification && (
-        <DetailSpesificationTab />
-      )}
-      {activeTab === ShopDetailTabType.Review && <DetailReviewTab />}
-    </ContentContainer>
-  );
+  switch (activeTab) {
+    case ShopDetailTabType.Description:
+      return <DescriptionTab />;
+    case ShopDetailTabType.Specification:
+      return <DetailSpesificationTab />;
+    case ShopDetailTabType.Review:
+      return <DetailReviewTab />;
+  }
 }
