@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ShopProductImage from './ShopProductImage';
 import ShopProductDesc from './ShopProductDesc';
+import DetailProductTab from './DetailProductTab/DetailProductTab';
 import SearchBar from '../../components/Search';
 
 const Container = styled.div`
@@ -36,6 +37,7 @@ export default function ShopDetail() {
           <ShopProductImage />
           <ShopProductDesc />
         </ShopProductContainer>
+        <DetailProductTab />
       </InnerContainer>
     </Container>
   );
