@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import {useState} from 'react';
-import DescriptionTab from './DescriptionTab';
-import DetailSpesificationTab from './DetailSpesificationTab';
-import DetailReviewTab from './DetailReviewTab';
+import TabContent, {ShopDetailTabType} from './TabContent';
 
 const Container = styled.div`
   max-width: 1240px;
@@ -25,49 +23,34 @@ const Tab = styled.div<{isActive: boolean}>`
   font-weight: ${props => (props.isActive ? 'bold' : 'normal')};
 `;
 
-const ContentContainer = styled.div`
-  padding: 20px;
-`;
-
 export default function DetailProductTab() {
-  const [activeTab, setActiveTab] = useState<
-    'description' | 'specification' | 'review'
-  >('description');
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'description':
-        return <DescriptionTab />;
-      case 'specification':
-        return <DetailSpesificationTab />;
-      case 'review':
-        return <DetailReviewTab />;
-    }
-  };
+  const [activeTab, setActiveTab] = useState<ShopDetailTabType>(
+    ShopDetailTabType.Description,
+  );
 
   return (
     <Container>
       <TabContainer>
         <Tab
-          isActive={activeTab === 'description'}
-          onClick={() => setActiveTab('description')}
+          isActive={activeTab === ShopDetailTabType.Description}
+          onClick={() => setActiveTab(ShopDetailTabType.Description)}
         >
           Description
         </Tab>
         <Tab
-          isActive={activeTab === 'specification'}
-          onClick={() => setActiveTab('specification')}
+          isActive={activeTab === ShopDetailTabType.Specification}
+          onClick={() => setActiveTab(ShopDetailTabType.Specification)}
         >
           Spesification
         </Tab>
         <Tab
-          isActive={activeTab === 'review'}
-          onClick={() => setActiveTab('review')}
+          isActive={activeTab === ShopDetailTabType.Review}
+          onClick={() => setActiveTab(ShopDetailTabType.Review)}
         >
           Review
         </Tab>
       </TabContainer>
-      <ContentContainer>{renderContent()}</ContentContainer>
+      <TabContent activeTab={activeTab} />
     </Container>
   );
 }
