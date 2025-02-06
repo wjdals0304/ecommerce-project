@@ -56,6 +56,11 @@ const CartDescription = styled.span`
   color: #001c30;
 `;
 
+const TabContentContainer = styled.div`
+  max-width: 1240px;
+  margin: 50px auto;
+`;
+
 export default function CartProcessTab() {
   const [activeTab, setActiveTab] = useState<CartProcessTabType>(
     CartProcessTabType.ShoppingCart,
@@ -99,7 +104,9 @@ export default function CartProcessTab() {
           </CartInfo>
         </CartItem>
       </InnerContainer>
-      <TabContent activeTab={activeTab} onNextStep={goToNextStep} />
+      <TabContentContainer>
+        <TabContent activeTab={activeTab} onNextStep={goToNextStep} />
+      </TabContentContainer>
     </Container>
   );
 }
