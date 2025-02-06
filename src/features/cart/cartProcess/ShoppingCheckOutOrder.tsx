@@ -97,11 +97,13 @@ const PrivacyText = styled.p`
   line-height: 1.5;
 `;
 
+interface ShoppingCheckOutOrderProps {
+  onNextStep: () => void;
+}
+
 export default function ShoppingCheckOutOrder({
   onNextStep,
-}: {
-  onNextStep: () => void;
-}) {
+}: ShoppingCheckOutOrderProps) {
   return (
     <Container>
       <TotalTitle>Total</TotalTitle>
