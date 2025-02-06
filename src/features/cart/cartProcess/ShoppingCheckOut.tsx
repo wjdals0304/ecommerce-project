@@ -64,7 +64,11 @@ const SaveButton = styled.button`
   font-weight: medium;
 `;
 
-export default function ShoppingCheckOut() {
+export default function ShoppingCheckOut({
+  onNextStep,
+}: {
+  onNextStep: () => void;
+}) {
   return (
     <Container>
       <BillingContainer>
@@ -88,7 +92,7 @@ export default function ShoppingCheckOut() {
           <SaveButton>Save</SaveButton>
         </SaveButtonContainer>
       </BillingContainer>
-      <ShoppingCheckOutTotal />
+      <ShoppingCheckOutTotal onNextStep={onNextStep} />
     </Container>
   );
 }

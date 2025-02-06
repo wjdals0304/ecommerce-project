@@ -97,7 +97,13 @@ const PrivacyText = styled.p`
   line-height: 1.5;
 `;
 
-export default function ShoppingCartTotal() {
+interface ShoppingCheckOutOrderProps {
+  onNextStep: () => void;
+}
+
+export default function ShoppingCheckOutOrder({
+  onNextStep,
+}: ShoppingCheckOutOrderProps) {
   return (
     <Container>
       <TotalTitle>Total</TotalTitle>
@@ -147,7 +153,7 @@ export default function ShoppingCartTotal() {
         </PrivacyText>
       </PaymentsMethodContainer>
 
-      <CheckoutButton>Place Order</CheckoutButton>
+      <CheckoutButton onClick={onNextStep}>Place Order</CheckoutButton>
     </Container>
   );
 }

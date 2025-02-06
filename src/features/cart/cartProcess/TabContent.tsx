@@ -1,31 +1,29 @@
 import styled from 'styled-components';
 import ShoppingCart from './ShoppingCart';
 import ShoppingCheckOut from './ShoppingCheckOut';
-const Container = styled.div`
-  max-width: 1240px;
-  margin: 50px auto;
-`;
+import ShoppingConfirm from './ShoppingConfirm';
 
 export enum CartProcessTabType {
-  ShoppingCart = 'shoppingCart',
-  ShippingCheckout = 'shippingCheckout',
-  Confirmation = 'confirmation',
+  ShoppingCart = 0,
+  ShippingCheckout = 1,
+  Confirmation = 2,
 }
 
 interface TabContentProps {
-  activeTab: CartProcessTabType;
+  activeTabIndex: number;
   onNextStep: () => void;
 }
 
-export default function TabContent({activeTab, onNextStep}: TabContentProps) {
-  return (
-    <Container>
-      {activeTab === CartProcessTabType.ShoppingCart && (
-        <ShoppingCart onNextStep={onNextStep} />
-      )}
-      {activeTab === CartProcessTabType.ShippingCheckout && (
-        <ShoppingCheckOut />
-      )}
-    </Container>
-  );
+export default function TabContent({
+  activeTabIndex,
+  onNextStep,
+}: TabContentProps) {
+  switch (activeTabIndex) {
+    case CartProcessTabType.ShoppingCart:
+      return <ShoppingCart onNextStep={onNextStep} />;
+    case CartProcessTabType.ShippingCheckout:
+      return <ShoppingCheckOut onNextStep={onNextStep} />;
+    case CartProcessTabType.Confirmation:
+      return <ShoppingConfirm />;
+  }
 }
