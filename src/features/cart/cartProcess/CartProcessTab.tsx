@@ -28,6 +28,18 @@ const CartItem = styled.div<{isActive: boolean}>`
   margin: 0 auto;
   border-bottom: 3px solid ${({isActive}) => (isActive ? '#EE9322' : '#8E96A4')};
   padding-bottom: 25px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: ${({isActive}) => (isActive ? '#EE9322' : '#8E96A4')};
+    transition: background-color 0.3s ease-in-out;
+  }
 `;
 
 const CartItemNumber = styled.span`
