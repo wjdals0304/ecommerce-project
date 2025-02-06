@@ -13,16 +13,20 @@ const InnerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
   padding: 15px;
 `;
 
 const CartItem = styled.div<{isActive: boolean}>`
   display: flex;
+  flex: 1;
+  justify-content: center;
   align-items: center;
   gap: 15px;
-  max-width: 300px;
   margin: 0 auto;
-  border-bottom: 3px solid ${({isActive}) => (isActive ? '#F4CE14' : '#8E96A4')};
+  border-bottom: 3px solid ${({isActive}) => (isActive ? '#EE9322' : '#8E96A4')};
   padding-bottom: 25px;
 `;
 

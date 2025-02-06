@@ -20,16 +20,17 @@ const ProductHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 15px 0;
+  margin: 0 15px;
   border-bottom: 1px solid #8e96a4;
-  gap: 15px;
 `;
 
 const ProductDetailHeader = styled.span`
   font-size: 24px;
   font-weight: bold;
   color: #001c30;
-  width: 352px;
+  padding: 10px;
+  flex: 1 0 352px;
 `;
 
 const ProductPriceHeader = styled.span`
@@ -37,30 +38,35 @@ const ProductPriceHeader = styled.span`
   font-weight: bold;
   color: #001c30;
   padding: 10px;
+  flex: 1 0 133px;
 `;
 
 const ProductQTYHeader = styled.span`
   font-size: 24px;
   font-weight: bold;
   color: #001c30;
+  padding: 10px;
+  flex: 1 0 81px;
 `;
 
 const ProductSubTotalHeader = styled.span`
   font-size: 24px;
   font-weight: bold;
   color: #001c30;
+  padding: 10px;
+  flex: 1 0 133px;
 `;
 
 const ProductEmptyHeader = styled.span`
-  width: 44px;
+  flex: 1 0 47px;
   height: 44px;
+  padding: 10px;
 `;
 
 const ProductItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
   padding: 15px;
 `;
 
@@ -68,7 +74,8 @@ const ProductDetail = styled.div`
   display: flex;
   align-items: center;
   gap: 15px;
-  max-width: 352px;
+  padding: 10px;
+  flex: 1 0 352px;
 `;
 
 const ProductImage = styled.img`
@@ -89,25 +96,32 @@ const ProductPrice = styled.span`
   font-size: 16px;
   font-weight: bold;
   color: #56af2c;
+  flex: 1 0 133px;
+  padding: 10px;
 `;
 
 const ProductQTY = styled.span`
   font-size: 16px;
   font-weight: bold;
   color: #001c30;
+  flex: 1 0 81px;
+  padding: 10px;
 `;
 
 const ProductSubTotal = styled.span`
   font-size: 16px;
   font-weight: bold;
   color: #001c30;
+  flex: 1 0 133px;
+  padding: 10px;
 `;
 
 const TrashIconButton = styled.button`
-  width: 44px;
+  flex: 1 0 47px;
   height: 44px;
   border: none;
   background-color: transparent;
+  padding: 10px;
 `;
 
 const TrashIconImage = styled(Image)`
