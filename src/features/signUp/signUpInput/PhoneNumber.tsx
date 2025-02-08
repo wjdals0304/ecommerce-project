@@ -10,14 +10,19 @@ const PhoneNumberContainer = styled.div`
   position: relative;
 `;
 
-export default function PhoneNumber() {
+export default function PhoneNumber({
+  setIsPhoneNumberValid,
+}: {
+  setIsPhoneNumberValid: (isValid: boolean) => void;
+}) {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
+  const [isPhoneNumberValidLocal, setIsPhoneNumberValidLocal] = useState(true);
   const [phoneNumberError, setPhoneNumberError] = useState('');
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isValid = /^[0-9]*$/.test(value);
+    setIsPhoneNumberValidLocal(isValid);
     setIsPhoneNumberValid(isValid);
     setPhoneNumber(value);
     setPhoneNumberError(isValid ? '' : '숫자만 입력할 수 있습니다.');
@@ -29,11 +34,13 @@ export default function PhoneNumber() {
         placeholder="핸드폰 번호 (예: 01012345678)"
         value={phoneNumber}
         onChange={handlePhoneNumberChange}
-        isValid={isPhoneNumberValid}
+        isValid={isPhoneNumberValidLocal}
         name="phoneNumber"
         type="text"
       />
-      {!isPhoneNumberValid && <ErrorMessage>{phoneNumberError}</ErrorMessage>}
+      {!isPhoneNumberValidLocal && (
+        <ErrorMessage>{phoneNumberError}</ErrorMessage>
+      )}
     </PhoneNumberContainer>
   );
 }

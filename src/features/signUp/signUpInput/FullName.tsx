@@ -10,14 +10,19 @@ const FullNameContainer = styled.div`
   position: relative;
 `;
 
-export default function FullName() {
+export default function FullName({
+  setIsFullNameValid,
+}: {
+  setIsFullNameValid: (isValid: boolean) => void;
+}) {
   const [fullName, setFullName] = useState('');
-  const [isFullNameValid, setIsFullNameValid] = useState(true);
+  const [isFullNameValidLocal, setIsFullNameValidLocal] = useState(true);
   const [fullNameError, setFullNameError] = useState('');
 
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isValid = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣\s]*$/.test(value);
+    setIsFullNameValidLocal(isValid);
     setIsFullNameValid(isValid);
     setFullName(value);
     setFullNameError(isValid ? '' : '이름은 문자만 포함할 수 있습니다.');
@@ -29,11 +34,11 @@ export default function FullName() {
         placeholder="이름 (예: 홍길동)"
         value={fullName}
         onChange={handleFullNameChange}
-        isValid={isFullNameValid}
+        isValid={isFullNameValidLocal}
         name="fullName"
         type="text"
       />
-      {!isFullNameValid && <ErrorMessage>{fullNameError}</ErrorMessage>}
+      {!isFullNameValidLocal && <ErrorMessage>{fullNameError}</ErrorMessage>}
     </FullNameContainer>
   );
 }

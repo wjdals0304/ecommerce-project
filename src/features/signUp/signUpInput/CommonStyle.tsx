@@ -18,5 +18,5 @@ export const ErrorMessage = styled.div`
   font-size: 12px;
   position: absolute;
   bottom: -18px;
-  left: 4px;
+  left: 14px;
 `;
