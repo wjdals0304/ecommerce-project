@@ -40,16 +40,15 @@ export default function SignUpEmail() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [isFullNameValid, setIsFullNameValid] = useState(false);
-  const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [emailError, setEmailError] = useState('');
 
-  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setIsLoading(true);
 
-    const formData = new FormData(e.target as HTMLFormElement);
+    const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
     try {
@@ -78,21 +77,20 @@ export default function SignUpEmail() {
     }
   };
 
+  const isEmailValid = emailError === '';
   const isFormValid =
     isFullNameValid && isEmailValid && isPhoneNumberValid && isPasswordValid;
 
+  const disabled = isLoading || !isFormValid;
+
   return (
     <>
-      <SignUpContainer onSubmit={handleSignUp} method="POST">
+      <SignUpContainer onSubmit={handleSubmit} method="POST">
         <FullName setIsFullNameValid={setIsFullNameValid} />
-        <Email
-          setIsEmailValid={setIsEmailValid}
-          emailError={emailError}
-          clearEmailError={() => setEmailError('')}
-        />
+        <Email emailError={emailError} setEmailError={setEmailError} />
         <PhoneNumber setIsPhoneNumberValid={setIsPhoneNumberValid} />
         <Password setIsPasswordValid={setIsPasswordValid} />
-        <SignUpButton type="submit" disabled={isLoading || !isFormValid}>
+        <SignUpButton type="submit" disabled={disabled}>
           {isLoading ? '로딩 중...' : '회원가입'}
         </SignUpButton>
       </SignUpContainer>
