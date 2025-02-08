@@ -11,17 +11,19 @@ const FullNameContainer = styled.div`
 `;
 
 interface FullNameProps {
-  setIsFullNameValid: (isValid: boolean) => void;
+  fullNameError: string;
+  setFullNameError: (error: string) => void;
 }
 
-export default function FullName({setIsFullNameValid}: FullNameProps) {
+export default function FullName({
+  fullNameError,
+  setFullNameError,
+}: FullNameProps) {
   const [fullName, setFullName] = useState('');
-  const [fullNameError, setFullNameError] = useState('');
 
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isValid = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣\s]*$/.test(value);
-    setIsFullNameValid(isValid);
     setFullName(value);
     setFullNameError(isValid ? '' : '이름은 문자만 포함할 수 있습니다.');
   };

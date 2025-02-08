@@ -11,18 +11,20 @@ const PhoneNumberContainer = styled.div`
 `;
 
 interface PhoneNumberProps {
-  setIsPhoneNumberValid: (isValid: boolean) => void;
+  phoneNumberError: string;
+  setPhoneNumberError: (error: string) => void;
 }
 
-export default function PhoneNumber({setIsPhoneNumberValid}: PhoneNumberProps) {
+export default function PhoneNumber({
+  phoneNumberError,
+  setPhoneNumberError,
+}: PhoneNumberProps) {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [phoneNumberError, setPhoneNumberError] = useState('');
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isValid = value.length > 0 && /^[0-9]*$/.test(value);
 
-    setIsPhoneNumberValid(isValid);
     setPhoneNumber(value);
     setPhoneNumberError(isValid ? '' : '숫자만 입력할 수 있습니다.');
   };

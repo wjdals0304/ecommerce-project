@@ -39,10 +39,10 @@ export default function SignUpEmail() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const [isFullNameValid, setIsFullNameValid] = useState(false);
-  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [fullNameError, setFullNameError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [phoneNumberError, setPhoneNumberError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,6 +78,10 @@ export default function SignUpEmail() {
   };
 
   const isEmailValid = emailError === '';
+  const isPhoneNumberValid = phoneNumberError === '';
+  const isPasswordValid = passwordError === '';
+  const isFullNameValid = fullNameError === '';
+
   const isFormValid =
     isFullNameValid && isEmailValid && isPhoneNumberValid && isPasswordValid;
 
@@ -86,10 +90,19 @@ export default function SignUpEmail() {
   return (
     <>
       <SignUpContainer onSubmit={handleSubmit} method="POST">
-        <FullName setIsFullNameValid={setIsFullNameValid} />
+        <FullName
+          fullNameError={fullNameError}
+          setFullNameError={setFullNameError}
+        />
         <Email emailError={emailError} setEmailError={setEmailError} />
-        <PhoneNumber setIsPhoneNumberValid={setIsPhoneNumberValid} />
-        <Password setIsPasswordValid={setIsPasswordValid} />
+        <PhoneNumber
+          phoneNumberError={phoneNumberError}
+          setPhoneNumberError={setPhoneNumberError}
+        />
+        <Password
+          passwordError={passwordError}
+          setPasswordError={setPasswordError}
+        />
         <SignUpButton type="submit" disabled={disabled}>
           {isLoading ? '로딩 중...' : '회원가입'}
         </SignUpButton>

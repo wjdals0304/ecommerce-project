@@ -23,18 +23,20 @@ const PasswordIcon = styled(Image)`
 `;
 
 interface PasswordProps {
-  setIsPasswordValid: (isValid: boolean) => void;
+  passwordError: string;
+  setPasswordError: (error: string) => void;
 }
 
-export default function Password({setIsPasswordValid}: PasswordProps) {
+export default function Password({
+  passwordError,
+  setPasswordError,
+}: PasswordProps) {
   const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isValid = value.length > 0 && value.length <= 10;
-    setIsPasswordValid(isValid);
     setPassword(value);
     setPasswordError(isValid ? '' : '비밀번호는 최대 10자까지 가능합니다.');
   };
