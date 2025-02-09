@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {API_BASE_URL} from '@/config/ApiEndPoints';
+import Cookies from 'js-cookie';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -9,3 +10,23 @@ const apiClient = axios.create({
 });
 
 export default apiClient;
+
+export const postRequest = async (url: string, data: any) => {
+  const token = Cookies.get('jwt');
+  try {
+    const response = await apiClient.post(url, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
+  const formData = new FormData(event.target as HTMLFormElement);
+  const data = Object.fromEntries(formData);
+  return data;
+};

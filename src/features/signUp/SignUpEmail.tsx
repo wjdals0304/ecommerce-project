@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import {API_ENDPOINTS} from '../../config/ApiEndPoints';
-import apiClient from '@/utils/apiClient';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
 import FullName from './signUpInput/FullName';
@@ -8,6 +7,8 @@ import Email from './signUpInput/Email';
 import PhoneNumber from './signUpInput/PhoneNumber';
 import Password from './signUpInput/Password';
 import ErrorModal from '../../components/PopUpModal';
+import Cookies from 'js-cookie';
+import {postRequest, formDataEntries} from '@/utils/apiClient';
 
 const SignUpContainer = styled.form`
   display: flex;
@@ -48,23 +49,20 @@ export default function SignUpEmail() {
     event.preventDefault();
     setIsLoading(true);
 
-    const formData = new FormData(event.target as HTMLFormElement);
-    const data = Object.fromEntries(formData);
+    const data = formDataEntries(event);
+    const dataPost = {
+      full_name: data.fullName,
+      email: data.email,
+      phone_number: data.phoneNumber,
+      password_hash: data.password,
+    };
 
     try {
-      const response = await apiClient.post(API_ENDPOINTS.SIGNUP_EMAIL, {
-        full_name: data.fullName,
-        email: data.email,
-        phone_number: data.phoneNumber,
-        password_hash: data.password,
-      });
+      const response = await postRequest(API_ENDPOINTS.SIGNUP_EMAIL, dataPost);
+      const token = response.data.token;
 
-      if (response.status >= 200 && response.status < 300) {
-        router.push('/');
-      } else {
-        setErrorMessage('회원가입에 실패했습니다. 다시 시도해주세요.');
-        setShowErrorModal(true);
-      }
+      Cookies.set('jwt', token, {expires: 1});
+      router.push('/');
     } catch (error) {
       if (error.response.status === 409) {
         setEmailError('이미 가입된 이메일입니다.');
