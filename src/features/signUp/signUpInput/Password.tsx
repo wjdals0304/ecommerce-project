@@ -21,16 +21,22 @@ const PasswordIcon = styled(Image)`
   height: 24px;
   cursor: pointer;
 `;
-export default function Password() {
+
+interface PasswordProps {
+  passwordError: string;
+  setPasswordError: (error: string) => void;
+}
+
+export default function Password({
+  passwordError,
+  setPasswordError,
+}: PasswordProps) {
   const [password, setPassword] = useState('');
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const isValid = value.length <= 10;
-    setIsPasswordValid(isValid);
+    const isValid = value.length > 0 && value.length <= 10;
     setPassword(value);
     setPasswordError(isValid ? '' : '비밀번호는 최대 10자까지 가능합니다.');
   };
@@ -46,14 +52,15 @@ export default function Password() {
         placeholder="비밀번호 (최대 10자)"
         value={password}
         onChange={handlePasswordChange}
-        isValid={isPasswordValid}
+        isValid={passwordError === ''}
+        name="password"
       />
       <PasswordIcon
         src={passwordIcon}
         alt="Password"
         onClick={togglePasswordVisibility}
       />
-      {!isPasswordValid && <ErrorMessage>{passwordError}</ErrorMessage>}
+      {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
     </PasswordContainer>
   );
 }

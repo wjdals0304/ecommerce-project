@@ -10,17 +10,24 @@ const EmailContainer = styled.div`
   position: relative;
 `;
 
-export default function Email() {
+interface EmailProps {
+  emailError: string;
+  setEmailError: (error: string) => void;
+}
+
+export default function Email({emailError, setEmailError}: EmailProps) {
   const [email, setEmail] = useState('');
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [emailError, setEmailError] = useState('');
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    const isValid = value === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    setIsEmailValid(isValid);
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+    if (isValid) {
+      setEmailError('');
+    } else {
+      setEmailError('유효한 이메일 주소를 입력하세요.');
+    }
     setEmail(value);
-    setEmailError(isValid ? '' : '유효한 이메일 주소를 입력하세요.');
   };
 
   return (
@@ -29,11 +36,11 @@ export default function Email() {
         placeholder="이메일 (예: example@gmail.com)"
         value={email}
         onChange={handleEmailChange}
-        isValid={isEmailValid}
+        isValid={emailError === ''}
         name="email"
         type="text"
       />
-      {!isEmailValid && <ErrorMessage>{emailError}</ErrorMessage>}
+      {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
     </EmailContainer>
   );
 }
