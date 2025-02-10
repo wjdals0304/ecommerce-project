@@ -60,6 +60,8 @@ function SignInEmail() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [showEmailErrorBorder, setShowEmailErrorBorder] = useState(false);
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -86,10 +88,10 @@ function SignInEmail() {
     }
   };
 
-  const isEmailValid = emailError === '';
-  const isPasswordValid = passwordError === '';
-  const isFormValid = isEmailValid && isPasswordValid;
-  const disabled = isLoading || !isFormValid;
+  const isEmailError = emailError !== '' || emailValue === '';
+  const isPasswordError = passwordError !== '' || passwordValue === '';
+  const isFormError = isEmailError || isPasswordError;
+  const disabled = isLoading || isFormError;
 
   return (
     <Container onSubmit={handleSubmit}>
@@ -97,14 +99,18 @@ function SignInEmail() {
         emailError={emailError}
         setEmailError={setEmailError}
         showEmailErrorBorder={showEmailErrorBorder}
+        emailValue={emailValue}
+        setEmailValue={setEmailValue}
       />
       <Password
         passwordError={passwordError}
         setPasswordError={setPasswordError}
+        passwordValue={passwordValue}
+        setPasswordValue={setPasswordValue}
       />
       <FindPasswordContainer>
-        <FindPassword>Forgot your password?</FindPassword>
-        <PasswordClickHere>Click Here</PasswordClickHere>
+        <FindPassword>비밀번호를 잊으셨나요?</FindPassword>
+        <PasswordClickHere>클릭하세요</PasswordClickHere>
       </FindPasswordContainer>
       <SignInButton disabled={disabled}>
         {isLoading ? '로딩 중...' : '로그인'}

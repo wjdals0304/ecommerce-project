@@ -8,7 +8,7 @@ const PasswordContainer = styled.div`
   width: 100%;
 `;
 
-const PasswordInput = styled.input<{isValid: boolean}>`
+const PasswordInput = styled.input<{isError: boolean}>`
   ${inputStyles};
 `;
 
@@ -25,19 +25,22 @@ const PasswordIcon = styled(Image)`
 interface PasswordProps {
   passwordError: string;
   setPasswordError: (error: string) => void;
+  passwordValue: string;
+  setPasswordValue: (value: string) => void;
 }
 
 export default function Password({
   passwordError,
   setPasswordError,
+  passwordValue,
+  setPasswordValue,
 }: PasswordProps) {
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isValid = value.length > 0 && value.length <= 10;
-    setPassword(value);
+    setPasswordValue(value);
     setPasswordError(isValid ? '' : '비밀번호는 최대 10자까지 가능합니다.');
   };
 
@@ -50,9 +53,9 @@ export default function Password({
       <PasswordInput
         type={showPassword ? 'text' : 'password'}
         placeholder="비밀번호 (최대 10자)"
-        value={password}
+        value={passwordValue}
         onChange={handlePasswordChange}
-        isValid={passwordError === ''}
+        isError={passwordError !== ''}
         name="password"
       />
       <PasswordIcon

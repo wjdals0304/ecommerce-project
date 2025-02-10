@@ -44,13 +44,17 @@ export default function SignUpEmail() {
   const [emailError, setEmailError] = useState('');
   const [phoneNumberError, setPhoneNumberError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [phoneNumberValue, setPhoneNumberValue] = useState('');
+  const [fullNameValue, setFullNameValue] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
 
     const data = formDataEntries(event);
-    const dataPost = {
+    const formData = {
       full_name: data.fullName,
       email: data.email,
       phone_number: data.phoneNumber,
@@ -58,9 +62,9 @@ export default function SignUpEmail() {
     };
 
     try {
-      const response = await postRequest(API_ENDPOINTS.SIGNUP_EMAIL, dataPost);
-      const token = response.data.token;
-
+      const response = await postRequest(API_ENDPOINTS.SIGNUP_EMAIL, formData);
+      const authHeader = response.headers['authorization'];
+      const token = authHeader.split(' ')[1];
       Cookies.set('jwt', token, {expires: 1});
       router.push('/');
     } catch (error) {
@@ -75,15 +79,14 @@ export default function SignUpEmail() {
     }
   };
 
-  const isEmailValid = emailError === '';
-  const isPhoneNumberValid = phoneNumberError === '';
-  const isPasswordValid = passwordError === '';
-  const isFullNameValid = fullNameError === '';
+  const isEmailError = emailError !== '' || emailValue === '';
+  const isPhoneNumberError = phoneNumberError !== '' || phoneNumberValue === '';
+  const isPasswordError = passwordError !== '' || passwordValue === '';
+  const isFullNameError = fullNameError !== '' || fullNameValue === '';
 
-  const isFormValid =
-    isFullNameValid && isEmailValid && isPhoneNumberValid && isPasswordValid;
-
-  const disabled = isLoading || !isFormValid;
+  const isFormError =
+    isFullNameError || isEmailError || isPhoneNumberError || isPasswordError;
+  const disabled = isLoading || isFormError;
 
   return (
     <>
@@ -91,15 +94,26 @@ export default function SignUpEmail() {
         <FullName
           fullNameError={fullNameError}
           setFullNameError={setFullNameError}
+          fullNameValue={fullNameValue}
+          setFullNameValue={setFullNameValue}
         />
-        <Email emailError={emailError} setEmailError={setEmailError} />
+        <Email
+          emailError={emailError}
+          setEmailError={setEmailError}
+          emailValue={emailValue}
+          setEmailValue={setEmailValue}
+        />
         <PhoneNumber
           phoneNumberError={phoneNumberError}
           setPhoneNumberError={setPhoneNumberError}
+          phoneNumberValue={phoneNumberValue}
+          setPhoneNumberValue={setPhoneNumberValue}
         />
         <Password
           passwordError={passwordError}
           setPasswordError={setPasswordError}
+          passwordValue={passwordValue}
+          setPasswordValue={setPasswordValue}
         />
         <SignUpButton type="submit" disabled={disabled}>
           {isLoading ? '로딩 중...' : '회원가입'}
