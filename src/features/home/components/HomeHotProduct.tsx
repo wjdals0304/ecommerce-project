@@ -4,6 +4,7 @@ import Image from 'next/image';
 import rightIcon from 'public/images/home/rightIcon.svg';
 import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
+import {HotProduct} from '@/types/home';
 
 const Container = styled.div`
   margin: 20px 100px;
@@ -45,6 +46,7 @@ const ProductImage = styled(Image)`
   border-radius: 10px;
   margin-bottom: 15px;
   width: 100%;
+  display: block;
 `;
 
 const Rating = styled.div`
@@ -92,7 +94,7 @@ const BuySection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 25px;
 `;
 
 const Price = styled.span`
@@ -119,100 +121,43 @@ const ViewAll = styled.a`
   font-size: 24px;
 `;
 
-function HomeHotProduct() {
+function HomeHotProduct({hotProducts}: {hotProducts: HotProduct[]}) {
   return (
     <Container>
       <Header>
-        <Title>Hot News Electronics</Title>
+        <Title>최신 전자제품</Title>
         <ViewAll>
-          View All <Image src={rightIcon} alt="rightIcon" />
+          더보기 <Image src={rightIcon} alt="rightIcon" />
         </ViewAll>
       </Header>
       <Content>
-        <ProductItem>
-          <ImageContainer>
-            <ProductImage src="" alt="" width={250} height={250} />
-            <Rating>
-              <Image src={starIcon} alt="star" width={18} height={18} />
-              <span>5.0</span>
-            </Rating>
-            <Heart>
-              <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
-            </Heart>
-          </ImageContainer>
-
-          <ItemContent>
-            <ItemTitle>Headset T50RP MK3N - Black And Red</ItemTitle>
-            <ItemSold>200 Item sold</ItemSold>
-            <BuySection>
-              <Price>$100</Price>
-              <BuyButton>Buy</BuyButton>
-            </BuySection>
-          </ItemContent>
-        </ProductItem>
-        <ProductItem>
-          <ImageContainer>
-            <ProductImage src="" alt="" width={250} height={250} />
-            <Rating>
-              <Image src={starIcon} alt="star" width={18} height={18} />
-              <span>5.0</span>
-            </Rating>
-            <Heart>
-              <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
-            </Heart>
-          </ImageContainer>
-
-          <ItemContent>
-            <ItemTitle>Headset T50RP MK3N - Black And Red</ItemTitle>
-            <ItemSold>200 Item sold</ItemSold>
-            <BuySection>
-              <Price>$100</Price>
-              <BuyButton>Buy</BuyButton>
-            </BuySection>
-          </ItemContent>
-        </ProductItem>
-        <ProductItem>
-          <ImageContainer>
-            <ProductImage src="" alt="" width={250} height={250} />
-            <Rating>
-              <Image src={starIcon} alt="star" width={18} height={18} />
-              <span>5.0</span>
-            </Rating>
-            <Heart>
-              <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
-            </Heart>
-          </ImageContainer>
-
-          <ItemContent>
-            <ItemTitle>Headset T50RP MK3N - Black And Red</ItemTitle>
-            <ItemSold>200 Item sold</ItemSold>
-            <BuySection>
-              <Price>$100</Price>
-              <BuyButton>Buy</BuyButton>
-            </BuySection>
-          </ItemContent>
-        </ProductItem>
-        <ProductItem>
-          <ImageContainer>
-            <ProductImage src="" alt="" width={250} height={250} />
-            <Rating>
-              <Image src={starIcon} alt="star" width={18} height={18} />
-              <span>5.0</span>
-            </Rating>
-            <Heart>
-              <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
-            </Heart>
-          </ImageContainer>
-
-          <ItemContent>
-            <ItemTitle>Headset T50RP MK3N - Black And Red</ItemTitle>
-            <ItemSold>200 Item sold</ItemSold>
-            <BuySection>
-              <Price>$100</Price>
-              <BuyButton>Buy</BuyButton>
-            </BuySection>
-          </ItemContent>
-        </ProductItem>
+        {hotProducts.map(hotProduct => (
+          <ProductItem>
+            <ImageContainer key={hotProduct.id}>
+              <ProductImage
+                src={hotProduct.images[0]}
+                alt={hotProduct.name}
+                width={250}
+                height={250}
+              />
+              <Rating>
+                <Image src={starIcon} alt="star" width={18} height={18} />
+                <span>{hotProduct.rating}</span>
+              </Rating>
+              <Heart>
+                <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
+              </Heart>
+            </ImageContainer>
+            <ItemContent>
+              <ItemTitle>{hotProduct.name}</ItemTitle>
+              <ItemSold>{hotProduct.soldCount}개 판매</ItemSold>
+              <BuySection>
+                <Price>{hotProduct.price}</Price>
+                <BuyButton>구매하기</BuyButton>
+              </BuySection>
+            </ItemContent>
+          </ProductItem>
+        ))}
       </Content>
     </Container>
   );

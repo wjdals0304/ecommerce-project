@@ -4,6 +4,7 @@ import Image from 'next/image';
 import bagIcon from 'public/images/home/bag.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 import rightIcon from 'public/images/home/rightIcon.svg';
+import {FlashDeal} from '@/types/home';
 
 const Container = styled.section`
   margin: 50px 100px;
@@ -189,53 +190,63 @@ const Wishlist = styled.button`
   justify-content: center;
 `;
 
-function HomePromo() {
+function HomePromo({flashDeals}: {flashDeals: FlashDeal[]}) {
   return (
     <Container>
       <Header>
         <SaleGroup>
-          <SaleGroupTitle>Flash Sale Deals</SaleGroupTitle>
+          <SaleGroupTitle>반짝 세일</SaleGroupTitle>
           <Timer>05:02:00</Timer>
         </SaleGroup>
         <ViewAll href="#">
-          View All{' '}
+          더보기
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </ViewAll>
       </Header>
       <Products>
-        <Product>
-          <ProductImage>
-            <Image src="" alt="Headset T50RP MK3N" />
-          </ProductImage>
-          <ProductInfo>
-            <ProductTitle>Headset T50RP MK3N</ProductTitle>
-            <PriceContainer>
-              <OriginalPrice>$150</OriginalPrice>
-              <SalePrice>$100</SalePrice>
-            </PriceContainer>
-            <Availability>
-              Available: <Available>25</Available>
-            </Availability>
-            <ProgressContainer>
-              <ProgressBar>
-                <ProgressFill>
-                  <ItemsSold>25 items sold</ItemsSold>
-                </ProgressFill>
-              </ProgressBar>
-            </ProgressContainer>
-            <ButtonGroup>
-              <AddToCart>
-                <Image src={bagIcon} alt="bag" width={16} height={16} />
-                Add to Cart
-              </AddToCart>
-              <Wishlist>
-                <Image src={heartDarkIcon} alt="heart" width={16} height={16} />
-              </Wishlist>
-            </ButtonGroup>
-          </ProductInfo>
-        </Product>
-        <Product />
-        <Product />
+        {flashDeals.map(flashDeal => (
+          <Product key={flashDeal.id}>
+            <ProductImage>
+              <Image
+                src={flashDeal.images[0]}
+                alt={flashDeal.name}
+                width={149}
+                height={200}
+              />
+            </ProductImage>
+            <ProductInfo>
+              <ProductTitle>{flashDeal.name}</ProductTitle>
+              <PriceContainer>
+                <OriginalPrice>{flashDeal.originalPrice}</OriginalPrice>
+                <SalePrice>{flashDeal.price}</SalePrice>
+              </PriceContainer>
+              <Availability>
+                재고: <Available>{flashDeal.stock}</Available>
+              </Availability>
+              <ProgressContainer>
+                <ProgressBar>
+                  <ProgressFill>
+                    <ItemsSold>{flashDeal.soldCount}개 판매</ItemsSold>
+                  </ProgressFill>
+                </ProgressBar>
+              </ProgressContainer>
+              <ButtonGroup>
+                <AddToCart>
+                  <Image src={bagIcon} alt="bag" width={16} height={16} />
+                  장바구니
+                </AddToCart>
+                <Wishlist>
+                  <Image
+                    src={heartDarkIcon}
+                    alt="heart"
+                    width={16}
+                    height={16}
+                  />
+                </Wishlist>
+              </ButtonGroup>
+            </ProductInfo>
+          </Product>
+        ))}
       </Products>
     </Container>
   );
