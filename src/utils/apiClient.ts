@@ -13,16 +13,12 @@ export default apiClient;
 
 export const postRequest = async (url: string, data: any) => {
   const token = Cookies.get('jwt');
-  try {
-    const response = await apiClient.post(url, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  const response = await apiClient.post(url, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
 };
 
 export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {

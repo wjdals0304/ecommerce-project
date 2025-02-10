@@ -1,8 +1,13 @@
 import styled from 'styled-components';
-import Image from 'next/image';
-import passwordIcon from '../../../public/images/signIn/password.svg';
+import {useState} from 'react';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {formDataEntries, postRequest} from '@/utils/apiClient';
+import Cookies from 'js-cookie';
+import {useRouter} from 'next/router';
+import Email from '../signUp/signUpInput/Email';
+import Password from '../signUp/signUpInput/Password';
 
-const Container = styled.div`
+const Container = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,44 +15,6 @@ const Container = styled.div`
   gap: 25px;
   margin: 43px auto 0;
   width: 584px;
-`;
-
-const EmailInput = styled.input`
-  width: 100%;
-  height: 58px;
-  border: 1px solid #b6bbc4;
-  border-radius: 55px;
-  padding: 15px 25px;
-
-  &::placeholder {
-    color: #ababcb;
-  }
-`;
-
-const PasswordContainer = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-const PasswordInput = styled.input`
-  width: 100%;
-  height: 58px;
-  border: 1px solid #b6bbc4;
-  border-radius: 55px;
-  padding: 15px 25px;
-
-  &::placeholder {
-    color: #ababcb;
-  }
-`;
-
-const PasswordIcon = styled(Image)`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 25px;
-  width: 24px;
-  height: 24px;
 `;
 
 const FindPasswordContainer = styled.div`
@@ -80,22 +47,68 @@ const SignInButton = styled.button`
   font-weight: medium;
   color: #001c30;
   border: none;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 `;
 
 function SignInEmail() {
-  return (
-    <Container>
-      <EmailInput placeholder="Email" />
-      <PasswordContainer>
-        <PasswordInput placeholder="Password" />
-        <PasswordIcon src={passwordIcon} alt="password" />
-      </PasswordContainer>
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const [showEmailErrorBorder, setShowEmailErrorBorder] = useState(false);
 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+    const data = formDataEntries(event);
+    const dataPost = {
+      email: data.email,
+      password_hash: data.password,
+    };
+
+    try {
+      const response = await postRequest(API_ENDPOINTS.SIGNIN_EMAIL, dataPost);
+      const authHeader = response.headers['authorization'];
+      const token = authHeader.split(' ')[1];
+      Cookies.set('jwt', token, {expires: 1});
+      router.push('/');
+    } catch (error) {
+      if (error.status === 401) {
+        setPasswordError('이메일 또는 비밀번호가 일치하지 않습니다.');
+        setShowEmailErrorBorder(true);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const isEmailValid = emailError === '';
+  const isPasswordValid = passwordError === '';
+  const isFormValid = isEmailValid && isPasswordValid;
+  const disabled = isLoading || !isFormValid;
+
+  return (
+    <Container onSubmit={handleSubmit}>
+      <Email
+        emailError={emailError}
+        setEmailError={setEmailError}
+        showEmailErrorBorder={showEmailErrorBorder}
+      />
+      <Password
+        passwordError={passwordError}
+        setPasswordError={setPasswordError}
+      />
       <FindPasswordContainer>
         <FindPassword>Forgot your password?</FindPassword>
         <PasswordClickHere>Click Here</PasswordClickHere>
       </FindPasswordContainer>
-      <SignInButton>Sign In</SignInButton>
+      <SignInButton disabled={disabled}>
+        {isLoading ? '로딩 중...' : '로그인'}
+      </SignInButton>
     </Container>
   );
 }
