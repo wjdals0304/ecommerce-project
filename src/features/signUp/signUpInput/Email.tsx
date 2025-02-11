@@ -8,14 +8,20 @@ const EmailInput = styled.input<{isValid: boolean}>`
 
 const EmailContainer = styled.div`
   position: relative;
+  width: 100%;
 `;
 
 interface EmailProps {
   emailError: string;
   setEmailError: (error: string) => void;
+  showEmailErrorBorder?: boolean;
 }
 
-export default function Email({emailError, setEmailError}: EmailProps) {
+export default function Email({
+  emailError,
+  setEmailError,
+  showEmailErrorBorder = false,
+}: EmailProps) {
   const [email, setEmail] = useState('');
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +42,7 @@ export default function Email({emailError, setEmailError}: EmailProps) {
         placeholder="이메일 (예: example@gmail.com)"
         value={email}
         onChange={handleEmailChange}
-        isValid={emailError === ''}
+        isValid={emailError === '' && !showEmailErrorBorder}
         name="email"
         type="text"
       />
