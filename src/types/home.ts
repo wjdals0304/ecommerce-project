@@ -36,9 +36,22 @@ export interface LatestBlog {
   createdAt: string;
 }
 
+export interface Banner {
+  id: number;
+  imageurl: string;
+  size: string;
+  createdat: string;
+}
+
+export interface EventBanners {
+  largeBanners: Banner[];
+  smallBanners: Banner[];
+}
+
 export interface HomeData {
   flashDeals: FlashDeal[];
   bestSellers: BestSeller[];
   hotProducts: HotProduct[];
   latestBlogs: LatestBlog[];
+  eventBanners: EventBanners;
 }

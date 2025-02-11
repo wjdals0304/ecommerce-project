@@ -3,7 +3,8 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import leftIcon from 'public/images/home/leftIcon.svg';
 import rightIcon from 'public/images/home/rightIcon.svg';
-
+import {EventBanners} from '@/types/home';
+import {useState} from 'react';
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -65,20 +66,52 @@ const Card = styled(Image)`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-function HomeHeader() {
+interface HomeHeaderProps {
+  eventBanners: EventBanners;
+}
+
+function HomeHeader({eventBanners}: HomeHeaderProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const {largeBanners} = eventBanners;
+
+  const handleNext = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex === eventBanners.largeBanners.length - 1 ? 0 : prevIndex + 1,
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex === 0 ? eventBanners.largeBanners.length - 1 : prevIndex - 1,
+    );
+  };
+
   return (
     <HeaderContainer>
       <Carousel>
-        <LeftButton>
+        <LeftButton onClick={handlePrev}>
           <Image src={leftIcon} alt="left" width={26} height={26} />
         </LeftButton>
-        <RightButton>
+        <Card
+          src={largeBanners[currentIndex].imageurl}
+          alt={largeBanners[currentIndex].imageurl}
+          width={732}
+          height={437}
+        />
+        <RightButton onClick={handleNext}>
           <Image src={rightIcon} alt="right" width={26} height={26} />
         </RightButton>
       </Carousel>
       <RightCardContainer>
-        <Card src="" alt="" />
-        <Card src="" alt="" />
+        {eventBanners.largeBanners.map(banner => (
+          <Card
+            key={banner.id}
+            src={banner.imageurl}
+            alt={'이벤트 배너 이미지'}
+            width={483}
+            height={206}
+          />
+        ))}
       </RightCardContainer>
     </HeaderContainer>
   );
