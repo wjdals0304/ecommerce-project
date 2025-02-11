@@ -3,7 +3,11 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import {LatestBlog} from '@/types/home';
 
-function HomeBlog({blog}: {blog: LatestBlog[]}) {
+interface HomeBlogProps {
+  latestBlogs: LatestBlog[];
+}
+
+function HomeBlog({latestBlogs}: HomeBlogProps) {
   return (
     <BlogContainer>
       <BlogTitle>
@@ -14,23 +18,21 @@ function HomeBlog({blog}: {blog: LatestBlog[]}) {
         </ViewAll>
       </BlogTitle>
       <BlogContents>
-        {blog.map((blog, index) => (
-          <BlogContent key={index}>
-            <BlogItem>
-              <BlogImage
-                src={blog.image}
-                alt={blog.title}
-                width={396}
-                height={229}
-              />
-              <ItemContent>
-                <ItemDate>{blog.createdAt}</ItemDate>
-                <ItemTitle>{blog.title}</ItemTitle>
-                <ItemButton>더보기</ItemButton>
-              </ItemContent>
-            </BlogItem>
-          </BlogContent>
-        ))}
+        {latestBlogs.map(latestBlog => {
+          const {id, image, title, createdAt} = latestBlog;
+          return (
+            <BlogContent key={id}>
+              <BlogItem>
+                <BlogImage src={image} alt={title} width={396} height={229} />
+                <ItemContent>
+                  <ItemDate>{createdAt}</ItemDate>
+                  <ItemTitle>{title}</ItemTitle>
+                  <ItemButton>더보기</ItemButton>
+                </ItemContent>
+              </BlogItem>
+            </BlogContent>
+          );
+        })}
       </BlogContents>
     </BlogContainer>
   );

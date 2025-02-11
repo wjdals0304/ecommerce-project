@@ -131,7 +131,11 @@ const BuyNowButton = styled.a`
   font-size: 16px;
 `;
 
-function HomeBestSeller({bestSellers}: {bestSellers: BestSeller[]}) {
+interface HomeBestSellerProps {
+  bestSellers: BestSeller[];
+}
+
+function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
   return (
     <Section>
       <TitleContainer>
@@ -143,21 +147,25 @@ function HomeBestSeller({bestSellers}: {bestSellers: BestSeller[]}) {
       </TitleContainer>
       <ProductContainer>
         <ProductLeft>
-          {bestSellers.map(bestSeller => (
-            <Product key={bestSeller.product.id}>
-              <ProductImage
-                src={bestSeller.product.images[0]}
-                alt={bestSeller.product.name}
-                width={118}
-                height={118}
-              />
-              <ProductContent>
-                <Category>{bestSeller.categoryName}</Category>
-                <ProductTitle>{bestSeller.product.name}</ProductTitle>
-                <ShopNowButton href="#">지금 구매</ShopNowButton>
-              </ProductContent>
-            </Product>
-          ))}
+          {bestSellers.map(bestSeller => {
+            const {id, images, name} = bestSeller.product;
+            const {categoryName} = bestSeller;
+            return (
+              <Product key={id}>
+                <ProductImage
+                  src={images[0]}
+                  alt={name}
+                  width={118}
+                  height={118}
+                />
+                <ProductContent>
+                  <Category>{categoryName}</Category>
+                  <ProductTitle>{name}</ProductTitle>
+                  <ShopNowButton href="#">지금 구매</ShopNowButton>
+                </ProductContent>
+              </Product>
+            );
+          })}
         </ProductLeft>
         <NewProduct>
           <NewArrivalTag>신상품</NewArrivalTag>

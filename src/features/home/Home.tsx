@@ -14,16 +14,22 @@ const Container = styled.div`
   border: 1px solid transparent;
 `;
 
-function Home({homeData}: {homeData: HomeData}) {
+interface HomeProps {
+  homeData: HomeData;
+}
+
+function Home({homeData}: HomeProps) {
+  const {flashDeals, bestSellers, hotProducts, latestBlogs} = homeData;
+
   return (
     <Container>
       <Search />
       <HomeHeader />
       <HomeCategory />
-      <HomeProme flashDeals={homeData.flashDeals} />
-      <HomeBestSeller bestSellers={homeData.bestSellers} />
-      <HomeHotProduct hotProducts={homeData.hotProducts} />
-      <HomeBlog blog={homeData.latestBlogs} />
+      <HomeProme flashDeals={flashDeals} />
+      <HomeBestSeller bestSellers={bestSellers} />
+      <HomeHotProduct hotProducts={hotProducts} />
+      <HomeBlog latestBlogs={latestBlogs} />
     </Container>
   );
 }
