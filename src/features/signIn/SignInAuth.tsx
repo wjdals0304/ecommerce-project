@@ -70,10 +70,10 @@ const GoogleText = styled.span`
 export default function SignInAuth() {
   return (
     <Container>
-      <Or>Or</Or>
+      <Or>또는</Or>
       <GoogleButton>
         <GoogleIcon src={googleIcon} alt="google" />
-        <GoogleText>Sign in with Google</GoogleText>
+        <GoogleText>구글로 로그인</GoogleText>
       </GoogleButton>
     </Container>
   );

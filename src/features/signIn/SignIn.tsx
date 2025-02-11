@@ -39,12 +39,12 @@ function SignIn() {
   return (
     <Container>
       <Search />
-      <Title>Sign In</Title>
+      <Title>로그인</Title>
       <SignInEmail />
       <SignInAuth />
       <SignUpContainer>
-        <AccountText>Don't have an account yet?</AccountText>
-        <SignUpButton>Sign Up</SignUpButton>
+        <AccountText>아직 회원이 아니신가요?</AccountText>
+        <SignUpButton>회원가입</SignUpButton>
       </SignUpContainer>
     </Container>
   );

@@ -39,12 +39,12 @@ export default function SignUp() {
   return (
     <Container>
       <Search />
-      <Title>Sign Up</Title>
+      <Title>회원가입</Title>
       <SignUpEmail />
       <SignUpAuth />
       <SignInContainer>
-        <AccountText>Do you have an account?</AccountText>
-        <SignInButton>Sign In</SignInButton>
+        <AccountText>이미 회원이신가요?</AccountText>
+        <SignInButton>로그인</SignInButton>
       </SignInContainer>
     </Container>
   );
