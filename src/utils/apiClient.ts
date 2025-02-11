@@ -40,3 +40,9 @@ export const getRequest = async (
   });
   return response;
 };
+
+export const getToken = (response: any) => {
+  const authHeader = response.headers['authorization'];
+  const token = authHeader.split(' ')[1];
+  return token;
+};
