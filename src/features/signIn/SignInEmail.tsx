@@ -72,6 +72,13 @@ function SignInEmail() {
       password_hash: data.password,
     };
 
+    if (data.email === '') {
+      setEmailError('이메일을 입력해주세요.');
+    }
+    if (data.password === '') {
+      setPasswordError('비밀번호를 입력해주세요.');
+    }
+
     try {
       const response = await postRequest(API_ENDPOINTS.SIGNIN_EMAIL, dataPost);
       const token = getToken(response);
@@ -87,8 +94,8 @@ function SignInEmail() {
     }
   };
 
-  const isEmailError = emailError !== '' || emailValue === '';
-  const isPasswordError = passwordError !== '' || passwordValue === '';
+  const isEmailError = emailError !== '';
+  const isPasswordError = passwordError !== '';
   const isFormError = isEmailError || isPasswordError;
   const disabled = isLoading || isFormError;
 
