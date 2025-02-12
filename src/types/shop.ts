@@ -18,4 +18,5 @@ export interface Category {
 export interface ShopData {
   products: Product[];
   categories: Category[];
+  totalPages: number;
 }
