@@ -21,7 +21,6 @@ interface HomeProps {
 function Home({homeData}: HomeProps) {
   const {flashDeals, bestSellers, hotProducts, latestBlogs, eventBanners} =
     homeData;
-
   return (
     <Container>
       <Search />
