@@ -44,22 +44,27 @@ const PriceDisplay = styled.div`
   font-size: 14px;
 `;
 
-export default function Price() {
-  const [price, setPrice] = useState(250);
-
+export default function Price({
+  priceValue,
+  setPriceValue,
+}: {
+  priceValue: number;
+  setPriceValue: (value: number) => void;
+}) {
   return (
     <Container>
-      <FilterTitle>Price</FilterTitle>
+      <FilterTitle>가격</FilterTitle>
       <RangeContainer>
         <RangeInput
           type="range"
           min={0}
-          max={500}
-          value={price}
-          onChange={e => setPrice(Number(e.target.value))}
+          max={9999999}
+          value={priceValue}
+          name="priceMax"
+          onChange={e => setPriceValue(Number(e.target.value))}
         />
         <PriceDisplay>
-          Price : ${0} - ${price}
+          가격: {0}원 - {priceValue.toLocaleString('ko-KR')}원
         </PriceDisplay>
       </RangeContainer>
     </Container>

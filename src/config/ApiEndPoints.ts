@@ -4,4 +4,6 @@ export const API_ENDPOINTS = {
   SIGNUP_EMAIL: `/auth/signup/email`,
   SIGNIN_EMAIL: `/auth/signin/email`,
   HOME: `/home`,
+  SHOP_ALL: `/shop/all`,
+  SHOP: `/shop`,
 };

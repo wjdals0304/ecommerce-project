@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
-
+import {ShopData} from '@/types/shop';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -106,15 +106,26 @@ const Heart = styled.div`
   height: 38px;
 `;
 
-export default function AllProduct() {
+interface AllProductProps {
+  shopData: ShopData;
+}
+
+export default function AllProduct({shopData}: AllProductProps) {
+  const {products} = shopData;
+
   return (
     <Container>
-      <Title>All Product</Title>
+      <Title>모든 상품</Title>
       <ProductContainer>
-        {Array.from({length: 12}).map((_, index) => (
-          <ProductItem key={index}>
+        {products.map(({id, name, price, soldCount, images}) => (
+          <ProductItem key={id}>
             <ImageContainer>
-              <ProductImage src="" alt="" width={250} height={250} />
+              <ProductImage
+                src={images[0]}
+                alt={name}
+                width={250}
+                height={250}
+              />
               <Rating>
                 <Image src={starIcon} alt="star" width={18} height={18} />
                 <span>5.0</span>
@@ -123,11 +134,11 @@ export default function AllProduct() {
                 <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
               </Heart>
             </ImageContainer>
-            <ProductTitle>Product Name</ProductTitle>
-            <Sold>200 item sold</Sold>
+            <ProductTitle>{name}</ProductTitle>
+            <Sold>{soldCount}개 판매</Sold>
             <ProductPriceContainer>
-              <ProductPrice>$100</ProductPrice>
-              <BuyButton>Buy</BuyButton>
+              <ProductPrice>{price.toLocaleString('ko-KR')}원</ProductPrice>
+              <BuyButton>구매</BuyButton>
             </ProductPriceContainer>
           </ProductItem>
         ))}
