@@ -7,22 +7,30 @@ import HomeProme from './components/HomePromo';
 import HomeBestSeller from './components/HomeBestSeller';
 import HomeHotProduct from './components/HomeHotProduct';
 import HomeBlog from './components/homeBlog';
+import {HomeData} from '../../types/home';
 
 const Container = styled.div`
   background-color: #f5f7f8;
   border: 1px solid transparent;
 `;
 
-function Home() {
+interface HomeProps {
+  homeData: HomeData;
+}
+
+function Home({homeData}: HomeProps) {
+  const {flashDeals, bestSellers, hotProducts, latestBlogs, eventBanners} =
+    homeData;
+
   return (
     <Container>
       <Search />
-      <HomeHeader />
+      <HomeHeader eventBanners={eventBanners} />
       <HomeCategory />
-      <HomeProme />
-      <HomeBestSeller />
-      <HomeHotProduct />
-      <HomeBlog />
+      <HomeProme flashDeals={flashDeals} />
+      <HomeBestSeller bestSellers={bestSellers} />
+      <HomeHotProduct hotProducts={hotProducts} />
+      <HomeBlog latestBlogs={latestBlogs} />
     </Container>
   );
 }

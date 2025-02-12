@@ -1,30 +1,38 @@
 import rightIcon from 'public/images/home/rightIcon.svg';
 import Image from 'next/image';
 import styled from 'styled-components';
+import {LatestBlog} from '@/types/home';
 
-function HomeBlog() {
+interface HomeBlogProps {
+  latestBlogs: LatestBlog[];
+}
+
+function HomeBlog({latestBlogs}: HomeBlogProps) {
   return (
     <BlogContainer>
       <BlogTitle>
-        <TitleText>News Blog About Electronics</TitleText>
+        <TitleText>최신 블로그</TitleText>
         <ViewAll href="#">
-          View All{' '}
+          더보기{' '}
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </ViewAll>
       </BlogTitle>
       <BlogContents>
-        {[1, 2, 3].map((_, index) => (
-          <BlogContent key={index}>
-            <BlogItem>
-              <BlogImage src="" alt="" width={396} height={229} />
-              <ItemContent>
-                <ItemDate>08 June 2024</ItemDate>
-                <ItemTitle>The Best Laptop For Your Work</ItemTitle>
-                <ItemButton>Read More</ItemButton>
-              </ItemContent>
-            </BlogItem>
-          </BlogContent>
-        ))}
+        {latestBlogs.map(latestBlog => {
+          const {id, image, title, createdAt} = latestBlog;
+          return (
+            <BlogContent key={id}>
+              <BlogItem>
+                <BlogImage src={image} alt={title} width={396} height={229} />
+                <ItemContent>
+                  <ItemDate>{createdAt}</ItemDate>
+                  <ItemTitle>{title}</ItemTitle>
+                  <ItemButton>더보기</ItemButton>
+                </ItemContent>
+              </BlogItem>
+            </BlogContent>
+          );
+        })}
       </BlogContents>
     </BlogContainer>
   );

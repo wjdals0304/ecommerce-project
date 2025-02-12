@@ -8,7 +8,7 @@ import PhoneNumber from './signUpInput/PhoneNumber';
 import Password from './signUpInput/Password';
 import ErrorModal from '../../components/PopUpModal';
 import Cookies from 'js-cookie';
-import {postRequest, formDataEntries} from '@/utils/apiClient';
+import {postRequest, formDataEntries, getToken} from '@/utils/apiClient';
 
 const SignUpContainer = styled.form`
   display: flex;
@@ -61,10 +61,22 @@ export default function SignUpEmail() {
       password_hash: data.password,
     };
 
+    if (data.fullName === '') {
+      setFullNameError('이름을 입력해주세요.');
+    }
+    if (data.email === '') {
+      setEmailError('이메일을 입력해주세요.');
+    }
+    if (data.phoneNumber === '') {
+      setPhoneNumberError('전화번호를 입력해주세요.');
+    }
+    if (data.password === '') {
+      setPasswordError('비밀번호를 입력해주세요.');
+    }
+
     try {
       const response = await postRequest(API_ENDPOINTS.SIGNUP_EMAIL, formData);
-      const authHeader = response.headers['authorization'];
-      const token = authHeader.split(' ')[1];
+      const token = getToken(response);
       Cookies.set('jwt', token, {expires: 1});
       router.push('/');
     } catch (error) {
@@ -79,10 +91,10 @@ export default function SignUpEmail() {
     }
   };
 
-  const isEmailError = emailError !== '' || emailValue === '';
-  const isPhoneNumberError = phoneNumberError !== '' || phoneNumberValue === '';
-  const isPasswordError = passwordError !== '' || passwordValue === '';
-  const isFullNameError = fullNameError !== '' || fullNameValue === '';
+  const isEmailError = emailError !== '';
+  const isPhoneNumberError = phoneNumberError !== '';
+  const isPasswordError = passwordError !== '';
+  const isFullNameError = fullNameError !== '';
 
   const isFormError =
     isFullNameError || isEmailError || isPhoneNumberError || isPasswordError;

@@ -26,3 +26,23 @@ export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
   const data = Object.fromEntries(formData);
   return data;
 };
+
+export const getRequest = async (
+  url: string,
+  params: any = {},
+  token: string,
+) => {
+  const response = await apiClient.get(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    params,
+  });
+  return response;
+};
+
+export const getToken = (response: any) => {
+  const authHeader = response.headers['authorization'];
+  const token = authHeader.split(' ')[1];
+  return token;
+};

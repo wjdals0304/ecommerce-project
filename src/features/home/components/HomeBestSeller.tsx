@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import rightIcon from 'public/images/home/rightIcon.svg';
 import arrowIcon from 'public/images/home/arrow.svg';
+import {BestSeller} from '@/types/home';
 
 const Section = styled.section`
   margin: 50px 100px;
@@ -68,6 +69,7 @@ const Category = styled.span`
 
 const ProductTitle = styled.span`
   font-weight: bold;
+  margin-top: 4px;
   font-size: 18px;
 `;
 
@@ -129,70 +131,49 @@ const BuyNowButton = styled.a`
   font-size: 16px;
 `;
 
-function HomeBestSeller() {
+interface HomeBestSellerProps {
+  bestSellers: BestSeller[];
+}
+
+function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
   return (
     <Section>
       <TitleContainer>
-        <Title>Best Seller by Category</Title>
+        <Title>카테고리 별 베스트셀러</Title>
         <ViewAllLink href="#">
-          View All{' '}
+          더보기
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </ViewAllLink>
       </TitleContainer>
       <ProductContainer>
         <ProductLeft>
-          <Product>
-            <ProductImage src="" alt="" width="118" height="118" />
-            <ProductContent>
-              <Category>LAPTOP, NOTEBOOK</Category>
-              <ProductTitle>AND MORE</ProductTitle>
-              <ShopNowButton href="#">
-                Shop Now
-                <Image src={arrowIcon} alt="arrow" />
-              </ShopNowButton>
-            </ProductContent>
-          </Product>
-          <Product>
-            <ProductImage src="" alt="" width="118" height="118" />
-            <ProductContent>
-              <Category>LAPTOP, NOTEBOOK</Category>
-              <ProductTitle>AND MORE</ProductTitle>
-              <ShopNowButton href="#">
-                Shop Now
-                <Image src={arrowIcon} alt="arrow" />
-              </ShopNowButton>
-            </ProductContent>
-          </Product>
-          <Product>
-            <ProductImage src="" alt="" width="118" height="118" />
-            <ProductContent>
-              <Category>LAPTOP, NOTEBOOK</Category>
-              <ProductTitle>AND MORE</ProductTitle>
-              <ShopNowButton href="#">
-                Shop Now
-                <Image src={arrowIcon} alt="arrow" />
-              </ShopNowButton>
-            </ProductContent>
-          </Product>
-          <Product>
-            <ProductImage src="" alt="" width="118" height="118" />
-            <ProductContent>
-              <Category>LAPTOP, NOTEBOOK</Category>
-              <ProductTitle>AND MORE</ProductTitle>
-              <ShopNowButton href="#">
-                Shop Now
-                <Image src={arrowIcon} alt="arrow" />
-              </ShopNowButton>
-            </ProductContent>
-          </Product>
+          {bestSellers.map(bestSeller => {
+            const {id, images, name} = bestSeller.product;
+            const {categoryName} = bestSeller;
+            return (
+              <Product key={id}>
+                <ProductImage
+                  src={images[0]}
+                  alt={name}
+                  width={118}
+                  height={118}
+                />
+                <ProductContent>
+                  <Category>{categoryName}</Category>
+                  <ProductTitle>{name}</ProductTitle>
+                  <ShopNowButton href="#">지금 구매</ShopNowButton>
+                </ProductContent>
+              </Product>
+            );
+          })}
         </ProductLeft>
         <NewProduct>
-          <NewArrivalTag>New Arrivals</NewArrivalTag>
+          <NewArrivalTag>신상품</NewArrivalTag>
           <NewProductTitle>
-            <TitleLine>Make Your Life</TitleLine>
-            <TitleLine>Easier & Stylish</TitleLine>
+            <TitleLine>더 쉽고 멋진</TitleLine>
+            <TitleLine>삶을 만들어요</TitleLine>
           </NewProductTitle>
-          <BuyNowButton href="#">Buy Now</BuyNowButton>
+          <BuyNowButton href="#">구매하기</BuyNowButton>
         </NewProduct>
       </ProductContainer>
     </Section>

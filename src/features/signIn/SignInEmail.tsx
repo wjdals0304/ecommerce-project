@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {useState} from 'react';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
-import {formDataEntries, postRequest} from '@/utils/apiClient';
+import {formDataEntries, postRequest, getToken} from '@/utils/apiClient';
 import Cookies from 'js-cookie';
 import {useRouter} from 'next/router';
 import Email from '../signUp/signUpInput/Email';
@@ -72,10 +72,16 @@ function SignInEmail() {
       password_hash: data.password,
     };
 
+    if (data.email === '') {
+      setEmailError('이메일을 입력해주세요.');
+    }
+    if (data.password === '') {
+      setPasswordError('비밀번호를 입력해주세요.');
+    }
+
     try {
       const response = await postRequest(API_ENDPOINTS.SIGNIN_EMAIL, dataPost);
-      const authHeader = response.headers['authorization'];
-      const token = authHeader.split(' ')[1];
+      const token = getToken(response);
       Cookies.set('jwt', token, {expires: 1});
       router.push('/');
     } catch (error) {
@@ -88,8 +94,8 @@ function SignInEmail() {
     }
   };
 
-  const isEmailError = emailError !== '' || emailValue === '';
-  const isPasswordError = passwordError !== '' || passwordValue === '';
+  const isEmailError = emailError !== '';
+  const isPasswordError = passwordError !== '';
   const isFormError = isEmailError || isPasswordError;
   const disabled = isLoading || isFormError;
 

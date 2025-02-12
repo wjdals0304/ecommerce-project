@@ -3,6 +3,9 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ['example.com'],
+  },
 
   async rewrites() {
     return [
