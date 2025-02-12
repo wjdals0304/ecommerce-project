@@ -73,24 +73,28 @@ const FilterButton = styled.button`
 interface FilterProductProps {
   categories: Category[];
   onFilterChange: (filterParams: any) => void;
+  selectedCategory: number;
+  setSelectedCategory: (categoryId: number) => void;
+  selectedWarrenty: string;
+  setSelectedWarrenty: (warrenty: string) => void;
+  priceValue: number;
+  setPriceValue: (price: number) => void;
 }
 
-enum FilterProductEnum {
+export enum FilterProductEnum {
   ALL = 0,
 }
 
 export default function FilterProduct({
   categories,
   onFilterChange,
+  selectedCategory,
+  setSelectedCategory,
+  selectedWarrenty,
+  setSelectedWarrenty,
+  priceValue,
+  setPriceValue,
 }: FilterProductProps) {
-  const [selectedWarrenty, setSelectedWarrenty] = useState<string>(
-    WarrentyOptions.ALL.value,
-  );
-  const [selectedCategory, setSelectedCategory] = useState<number>(
-    FilterProductEnum.ALL,
-  );
-  const [priceValue, setPriceValue] = useState(9999999);
-
   const handleCategoryClick = (categoryId: number) => {
     setSelectedCategory(categoryId);
   };
