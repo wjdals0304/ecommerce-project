@@ -30,7 +30,7 @@ export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
 export const getRequest = async (
   url: string,
   params: any = {},
-  token: string,
+  token: string = '',
 ) => {
   const response = await apiClient.get(url, {
     headers: {
