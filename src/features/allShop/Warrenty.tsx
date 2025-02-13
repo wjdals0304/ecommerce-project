@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import {useState} from 'react';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,11 +25,11 @@ const WarrentyList = styled.ul`
   margin: 0;
 `;
 
-const WarrentyOption = styled.li`
+const WarrentyOption = styled.li<{isSelected: boolean}>`
   display: flex;
   align-items: center;
   font-size: 14px;
-  font-weight: medium;
+  font-weight: ${({isSelected}) => (isSelected ? 'bold' : 'medium')};
   color: #001c30;
   cursor: pointer;
   padding: 5px 0;
@@ -37,28 +37,45 @@ const WarrentyOption = styled.li`
   input {
     margin-right: 10px;
   }
-
-  &:checked {
-    color: #ff0000;
-    font-weight: bold;
-  }
 `;
 
-export default function Brand() {
+export const WarrentyOptions = {
+  ALL: {name: '전체', value: 'ALL'},
+  ONE_YEAR: {name: '1년', value: 'ONE_YEAR'},
+  TWO_YEAR: {name: '2년 +', value: 'TWO_YEAR'},
+  LIFETIME: {name: '평생', value: 'LIFETIME'},
+};
+
+export default function Warrenty({
+  selectedWarrenty,
+  setSelectedWarrenty,
+}: {
+  selectedWarrenty: string;
+  setSelectedWarrenty: (warrenty: string) => void;
+}) {
+  const handleWarrentyChange = (warrenty: string) => {
+    setSelectedWarrenty(warrenty);
+  };
+
   return (
     <Container>
-      <FilterTitle>Warrenty</FilterTitle>
+      <FilterTitle>품질 보증</FilterTitle>
       <WarrentyList>
-        <WarrentyOption>
-          <input type="checkbox" checked />1 Years
-        </WarrentyOption>
-        <WarrentyOption>
-          <input type="checkbox" />2 Years +
-        </WarrentyOption>
-        <WarrentyOption>
-          <input type="checkbox" />
-          LifeTime
-        </WarrentyOption>
+        {Object.values(WarrentyOptions).map(({name, value}) => (
+          <WarrentyOption key={name} isSelected={selectedWarrenty === value}>
+            <label>
+              <input
+                type="radio"
+                name="warranty"
+                id={`warranty-${value}`}
+                value={value}
+                checked={selectedWarrenty === value}
+                onChange={() => handleWarrentyChange(value)}
+              />
+              <span>{name}</span>
+            </label>
+          </WarrentyOption>
+        ))}
       </WarrentyList>
     </Container>
   );

@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import Brand from './Brand';
 import Price from './Price';
-import Warrenty from './Warrenty';
+import Warrenty, {WarrentyOptions} from './Warrenty';
+import {Category} from '@/types/shop';
+import {useState} from 'react';
+import {formDataEntries, getRequest} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 
-const Container = styled.div`
+const Container = styled.form`
   display: flex;
   flex-direction: column;
   background-color: #f5f7f8;
@@ -39,11 +42,14 @@ const CategoryTitle = styled.li`
   border-bottom: 1px solid #001c30;
 `;
 
-const CategoryOption = styled.li`
+const CategoryOption = styled.li<{isSelected: boolean}>`
   font-size: 16px;
-  color: #8e96a4;
+  color: ${({isSelected}) => (isSelected ? '#001c30' : '#8e96a4')};
+  font-weight: ${({isSelected}) => (isSelected ? 'bold' : 'normal')};
   cursor: pointer;
   padding: 15px;
+  width: 100%;
+  user-select: none;
 
   &:hover {
     color: #001c30;
@@ -64,26 +70,68 @@ const FilterButton = styled.button`
   margin: 0px 25px 25px 0;
 `;
 
-export default function FilterProduct() {
+interface FilterProductProps {
+  categories: Category[];
+  onFilterChange: (filterParams: any) => void;
+}
+
+enum FilterProductEnum {
+  ALL = 0,
+}
+
+export default function FilterProduct({
+  categories,
+  onFilterChange,
+}: FilterProductProps) {
+  const [selectedWarrenty, setSelectedWarrenty] = useState<string>(
+    WarrentyOptions.ALL.value,
+  );
+  const [selectedCategory, setSelectedCategory] = useState<number>(
+    FilterProductEnum.ALL,
+  );
+  const [priceValue, setPriceValue] = useState(9999999);
+
+  const handleCategoryClick = (categoryId: number) => {
+    setSelectedCategory(categoryId);
+  };
+
+  const handleFilterSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+
+    const data = formDataEntries(event);
+    const filterParams = {
+      categoryId: selectedCategory,
+      priceMin: 0,
+      priceMax: data.priceMax,
+      warranty: selectedWarrenty,
+    };
+
+    onFilterChange(filterParams);
+  };
+
   return (
-    <Container>
-      <FilterTitle>Filter Product</FilterTitle>
+    <Container onSubmit={handleFilterSubmit} method="get">
+      <FilterTitle>상품 필터</FilterTitle>
       <CategoryItem>
-        <CategoryTitle>Categories</CategoryTitle>
-        <CategoryOption>All Product</CategoryOption>
-        <CategoryOption>Smartphone</CategoryOption>
-        <CategoryOption>Digital Camera</CategoryOption>
-        <CategoryOption>Gaming Accessories</CategoryOption>
-        <CategoryOption>Laptop & Notebook</CategoryOption>
-        <CategoryOption>Computer/PC</CategoryOption>
-        <CategoryOption>Audio & Video</CategoryOption>
-        <CategoryOption>IOT</CategoryOption>
-        <CategoryOption>Other</CategoryOption>
+        <CategoryTitle>카테고리</CategoryTitle>
+        {categories.map(({id, name}) => (
+          <CategoryOption
+            key={id}
+            onClick={() => handleCategoryClick(id)}
+            isSelected={selectedCategory === id}
+          >
+            {name}
+          </CategoryOption>
+        ))}
       </CategoryItem>
-      <Brand />
-      <Price />
-      <Warrenty />
-      <FilterButton>Filter</FilterButton>
+      <Price priceValue={priceValue} setPriceValue={setPriceValue} />
+      <Warrenty
+        selectedWarrenty={selectedWarrenty}
+        setSelectedWarrenty={setSelectedWarrenty}
+      />
+      <FilterButton>필터 적용</FilterButton>
     </Container>
   );
 }
