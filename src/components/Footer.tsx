@@ -8,29 +8,34 @@ import FooterSection from './FooterSection';
 function Footer() {
   return (
     <FooterContainer>
-      <FooterContent>
-        <TitleSection>
-          <TitleHeading>ECOMMERCE</TitleHeading>
-          <TitleText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            at congue risus. Sed commodo dapibus urna eget malesuada.
-            Suspendisse sed lectus ex.
-          </TitleText>
-          <SocialIcons>
-            <Image src={linkedInIcon} alt="linkedIn" width={24} height={24} />
-            <Image src={facebookIcon} alt="facebook" width={24} height={24} />
-            <Image src={instagramIcon} alt="instagram" width={24} height={24} />
-          </SocialIcons>
-        </TitleSection>
-        <FooterSection />
-      </FooterContent>
-
-      <Divider />
-
-      <Copyright>
-        <p>Copyright 2023. All rights reserved.</p>
-        <CopyrightLink href="#">Term & Condition</CopyrightLink>
-      </Copyright>
+      <FooterInnerContainer>
+        <FooterContent>
+          <TitleSection>
+            <TitleHeading>ECOMMERCE</TitleHeading>
+            <TitleText>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+              at congue risus. Sed commodo dapibus urna eget malesuada.
+              Suspendisse sed lectus ex.
+            </TitleText>
+            <SocialIcons>
+              <Image src={linkedInIcon} alt="linkedIn" width={24} height={24} />
+              <Image src={facebookIcon} alt="facebook" width={24} height={24} />
+              <Image
+                src={instagramIcon}
+                alt="instagram"
+                width={24}
+                height={24}
+              />
+            </SocialIcons>
+          </TitleSection>
+          <FooterSection />
+        </FooterContent>
+        <Divider />
+        <Copyright>
+          <p>Copyright 2023. All rights reserved.</p>
+          <CopyrightLink href="#">Term & Condition</CopyrightLink>
+        </Copyright>
+      </FooterInnerContainer>
     </FooterContainer>
   );
 }
@@ -40,6 +45,11 @@ export default Footer;
 const FooterContainer = styled.footer`
   background-color: #001c30;
   padding: 50px 100px;
+`;
+
+const FooterInnerContainer = styled.div`
+  max-width: 1240px;
+  margin: 0 auto;
   width: 100%;
 `;
 
