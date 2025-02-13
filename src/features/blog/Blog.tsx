@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 import Search from '../../components/Search';
 import BlogContent from './BlogContent';
+import {BlogResponse} from '@/types/blog';
 
-function Blog() {
+interface BlogProps {
+  blogPosts: BlogResponse;
+}
+
+function Blog({blogPosts}: BlogProps) {
   return (
     <Container>
       <Search />
-      <Title>Blog</Title>
+      <Title>블로그</Title>
       <BlogContainer>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(item => (
-          <BlogContent key={item} />
+        {blogPosts.blogs.map(blog => (
+          <BlogContent key={blog.id} blog={blog} />
         ))}
       </BlogContainer>
     </Container>

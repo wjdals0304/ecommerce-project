@@ -1,23 +1,22 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import {Blog} from '@/types/blog';
+import router from 'next/router';
+import {useRouter} from 'next/router';
 
-function BlogContent() {
+interface BlogContentProps {
+  blog: Blog;
+}
+
+function BlogContent({blog}: BlogContentProps) {
+  const {id, title, content, image, createdAt} = blog;
   return (
-    <BlogItem>
-      <BlogImage
-        src="/images/blog/blog-1.jpg"
-        alt="Blog 1"
-        width={380}
-        height={229}
-      />
-      <BlogDate>08 June 2024 Rodrigo</BlogDate>
-      <BlogTitle>TI gets $4.6bn in Chips Act funding</BlogTitle>
-      <BlogDescription>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum
-        ultrices velit, in facilisis nisl luctus a. Donec felis ipsum, eleifend
-        lacinia fringilla sit amet, dictum eu...{' '}
-      </BlogDescription>
-      <ReadMore>Read More</ReadMore>
+    <BlogItem key={id} onClick={() => router.push(`/blog/${id}`)}>
+      <BlogImage src={image} alt={title} width={380} height={229} />
+      <BlogDate>{createdAt.split('T')[0]}</BlogDate>
+      <BlogTitle>{title}</BlogTitle>
+      <BlogDescription>{content}</BlogDescription>
+      <ReadMore>자세히 보기</ReadMore>
     </BlogItem>
   );
 }
@@ -27,6 +26,8 @@ const BlogItem = styled.div`
   flex-direction: column;
   max-width: 380px;
   width: 100%;
+  height: auto;
+  cursor: pointer;
 `;
 
 const BlogImage = styled(Image)`
@@ -49,6 +50,7 @@ const BlogTitle = styled.h2`
   font-weight: bold;
   color: #001c30;
   margin-top: 10px;
+  height: 50px;
 `;
 
 const BlogDescription = styled.p`

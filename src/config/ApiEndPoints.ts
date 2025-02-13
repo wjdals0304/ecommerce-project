@@ -6,4 +6,5 @@ export const API_ENDPOINTS = {
   HOME: `/home`,
   SHOP_ALL: `/shop/all`,
   SHOP: `/shop`,
+  BLOG: `/blog`,
 };
