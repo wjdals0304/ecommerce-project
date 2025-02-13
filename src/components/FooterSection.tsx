@@ -7,19 +7,19 @@ function FooterSection() {
         <SectionTitle>Shop</SectionTitle>
         <LinkList>
           <LinkItem>
-            <StyledLink href="#">Gaming</StyledLink>
+            <StyledLink href="#">게임</StyledLink>
           </LinkItem>
           <LinkItem>
-            <StyledLink href="#">Computer</StyledLink>
+            <StyledLink href="#">컴퓨터</StyledLink>
           </LinkItem>
           <LinkItem>
-            <StyledLink href="#">Laptop</StyledLink>
+            <StyledLink href="#">노트북</StyledLink>
           </LinkItem>
           <LinkItem>
-            <StyledLink href="#">Handphone</StyledLink>
+            <StyledLink href="#">휴대폰</StyledLink>
           </LinkItem>
           <LinkItem>
-            <StyledLink href="#">Accesories</StyledLink>
+            <StyledLink href="#">액세서리</StyledLink>
           </LinkItem>
         </LinkList>
       </div>
@@ -27,16 +27,16 @@ function FooterSection() {
         <SectionTitle>Services</SectionTitle>
         <LinkList>
           <LinkItem>
-            <StyledLink href="#">Shop</StyledLink>
+            <StyledLink href="#">쇼핑몰</StyledLink>
           </LinkItem>
           <LinkItem>
-            <StyledLink href="#">Service Device</StyledLink>
+            <StyledLink href="#">서비스 기기</StyledLink>
           </LinkItem>
           <LinkItem>
-            <StyledLink href="#">Training</StyledLink>
+            <StyledLink href="#">트레이닝</StyledLink>
           </LinkItem>
           <LinkItem>
-            <StyledLink href="#">Bussines</StyledLink>
+            <StyledLink href="#">비즈니스</StyledLink>
           </LinkItem>
         </LinkList>
       </div>
