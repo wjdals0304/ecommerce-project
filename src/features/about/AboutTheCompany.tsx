@@ -12,7 +12,7 @@ const Title = styled.h1`
 `;
 
 const Line = styled.div`
-  width: 308px;
+  width: 120px;
   height: 5px;
   background-color: #f4ce14;
   margin: 20px 0;
@@ -24,28 +24,18 @@ const Content = styled.p`
   line-height: 1.5;
 `;
 
-const StyledDiv = styled.div`
-  width: 100%;
-  height: 574px;
-  background-color: #d7d7d7;
-  border-radius: 15px;
-  margin: 25px 0;
-`;
-
 function AboutTheCompany() {
   return (
     <Container>
-      <Title>About The Company</Title>
+      <Title>회사 소개</Title>
       <Line />
       <Content>
-        Qommarket is your go-to source for top-quality computers and
-        electronics. We offer a wide range of products, from powerful laptops
-        and desktops to the latest smartphones and smart home devices. Our
-        mission is to bring the latest technology to everyone, with competitive
-        prices and outstanding customer service. Shop with us and experience the
-        future of technology.{' '}
+        Qommarket은 최고의 컴퓨터와 전자 제품을 제공하는 최고의 소스입니다.
+        우리는 강력한 노트북과 데스크탑부터 최신 스마트폰과 스마트 홈
+        디바이스까지 다양한 제품을 제공합니다. 우리의 미션은 모든 사람에게 최신
+        기술을 제공하는 것입니다. 경쟁적인 가격과 뛰어난 고객 서비스를
+        제공합니다. 우리와 함께 기술의 미래를 경험해보세요.{' '}
       </Content>
-      <StyledDiv />
     </Container>
   );
 }

@@ -50,19 +50,17 @@ function OurMission() {
   return (
     <Container>
       <OurMissionDiv>
-        <OurMissionTitle>Our Mission</OurMissionTitle>
+        <OurMissionTitle>우리의 미션</OurMissionTitle>
         <OurMissionContent>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          egestas semper placerat. Aliquam dictum urna elit, vel fringilla
-          ligula finibus at. Suspendisse gravida efficitur metus, non hendrerit
-          nisi pretium non. Aenean commodo fringilla ex. Nunc eu massa justo.{' '}
+          우리의 미션은 모든 사람에게 최신 기술을 제공하는 것입니다. 경쟁적인
+          가격과 뛰어난 고객 서비스를 제공합니다. 우리와 함께 기술의 미래를
+          경험해보세요.
         </OurMissionContent>
-        <OurVisionTitle>Our Vision</OurVisionTitle>
+        <OurVisionTitle>우리의 비전</OurVisionTitle>
         <OurVisionContent>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          egestas semper placerat. Aliquam dictum urna elit, vel fringilla
-          ligula finibus at. Suspendisse gravida efficitur metus, non hendrerit
-          nisi pretium non. Aenean commodo fringilla ex. Nunc eu massa justo.
+          우리의 비전은 모든 사람에게 최신 기술을 제공하는 것입니다. 경쟁적인
+          가격과 뛰어난 고객 서비스를 제공합니다. 우리와 함께 기술의 미래를
+          경험해보세요.
         </OurVisionContent>
       </OurMissionDiv>
       <StyledOurVisionDiv />

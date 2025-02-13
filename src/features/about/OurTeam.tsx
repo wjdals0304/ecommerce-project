@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 const Section = styled.section`
-  padding: 50px;
+  padding: 100px;
   background-color: #f5f7f8;
   display: flex;
   flex-direction: column;
@@ -61,8 +61,8 @@ const TeamMemberPosition = styled.span`
 function OurTeam() {
   return (
     <Section>
-      <Title>Our Team</Title>
-      <SubTitle>Meet the dedicated team behind Qommarket</SubTitle>
+      <Title>우리의 팀</Title>
+      <SubTitle>Qommarket의 전문가 팀을 만나보세요</SubTitle>
       <TeamMembers>
         <TeamMember>
           <TeamMemberImage
@@ -71,7 +71,7 @@ function OurTeam() {
             width={350}
             height={381}
           />
-          <TeamMemberName>John Doe</TeamMemberName>
+          <TeamMemberName>Jung Min</TeamMemberName>
           <TeamMemberPosition>CEO</TeamMemberPosition>
         </TeamMember>
         <TeamMember>
@@ -81,18 +81,8 @@ function OurTeam() {
             width={350}
             height={381}
           />
-          <TeamMemberName>Jane Doe</TeamMemberName>
+          <TeamMemberName>Yuri</TeamMemberName>
           <TeamMemberPosition>CTO</TeamMemberPosition>
-        </TeamMember>
-        <TeamMember>
-          <TeamMemberImage
-            src=""
-            alt="Team Member 3"
-            width={350}
-            height={381}
-          />
-          <TeamMemberName>John Doe</TeamMemberName>
-          <TeamMemberPosition>CEO</TeamMemberPosition>
         </TeamMember>
       </TeamMembers>
     </Section>
