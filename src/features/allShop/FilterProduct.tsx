@@ -102,10 +102,10 @@ export default function FilterProduct({
 
     const data = formDataEntries(event);
     const filterParams = {
-      categoryId: String(selectedCategory),
-      priceMin: String(0),
-      priceMax: String(data.priceMax),
-      warranty: String(selectedWarrenty),
+      categoryId: selectedCategory,
+      priceMin: 0,
+      priceMax: data.priceMax,
+      warranty: selectedWarrenty,
     };
 
     onFilterChange(filterParams);

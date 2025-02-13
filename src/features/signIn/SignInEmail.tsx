@@ -80,7 +80,10 @@ function SignInEmail() {
     }
 
     try {
-      const response = await postRequest(API_ENDPOINTS.SIGNIN_EMAIL, dataPost);
+      const response = await postRequest(
+        API_ENDPOINTS.AUTH_SIGNIN_EMAIL,
+        dataPost,
+      );
       const token = getToken(response);
       Cookies.set('jwt', token, {expires: 1});
       router.push('/');

@@ -36,7 +36,7 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
     try {
       const response = await getRequest(API_ENDPOINTS.SHOP, filterParams);
       setShopData(response.data);
-      // URL 업데이트
+
       router.push(
         {
           pathname: router.pathname,

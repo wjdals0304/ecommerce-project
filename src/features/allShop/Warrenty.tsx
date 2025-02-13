@@ -63,14 +63,17 @@ export default function Warrenty({
       <WarrentyList>
         {Object.values(WarrentyOptions).map(({name, value}) => (
           <WarrentyOption key={name} isSelected={selectedWarrenty === value}>
-            <input
-              type="radio"
-              name="warrenty"
-              value={value}
-              checked={selectedWarrenty === value}
-              onChange={() => handleWarrentyChange(value)}
-            />
-            {name}
+            <label>
+              <input
+                type="radio"
+                name="warranty"
+                id={`warranty-${value}`}
+                value={value}
+                checked={selectedWarrenty === value}
+                onChange={() => handleWarrentyChange(value)}
+              />
+              <span>{name}</span>
+            </label>
           </WarrentyOption>
         ))}
       </WarrentyList>
