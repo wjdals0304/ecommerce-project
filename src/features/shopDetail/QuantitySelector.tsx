@@ -61,22 +61,21 @@ const TotalPrice = styled.span`
   margin-left: 5px;
 `;
 
-export default function QuantitySelector() {
+export default function QuantitySelector({price}: {price: number}) {
   const [quantity, setQuantity] = useState(1);
-  const pricePerItem = 100;
-  const totalPrice = (quantity * pricePerItem).toFixed(2);
+  const totalPrice = (quantity * price).toLocaleString();
 
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => setQuantity(Math.max(1, quantity - 1));
 
   return (
     <QuantityContainer>
-      <QuantityText>Quantity:</QuantityText>
+      <QuantityText>수량:</QuantityText>
       <QuantityTextContainer>
         <QuantityMinusButton onClick={decreaseQuantity}>-</QuantityMinusButton>
         <QuantityDisplay>{quantity}</QuantityDisplay>
         <QuantityPlusButton onClick={increaseQuantity}>+</QuantityPlusButton>
-        <TotalPrice>Total: ${totalPrice}</TotalPrice>
+        <TotalPrice>총 가격: {totalPrice.toLocaleString()}원</TotalPrice>
       </QuantityTextContainer>
     </QuantityContainer>
   );

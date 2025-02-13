@@ -57,8 +57,8 @@ export default function ShopProductBuy() {
       <ShareButton>
         <Image src={shareIcon} alt="share" width={27} height={27} />
       </ShareButton>
-      <AddToCartButton>Add to Cart</AddToCartButton>
-      <BuyButton>Buy Now</BuyButton>
+      <AddToCartButton>장바구니 추가</AddToCartButton>
+      <BuyButton>구매하기</BuyButton>
     </Container>
   );
 }

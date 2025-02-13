@@ -4,7 +4,7 @@ import starIcon from 'public/images/home/star.svg';
 import QuantitySelector from './QuantitySelector';
 import ShippingMethod from './ShippingMethod';
 import ShopProductBuy from './ShopProductBuy';
-
+import {ShopDetail as ShopDetailType} from '@/types/shop';
 const Container = styled.div`
   width: 595px;
   height: auto;
@@ -87,42 +87,43 @@ const InfoItem = styled.span`
   color: #8e96a4;
 `;
 
-export default function ShopProductDesc() {
+export default function ShopProductDesc({
+  shopDetailData,
+}: {
+  shopDetailData: ShopDetailType;
+}) {
+  const {product, descriptions, specifications} = shopDetailData;
+
+  const {
+    name,
+    price,
+    originalPrice,
+    rating,
+    soldCount,
+    description,
+    stock,
+    warranty,
+    categoryId,
+    reviewCount,
+  } = product;
+
   return (
     <Container>
-      <ProductTitle>
-        Axus Zens 123 Metalic Color I5 Ryzin Generation 10 16" FHD Laptop
-      </ProductTitle>
+      <ProductTitle>{name}</ProductTitle>
       <ProductPriceContainer>
-        <ProductDiscountPrice>$100.00</ProductDiscountPrice>
-        <ProductOriginalPrice>$150.00</ProductOriginalPrice>
+        <ProductDiscountPrice>{price.toLocaleString()}원</ProductDiscountPrice>
+        <ProductOriginalPrice>
+          {originalPrice.toLocaleString()}원
+        </ProductOriginalPrice>
       </ProductPriceContainer>
       <RatingContainer>
         <Rating>
-          <Image src={starIcon} alt="star" width={18} height={18} /> 5.0
+          <Image src={starIcon} alt="star" width={18} height={18} /> {rating}
         </Rating>
-        <ReviewCount>20 Reviews</ReviewCount>
+        <ReviewCount>{reviewCount} 리뷰</ReviewCount>
       </RatingContainer>
-      <ProductDesc>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed
-        aliquet dui. Donec maximus, magna id imperdiet sodales, risus elit
-        varius enim... See More 
-      </ProductDesc>
-      <InfoContainer>
-        <InfoItem>
-          <InfoItemTitle>SKU:</InfoItemTitle>
-          <span>HJ-3123IL</span>
-        </InfoItem>
-        <InfoItem>
-          <InfoItemTitle>Category:</InfoItemTitle>
-          <span>Computer, Laptop</span>
-        </InfoItem>
-        <InfoItem>
-          <InfoItemTitle>Tags:</InfoItemTitle>
-          <span>Bluetooth, Laptop, Monitor, Speaker</span>
-        </InfoItem>
-      </InfoContainer>
-      <QuantitySelector />
+      <ProductDesc>{description}</ProductDesc>
+      <QuantitySelector price={price} />
       <ShippingMethod />
       <ShopProductBuy />
     </Container>

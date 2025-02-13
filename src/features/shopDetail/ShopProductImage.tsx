@@ -32,9 +32,8 @@ const Thumbnail = styled.img`
   }
 `;
 
-export default function ShopProductBuy() {
-  const [mainImage, setMainImage] = useState('메인이미지.jpg');
-  const images = ['이미지1.jpg', '이미지2.jpg', '이미지3.jpg', '이미지4.jpg'];
+export default function ShopProductImage({images}: {images: string[]}) {
+  const [mainImage, setMainImage] = useState(images[0]);
 
   return (
     <Container>
@@ -42,7 +41,7 @@ export default function ShopProductBuy() {
         src={mainImage}
         alt="상품 메인 이미지"
         width={595}
-        height={607.5}
+        height={400}
       />
       <ThumbnailContainer>
         {images.map((image, index) => (

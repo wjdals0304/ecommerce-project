@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {useState} from 'react';
 import TabContent, {ShopDetailTabType} from './TabContent';
-
+import {Review} from '@/types/shop';
 const Container = styled.div`
   max-width: 1240px;
   height: auto;
@@ -27,35 +27,50 @@ const Tab = styled.div<{isActive: boolean}>`
   font-weight: ${({isActive}) => (isActive ? 'bold' : 'normal')};
 `;
 
-export default function DetailProductTab() {
-  const [activeTab, setActiveTab] = useState<ShopDetailTabType>(
-    ShopDetailTabType.Description,
-  );
+interface DetailProductTabProps {
+  activeTab: ShopDetailTabType;
+  onTabClick: (tab: ShopDetailTabType) => void;
+  reviews: Review[];
+  specifications: Specification[];
+  descriptions: ProductDescription[];
+}
 
+export default function DetailProductTab({
+  specifications,
+  descriptions,
+  activeTab,
+  onTabClick,
+  reviews,
+}: DetailProductTabProps) {
   return (
     <Container>
       <TabContainer>
         <Tab
           isActive={activeTab === ShopDetailTabType.Description}
-          onClick={() => setActiveTab(ShopDetailTabType.Description)}
+          onClick={() => onTabClick(ShopDetailTabType.Description)}
         >
-          Description
+          상품 설명
         </Tab>
         <Tab
           isActive={activeTab === ShopDetailTabType.Specification}
-          onClick={() => setActiveTab(ShopDetailTabType.Specification)}
+          onClick={() => onTabClick(ShopDetailTabType.Specification)}
         >
-          Spesification
+          상품 상세
         </Tab>
         <Tab
           isActive={activeTab === ShopDetailTabType.Review}
-          onClick={() => setActiveTab(ShopDetailTabType.Review)}
+          onClick={() => onTabClick(ShopDetailTabType.Review)}
         >
-          Review
+          리뷰
         </Tab>
       </TabContainer>
       <TabContentContainer>
-        <TabContent activeTab={activeTab} />
+        <TabContent
+          activeTab={activeTab}
+          reviews={reviews}
+          specifications={specifications}
+          descriptions={descriptions}
+        />
       </TabContentContainer>
     </Container>
   );
