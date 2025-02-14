@@ -9,13 +9,21 @@ const Container = styled.div`
   border: 1px solid transparent;
 `;
 
+const InnerContainer = styled.div`
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
 function About() {
   return (
     <Container>
       <Search />
-      <AboutTheCompany />
-      <OurMission />
-      <OurTeam />
+      <InnerContainer>
+        <AboutTheCompany />
+        <OurMission />
+        <OurTeam />
+      </InnerContainer>
     </Container>
   );
 }
