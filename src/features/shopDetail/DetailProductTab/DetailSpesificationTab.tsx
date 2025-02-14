@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import {Specification} from '@/types/shop';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,17 +25,21 @@ const SpesificationContent = styled.span`
   color: #001c30;
 `;
 
-export default function DetailSpesificationTab() {
+interface DetailSpesificationTabProps {
+  specifications: Specification[];
+}
+
+export default function DetailSpesificationTab({
+  specifications,
+}: DetailSpesificationTabProps) {
   return (
     <Container>
-      <SpesificationContainer>
-        <SpesificationTitle>Platform :</SpesificationTitle>
-        <SpesificationContent>Notebook</SpesificationContent>
-      </SpesificationContainer>
-      <SpesificationContainer>
-        <SpesificationTitle>Type Prosesor :</SpesificationTitle>
-        <SpesificationContent>Bintel Core i3</SpesificationContent>
-      </SpesificationContainer>
+      {specifications.map(({id, attribute, value}) => (
+        <SpesificationContainer key={id}>
+          <SpesificationTitle>{attribute} :</SpesificationTitle>
+          <SpesificationContent>{value}</SpesificationContent>
+        </SpesificationContainer>
+      ))}
     </Container>
   );
 }

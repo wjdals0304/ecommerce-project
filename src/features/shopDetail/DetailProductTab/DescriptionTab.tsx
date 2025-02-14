@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import checkIcon from 'public/images/shop/check.svg';
 import Image from 'next/image';
-
+import {ProductDescription} from '@/types/shop';
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -19,21 +19,19 @@ const DescriptionContainer = styled.div`
   gap: 15px;
 `;
 
-export default function DescriptionTab() {
+interface DescriptionTabProps {
+  descriptions: ProductDescription[];
+}
+
+export default function DescriptionTab({descriptions}: DescriptionTabProps) {
   return (
     <Container>
-      <DescriptionContainer>
-        <Image src={checkIcon} alt="check" width={24} height={25} />
-        Ultra-Slim Design
-      </DescriptionContainer>
-      <DescriptionContainer>
-        <Image src={checkIcon} alt="check" width={24} height={25} />
-        High-Performance Processor
-      </DescriptionContainer>
-      <DescriptionContainer>
-        <Image src={checkIcon} alt="check" width={24} height={25} />
-        Vivid Display
-      </DescriptionContainer>
+      {descriptions.map(({id, feature}) => (
+        <DescriptionContainer key={id}>
+          <Image src={checkIcon} alt="check" width={24} height={25} />
+          {feature}
+        </DescriptionContainer>
+      ))}
     </Container>
   );
 }

@@ -44,19 +44,20 @@ const EstimationText = styled.p`
 export default function ShippingMethod() {
   return (
     <Container>
-      <ShippingText>Shipping Method:</ShippingText>
+      <ShippingText>배송 방법:</ShippingText>
       <ShippingContainer>
         <Select>
-          <Option>Normal Delivery</Option>
-          <Option>Express Delivery</Option>
+          <Option>일반 배송</Option>
+          <Option>빠른 배송</Option>
         </Select>
         <Select>
-          <Option>Deliver to: London, Britania Raya</Option>
-          <Option>Deliver to: New York, USA</Option>
+          <Option>배송지: 서울특별시</Option>
+          <Option>배송지: 경기도</Option>
+          <Option>배송지: 인천광역시</Option>
         </Select>
       </ShippingContainer>
       <EstimationText>
-        Estimation 3-5 days delivery ($5 - $10 estimated shipping cost)
+        예상 배송 시간: 3-5일 소요 (추정 배송비: 5-10원)
       </EstimationText>
     </Container>
   );

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 import styled from 'styled-components';
-import {useRouter} from 'next/router';
+import router, {useRouter} from 'next/router';
 
 interface AllProductProps {
   shopData: ShopData;
@@ -14,7 +14,7 @@ export default function AllProductContent({shopData}: AllProductProps) {
   return (
     <ProductContainer>
       {products.map(({id, name, price, soldCount, images}) => (
-        <ProductItem key={id}>
+        <ProductItem key={id} onClick={() => router.push(`/shop/${id}`)}>
           <ImageContainer>
             <ProductImage src={images[0]} alt={name} width={250} height={250} />
             <Rating>
@@ -53,6 +53,7 @@ const ProductItem = styled.div`
   border-radius: 10px;
   background-color: #ffffff;
   padding: 14.5px;
+  cursor: pointer;
 `;
 
 const ProductImage = styled(Image)`

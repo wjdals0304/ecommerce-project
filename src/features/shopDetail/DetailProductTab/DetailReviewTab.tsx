@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import defaultProfile from 'public/images/shop/defaultProfile.svg';
 import starIcon from 'public/images/home/star.svg';
+import {Review} from '@/types/shop';
 
 const Container = styled.div`
   display: flex;
@@ -70,45 +71,68 @@ const ReviewContent = styled.div`
   border-radius: 15px;
 `;
 
+const CommentContent = styled.div`
+  font-size: 16px;
+  font-weight: medium;
+  color: #8e96a4;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 15px;
+`;
+
 const ReviewTitle = styled.span`
   font-size: 16px;
   font-weight: medium;
   color: #001c30;
 `;
 
-export default function DetailReviewTab() {
+interface DetailReviewTabProps {
+  reviews: Review[];
+}
+
+export default function DetailReviewTab({reviews}: DetailReviewTabProps) {
   return (
     <Container>
-      <ReviewContainer>
-        <ProfileSection>
-          <Image
-            src={defaultProfile}
-            alt="defaultProfile"
-            width={60}
-            height={60}
-          />
-          <UserInfo>
-            <UserHeader>
-              <Nickname>John Doe</Nickname>
-              <Country>UK</Country>
-            </UserHeader>
-            <StarContainer>
-              <Image src={starIcon} alt="starIcon" width={20} height={20} />
-              <Image src={starIcon} alt="starIcon" width={20} height={20} />
-              <Image src={starIcon} alt="starIcon" width={20} height={20} />
-              <Image src={starIcon} alt="starIcon" width={20} height={20} />
-              <span>4.5</span>
-            </StarContainer>
-          </UserInfo>
-        </ProfileSection>
-        <ReviewDate>2024.01.01</ReviewDate>
-      </ReviewContainer>
-      <ReviewContent>
-        <ReviewTitle>Comment:</ReviewTitle>
-        Hi , I'm so glad you like our products. Your best rating is our biggest
-        support. Don't forget to share with your friends, family or relatives.
-        Have a nice day, waiting for your next order
-      </ReviewContent>
+      {reviews.map(({id, user_name, rating, comment, created_at}) => (
+        <div key={id}>
+          <ReviewContainer>
+            <ProfileSection>
+              <Image
+                src={defaultProfile}
+                alt="defaultProfile"
+                width={60}
+                height={60}
+              />
+              <UserInfo>
+                <UserHeader>
+                  <Nickname>{user_name}</Nickname>
+                </UserHeader>
+                <StarContainer>
+                  {[...Array(Math.floor(rating))].map((_, index) => (
+                    <Image
+                      key={index}
+                      src={starIcon}
+                      alt="starIcon"
+                      width={20}
+                      height={20}
+                    />
+                  ))}
+                  <span>{rating}</span>
+                </StarContainer>
+              </UserInfo>
+            </ProfileSection>
+            <ReviewDate>{new Date(created_at).toLocaleDateString()}</ReviewDate>
+          </ReviewContainer>
+          <CommentContent>
+            <ReviewTitle>댓글:</ReviewTitle>
+            {comment}
+          </CommentContent>
+        </div>
+      ))}
     </Container>
   );
 }
