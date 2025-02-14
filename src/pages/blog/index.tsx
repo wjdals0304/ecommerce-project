@@ -21,8 +21,8 @@ export default function BlogPage({blogPosts}: BlogPageProps) {
 
 export async function getServerSideProps() {
   try {
-    const blogs = await getRequest(API_ENDPOINTS.BLOG);
-    const blogPosts: BlogResponse = blogs.data;
+    const blogs = await getRequest<BlogResponse>(API_ENDPOINTS.BLOG);
+    const blogPosts = blogs.data;
 
     return {
       props: {
