@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {API_BASE_URL} from '@/config/ApiEndPoints';
 import Cookies from 'js-cookie';
 
@@ -27,14 +27,14 @@ export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
   return data;
 };
 
-export const getRequest = async (
+export const getRequest = async <T>(
   url: string,
-  params: any = {},
+  params: Record<string, any> = {},
   token: string = '',
-) => {
-  const response = await apiClient.get(url, {
+): Promise<AxiosResponse<T>> => {
+  const response = await apiClient.get<T>(url, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: token ? `Bearer ${token}` : '',
     },
     params,
   });

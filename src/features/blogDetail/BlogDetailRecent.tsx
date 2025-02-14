@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import {Blog} from '@/types/blog';
+import router from 'next/router';
 
 const Container = styled.div`
   flex: 2;
@@ -21,6 +23,7 @@ const BlogContainer = styled.div`
 const BlogItem = styled.div`
   display: flex;
   gap: 15px;
+  cursor: pointer;
 `;
 
 const BlogImage = styled(Image)`
@@ -47,24 +50,22 @@ const BlogContent = styled.div`
   padding: 13px 100px 13px 15px;
   gap: 10px;
 `;
-// padding 이렇게 하는게 맞는지 확인 필요
 
-export default function BlogDetailRecent() {
+interface BlogDetailRecentProps {
+  recentPosts: Blog[];
+}
+
+export default function BlogDetailRecent({recentPosts}: BlogDetailRecentProps) {
   return (
     <Container>
-      <Title>Recent Posts</Title>
+      <Title>최근 게시글</Title>
       <BlogContainer>
-        {[1, 2, 3, 4, 5].map(item => (
-          <BlogItem key={item}>
-            <BlogImage
-              src="/images/blog/blog-1.jpg"
-              alt="Blog 1"
-              width={91}
-              height={91}
-            />
+        {recentPosts.map(({id, title, image, createdAt}) => (
+          <BlogItem key={id} onClick={() => router.push(`/blog/${id}`)}>
+            <BlogImage src={image} alt={title} width={91} height={91} />
             <BlogContent>
-              <BlogTitle>TI gets $4.6bn in Chips Act funding</BlogTitle>
-              <BlogDate>08 June 2024 Rodrigo</BlogDate>
+              <BlogTitle>{title}</BlogTitle>
+              <BlogDate>{createdAt.split('T')[0]}</BlogDate>
             </BlogContent>
           </BlogItem>
         ))}

@@ -21,8 +21,8 @@ export async function getServerSideProps(context) {
     const cookies = parseCookies(context);
     const token = cookies.jwt;
 
-    const response = await getRequest(API_ENDPOINTS.HOME, {}, token);
-    const homeData: HomeData = response.data;
+    const response = await getRequest<HomeData>(API_ENDPOINTS.HOME, {}, token);
+    const homeData = response.data;
 
     return {
       props: {
