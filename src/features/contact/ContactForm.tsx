@@ -19,13 +19,26 @@ const Description = styled.p`
   color: #8e96a4;
 `;
 
+const Container = styled.div`
+  background-color: #f5f7f8;
+  width: 100%;
+`;
+
+const InnerContainer = styled.div`
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 50px 100px;
+`;
+
 const FormContainer = styled.form`
   margin-top: 25px;
+  width: 100%;
 `;
 
 const NameEmailContainer = styled.div`
   display: flex;
   gap: 25px;
+  width: 100%;
 `;
 
 const NameInput = styled.input`
@@ -90,37 +103,34 @@ const MessageInput = styled.textarea`
   padding: 15px;
   margin-top: 25px;
   margin-bottom: 30px;
+  resize: none;
 
   &::placeholder {
     color: #8e96a4;
   }
 `;
 
-const Container = styled.div`
-  background-color: #f5f7f8;
-  padding: 50px 100px;
-`;
-
 function ContactForm() {
   return (
     <Container>
-      <Title>Leave a Message</Title>
-      <TitleLine />
-      <Description>
-        If you have any questions please send us a message using the adjacent
-        form and we will get back to you as soon as possible{' '}
-      </Description>
-      <FormContainer>
-        <NameEmailContainer>
-          <NameInput placeholder="Name" />
-          <EmailInput placeholder="Email" />
-        </NameEmailContainer>
-        <AddressPhoneContainer>
-          <AddressInput placeholder="Address" />
-          <PhoneInput placeholder="Phone" />
-        </AddressPhoneContainer>
-      </FormContainer>
-      <MessageInput placeholder="Message" />
+      <InnerContainer>
+        <Title>메세지 남기기</Title>
+        <TitleLine />
+        <Description>
+          문의하실 내용을 남겨주세요. 최대한 빠르게 답장해드리겠습니다.
+        </Description>
+        <FormContainer>
+          <NameEmailContainer>
+            <NameInput placeholder="이름" />
+            <EmailInput placeholder="이메일" />
+          </NameEmailContainer>
+          <AddressPhoneContainer>
+            <AddressInput placeholder="주소" />
+            <PhoneInput placeholder="전화번호" />
+          </AddressPhoneContainer>
+          <MessageInput placeholder="문의하실 내용을 남겨주세요." />
+        </FormContainer>
+      </InnerContainer>
     </Container>
   );
 }

@@ -10,13 +10,15 @@ const Title = styled.h1`
 `;
 
 const InnerContainer = styled.div`
-  background-color: #f5f7f8;
-  width: 1240px;
-  margin: auto;
+  background-color: hsl(200, 17.6%, 96.7%);
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
 `;
 
 const Container = styled.div`
   background-color: #f5f7f8;
+  padding-bottom: 50px;
 `;
 
 function Contact() {
@@ -24,7 +26,7 @@ function Contact() {
     <Container>
       <Search />
       <InnerContainer>
-        <Title>Contact Us</Title>
+        <Title>문의하기</Title>
         <ContactForm />
       </InnerContainer>
     </Container>

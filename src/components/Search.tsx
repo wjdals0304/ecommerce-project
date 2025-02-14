@@ -70,12 +70,12 @@ function Search() {
   return (
     <SearchContainer>
       <SearchInner>
-        <SearchTitle>ECOMMERCE</SearchTitle>
+        <SearchTitle>이커머스</SearchTitle>
         <SearchForm>
-          <SearchInput placeholder="Search..." />
+          <SearchInput placeholder="검색어를 입력해주세요." />
           <SearchButton>
             <Image src={search} alt="search" />
-            Search
+            검색
           </SearchButton>
         </SearchForm>
       </SearchInner>

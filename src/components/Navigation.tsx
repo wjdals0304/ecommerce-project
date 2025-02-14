@@ -75,11 +75,11 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  {title: 'Home', href: '/'},
-  {title: 'About', href: '/about'},
-  {title: 'Shop', href: '/shop'},
-  {title: 'Blog', href: '/blog'},
-  {title: 'Contact', href: '/contact'},
+  {title: '홈', href: '/'},
+  {title: '소개', href: '/about'},
+  {title: '상품', href: '/shop'},
+  {title: '블로그', href: '/blog'},
+  {title: '문의', href: '/contact'},
 ];
 
 function Navigation() {
@@ -91,7 +91,7 @@ function Navigation() {
         <AllCategory>
           <a>
             <Image src={menuIcon} alt="menu" />
-            All Category
+            전체 카테고리
           </a>
         </AllCategory>
         <NavList>

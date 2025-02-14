@@ -11,11 +11,10 @@ function Footer() {
       <FooterInnerContainer>
         <FooterContent>
           <TitleSection>
-            <TitleHeading>ECOMMERCE</TitleHeading>
+            <TitleHeading>이커머스</TitleHeading>
             <TitleText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              at congue risus. Sed commodo dapibus urna eget malesuada.
-              Suspendisse sed lectus ex.
+              이커머스는 쇼핑몰 솔루션입니다. 쇼핑몰을 쉽게 만들 수 있도록
+              도와줍니다.
             </TitleText>
             <SocialIcons>
               <Image src={linkedInIcon} alt="linkedIn" width={24} height={24} />
@@ -32,8 +31,8 @@ function Footer() {
         </FooterContent>
         <Divider />
         <Copyright>
-          <p>Copyright 2023. All rights reserved.</p>
-          <CopyrightLink href="#">Term & Condition</CopyrightLink>
+          <p>Copyright 2025. All rights reserved.</p>
+          <CopyrightLink href="#">이용약관</CopyrightLink>
         </Copyright>
       </FooterInnerContainer>
     </FooterContainer>
