@@ -27,7 +27,7 @@ const PageButton = styled.button<{isActive?: boolean}>`
   }
 `;
 
-const BackPageButton = styled.button`
+const PrevButton = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -41,7 +41,7 @@ const BackPageButton = styled.button`
   font-size: 20px;
 `;
 
-const NextPageButton = styled.button`
+const NextButton = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -65,39 +65,53 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
+const getPageList = (
+  perPage: number,
+  currentPage: number,
+  totalPages: number,
+): number[] => {
+  const pages: number[] = [];
+
+  for (let i = 0; i < perPage; i++) {
+    const page = currentPage + i;
+    if (page > 1 && page < totalPages) {
+      pages.push(page);
+    }
+  }
+
+  return pages;
+};
+
 export default function Pagination({
   currentPage,
   totalPages,
   onPageChange,
 }: PaginationProps) {
+  const perPage = 4;
+  const pageList = getPageList(perPage, currentPage, totalPages);
+
   return (
     <PaginationContainer>
-      <BackPageButton
+      <PrevButton
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
       >
         &lt;
-      </BackPageButton>
+      </PrevButton>
       <PageButton isActive={currentPage === 1} onClick={() => onPageChange(1)}>
         1
       </PageButton>
-      {currentPage > 3 && <Dots>...</Dots>}
+      {currentPage >= perPage && <Dots>...</Dots>}
 
-      {Array.from({length: 4}, (_, i) => {
-        const page = currentPage + i - 1;
-        if (page > 1 && page < totalPages) {
-          return (
-            <PageButton
-              key={page}
-              isActive={currentPage === page}
-              onClick={() => onPageChange(page)}
-            >
-              {page}
-            </PageButton>
-          );
-        }
-        return null;
-      })}
+      {pageList.map(page => (
+        <PageButton
+          key={page}
+          isActive={currentPage === page}
+          onClick={() => onPageChange(page)}
+        >
+          {page}
+        </PageButton>
+      ))}
 
       {currentPage < totalPages - 2 && <Dots>...</Dots>}
       <PageButton
@@ -106,12 +120,12 @@ export default function Pagination({
       >
         {totalPages}
       </PageButton>
-      <NextPageButton
+      <NextButton
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
       >
         &gt;
-      </NextPageButton>
+      </NextButton>
     </PaginationContainer>
   );
 }

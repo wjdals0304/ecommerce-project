@@ -87,13 +87,15 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
             priceValue={priceValue}
             setPriceValue={setPriceValue}
           />
-          <AllProduct shopData={shopData} />
+          <div>
+            <AllProduct shopData={shopData} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={35}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </ProductContainer>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
       </InnerContainer>
     </Container>
   );
