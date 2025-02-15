@@ -94,7 +94,7 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
             <AllProduct shopData={shopData} />
             <Pagination
               currentPage={currentPage}
-              totalPages={35}
+              totalPages={totalPages}
               onPageChange={handlePageChange}
             />
           </div>

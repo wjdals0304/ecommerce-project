@@ -56,3 +56,8 @@ export interface Review {
   comment: string;
   created_at: string;
 }
+
+export interface SearchResponse {
+  products: Product[];
+  totalPages: number;
+}

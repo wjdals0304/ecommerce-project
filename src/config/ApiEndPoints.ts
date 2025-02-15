@@ -7,4 +7,5 @@ export const API_ENDPOINTS = {
   SHOP_ALL: `/shop/all`,
   SHOP: `/shop`,
   BLOG: `/blog`,
+  SEARCH: `/search`,
 };
