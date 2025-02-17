@@ -46,3 +46,7 @@ export const getToken = (response: any) => {
   const token = authHeader.split(' ')[1];
   return token;
 };
+
+export const getStoredToken = () => {
+  return Cookies.get('jwt');
+};

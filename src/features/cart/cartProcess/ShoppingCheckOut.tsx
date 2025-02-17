@@ -1,5 +1,11 @@
+import {useForm} from 'react-hook-form';
 import styled from 'styled-components';
-import ShoppingCheckOutTotal from './ShoppingCheckOutOrder';
+import {CartResponse} from '@/types/cart';
+import {postRequest} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import ShoppingCheckOutOrder from './ShoppingCheckOutOrder';
+import {useState} from 'react';
+import ShoppingCheckOutInfo from './ShoppingCheckOutInfo';
 const Container = styled.div`
   display: flex;
   gap: 25px;
@@ -23,76 +29,78 @@ const BillingDetail = styled.span`
   display: block;
 `;
 
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-top: 25px;
-  padding-bottom: 25px;
+export interface ShippingFormData {
+  name: string;
+  phone: string;
+  address: string;
+  city: string;
+  zipCode: string;
+  orderNote: string;
+}
 
-  border-bottom: 1px solid #8e96a4;
-`;
-
-const InputRow = styled.div`
-  display: flex;
-  gap: 15px;
-`;
-
-const InputBox = styled.input`
-  width: 100%;
-  height: 49px;
-  border: 1px solid #8e96a4;
-  border-radius: 25px;
-  background-color: #f5f7f8;
-  padding: 15px;
-`;
-
-const SaveButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 25px;
-`;
-
-const SaveButton = styled.button`
-  background-color: #001c30;
-  color: #fff;
-  border-radius: 55px;
-  padding: 15px;
-  width: 161px;
-  height: 58px;
-  font-size: 24px;
-  font-weight: medium;
-`;
+interface ShoppingCheckOutProps {
+  onNextStep: () => void;
+  cart: CartResponse;
+}
 
 export default function ShoppingCheckOut({
   onNextStep,
-}: {
-  onNextStep: () => void;
-}) {
+  cart,
+}: ShoppingCheckOutProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+    watch,
+  } = useForm<ShippingFormData>({
+    mode: 'onChange',
+  });
+
+  const [isFormError, setIsFormError] = useState(false);
+
+  const name = watch('name');
+  const phone = watch('phone');
+  const address = watch('address');
+  const city = watch('city');
+  const zipCode = watch('zipCode');
+
+  const hasEmptyFields = !name || !phone || !address || !city || !zipCode;
+
+  const hasFormErrors = !!(
+    errors.name ||
+    errors.phone ||
+    errors.address ||
+    errors.city ||
+    errors.zipCode
+  );
+
+  const onSubmit = async (data: ShippingFormData) => {
+    try {
+      await postRequest(API_ENDPOINTS.SHIPPING_ADDRESS, data);
+      console.log('배송 정보 저장 성공');
+      setIsFormError(false);
+    } catch (error) {
+      console.error(error);
+      setIsFormError(true);
+    }
+  };
+
   return (
     <Container>
       <BillingContainer>
-        <BillingDetail>Billing Details</BillingDetail>
-        <InputContainer>
-          <InputRow>
-            <InputBox placeholder="First Name" />
-            <InputBox placeholder="Last Name" />
-          </InputRow>
-          <InputBox placeholder="Address" />
-          <InputRow>
-            <InputBox placeholder="Town/City" />
-            <InputBox placeholder="Postcode/ZIP" />
-          </InputRow>
-          <InputRow>
-            <InputBox placeholder="Phone" />
-            <InputBox placeholder="Email" />
-          </InputRow>
-        </InputContainer>
-        <SaveButtonContainer>
-          <SaveButton>Save</SaveButton>
-        </SaveButtonContainer>
+        <BillingDetail>배송 정보</BillingDetail>
+        <ShoppingCheckOutInfo
+          onSubmit={onSubmit}
+          register={register}
+          errors={errors}
+          handleSubmit={handleSubmit}
+        />
       </BillingContainer>
-      <ShoppingCheckOutTotal onNextStep={onNextStep} />
+      <ShoppingCheckOutOrder
+        onNextStep={onNextStep}
+        cart={cart}
+        isFormError={isFormError || hasEmptyFields || hasFormErrors}
+      />
     </Container>
   );
 }

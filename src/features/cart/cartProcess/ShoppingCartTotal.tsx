@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import {CartResponse} from '@/types/cart';
 const Container = styled.div`
   background-color: #fff;
   width: 438px;
@@ -68,39 +68,39 @@ const CheckoutButton = styled.button`
 
 export default function ShoppingCartTotal({
   onNextStep,
+  cart,
 }: {
   onNextStep: () => void;
+  cart: CartResponse;
 }) {
+  const {subtotal, deliveryCharge, total, user} = cart;
+  const {fullName} = user;
   return (
     <Container>
-      <TotalTitle>Total</TotalTitle>
+      <TotalTitle>총 결제 금액</TotalTitle>
       <SubTotalContainer>
         <ItemRow>
-          <ItemTitle>Subtotal</ItemTitle>
-          <ItemValue>1000</ItemValue>
+          <ItemTitle>총 상품 금액</ItemTitle>
+          <ItemValue>{subtotal.toLocaleString()}원</ItemValue>
         </ItemRow>
         <ItemRow>
-          <ItemTitle>Delivery Charge</ItemTitle>
-          <ItemValue>1000</ItemValue>
+          <ItemTitle>배송비</ItemTitle>
+          <ItemValue>{deliveryCharge.toLocaleString()}원</ItemValue>
         </ItemRow>
       </SubTotalContainer>
       <TotalContainer>
         <ItemRow>
-          <ItemTitle>Total</ItemTitle>
-          <ItemValue>2000</ItemValue>
+          <ItemTitle>총 결제 금액</ItemTitle>
+          <ItemValue>{total.toLocaleString()}원</ItemValue>
         </ItemRow>
       </TotalContainer>
       <NameAddressContainer>
         <ItemRow>
-          <ItemTitle>Name</ItemTitle>
-          <ItemValue>John Doe</ItemValue>
-        </ItemRow>
-        <ItemRow>
-          <ItemTitle>Address</ItemTitle>
-          <ItemValue>123 Main St, Anytown, USA</ItemValue>
+          <ItemTitle>이름</ItemTitle>
+          <ItemValue>{fullName}</ItemValue>
         </ItemRow>
       </NameAddressContainer>
-      <CheckoutButton onClick={onNextStep}>Checkout</CheckoutButton>
+      <CheckoutButton onClick={onNextStep}>결제하기</CheckoutButton>
     </Container>
   );
 }

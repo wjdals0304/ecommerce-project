@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import trashIcon from 'public/images/shop/trash.svg';
 import Image from 'next/image';
 import ShoppingCartTotal from './ShoppingCartTotal';
-
+import {CartResponse} from '@/types/cart';
 const Container = styled.div`
   display: flex;
   gap: 25px;
@@ -129,33 +129,52 @@ const TrashIconImage = styled(Image)`
   height: 22px;
 `;
 
-export default function ShoppingCart({onNextStep}: {onNextStep: () => void}) {
+export default function ShoppingCart({
+  onNextStep,
+  cart,
+}: {
+  onNextStep: () => void;
+  cart: CartResponse;
+}) {
+  const {items, user} = cart;
+  const {fullName} = user;
   return (
     <Container>
       <ProductContainer>
         <ProductHeader>
-          <ProductDetailHeader>Product Details</ProductDetailHeader>
-          <ProductPriceHeader>Price</ProductPriceHeader>
-          <ProductQTYHeader>QTY</ProductQTYHeader>
-          <ProductSubTotalHeader>Subtotal</ProductSubTotalHeader>
+          <ProductDetailHeader>상품 정보</ProductDetailHeader>
+          <ProductPriceHeader>가격</ProductPriceHeader>
+          <ProductQTYHeader>수량</ProductQTYHeader>
+          <ProductSubTotalHeader>총 가격</ProductSubTotalHeader>
           <ProductEmptyHeader></ProductEmptyHeader>
         </ProductHeader>
-        <ProductItemContainer>
-          <ProductDetail>
-            <ProductImage src="" alt="Image" width={72} height={72} />
-            <ProductTitle>
-              Axus Zens 123 Metalic Color I5 Ryzin Generation 10 16” FHD Laptop
-            </ProductTitle>
-          </ProductDetail>
-          <ProductPrice>$100</ProductPrice>
-          <ProductQTY>1</ProductQTY>
-          <ProductSubTotal>$100</ProductSubTotal>
-          <TrashIconButton>
-            <TrashIconImage src={trashIcon} alt="trash" />
-          </TrashIconButton>
-        </ProductItemContainer>
+
+        {items.map(({product, quantity}) => {
+          const {name, price, images} = product;
+          return (
+            <ProductItemContainer>
+              <ProductDetail>
+                <ProductImage
+                  src={images[0]}
+                  alt="Image"
+                  width={72}
+                  height={72}
+                />
+                <ProductTitle>{name}</ProductTitle>
+              </ProductDetail>
+              <ProductPrice>{price.toLocaleString()}원</ProductPrice>
+              <ProductQTY>{quantity}</ProductQTY>
+              <ProductSubTotal>
+                {(price * quantity).toLocaleString()}원
+              </ProductSubTotal>
+              <TrashIconButton>
+                <TrashIconImage src={trashIcon} alt="trash" />
+              </TrashIconButton>
+            </ProductItemContainer>
+          );
+        })}
       </ProductContainer>
-      <ShoppingCartTotal onNextStep={onNextStep} />
+      <ShoppingCartTotal onNextStep={onNextStep} cart={cart} />
     </Container>
   );
 }
