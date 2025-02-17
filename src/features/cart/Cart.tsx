@@ -29,6 +29,10 @@ const EmptyCartText = styled.p`
 `;
 
 export default function Cart({cart}: {cart: CartResponse}) {
+<<<<<<< HEAD
+=======
+  console.log(cart);
+>>>>>>> d669b33 (feat: 장바구니 배송 정보 입력 화면 추가)
   return (
     <Container>
       <Search />
