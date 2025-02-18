@@ -153,7 +153,7 @@ export default function ShoppingCheckOutOrder({
         payment_method: selectedPayment,
       });
 
-      const orderId = response.data.id;
+      const orderId = response.id;
       setOrderId(orderId.toString());
       onNextStep();
     } catch (error) {
