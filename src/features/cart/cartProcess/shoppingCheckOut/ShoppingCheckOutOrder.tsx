@@ -110,8 +110,8 @@ const ErrorMessage = styled.span`
 `;
 
 enum PaymentMethod {
-  CASH = 'cash',
-  CARD = 'card',
+  CASH = 'BANK_TRANSFER',
+  CARD = 'CREDIT_CARD',
 }
 
 interface ShoppingCheckOutOrderProps {
@@ -147,12 +147,12 @@ export default function ShoppingCheckOutOrder({
       }
 
       await postRequest(API_ENDPOINTS.ORDERS, {
-        paymentMethod: selectedPayment,
+        payment_method: selectedPayment,
       });
 
       onNextStep();
-    } catch {
-      console.log('error');
+    } catch (error) {
+      console.error(error);
     }
   };
 
