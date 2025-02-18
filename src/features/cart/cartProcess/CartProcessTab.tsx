@@ -57,6 +57,7 @@ export default function CartProcessTab({cart}: {cart: CartResponse}) {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(
     CartProcessTabType.ShoppingCart,
   );
+  const [orderId, setOrderId] = useState<string>('');
 
   const goToNextStep = () => {
     setActiveTabIndex(prevTabIndex => {
@@ -84,6 +85,8 @@ export default function CartProcessTab({cart}: {cart: CartResponse}) {
           activeTabIndex={activeTabIndex}
           onNextStep={goToNextStep}
           cart={cart}
+          orderId={orderId}
+          setOrderId={setOrderId}
         />
       </TabContentContainer>
     </Container>
