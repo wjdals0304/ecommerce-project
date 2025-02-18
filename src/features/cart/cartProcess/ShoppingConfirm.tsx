@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import confirmIcon from 'public/images/shop/confirm.svg';
+import {getRequest, getStoredToken} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {OrderResponse} from '@/types/order';
+import {useQuery} from '@tanstack/react-query';
 
 const Container = styled.div`
   display: flex;
@@ -110,7 +114,39 @@ const OrderButton = styled.button`
   border: none;
 `;
 
-export default function ShoppingConfirm() {
+interface ShoppingConfirmProps {
+  orderId: string;
+}
+
+const fetchOrderDetail = async (orderId: string): Promise<OrderResponse> => {
+  try {
+    const token = getStoredToken();
+    const response = await getRequest<OrderResponse>(
+      `${API_ENDPOINTS.ORDERS}/${orderId}`,
+      {},
+      token,
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error('주문 정보를 불러오는데 실패했습니다.');
+  }
+};
+
+export default function ShoppingConfirm({orderId}: ShoppingConfirmProps) {
+  const {
+    data: orderDetail,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['fetchOrderDetail', orderId],
+    queryFn: () => fetchOrderDetail(orderId),
+    enabled: !!orderId,
+  });
+
+  if (isLoading) return <div>로딩 중...</div>;
+  if (error) return <div>주문 정보를 불러오는데 실패했습니다.</div>;
+  if (!orderDetail) return <div>주문 정보를 찾을 수 없습니다.</div>;
+
   return (
     <Container>
       <ConfirmContainer>
@@ -128,33 +164,33 @@ export default function ShoppingConfirm() {
       <OrderContainer>
         <OrderTitle>주문 내역</OrderTitle>
         <OrderItemContainer>
+          {orderDetail.items.map(item => (
+            <OrderItemRow key={item.id}>
+              <OrderItemTitle>상품명</OrderItemTitle>
+              <OrderItemValue>{item.product.name}</OrderItemValue>
+            </OrderItemRow>
+          ))}
           <OrderItemRow>
-            <OrderItemTitle>상품명</OrderItemTitle>
+            <OrderItemTitle>총 상품 금액</OrderItemTitle>
             <OrderItemValue>
-              Axus Zens 123 Metalic Color I5 Ryzin Generation 10 16” FHD Laptop
+              {orderDetail.total_amount.toLocaleString()}원
             </OrderItemValue>
           </OrderItemRow>
           <OrderItemRow>
-            <OrderItemTitle>총 상품 금액</OrderItemTitle>
-            <OrderItemValue>$100.00</OrderItemValue>
-          </OrderItemRow>
-          <OrderItemRow>
-            <OrderItemTitle>배송비</OrderItemTitle>
-            <OrderItemValue>$100.00</OrderItemValue>
-          </OrderItemRow>
-          <OrderItemRow>
-            <OrderItemTitle>총 결제 금액</OrderItemTitle>
-            <OrderItemValue>$100.00</OrderItemValue>
+            <OrderItemTitle>결제 수단</OrderItemTitle>
+            <OrderItemValue>
+              {orderDetail.payment_method === 'BANK_TRANSFER'
+                ? '현금 결제'
+                : '카드 결제'}
+            </OrderItemValue>
           </OrderItemRow>
         </OrderItemContainer>
         <NameAddressContainer>
           <OrderItemRow>
-            <OrderItemTitle>이름</OrderItemTitle>
-            <OrderItemValue>Martin Paez</OrderItemValue>
-          </OrderItemRow>
-          <OrderItemRow>
-            <OrderItemTitle>주소</OrderItemTitle>
-            <OrderItemValue>12334 London, Britania Raya</OrderItemValue>
+            <OrderItemTitle>주문 일시</OrderItemTitle>
+            <OrderItemValue>
+              {new Date(orderDetail.created_at).toLocaleString()}
+            </OrderItemValue>
           </OrderItemRow>
         </NameAddressContainer>
         <OrderButton>주문 내역 확인하기</OrderButton>
