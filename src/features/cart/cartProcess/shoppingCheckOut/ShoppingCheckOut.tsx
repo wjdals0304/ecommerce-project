@@ -45,11 +45,13 @@ export interface ShippingFormData {
 interface ShoppingCheckOutProps {
   onNextStep: () => void;
   cart: CartResponse;
+  setOrderId: (id: string) => void;
 }
 
 export default function ShoppingCheckOut({
   onNextStep,
   cart,
+  setOrderId,
 }: ShoppingCheckOutProps) {
   const methods = useForm<ShippingFormData>({
     resolver: yupResolver(shippingSchema) as Resolver<ShippingFormData>,
@@ -103,6 +105,7 @@ export default function ShoppingCheckOut({
           onNextStep={onNextStep}
           cart={cart}
           isFormError={isFormError || hasEmptyFields || hasFormErrors}
+          setOrderId={setOrderId}
         />
       </Container>
     </FormProvider>
