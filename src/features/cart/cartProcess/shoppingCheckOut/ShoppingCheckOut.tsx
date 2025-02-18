@@ -41,13 +41,11 @@ export interface ShippingFormData {
 interface ShoppingCheckOutProps {
   onNextStep: () => void;
   cart: CartResponse;
-  setOrderId: (id: string) => void;
 }
 
 export default function ShoppingCheckOut({
   onNextStep,
   cart,
-  setOrderId,
 }: ShoppingCheckOutProps) {
   const {
     register,
@@ -104,7 +102,6 @@ export default function ShoppingCheckOut({
         onNextStep={onNextStep}
         cart={cart}
         isFormError={isFormError || hasEmptyFields || hasFormErrors}
-        setOrderId={setOrderId}
       />
     </Container>
   );
