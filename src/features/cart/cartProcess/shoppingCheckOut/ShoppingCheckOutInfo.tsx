@@ -129,8 +129,8 @@ export default function ShoppingCheckOutInfo({
 
         <InputBoxContainer>
           <InputBox
-            hasError={!!errors.zipCode}
-            {...register('zipCode', {
+            hasError={!!errors.zipcode}
+            {...register('zipcode', {
               required: '우편번호를 입력해주세요',
               pattern: {
                 value: /^\d{5}$/,
@@ -139,14 +139,14 @@ export default function ShoppingCheckOutInfo({
             })}
             placeholder="우편번호"
           />
-          {errors.zipCode && (
-            <ErrorMessage>{errors.zipCode.message}</ErrorMessage>
+          {errors.zipcode && (
+            <ErrorMessage>{errors.zipcode.message}</ErrorMessage>
           )}
         </InputBoxContainer>
       </InputRow>
 
       <InputRow>
-        <InputBox {...register('orderNote')} placeholder="주문 메모" />
+        <InputBox {...register('memo')} placeholder="주문 메모" />
       </InputRow>
       <SaveButtonContainer>
         <SaveButton type="submit">저장하기</SaveButton>

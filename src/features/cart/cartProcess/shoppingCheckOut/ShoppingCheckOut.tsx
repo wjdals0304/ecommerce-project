@@ -34,8 +34,8 @@ export interface ShippingFormData {
   phone: string;
   address: string;
   city: string;
-  zipCode: string;
-  orderNote: string;
+  zipcode: string;
+  memo: string;
 }
 
 interface ShoppingCheckOutProps {
@@ -62,7 +62,7 @@ export default function ShoppingCheckOut({
   const phone = watch('phone');
   const address = watch('address');
   const city = watch('city');
-  const zipCode = watch('zipCode');
+  const zipCode = watch('zipcode');
 
   const hasEmptyFields = !name || !phone || !address || !city || !zipCode;
 
@@ -71,13 +71,15 @@ export default function ShoppingCheckOut({
     errors.phone ||
     errors.address ||
     errors.city ||
-    errors.zipCode
+    errors.zipcode
   );
 
   const onSubmit = async (data: ShippingFormData) => {
     try {
+      console.log(data);
       await postRequest(API_ENDPOINTS.SHIPPING_ADDRESS, data);
       console.log('배송 정보 저장 성공');
+
       setIsFormError(false);
     } catch (error) {
       console.error(error);
