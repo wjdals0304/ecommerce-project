@@ -114,12 +114,15 @@ export default function Pagination({
       ))}
 
       {currentPage < totalPages - 2 && <Dots>...</Dots>}
-      <PageButton
-        isActive={currentPage === totalPages}
-        onClick={() => onPageChange(totalPages)}
-      >
-        {totalPages}
-      </PageButton>
+
+      {totalPages > 1 && (
+        <PageButton
+          isActive={currentPage === totalPages}
+          onClick={() => onPageChange(totalPages)}
+        >
+          {totalPages}
+        </PageButton>
+      )}
       <NextButton
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import search from 'public/images/home/search.svg';
-
+import router from 'next/router';
+import {useRouter} from 'next/router';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 const SearchContainer = styled.div`
   width: 100%;
   background-color: #ffffff;
@@ -67,13 +69,33 @@ const SearchButton = styled.button`
 `;
 
 function Search() {
+  const router = useRouter();
+  const [keyword, setKeyword] = useState('');
+  const keywordTrim = keyword.trim();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (keywordTrim === '') {
+      return;
+    }
+    router.push({
+      pathname: API_ENDPOINTS.SEARCH,
+      query: {keyword: keywordTrim},
+    });
+  };
+
   return (
     <SearchContainer>
       <SearchInner>
         <SearchTitle>이커머스</SearchTitle>
-        <SearchForm>
-          <SearchInput placeholder="검색어를 입력해주세요." />
-          <SearchButton>
+        <SearchForm onSubmit={handleSubmit}>
+          <SearchInput
+            value={keyword}
+            onChange={e => setKeyword(e.target.value)}
+            placeholder="검색어를 입력해주세요."
+          />
+          <SearchButton type="submit">
             <Image src={search} alt="search" />
             검색
           </SearchButton>
