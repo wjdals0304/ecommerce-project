@@ -3,7 +3,11 @@ import Image from 'next/image';
 import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 import styled from 'styled-components';
-import router, {useRouter} from 'next/router';
+import Link from 'next/link';
+
+const LinkContainer = styled(Link)`
+  text-decoration: none;
+`;
 
 interface SearchContentProps {
   shopData: SearchResponse;
@@ -14,24 +18,31 @@ export default function SearchContent({shopData}: SearchContentProps) {
 
   return (
     <ProductContainer>
-      {products.map(({id, name, price, soldCount, images}) => (
-        <ProductItem key={id} onClick={() => router.push(`/shop/${id}`)}>
-          <ImageContainer>
-            <ProductImage src={images[0]} alt={name} width={250} height={250} />
-            <Rating>
-              <Image src={starIcon} alt="star" width={18} height={18} />
-              <span>5.0</span>
-            </Rating>
-            <Heart>
-              <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
-            </Heart>
-          </ImageContainer>
-          <ProductTitle>{name}</ProductTitle>
-          <Sold>{soldCount}개 판매</Sold>
-          <ProductPriceContainer>
-            <ProductPrice>{price.toLocaleString('ko-KR')}원</ProductPrice>
-            <BuyButton>구매</BuyButton>
-          </ProductPriceContainer>
+      {products.map(({id, name, price, soldCount, images, rating}) => (
+        <ProductItem key={id}>
+          <LinkContainer href={`/shop/${id}`}>
+            <ImageContainer>
+              <ProductImage
+                src={images[0]}
+                alt={name}
+                width={250}
+                height={250}
+              />
+              <Rating>
+                <Image src={starIcon} alt="star" width={18} height={18} />
+                <span>{rating}</span>
+              </Rating>
+              <Heart>
+                <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
+              </Heart>
+            </ImageContainer>
+            <ProductTitle>{name}</ProductTitle>
+            <Sold>{soldCount}개 판매</Sold>
+            <ProductPriceContainer>
+              <ProductPrice>{price.toLocaleString('ko-KR')}원</ProductPrice>
+              <BuyButton>구매</BuyButton>
+            </ProductPriceContainer>
+          </LinkContainer>
         </ProductItem>
       ))}
     </ProductContainer>

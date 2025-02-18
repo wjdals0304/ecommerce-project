@@ -71,15 +71,18 @@ const SearchButton = styled.button`
 function Search() {
   const router = useRouter();
   const [keyword, setKeyword] = useState('');
+  const keywordTrim = keyword.trim();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (keyword.trim()) {
-      router.push({
-        pathname: API_ENDPOINTS.SEARCH,
-        query: {keyword: keyword.trim()},
-      });
+
+    if (keywordTrim === '') {
+      return;
     }
+    router.push({
+      pathname: API_ENDPOINTS.SEARCH,
+      query: {keyword: keywordTrim},
+    });
   };
 
   return (
