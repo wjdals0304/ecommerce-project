@@ -43,6 +43,7 @@ export interface ShippingFormData {
 interface ShoppingCheckOutProps {
   onNextStep: () => void;
   cart: CartResponse;
+  setOrderId: (id: string) => void;
 }
 
 const shippingSchema = yup.object().shape({
@@ -66,6 +67,7 @@ const shippingSchema = yup.object().shape({
 export default function ShoppingCheckOut({
   onNextStep,
   cart,
+  setOrderId,
 }: ShoppingCheckOutProps) {
   const methods = useForm<ShippingFormData>({
     resolver: yupResolver(shippingSchema) as Resolver<ShippingFormData>,
@@ -117,6 +119,7 @@ export default function ShoppingCheckOut({
           onNextStep={onNextStep}
           cart={cart}
           isFormError={isFormError || hasEmptyFields || hasFormErrors}
+          setOrderId={setOrderId}
         />
       </Container>
     </FormProvider>
