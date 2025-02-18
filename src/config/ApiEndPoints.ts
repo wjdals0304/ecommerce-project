@@ -8,4 +8,6 @@ export const API_ENDPOINTS = {
   SHOP: `/shop`,
   BLOG: `/blog`,
   SEARCH: `/search`,
+  CART: `/cart`,
+  SHIPPING_ADDRESS: `/shipping/address`,
 };

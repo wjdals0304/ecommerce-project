@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {CartProcessTabType} from './TabContent';
 import TabContent from './TabContent';
 import CartItem from './CartItem';
-
+import {CartResponse} from '@/types/cart';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,20 +40,20 @@ const TabContentContainer = styled.div`
 
 const tabItems = [
   {
-    title: 'Shopping Cart',
-    description: 'Organize Your List of items',
+    title: '장바구니',
+    description: '주문하고 싶은 상품을 담아주세요.',
   },
   {
-    title: 'Shipping & Checkout',
-    description: 'Organize Your List of items',
+    title: '배송 및 결제',
+    description: '상품 목록을 정리하세요.',
   },
   {
-    title: 'Confirmation',
-    description: 'Examine and Send in Your Order.',
+    title: '주문 확인',
+    description: '주문을 검토하고 제출하세요.',
   },
 ];
 
-export default function CartProcessTab() {
+export default function CartProcessTab({cart}: {cart: CartResponse}) {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(
     CartProcessTabType.ShoppingCart,
   );
@@ -80,7 +80,11 @@ export default function CartProcessTab() {
         ))}
       </InnerContainer>
       <TabContentContainer>
-        <TabContent activeTabIndex={activeTabIndex} onNextStep={goToNextStep} />
+        <TabContent
+          activeTabIndex={activeTabIndex}
+          onNextStep={goToNextStep}
+          cart={cart}
+        />
       </TabContentContainer>
     </Container>
   );

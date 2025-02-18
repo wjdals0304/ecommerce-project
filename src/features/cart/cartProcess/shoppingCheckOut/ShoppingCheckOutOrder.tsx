@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import {CartResponse} from '@/types/cart';
+import {useState} from 'react';
 
 const Container = styled.div`
   background-color: #fff;
@@ -97,63 +99,111 @@ const PrivacyText = styled.p`
   line-height: 1.5;
 `;
 
+const ErrorMessage = styled.span`
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-left: 10px;
+  display: block;
+`;
+
 interface ShoppingCheckOutOrderProps {
   onNextStep: () => void;
+  cart: CartResponse;
+  isFormError: boolean;
 }
 
 export default function ShoppingCheckOutOrder({
   onNextStep,
+  cart,
+  isFormError,
 }: ShoppingCheckOutOrderProps) {
+  const [selectedPayment, setSelectedPayment] = useState<string>('');
+  const [paymentError, setPaymentError] = useState(false);
+
+  const {subtotal, deliveryCharge, total, user} = cart;
+  const {fullName} = user;
+
+  const handlePaymentChange = (value: string) => {
+    setSelectedPayment(value);
+    setPaymentError(false);
+  };
+
+  const handleCheckout = () => {
+    if (!selectedPayment) {
+      setPaymentError(true);
+      return;
+    }
+    if (isFormError) {
+      return;
+    }
+    onNextStep();
+  };
+
   return (
     <Container>
-      <TotalTitle>Total</TotalTitle>
+      <TotalTitle>총 결제 금액</TotalTitle>
       <SubTotalContainer>
         <ItemRow>
-          <ItemTitle>Subtotal</ItemTitle>
-          <ItemValue>1000</ItemValue>
+          <ItemTitle>총 상품 금액</ItemTitle>
+          <ItemValue>{subtotal.toLocaleString()}원</ItemValue>
         </ItemRow>
         <ItemRow>
-          <ItemTitle>Delivery Charge</ItemTitle>
-          <ItemValue>1000</ItemValue>
+          <ItemTitle>배송비</ItemTitle>
+          <ItemValue>{deliveryCharge.toLocaleString()}원</ItemValue>
         </ItemRow>
       </SubTotalContainer>
       <TotalContainer>
         <ItemRow>
-          <ItemTitle>Total</ItemTitle>
-          <ItemValue>2000</ItemValue>
+          <ItemTitle>총 결제 금액</ItemTitle>
+          <ItemValue>{total.toLocaleString()}원</ItemValue>
         </ItemRow>
       </TotalContainer>
       <NameAddressContainer>
         <ItemRow>
-          <ItemTitle>Name</ItemTitle>
-          <ItemValue>John Doe</ItemValue>
-        </ItemRow>
-        <ItemRow>
-          <ItemTitle>Address</ItemTitle>
-          <ItemValue>123 Main St, Anytown, USA</ItemValue>
+          <ItemTitle>이름</ItemTitle>
+          <ItemValue>{fullName}</ItemValue>
         </ItemRow>
       </NameAddressContainer>
       <PaymentsMethodContainer>
         <PaymentOption>
-          <RadioButton type="radio" name="payment" />
-          <PaymentLabel>Direct Bank Transfer</PaymentLabel>
+          <PaymentLabel htmlFor="cash">
+            <RadioButton
+              type="radio"
+              name="payment"
+              id="cash"
+              value="cash"
+              checked={selectedPayment === 'cash'}
+              onChange={e => handlePaymentChange(e.target.value)}
+            />
+            현금 결제
+          </PaymentLabel>
         </PaymentOption>
         <PaymentOption>
-          <RadioButton type="radio" name="payment" />
-          <PaymentLabel>Check Payments</PaymentLabel>
+          <PaymentLabel htmlFor="card">
+            <RadioButton
+              type="radio"
+              name="payment"
+              id="card"
+              value="card"
+              checked={selectedPayment === 'card'}
+              onChange={e => handlePaymentChange(e.target.value)}
+            />
+            카드 결제
+          </PaymentLabel>
         </PaymentOption>
-        <PaymentOption>
-          <RadioButton type="radio" name="payment" />
-          <PaymentLabel>Card Payment</PaymentLabel>
-        </PaymentOption>
-        <PrivacyText>
-          In Additional To The Uses Listed in Our{' '}
-          <strong>Privacy Policy</strong>, Your Personal Information Will Be
-          Utilized to Fulfill Your Order and Enhance Your Online Experience.
-        </PrivacyText>
+        {paymentError && <ErrorMessage>결제 수단을 선택해주세요</ErrorMessage>}
       </PaymentsMethodContainer>
-
-      <CheckoutButton onClick={onNextStep}>Place Order</CheckoutButton>
+      <CheckoutButton
+        onClick={handleCheckout}
+        disabled={isFormError}
+        style={{opacity: isFormError ? 0.5 : 1}}
+      >
+        주문하기
+      </CheckoutButton>
+      {isFormError && (
+        <ErrorMessage>배송 정보의 필수 항목을 모두 입력해주세요</ErrorMessage>
+      )}
     </Container>
   );
 }
