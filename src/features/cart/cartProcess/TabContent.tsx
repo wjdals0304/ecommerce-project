@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ShoppingCart from './ShoppingCart';
-import ShoppingCheckOut from './ShoppingCheckOut';
+import ShoppingCart from './shoppingCart/ShoppingCart';
+import ShoppingCheckOut from './shoppingCheckOut/ShoppingCheckOut';
 import ShoppingConfirm from './ShoppingConfirm';
 import {CartResponse} from '@/types/cart';
 

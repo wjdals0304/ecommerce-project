@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import trashIcon from 'public/images/shop/trash.svg';
 import Image from 'next/image';
-import ShoppingCartTotal from './ShoppingCartTotal';
+import ShoppingCartTotal from '../shoppingCart/ShoppingCartTotal';
 import {CartResponse} from '@/types/cart';
-import ShoppingCartItem from './ShoppingCartItem';
+import ShoppingCartItem from '../shoppingCart/ShoppingCartItem';
 const Container = styled.div`
   display: flex;
   gap: 25px;

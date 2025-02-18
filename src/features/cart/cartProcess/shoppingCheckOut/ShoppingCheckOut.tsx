@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import {CartResponse} from '@/types/cart';
 import {postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
-import ShoppingCheckOutOrder from './ShoppingCheckOutOrder';
+import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
 import {useState} from 'react';
-import ShoppingCheckOutInfo from './ShoppingCheckOutInfo';
+import ShoppingCheckOutInfo from '../shoppingCheckOut/ShoppingCheckOutInfo';
 const Container = styled.div`
   display: flex;
   gap: 25px;
