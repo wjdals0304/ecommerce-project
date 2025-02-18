@@ -3,6 +3,7 @@ import trashIcon from 'public/images/shop/trash.svg';
 import Image from 'next/image';
 import ShoppingCartTotal from './ShoppingCartTotal';
 import {CartResponse} from '@/types/cart';
+import ShoppingCartItem from './ShoppingCartItem';
 const Container = styled.div`
   display: flex;
   gap: 25px;
@@ -63,72 +64,6 @@ const ProductEmptyHeader = styled.span`
   padding: 10px;
 `;
 
-const ProductItemContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-`;
-
-const ProductDetail = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 10px;
-  flex: 1 0 352px;
-`;
-
-const ProductImage = styled.img`
-  width: 72px;
-  height: 72px;
-  border-radius: 15px;
-  object-fit: cover;
-  background-color: #d7d7d7;
-`;
-
-const ProductTitle = styled.span`
-  font-size: 16px;
-  font-weight: bold;
-  color: #001c30;
-`;
-
-const ProductPrice = styled.span`
-  font-size: 16px;
-  font-weight: bold;
-  color: #56af2c;
-  flex: 1 0 133px;
-  padding: 10px;
-`;
-
-const ProductQTY = styled.span`
-  font-size: 16px;
-  font-weight: bold;
-  color: #001c30;
-  flex: 1 0 81px;
-  padding: 10px;
-`;
-
-const ProductSubTotal = styled.span`
-  font-size: 16px;
-  font-weight: bold;
-  color: #001c30;
-  flex: 1 0 133px;
-  padding: 10px;
-`;
-
-const TrashIconButton = styled.button`
-  flex: 1 0 47px;
-  height: 44px;
-  border: none;
-  background-color: transparent;
-  padding: 10px;
-`;
-
-const TrashIconImage = styled(Image)`
-  width: 22px;
-  height: 22px;
-`;
-
 export default function ShoppingCart({
   onNextStep,
   cart,
@@ -136,8 +71,6 @@ export default function ShoppingCart({
   onNextStep: () => void;
   cart: CartResponse;
 }) {
-  const {items, user} = cart;
-  const {fullName} = user;
   return (
     <Container>
       <ProductContainer>
@@ -148,31 +81,7 @@ export default function ShoppingCart({
           <ProductSubTotalHeader>총 가격</ProductSubTotalHeader>
           <ProductEmptyHeader></ProductEmptyHeader>
         </ProductHeader>
-
-        {items.map(({product, quantity}) => {
-          const {name, price, images} = product;
-          return (
-            <ProductItemContainer>
-              <ProductDetail>
-                <ProductImage
-                  src={images[0]}
-                  alt="Image"
-                  width={72}
-                  height={72}
-                />
-                <ProductTitle>{name}</ProductTitle>
-              </ProductDetail>
-              <ProductPrice>{price.toLocaleString()}원</ProductPrice>
-              <ProductQTY>{quantity}</ProductQTY>
-              <ProductSubTotal>
-                {(price * quantity).toLocaleString()}원
-              </ProductSubTotal>
-              <TrashIconButton>
-                <TrashIconImage src={trashIcon} alt="trash" />
-              </TrashIconButton>
-            </ProductItemContainer>
-          );
-        })}
+        <ShoppingCartItem cart={cart} />
       </ProductContainer>
       <ShoppingCartTotal onNextStep={onNextStep} cart={cart} />
     </Container>

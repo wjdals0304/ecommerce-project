@@ -29,7 +29,6 @@ const EmptyCartText = styled.p`
 `;
 
 export default function Cart({cart}: {cart: CartResponse}) {
-  console.log(cart);
   return (
     <Container>
       <Search />
