@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import confirmIcon from 'public/images/shop/confirm.svg';
-import {getRequest, getStoredToken} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
-import {OrderResponse} from '@/types/order';
-import {useQuery} from '@tanstack/react-query';
+import {useOrderDetail} from '@/hooks/useOrderDetail';
 
 const Container = styled.div`
   display: flex;
@@ -118,30 +115,8 @@ interface ShoppingConfirmProps {
   orderId: string;
 }
 
-const fetchOrderDetail = async (orderId: string): Promise<OrderResponse> => {
-  try {
-    const token = getStoredToken();
-    const response = await getRequest<OrderResponse>(
-      `${API_ENDPOINTS.ORDERS}/${orderId}`,
-      {},
-      token,
-    );
-    return response.data;
-  } catch (error) {
-    throw new Error('주문 정보를 불러오는데 실패했습니다.');
-  }
-};
-
 export default function ShoppingConfirm({orderId}: ShoppingConfirmProps) {
-  const {
-    data: orderDetail,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['fetchOrderDetail', orderId],
-    queryFn: () => fetchOrderDetail(orderId),
-    enabled: !!orderId,
-  });
+  const {data: orderDetail, isLoading, error} = useOrderDetail(orderId);
 
   if (isLoading) return <div>로딩 중...</div>;
   if (error) return <div>주문 정보를 불러오는데 실패했습니다.</div>;

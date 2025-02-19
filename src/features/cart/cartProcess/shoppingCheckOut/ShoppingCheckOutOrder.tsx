@@ -149,11 +149,14 @@ export default function ShoppingCheckOutOrder({
         return;
       }
 
-      let response = await postRequest<OrderResponse>(API_ENDPOINTS.ORDERS, {
-        payment_method: selectedPayment,
+      let response = await postRequest<OrderResponse>({
+        url: API_ENDPOINTS.ORDERS,
+        data: {
+          payment_method: selectedPayment,
+        },
       });
 
-      const orderId = response.id;
+      const orderId = response.data.id;
       setOrderId(orderId.toString());
       onNextStep();
     } catch (error) {
