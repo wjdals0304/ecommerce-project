@@ -21,7 +21,7 @@ export default function ShopPage({shopData}: ShopPageProps) {
 
 export async function getServerSideProps() {
   try {
-    const response = await getRequest<ShopData>(API_ENDPOINTS.SHOP_ALL);
+    const response = await getRequest<ShopData>({url: API_ENDPOINTS.SHOP_ALL});
     const shopData = response.data;
 
     return {

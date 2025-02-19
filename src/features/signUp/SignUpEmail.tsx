@@ -9,6 +9,7 @@ import Password from './signUpInput/Password';
 import ErrorModal from '../../components/PopUpModal';
 import Cookies from 'js-cookie';
 import {postRequest, formDataEntries, getToken} from '@/utils/apiClient';
+import {setCookie} from 'nookies';
 
 const SignUpContainer = styled.form`
   display: flex;
@@ -75,12 +76,16 @@ export default function SignUpEmail() {
     }
 
     try {
-      const response = await postRequest(
-        API_ENDPOINTS.AUTH_SIGNUP_EMAIL,
-        formData,
-      );
+      const response = await postRequest({
+        url: API_ENDPOINTS.AUTH_SIGNUP_EMAIL,
+        data: formData,
+      });
       const token = getToken(response);
-      Cookies.set('jwt', token, {expires: 1});
+      setCookie(null, 'jwt', token, {
+        maxAge: 60 * 60,
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      });
       router.push('/');
     } catch (error) {
       if (error.response.status === 409) {

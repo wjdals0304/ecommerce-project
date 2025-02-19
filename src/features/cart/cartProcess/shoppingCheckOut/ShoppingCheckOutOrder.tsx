@@ -146,8 +146,11 @@ export default function ShoppingCheckOutOrder({
         return;
       }
 
-      await postRequest(API_ENDPOINTS.ORDERS, {
-        payment_method: selectedPayment,
+      await postRequest({
+        url: API_ENDPOINTS.ORDERS,
+        data: {
+          payment_method: selectedPayment,
+        },
       });
 
       onNextStep();

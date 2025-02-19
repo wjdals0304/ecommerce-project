@@ -31,8 +31,6 @@ apiClient.interceptors.response.use(
     return response;
   },
   error => {
-    console.log('error-------');
-    console.log(error);
     if (error.response?.status === 401) {
       // TODO: 토큰 만료 처리
     }
@@ -42,13 +40,21 @@ apiClient.interceptors.response.use(
 
 export default apiClient;
 
-export const postRequest = async (url: string, data: any) => {
-  const token = parseCookies().jwt;
-  const response = await apiClient.post(url, data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+interface RequestConfig {
+  params?: Record<string, any>;
+  headers?: Record<string, any>;
+}
+
+export const postRequest = async <T>({
+  url,
+  data,
+  config = {},
+}: {
+  url: string;
+  data: any;
+  config?: RequestConfig;
+}) => {
+  const response = await apiClient.post<T>(url, data, config);
   return response;
 };
 
@@ -58,10 +64,6 @@ export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
   return data;
 };
 
-interface RequestConfig {
-  headers?: Record<string, string>;
-}
-
 export const getRequest = async <T>({
   url,
   config = {},
@@ -69,9 +71,6 @@ export const getRequest = async <T>({
   url: string;
   config?: RequestConfig;
 }): Promise<AxiosResponse<T>> => {
-  console.log('getRequest-------');
-  console.log(url);
-
   const response = await apiClient.get<T>(url, config);
   return response;
 };
