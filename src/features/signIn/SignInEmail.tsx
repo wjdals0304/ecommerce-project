@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {useState} from 'react';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 import {formDataEntries, postRequest, getToken} from '@/utils/apiClient';
-import Cookies from 'js-cookie';
+import {setCookie} from 'nookies';
 import {useRouter} from 'next/router';
 import Email from '../signUp/signUpInput/Email';
 import Password from '../signUp/signUpInput/Password';
@@ -80,12 +80,16 @@ function SignInEmail() {
     }
 
     try {
-      const response = await postRequest(
-        API_ENDPOINTS.AUTH_SIGNIN_EMAIL,
-        dataPost,
-      );
+      const response = await postRequest({
+        url: API_ENDPOINTS.AUTH_SIGNIN_EMAIL,
+        data: dataPost,
+      });
       const token = getToken(response);
-      Cookies.set('jwt', token, {expires: 1});
+      setCookie(null, 'jwt', token, {
+        maxAge: 60 * 60,
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      });
       router.push('/');
     } catch (error) {
       if (error.status === 401) {

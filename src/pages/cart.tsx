@@ -7,6 +7,7 @@ import {getRequest, getStoredToken} from '@/utils/apiClient';
 import {parseCookies} from 'nookies';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 import {CartResponse} from '@/types/cart';
+import {GetServerSideProps} from 'next';
 
 interface CartProps {
   cart: CartResponse;
@@ -34,24 +35,32 @@ export default function CartPage({cart}: CartProps) {
   );
 }
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const cookies = parseCookies(context);
     const token = cookies.jwt;
 
-    const response = await getRequest<CartResponse>(
-      API_ENDPOINTS.CART,
-      {},
-      token,
-    );
-    const cart = response.data;
-    return {props: {cart}};
+    console.log('Server Side Token:', token);
+
+    const response = await getRequest<CartResponse>({
+      url: API_ENDPOINTS.CART,
+      config: {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    });
+
+    return {props: {cart: response.data}};
   } catch (error) {
+    console.error('장바구니 데이터 로딩 실패:', error);
     return {
-      props: {
-        cart: null,
-        error: '데이터를 가져오는데 실패했습니다.',
+      props: {cart: null},
+
+      redirect: {
+        destination: '/signin',
+        permanent: false,
       },
     };
   }
-}
+};

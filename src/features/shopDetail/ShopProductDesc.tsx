@@ -95,6 +95,7 @@ export default function ShopProductDesc({
   const {product, descriptions, specifications} = shopDetailData;
 
   const {
+    id,
     name,
     price,
     originalPrice,
@@ -125,7 +126,7 @@ export default function ShopProductDesc({
       <ProductDesc>{description}</ProductDesc>
       <QuantitySelector price={price} />
       <ShippingMethod />
-      <ShopProductBuy />
+      <ShopProductBuy productId={id.toString()} />
     </Container>
   );
 }

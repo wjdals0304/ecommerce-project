@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import heartIcon from 'public/images/home/heartDark.svg';
 import shareIcon from 'public/images/shop/share.svg';
+import {postRequest} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import router from 'next/router';
+import {useRouter} from 'next/router';
+import Link from 'next/link';
 
 const Container = styled.div`
   display: flex;
@@ -48,7 +53,21 @@ const BuyButton = styled.button`
   font-weight: medium;
 `;
 
-export default function ShopProductBuy() {
+export default function ShopProductBuy({productId}: {productId: string}) {
+  const handleAddToCart = async () => {
+    try {
+      await postRequest({
+        url: API_ENDPOINTS.CART_ADD,
+        data: {
+          productId: productId,
+        },
+      });
+      console.log('장바구니 추가 성공');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Container>
       <HeartButton>
@@ -57,8 +76,10 @@ export default function ShopProductBuy() {
       <ShareButton>
         <Image src={shareIcon} alt="share" width={27} height={27} />
       </ShareButton>
-      <AddToCartButton>장바구니 추가</AddToCartButton>
-      <BuyButton>구매하기</BuyButton>
+      <AddToCartButton onClick={handleAddToCart}>장바구니 추가</AddToCartButton>
+      <Link href="/cart">
+        <BuyButton>구매하기</BuyButton>
+      </Link>
     </Container>
   );
 }
