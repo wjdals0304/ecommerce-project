@@ -64,12 +64,14 @@ export default function ShopDetail({
     }
     // 리뷰 탭일 경우 데이터 가져오기
     try {
-      const response = await getRequest<ReviewResponse>(
-        `${API_ENDPOINTS.SHOP}/${product.id}`,
-        {
-          tab: tab,
+      const response = await getRequest<ReviewResponse>({
+        url: `${API_ENDPOINTS.SHOP}/${product.id}`,
+        config: {
+          params: {
+            tab: tab,
+          },
         },
-      );
+      });
       const reviewResponse = response.data;
       setReviews(reviewResponse.reviews);
 

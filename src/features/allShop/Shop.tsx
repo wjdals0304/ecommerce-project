@@ -44,10 +44,12 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
 
   const handleFilterChange = async (filterParams: any) => {
     try {
-      const response = await getRequest<ShopData>(
-        API_ENDPOINTS.SHOP,
-        filterParams,
-      );
+      const response = await getRequest<ShopData>({
+        url: API_ENDPOINTS.SHOP,
+        config: {
+          params: filterParams,
+        },
+      });
       setShopData(response.data);
 
       router.push(
