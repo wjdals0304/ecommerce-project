@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import confirmIcon from 'public/images/shop/confirm.svg';
 import {useOrderDetail} from '@/hooks/useOrderDetail';
-
+import ShoppingConfirmItem from './ShoppingConfirmItem';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,16 +51,6 @@ const OrderTitle = styled.span`
   padding: 10px 0 25px 10px;
   border-bottom: 1px solid #8e96a4;
   margin: 0 25px;
-`;
-
-const OrderItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 25px 25px 15px;
-  margin-top: 15px;
-  gap: 15px;
 `;
 
 const OrderItemRow = styled.div`
@@ -138,28 +128,7 @@ export default function ShoppingConfirm({orderId}: ShoppingConfirmProps) {
       </ConfirmContainer>
       <OrderContainer>
         <OrderTitle>주문 내역</OrderTitle>
-        <OrderItemContainer>
-          {orderDetail.items.map(item => (
-            <OrderItemRow key={item.id}>
-              <OrderItemTitle>상품명</OrderItemTitle>
-              <OrderItemValue>{item.product.name}</OrderItemValue>
-            </OrderItemRow>
-          ))}
-          <OrderItemRow>
-            <OrderItemTitle>총 상품 금액</OrderItemTitle>
-            <OrderItemValue>
-              {orderDetail.total_amount.toLocaleString()}원
-            </OrderItemValue>
-          </OrderItemRow>
-          <OrderItemRow>
-            <OrderItemTitle>결제 수단</OrderItemTitle>
-            <OrderItemValue>
-              {orderDetail.payment_method === 'BANK_TRANSFER'
-                ? '현금 결제'
-                : '카드 결제'}
-            </OrderItemValue>
-          </OrderItemRow>
-        </OrderItemContainer>
+        <ShoppingConfirmItem orderDetail={orderDetail} />
         <NameAddressContainer>
           <OrderItemRow>
             <OrderItemTitle>주문 일시</OrderItemTitle>
