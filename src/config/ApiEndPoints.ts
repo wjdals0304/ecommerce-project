@@ -10,4 +10,6 @@ export const API_ENDPOINTS = {
   SEARCH: `/search`,
   CART: `/cart`,
   SHIPPING_ADDRESS: `/shipping/address`,
+  ORDERS: `/orders`,
+  ORDER_DETAIL: `/orders/:id`,
 };

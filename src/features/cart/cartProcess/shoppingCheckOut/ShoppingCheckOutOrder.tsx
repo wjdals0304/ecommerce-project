@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {CartResponse} from '@/types/cart';
 import {useState} from 'react';
+import {postRequest} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 
 const Container = styled.div`
   background-color: #fff;
@@ -107,6 +109,11 @@ const ErrorMessage = styled.span`
   display: block;
 `;
 
+enum PaymentMethod {
+  CASH = 'BANK_TRANSFER',
+  CARD = 'CREDIT_CARD',
+}
+
 interface ShoppingCheckOutOrderProps {
   onNextStep: () => void;
   cart: CartResponse;
@@ -118,26 +125,35 @@ export default function ShoppingCheckOutOrder({
   cart,
   isFormError,
 }: ShoppingCheckOutOrderProps) {
-  const [selectedPayment, setSelectedPayment] = useState<string>('');
+  const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>();
   const [paymentError, setPaymentError] = useState(false);
 
   const {subtotal, deliveryCharge, total, user} = cart;
   const {fullName} = user;
 
-  const handlePaymentChange = (value: string) => {
+  const handlePaymentChange = (value: PaymentMethod) => {
     setSelectedPayment(value);
     setPaymentError(false);
   };
 
-  const handleCheckout = () => {
-    if (!selectedPayment) {
-      setPaymentError(true);
-      return;
+  const handleCheckout = async () => {
+    try {
+      if (!selectedPayment) {
+        setPaymentError(true);
+        return;
+      }
+      if (isFormError) {
+        return;
+      }
+
+      await postRequest(API_ENDPOINTS.ORDERS, {
+        payment_method: selectedPayment,
+      });
+
+      onNextStep();
+    } catch (error) {
+      console.error(error);
     }
-    if (isFormError) {
-      return;
-    }
-    onNextStep();
   };
 
   return (
@@ -172,9 +188,11 @@ export default function ShoppingCheckOutOrder({
               type="radio"
               name="payment"
               id="cash"
-              value="cash"
-              checked={selectedPayment === 'cash'}
-              onChange={e => handlePaymentChange(e.target.value)}
+              value={PaymentMethod.CASH}
+              checked={selectedPayment === PaymentMethod.CASH}
+              onChange={e =>
+                handlePaymentChange(e.target.value as PaymentMethod)
+              }
             />
             현금 결제
           </PaymentLabel>
@@ -185,9 +203,11 @@ export default function ShoppingCheckOutOrder({
               type="radio"
               name="payment"
               id="card"
-              value="card"
-              checked={selectedPayment === 'card'}
-              onChange={e => handlePaymentChange(e.target.value)}
+              value={PaymentMethod.CARD}
+              checked={selectedPayment === PaymentMethod.CARD}
+              onChange={e =>
+                handlePaymentChange(e.target.value as PaymentMethod)
+              }
             />
             카드 결제
           </PaymentLabel>

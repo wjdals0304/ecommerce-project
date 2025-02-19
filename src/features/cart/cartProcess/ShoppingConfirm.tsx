@@ -120,44 +120,44 @@ export default function ShoppingConfirm() {
           width={100}
           height={100}
         />
-        <ConfirmText>Your Order Has Been Fulfilled</ConfirmText>
+        <ConfirmText>주문이 완료되었습니다.</ConfirmText>
         <ConfirmSubText>
-          I’m grateful. We have received your order.{' '}
+          주문해주셔서 감사합니다. 주문 내역을 확인해주세요.
         </ConfirmSubText>
       </ConfirmContainer>
       <OrderContainer>
-        <OrderTitle>Order Details</OrderTitle>
+        <OrderTitle>주문 내역</OrderTitle>
         <OrderItemContainer>
           <OrderItemRow>
-            <OrderItemTitle>Item Name</OrderItemTitle>
+            <OrderItemTitle>상품명</OrderItemTitle>
             <OrderItemValue>
               Axus Zens 123 Metalic Color I5 Ryzin Generation 10 16” FHD Laptop
             </OrderItemValue>
           </OrderItemRow>
           <OrderItemRow>
-            <OrderItemTitle>Subtotal</OrderItemTitle>
+            <OrderItemTitle>총 상품 금액</OrderItemTitle>
             <OrderItemValue>$100.00</OrderItemValue>
           </OrderItemRow>
           <OrderItemRow>
-            <OrderItemTitle>Delivery Charge</OrderItemTitle>
+            <OrderItemTitle>배송비</OrderItemTitle>
             <OrderItemValue>$100.00</OrderItemValue>
           </OrderItemRow>
           <OrderItemRow>
-            <OrderItemTitle>Total</OrderItemTitle>
+            <OrderItemTitle>총 결제 금액</OrderItemTitle>
             <OrderItemValue>$100.00</OrderItemValue>
           </OrderItemRow>
         </OrderItemContainer>
         <NameAddressContainer>
           <OrderItemRow>
-            <OrderItemTitle>Name</OrderItemTitle>
+            <OrderItemTitle>이름</OrderItemTitle>
             <OrderItemValue>Martin Paez</OrderItemValue>
           </OrderItemRow>
           <OrderItemRow>
-            <OrderItemTitle>Address</OrderItemTitle>
+            <OrderItemTitle>주소</OrderItemTitle>
             <OrderItemValue>12334 London, Britania Raya</OrderItemValue>
           </OrderItemRow>
         </NameAddressContainer>
-        <OrderButton>Track Order</OrderButton>
+        <OrderButton>주문 내역 확인하기</OrderButton>
       </OrderContainer>
     </Container>
   );
