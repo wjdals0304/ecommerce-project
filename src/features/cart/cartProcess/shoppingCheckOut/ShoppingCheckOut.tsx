@@ -1,11 +1,15 @@
-import {useForm} from 'react-hook-form';
+import {Resolver, useForm, FormProvider} from 'react-hook-form';
 import styled from 'styled-components';
 import {CartResponse} from '@/types/cart';
 import {postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import * as yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
 import {useState} from 'react';
 import ShoppingCheckOutInfo from '../shoppingCheckOut/ShoppingCheckOutInfo';
+import {shippingSchema} from '@/config/ValidationSchema';
+
 const Container = styled.div`
   display: flex;
   gap: 25px;
@@ -41,20 +45,24 @@ export interface ShippingFormData {
 interface ShoppingCheckOutProps {
   onNextStep: () => void;
   cart: CartResponse;
+  setOrderId: (id: string) => void;
 }
 
 export default function ShoppingCheckOut({
   onNextStep,
   cart,
+  setOrderId,
 }: ShoppingCheckOutProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: {errors},
-    watch,
-  } = useForm<ShippingFormData>({
+  const methods = useForm<ShippingFormData>({
+    resolver: yupResolver(shippingSchema) as Resolver<ShippingFormData>,
     mode: 'onChange',
   });
+
+  const {
+    formState: {errors},
+    watch,
+    handleSubmit,
+  } = methods;
 
   const [isFormError, setIsFormError] = useState(false);
 
@@ -65,7 +73,6 @@ export default function ShoppingCheckOut({
   const zipCode = watch('zipcode');
 
   const hasEmptyFields = !name || !phone || !address || !city || !zipCode;
-
   const hasFormErrors = !!(
     errors.name ||
     errors.phone ||
@@ -90,21 +97,19 @@ export default function ShoppingCheckOut({
   };
 
   return (
-    <Container>
-      <BillingContainer>
-        <BillingDetail>배송 정보</BillingDetail>
-        <ShoppingCheckOutInfo
-          onSubmit={onSubmit}
-          register={register}
-          errors={errors}
-          handleSubmit={handleSubmit}
+    <FormProvider {...methods}>
+      <Container>
+        <BillingContainer>
+          <BillingDetail>배송 정보</BillingDetail>
+          <ShoppingCheckOutInfo onSubmit={onSubmit} />
+        </BillingContainer>
+        <ShoppingCheckOutOrder
+          onNextStep={onNextStep}
+          cart={cart}
+          isFormError={isFormError || hasEmptyFields || hasFormErrors}
+          setOrderId={setOrderId}
         />
-      </BillingContainer>
-      <ShoppingCheckOutOrder
-        onNextStep={onNextStep}
-        cart={cart}
-        isFormError={isFormError || hasEmptyFields || hasFormErrors}
-      />
-    </Container>
+      </Container>
+    </FormProvider>
   );
 }

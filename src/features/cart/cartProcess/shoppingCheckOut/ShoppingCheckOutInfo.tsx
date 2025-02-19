@@ -1,7 +1,9 @@
 import {
+  Control,
   FieldErrors,
   UseFormHandleSubmit,
-  UseFormRegister,
+  useController,
+  useFormContext,
 } from 'react-hook-form';
 import styled from 'styled-components';
 import {ShippingFormData} from './ShoppingCheckOut';
@@ -65,27 +67,56 @@ const ErrorMessage = styled.span`
   margin-left: 10px;
 `;
 
-export default function ShoppingCheckOutInfo({
-  errors,
-  register,
-  onSubmit,
-  handleSubmit,
-}: {
-  errors: FieldErrors<ShippingFormData>;
-  register: UseFormRegister<ShippingFormData>;
+interface ShoppingCheckOutInfoProps {
   onSubmit: (data: ShippingFormData) => void;
-  handleSubmit: UseFormHandleSubmit<ShippingFormData>;
-}) {
+}
+
+export default function ShoppingCheckOutInfo({
+  onSubmit,
+}: ShoppingCheckOutInfoProps) {
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useFormContext<ShippingFormData>();
+
+  const {field: nameField} = useController({
+    name: 'name',
+    control,
+  });
+
+  const {field: phoneField} = useController({
+    name: 'phone',
+    control,
+  });
+
+  const {field: addressField} = useController({
+    name: 'address',
+    control,
+  });
+
+  const {field: cityField} = useController({
+    name: 'city',
+    control,
+  });
+
+  const {field: zipcodeField} = useController({
+    name: 'zipcode',
+    control,
+  });
+
+  const {field: memoField} = useController({
+    name: 'memo',
+    control,
+  });
+
   return (
     <InputContainer onSubmit={handleSubmit(onSubmit)}>
       <InputRow>
         <InputBoxContainer>
           <InputBox
             hasError={!!errors.name}
-            {...register('name', {
-              required: '이름을 입력해주세요',
-              minLength: {value: 2, message: '2자 이상 입력해주세요'},
-            })}
+            {...nameField}
             placeholder="이름"
           />
           {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
@@ -93,13 +124,7 @@ export default function ShoppingCheckOutInfo({
         <InputBoxContainer>
           <InputBox
             hasError={!!errors.phone}
-            {...register('phone', {
-              required: '전화번호를 입력해주세요',
-              pattern: {
-                value: /^[0-9]{10,11}$/,
-                message: '올바른 전화번호를 입력해주세요',
-              },
-            })}
+            {...phoneField}
             placeholder="전화번호"
           />
           {errors.phone && <ErrorMessage>{errors.phone.message}</ErrorMessage>}
@@ -109,7 +134,7 @@ export default function ShoppingCheckOutInfo({
       <InputBoxContainer>
         <InputBox
           hasError={!!errors.address}
-          {...register('address', {required: '주소를 입력해주세요'})}
+          {...addressField}
           placeholder="주소"
         />
         {errors.address && (
@@ -121,22 +146,15 @@ export default function ShoppingCheckOutInfo({
         <InputBoxContainer>
           <InputBox
             hasError={!!errors.city}
-            {...register('city', {required: '도/시를 입력해주세요'})}
+            {...cityField}
             placeholder="도/시"
           />
           {errors.city && <ErrorMessage>{errors.city.message}</ErrorMessage>}
         </InputBoxContainer>
-
         <InputBoxContainer>
           <InputBox
             hasError={!!errors.zipcode}
-            {...register('zipcode', {
-              required: '우편번호를 입력해주세요',
-              pattern: {
-                value: /^\d{5}$/,
-                message: '올바른 우편번호를 입력해주세요',
-              },
-            })}
+            {...zipcodeField}
             placeholder="우편번호"
           />
           {errors.zipcode && (
@@ -146,7 +164,7 @@ export default function ShoppingCheckOutInfo({
       </InputRow>
 
       <InputRow>
-        <InputBox {...register('memo')} placeholder="주문 메모" />
+        <InputBox {...memoField} placeholder="주문 메모" />
       </InputRow>
       <SaveButtonContainer>
         <SaveButton type="submit">저장하기</SaveButton>

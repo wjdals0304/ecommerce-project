@@ -37,21 +37,11 @@ export default function CartPage({cart}: CartProps) {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const cookies = parseCookies(context);
-    const token = cookies.jwt;
-
-    console.log('Server Side Token:', token);
-
     const response = await getRequest<CartResponse>({
       url: API_ENDPOINTS.CART,
-      config: {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
     });
-
-    return {props: {cart: response.data}};
+    const cart = response.data;
+    return {props: {cart}};
   } catch (error) {
     console.error('장바구니 데이터 로딩 실패:', error);
     return {

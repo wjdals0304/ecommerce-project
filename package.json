@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^4.1.0",
+    "@tanstack/react-query": "^5.66.6",
     "axios": "^1.7.9",
     "js-cookie": "^3.0.5",
     "next": "^15.1.6",
@@ -18,7 +19,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check": "npm run lint && tsc --noEmit && npm run build"
   },
   "eslintConfig": {
     "extends": [
