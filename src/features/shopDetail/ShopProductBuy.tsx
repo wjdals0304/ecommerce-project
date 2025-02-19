@@ -59,7 +59,7 @@ export default function ShopProductBuy({productId}: {productId: string}) {
       await postRequest({
         url: API_ENDPOINTS.CART_ADD,
         data: {
-          productId: productId,
+          productId: parseInt(productId),
         },
       });
       console.log('장바구니 추가 성공');

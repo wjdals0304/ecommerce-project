@@ -9,22 +9,31 @@ const apiClient = axios.create({
   },
 });
 
-apiClient.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    if (typeof window !== 'undefined') {
-      const cookies = parseCookies();
-      const token = cookies.jwt;
+apiClient.defaults.withCredentials = true;
 
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-    }
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  },
-);
+// apliCLient.interceptors 토큰 문제로 주석 처리
+// apiClient.interceptors.request.use(
+//   (config: InternalAxiosRequestConfig) => {
+//     if (typeof window === 'undefined') {
+//       const cookies = parseCookies();
+//       const token = cookies.jwt;
+//       if (token) {
+//         config.headers.Authorization = `Bearer ${token}`;
+//       }
+//     } else {
+//       const cookies = parseCookies();
+//       const token = cookies.jwt;
+//       if (token) {
+//         config.headers.Authorization = `Bearer ${token}`;
+//       }
+//     }
+
+//     return config;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   },
+// );
 
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => {
@@ -43,6 +52,7 @@ export default apiClient;
 interface RequestConfig {
   params?: Record<string, any>;
   headers?: Record<string, any>;
+  token?: string;
 }
 
 export const postRequest = async <T>({
@@ -72,6 +82,7 @@ export const getRequest = async <T>({
   config?: RequestConfig;
 }): Promise<AxiosResponse<T>> => {
   const response = await apiClient.get<T>(url, config);
+
   return response;
 };
 

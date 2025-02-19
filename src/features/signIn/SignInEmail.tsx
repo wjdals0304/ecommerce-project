@@ -85,11 +85,14 @@ function SignInEmail() {
         data: dataPost,
       });
       const token = getToken(response);
+
       setCookie(null, 'jwt', token, {
         maxAge: 60 * 60,
         path: '/',
         secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
       });
+
       router.push('/');
     } catch (error) {
       if (error.status === 401) {
