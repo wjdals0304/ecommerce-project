@@ -24,8 +24,11 @@ export async function getServerSideProps(context) {
   const {keyword} = query;
 
   try {
-    const response = await getRequest<SearchResponse>(API_ENDPOINTS.SEARCH, {
-      keyword,
+    const response = await getRequest<SearchResponse>({
+      url: API_ENDPOINTS.SEARCH,
+      config: {
+        params: {keyword},
+      },
     });
     const searchResult = response.data;
     return {

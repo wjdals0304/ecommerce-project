@@ -23,9 +23,9 @@ export default function ShopDetailPage({shopDetailData}: ShopDetailPageProps) {
 export async function getServerSideProps({params}) {
   try {
     const {id} = params;
-    const response = await getRequest<ShopDetailType>(
-      `${API_ENDPOINTS.SHOP}/${id}`,
-    );
+    const response = await getRequest<ShopDetailType>({
+      url: `${API_ENDPOINTS.SHOP}/${id}`,
+    });
     const shopDetailData = response.data;
 
     return {

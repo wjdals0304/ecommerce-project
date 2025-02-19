@@ -75,10 +75,10 @@ export default function SignUpEmail() {
     }
 
     try {
-      const response = await postRequest(
-        API_ENDPOINTS.AUTH_SIGNUP_EMAIL,
-        formData,
-      );
+      const response = await postRequest({
+        url: API_ENDPOINTS.AUTH_SIGNUP_EMAIL,
+        data: formData,
+      });
       const token = getToken(response);
       Cookies.set('jwt', token, {expires: 1});
       router.push('/');

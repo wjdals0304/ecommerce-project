@@ -100,7 +100,10 @@ export default function ShoppingCheckOut({
   const onSubmit = async (data: ShippingFormData) => {
     try {
       console.log(data);
-      await postRequest(API_ENDPOINTS.SHIPPING_ADDRESS, data);
+      await postRequest({
+        url: API_ENDPOINTS.SHIPPING_ADDRESS,
+        data,
+      });
       console.log('배송 정보 저장 성공');
 
       setIsFormError(false);

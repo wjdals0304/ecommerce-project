@@ -4,7 +4,6 @@ import Footer from '@/components/Footer';
 import {getRequest} from '@/utils/apiClient';
 import {API_BASE_URL, API_ENDPOINTS} from '@/config/ApiEndPoints';
 import {HomeData} from '@/types/home';
-import {parseCookies} from 'nookies';
 
 export default function HomePage({homeData}: {homeData: HomeData}) {
   return (
@@ -16,12 +15,11 @@ export default function HomePage({homeData}: {homeData: HomeData}) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   try {
-    const cookies = parseCookies(context);
-    const token = cookies.jwt;
-
-    const response = await getRequest<HomeData>(API_ENDPOINTS.HOME, {}, token);
+    const response = await getRequest<HomeData>({
+      url: API_ENDPOINTS.HOME,
+    });
     const homeData = response.data;
 
     return {

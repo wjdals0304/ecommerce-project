@@ -24,9 +24,9 @@ export async function getServerSideProps({params}: {params: {id: string}}) {
   const {id} = params;
 
   try {
-    const blog = await getRequest<BlogDetailType>(
-      `${API_ENDPOINTS.BLOG}/${id}`,
-    );
+    const blog = await getRequest<BlogDetailType>({
+      url: `${API_ENDPOINTS.BLOG}/${id}`,
+    });
     const blogDetailData = blog.data;
 
     return {

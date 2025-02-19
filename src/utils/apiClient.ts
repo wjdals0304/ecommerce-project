@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, {AxiosResponse, InternalAxiosRequestConfig} from 'axios';
 import {API_BASE_URL} from '@/config/ApiEndPoints';
 import Cookies from 'js-cookie';
 
@@ -9,15 +9,48 @@ const apiClient = axios.create({
   },
 });
 
+apiClient.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const token = Cookies.get('jwt');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
+
+apiClient.interceptors.response.use(
+  (response: AxiosResponse) => {
+    return response;
+  },
+  error => {
+    if (error.response?.status === 401) {
+      // TODO: 토큰 만료 처리
+    }
+    return Promise.reject(error);
+  },
+);
+
 export default apiClient;
 
-export const postRequest = async (url: string, data: any) => {
-  const token = Cookies.get('jwt');
-  const response = await apiClient.post(url, data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+interface RequestConfig {
+  params?: Record<string, any>;
+  headers?: Record<string, any>;
+}
+
+export const postRequest = async <T>({
+  url,
+  data,
+  config = {},
+}: {
+  url: string;
+  data: any;
+  config?: RequestConfig;
+}) => {
+  const response = await apiClient.post<T>(url, data, config);
   return response;
 };
 
@@ -27,17 +60,14 @@ export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
   return data;
 };
 
-export const getRequest = async <T>(
-  url: string,
-  params: Record<string, any> = {},
-  token: string = '',
-): Promise<AxiosResponse<T>> => {
-  const response = await apiClient.get<T>(url, {
-    headers: {
-      Authorization: token ? `Bearer ${token}` : '',
-    },
-    params,
-  });
+export const getRequest = async <T>({
+  url,
+  config = {},
+}: {
+  url: string;
+  config?: RequestConfig;
+}): Promise<AxiosResponse<T>> => {
+  const response = await apiClient.get<T>(url, config);
   return response;
 };
 
