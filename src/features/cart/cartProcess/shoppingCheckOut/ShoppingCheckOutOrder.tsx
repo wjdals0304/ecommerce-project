@@ -3,6 +3,7 @@ import {CartResponse} from '@/types/cart';
 import {useState} from 'react';
 import {postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {OrderResponse} from '@/types/order';
 
 const Container = styled.div`
   background-color: #fff;
@@ -118,12 +119,14 @@ interface ShoppingCheckOutOrderProps {
   onNextStep: () => void;
   cart: CartResponse;
   isFormError: boolean;
+  setOrderId: (id: string) => void;
 }
 
 export default function ShoppingCheckOutOrder({
   onNextStep,
   cart,
   isFormError,
+  setOrderId,
 }: ShoppingCheckOutOrderProps) {
   const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>();
   const [paymentError, setPaymentError] = useState(false);
@@ -146,10 +149,12 @@ export default function ShoppingCheckOutOrder({
         return;
       }
 
-      await postRequest(API_ENDPOINTS.ORDERS, {
+      let response = await postRequest<OrderResponse>(API_ENDPOINTS.ORDERS, {
         payment_method: selectedPayment,
       });
 
+      const orderId = response.id;
+      setOrderId(orderId.toString());
       onNextStep();
     } catch (error) {
       console.error(error);
