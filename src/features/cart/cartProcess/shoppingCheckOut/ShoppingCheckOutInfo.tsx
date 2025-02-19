@@ -83,46 +83,26 @@ export default function ShoppingCheckOutInfo({
   const {field: nameField} = useController({
     name: 'name',
     control,
-    rules: {
-      required: '이름을 입력해주세요',
-      minLength: {value: 2, message: '2자 이상 입력해주세요'},
-    },
   });
 
   const {field: phoneField} = useController({
     name: 'phone',
     control,
-    rules: {
-      required: '전화번호를 입력해주세요',
-      pattern: {
-        value: /^[0-9]{10,11}$/,
-        message: '올바른 전화번호를 입력해주세요',
-      },
-    },
   });
 
   const {field: addressField} = useController({
     name: 'address',
     control,
-    rules: {required: '주소를 입력해주세요'},
   });
 
   const {field: cityField} = useController({
     name: 'city',
     control,
-    rules: {required: '도/시를 입력해주세요'},
   });
 
   const {field: zipcodeField} = useController({
     name: 'zipcode',
     control,
-    rules: {
-      required: '우편번호를 입력해주세요',
-      pattern: {
-        value: /^\d{5}$/,
-        message: '올바른 우편번호를 입력해주세요',
-      },
-    },
   });
 
   const {field: memoField} = useController({
