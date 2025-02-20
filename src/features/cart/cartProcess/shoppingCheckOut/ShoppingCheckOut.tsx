@@ -9,7 +9,6 @@ import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
 import {useState} from 'react';
 import ShoppingCheckOutInfo from '../shoppingCheckOut/ShoppingCheckOutInfo';
 import {shippingSchema} from '@/config/ValidationSchema';
-
 const Container = styled.div`
   display: flex;
   gap: 25px;
