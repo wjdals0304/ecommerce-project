@@ -2,10 +2,8 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import heartIcon from 'public/images/home/heartDark.svg';
 import shareIcon from 'public/images/shop/share.svg';
-import {postRequest} from '@/utils/apiClient';
+import {getStoredToken, postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
-import router from 'next/router';
-import {useRouter} from 'next/router';
 import Link from 'next/link';
 
 const Container = styled.div`
@@ -54,12 +52,18 @@ const BuyButton = styled.button`
 `;
 
 export default function ShopProductBuy({productId}: {productId: string}) {
+  const token = getStoredToken();
   const handleAddToCart = async () => {
     try {
       await postRequest({
         url: API_ENDPOINTS.CART_ADD,
         data: {
           productId: parseInt(productId),
+        },
+        config: {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
       });
       console.log('장바구니 추가 성공');

@@ -68,6 +68,17 @@ export const postRequest = async <T>({
   return response;
 };
 
+export const deleteRequest = async <T>({
+  url,
+  config = {},
+}: {
+  url: string;
+  config?: RequestConfig;
+}) => {
+  const response = await apiClient.delete<T>(url, config);
+  return response;
+};
+
 export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
   const formData = new FormData(event.target as HTMLFormElement);
   const data = Object.fromEntries(formData);
