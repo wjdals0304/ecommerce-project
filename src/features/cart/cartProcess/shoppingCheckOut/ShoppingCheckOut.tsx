@@ -83,7 +83,6 @@ export default function ShoppingCheckOut({
 
   const onSubmit = async (data: ShippingFormData) => {
     try {
-      console.log(data);
       await postRequest({
         url: API_ENDPOINTS.SHIPPING_ADDRESS,
         data,

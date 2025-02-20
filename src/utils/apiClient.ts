@@ -1,6 +1,6 @@
 import axios, {AxiosResponse, InternalAxiosRequestConfig} from 'axios';
 import {API_BASE_URL} from '@/config/ApiEndPoints';
-import Cookies from 'js-cookie';
+import {parseCookies} from 'nookies';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -9,18 +9,31 @@ const apiClient = axios.create({
   },
 });
 
-apiClient.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = Cookies.get('jwt');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  },
-);
+apiClient.defaults.withCredentials = true;
+
+// apliCLient.interceptors 토큰 문제로 주석 처리
+// apiClient.interceptors.request.use(
+//   (config: InternalAxiosRequestConfig) => {
+//     if (typeof window === 'undefined') {
+//       const cookies = parseCookies();
+//       const token = cookies.jwt;
+//       if (token) {
+//         config.headers.Authorization = `Bearer ${token}`;
+//       }
+//     } else {
+//       const cookies = parseCookies();
+//       const token = cookies.jwt;
+//       if (token) {
+//         config.headers.Authorization = `Bearer ${token}`;
+//       }
+//     }
+
+//     return config;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   },
+// );
 
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => {
@@ -39,6 +52,7 @@ export default apiClient;
 interface RequestConfig {
   params?: Record<string, any>;
   headers?: Record<string, any>;
+  token?: string;
 }
 
 export const postRequest = async <T>({
@@ -68,6 +82,7 @@ export const getRequest = async <T>({
   config?: RequestConfig;
 }): Promise<AxiosResponse<T>> => {
   const response = await apiClient.get<T>(url, config);
+
   return response;
 };
 
@@ -78,5 +93,5 @@ export const getToken = (response: any) => {
 };
 
 export const getStoredToken = () => {
-  return Cookies.get('jwt');
+  return parseCookies().jwt;
 };

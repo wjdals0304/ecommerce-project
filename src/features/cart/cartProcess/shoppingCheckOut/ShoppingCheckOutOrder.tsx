@@ -149,7 +149,7 @@ export default function ShoppingCheckOutOrder({
         return;
       }
 
-      let response = await postRequest<OrderResponse>({
+      const response = await postRequest<OrderResponse>({
         url: API_ENDPOINTS.ORDERS,
         data: {
           payment_method: selectedPayment,

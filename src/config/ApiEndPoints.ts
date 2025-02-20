@@ -9,6 +9,7 @@ export const API_ENDPOINTS = {
   BLOG: `/blog`,
   SEARCH: `/search`,
   CART: `/cart`,
+  CART_ADD: `/cart/add`,
   SHIPPING_ADDRESS: `/shipping/address`,
   ORDERS: `/orders`,
   ORDER_DETAIL: `/orders/:id`,

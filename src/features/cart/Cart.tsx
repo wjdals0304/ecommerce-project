@@ -29,12 +29,29 @@ const EmptyCartText = styled.p`
 `;
 
 export default function Cart({cart}: {cart: CartResponse}) {
+  console.log('cart-------');
+  console.log(cart);
+
+  if (!cart) {
+    return (
+      <Container>
+        <Search />
+        <InnerContainer>
+          <Title>장바구니</Title>
+          <EmptyCart>
+            <EmptyCartText>장바구니를 불러오는 중입니다...</EmptyCartText>
+          </EmptyCart>
+        </InnerContainer>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Search />
       <InnerContainer>
         <Title>장바구니</Title>
-        {cart.items.length > 0 ? (
+        {cart?.items?.length > 0 ? (
           <CartProcessTab cart={cart} />
         ) : (
           <EmptyCart>
