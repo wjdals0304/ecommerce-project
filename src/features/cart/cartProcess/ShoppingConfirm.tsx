@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import confirmIcon from 'public/images/shop/confirm.svg';
-import {getRequest, getStoredToken} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
-import {OrderResponse} from '@/types/order';
-import {useQuery} from '@tanstack/react-query';
-
+import {useOrderDetail} from '@/hooks/useOrderDetail';
+import ShoppingConfirmItem from './ShoppingConfirmItem';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,16 +51,6 @@ const OrderTitle = styled.span`
   padding: 10px 0 25px 10px;
   border-bottom: 1px solid #8e96a4;
   margin: 0 25px;
-`;
-
-const OrderItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 25px 25px 15px;
-  margin-top: 15px;
-  gap: 15px;
 `;
 
 const OrderItemRow = styled.div`
@@ -118,30 +105,8 @@ interface ShoppingConfirmProps {
   orderId: string;
 }
 
-const fetchOrderDetail = async (orderId: string): Promise<OrderResponse> => {
-  try {
-    const token = getStoredToken();
-    const response = await getRequest<OrderResponse>(
-      `${API_ENDPOINTS.ORDERS}/${orderId}`,
-      {},
-      token,
-    );
-    return response.data;
-  } catch (error) {
-    throw new Error('주문 정보를 불러오는데 실패했습니다.');
-  }
-};
-
 export default function ShoppingConfirm({orderId}: ShoppingConfirmProps) {
-  const {
-    data: orderDetail,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ['fetchOrderDetail', orderId],
-    queryFn: () => fetchOrderDetail(orderId),
-    enabled: !!orderId,
-  });
+  const {data: orderDetail, isLoading, error} = useOrderDetail(orderId);
 
   if (isLoading) return <div>로딩 중...</div>;
   if (error) return <div>주문 정보를 불러오는데 실패했습니다.</div>;
@@ -163,28 +128,7 @@ export default function ShoppingConfirm({orderId}: ShoppingConfirmProps) {
       </ConfirmContainer>
       <OrderContainer>
         <OrderTitle>주문 내역</OrderTitle>
-        <OrderItemContainer>
-          {orderDetail.items.map(item => (
-            <OrderItemRow key={item.id}>
-              <OrderItemTitle>상품명</OrderItemTitle>
-              <OrderItemValue>{item.product.name}</OrderItemValue>
-            </OrderItemRow>
-          ))}
-          <OrderItemRow>
-            <OrderItemTitle>총 상품 금액</OrderItemTitle>
-            <OrderItemValue>
-              {orderDetail.total_amount.toLocaleString()}원
-            </OrderItemValue>
-          </OrderItemRow>
-          <OrderItemRow>
-            <OrderItemTitle>결제 수단</OrderItemTitle>
-            <OrderItemValue>
-              {orderDetail.payment_method === 'BANK_TRANSFER'
-                ? '현금 결제'
-                : '카드 결제'}
-            </OrderItemValue>
-          </OrderItemRow>
-        </OrderItemContainer>
+        <ShoppingConfirmItem orderDetail={orderDetail} />
         <NameAddressContainer>
           <OrderItemRow>
             <OrderItemTitle>주문 일시</OrderItemTitle>

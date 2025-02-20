@@ -36,14 +36,9 @@ export default function CartPage({cart}: CartProps) {
 
 export async function getServerSideProps(context) {
   try {
-    const cookies = parseCookies(context);
-    const token = cookies.jwt;
-
-    const response = await getRequest<CartResponse>(
-      API_ENDPOINTS.CART,
-      {},
-      token,
-    );
+    const response = await getRequest<CartResponse>({
+      url: API_ENDPOINTS.CART,
+    });
     const cart = response.data;
     return {props: {cart}};
   } catch (error) {
