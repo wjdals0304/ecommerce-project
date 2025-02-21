@@ -30,13 +30,11 @@ export default function TabContent({
       return <ShoppingCart onNextStep={onNextStep} cart={cart} />;
     case CartProcessTabType.ShoppingCheckOut:
       return (
-        <QueryClientProvider client={queryClient}>
-          <ShoppingCheckOut
-            onNextStep={onNextStep}
-            cart={cart}
-            setOrderId={setOrderId}
-          />
-        </QueryClientProvider>
+        <ShoppingCheckOut
+          onNextStep={onNextStep}
+          cart={cart}
+          setOrderId={setOrderId}
+        />
       );
     case CartProcessTabType.ShoppingConfirm:
       return <ShoppingConfirm orderId={orderId} />;
