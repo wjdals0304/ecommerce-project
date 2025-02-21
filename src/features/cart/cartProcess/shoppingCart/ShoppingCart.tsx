@@ -4,6 +4,9 @@ import Image from 'next/image';
 import ShoppingCartTotal from '../shoppingCart/ShoppingCartTotal';
 import {CartResponse} from '@/types/cart';
 import ShoppingCartItem from '../shoppingCart/ShoppingCartItem';
+import {useQuery} from '@tanstack/react-query';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {getRequest} from '@/utils/apiClient';
 const Container = styled.div`
   display: flex;
   gap: 25px;

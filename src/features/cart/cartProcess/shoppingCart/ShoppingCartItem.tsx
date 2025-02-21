@@ -2,6 +2,10 @@ import {CartResponse} from '@/types/cart';
 import styled from 'styled-components';
 import Image from 'next/image';
 import trashIcon from 'public/images/shop/trash.svg';
+import {deleteRequest, getStoredToken} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {useRouter} from 'next/router';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
 
 const ProductItemContainer = styled.div`
   display: flex;
@@ -62,6 +66,7 @@ const TrashIconButton = styled.button`
   border: none;
   background-color: transparent;
   padding: 10px;
+  cursor: pointer;
 `;
 
 const TrashIconImage = styled(Image)`
@@ -71,9 +76,25 @@ const TrashIconImage = styled(Image)`
 
 export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
   const {items} = cart;
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (productId: number) => {
+      return deleteRequest({
+        url: `${API_ENDPOINTS.CART}/${productId}`,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['cart']});
+    },
+  });
+
+  const handleTrashIconClick = (productId: number) => {
+    mutation.mutate(productId);
+  };
 
   return items.map(({id, product, quantity}) => {
-    const {name, price, images} = product;
+    const {id: productId, name, price, images} = product;
     const totalPrice = price * quantity;
     return (
       <ProductItemContainer key={id}>
@@ -84,7 +105,7 @@ export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
         <ProductPrice>{price.toLocaleString()}원</ProductPrice>
         <ProductQTY>{quantity}</ProductQTY>
         <ProductSubTotal>{totalPrice.toLocaleString()}원</ProductSubTotal>
-        <TrashIconButton>
+        <TrashIconButton onClick={() => handleTrashIconClick(productId)}>
           <TrashIconImage src={trashIcon} alt="trash" />
         </TrashIconButton>
       </ProductItemContainer>

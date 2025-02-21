@@ -3,7 +3,6 @@ import ShoppingCart from './shoppingCart/ShoppingCart';
 import ShoppingCheckOut from './shoppingCheckOut/ShoppingCheckOut';
 import ShoppingConfirm from './ShoppingConfirm';
 import {CartResponse} from '@/types/cart';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 export enum CartProcessTabType {
   ShoppingCart = 0,
@@ -26,8 +25,6 @@ export default function TabContent({
   orderId,
   setOrderId,
 }: TabContentProps) {
-  const queryClient = new QueryClient();
-
   switch (activeTabIndex) {
     case CartProcessTabType.ShoppingCart:
       return <ShoppingCart onNextStep={onNextStep} cart={cart} />;
@@ -40,11 +37,7 @@ export default function TabContent({
         />
       );
     case CartProcessTabType.ShoppingConfirm:
-      return (
-        <QueryClientProvider client={queryClient}>
-          <ShoppingConfirm orderId={orderId} />
-        </QueryClientProvider>
-      );
+      return <ShoppingConfirm orderId={orderId} />;
     default:
       return null;
   }
