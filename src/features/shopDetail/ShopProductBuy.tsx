@@ -3,7 +3,7 @@ import Image from 'next/image';
 import heartIcon from 'public/images/home/heartDark.svg';
 import shareIcon from 'public/images/shop/share.svg';
 import {getStoredToken, postRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Link from 'next/link';
 
 const Container = styled.div`

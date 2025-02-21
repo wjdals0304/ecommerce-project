@@ -7,7 +7,7 @@ import {ShopData} from '@/types/shop';
 import {useRouter} from 'next/router';
 import {useState} from 'react';
 import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Pagination from './Pagination';
 import {WarrentyOptions} from './Warrenty';
 

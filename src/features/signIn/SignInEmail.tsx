@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {useState} from 'react';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {formDataEntries, postRequest, getToken} from '@/utils/apiClient';
 import {setCookie} from 'nookies';
 import {useRouter} from 'next/router';

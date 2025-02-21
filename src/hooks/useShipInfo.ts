@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import {getRequest, getStoredToken} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {ShippingResponse} from '@/types/order';
 
 const queryKeyShipInfo = ['shipInfo'];

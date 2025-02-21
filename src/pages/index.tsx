@@ -2,7 +2,7 @@ import Navigation from '@/components/Navigation';
 import Home from '@/features/home/Home';
 import Footer from '@/components/Footer';
 import {getRequest} from '@/utils/apiClient';
-import {API_BASE_URL, API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_BASE_URL, API_ENDPOINTS} from '@/config/apiEndPoints';
 import {HomeData} from '@/types/home';
 
 export default function HomePage({homeData}: {homeData: HomeData}) {

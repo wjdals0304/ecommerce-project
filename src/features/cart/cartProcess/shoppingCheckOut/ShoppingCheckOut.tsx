@@ -2,13 +2,13 @@ import {Resolver, useForm, FormProvider} from 'react-hook-form';
 import styled from 'styled-components';
 import {CartResponse} from '@/types/cart';
 import {postRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
 import {useState} from 'react';
 import ShoppingCheckOutInfo from '../shoppingCheckOut/ShoppingCheckOutInfo';
-import {shippingSchema} from '@/config/ValidationSchema';
+import {shippingSchema} from '@/config/validationSchema';
 const Container = styled.div`
   display: flex;
   gap: 25px;

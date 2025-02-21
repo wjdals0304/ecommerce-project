@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {API_ENDPOINTS} from '../../config/ApiEndPoints';
+import {API_ENDPOINTS} from '../../config/apiEndPoints';
 import {useState} from 'react';
 import {useRouter} from 'next/router';
 import FullName from './signUpInput/FullName';

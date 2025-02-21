@@ -4,7 +4,7 @@ import Warrenty, {WarrentyOptions} from './Warrenty';
 import {Category} from '@/types/shop';
 import {useState} from 'react';
 import {formDataEntries, getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 
 const Container = styled.form`
   display: flex;

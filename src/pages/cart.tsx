@@ -5,7 +5,7 @@ import {useRouter} from 'next/router';
 import {useEffect} from 'react';
 import {getRequest, getStoredToken} from '@/utils/apiClient';
 import {parseCookies} from 'nookies';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {CartResponse} from '@/types/cart';
 import {GetServerSideProps} from 'next';
 

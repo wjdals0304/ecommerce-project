@@ -8,7 +8,7 @@ import {ShopDetailTabType} from './DetailProductTab/TabContent';
 import {useState} from 'react';
 import router, {useRouter} from 'next/router';
 import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {ReviewResponse} from '@/types/shop';
 
 const Container = styled.div`
