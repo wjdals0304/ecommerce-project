@@ -3,6 +3,7 @@ import {ShippingFormData} from '@/features/cart/cartProcess/shoppingCheckOut/Sho
 
 const phoneRegex = /^[0-9]{10,11}$/;
 const zipcodeRegex = /^[0-9]{5}$/;
+
 export const shippingSchema = yup.object().shape({
   name: yup
     .string()

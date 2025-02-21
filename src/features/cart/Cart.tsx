@@ -29,9 +29,6 @@ const EmptyCartText = styled.p`
 `;
 
 export default function Cart({cart}: {cart: CartResponse}) {
-  console.log('cart-------');
-  console.log(cart);
-
   if (!cart) {
     return (
       <Container>
