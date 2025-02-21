@@ -6,7 +6,8 @@ import {deleteRequest, getStoredToken} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 import {useRouter} from 'next/router';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
-
+import {queryKeyCart} from '@/hooks/useCartReload';
+import {useContext} from 'react';
 const ProductItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -85,7 +86,7 @@ export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['cart']});
+      queryClient.invalidateQueries({queryKey: queryKeyCart});
     },
   });
 

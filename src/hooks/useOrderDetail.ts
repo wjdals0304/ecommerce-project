@@ -3,6 +3,8 @@ import {OrderResponse} from '@/types/order';
 import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 
+const queryKeyOrderDetail = ['fetchOrderDetail'];
+
 const fetchOrderDetail = async (orderId: string): Promise<OrderResponse> => {
   try {
     const response = await getRequest<OrderResponse>({
@@ -16,7 +18,7 @@ const fetchOrderDetail = async (orderId: string): Promise<OrderResponse> => {
 
 export const useOrderDetail = (orderId: string) => {
   return useQuery({
-    queryKey: ['fetchOrderDetail', orderId],
+    queryKey: [...queryKeyOrderDetail, orderId],
     queryFn: () => fetchOrderDetail(orderId),
     enabled: !!orderId,
   });

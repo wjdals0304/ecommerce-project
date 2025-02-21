@@ -3,16 +3,12 @@ import {getRequest, getStoredToken} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 import {ShippingResponse} from '@/types/order';
 
+const queryKeyShipInfo = ['shipInfo'];
+
 const fetchShipInfo = async () => {
   try {
-    const token = getStoredToken();
     const response = await getRequest<ShippingResponse>({
       url: `${API_ENDPOINTS.SHIPPING_ADDRESS}`,
-      config: {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
     });
     return response.data;
   } catch (error) {
@@ -22,7 +18,7 @@ const fetchShipInfo = async () => {
 
 export const useShipInfo = () => {
   return useQuery({
-    queryKey: ['shipInfo'],
+    queryKey: queryKeyShipInfo,
     queryFn: fetchShipInfo,
   });
 };

@@ -3,6 +3,8 @@ import {getRequest} from '@/utils/apiClient';
 import {CartResponse} from '@/types/cart';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 
+export const queryKeyCart = ['cart'];
+
 const fetchCart = async () => {
   const response = await getRequest<CartResponse>({
     url: API_ENDPOINTS.CART,
@@ -12,7 +14,7 @@ const fetchCart = async () => {
 
 export const useCartReload = () => {
   return useQuery({
-    queryKey: ['cart'],
+    queryKey: queryKeyCart,
     queryFn: fetchCart,
   });
 };
