@@ -11,29 +11,23 @@ const apiClient = axios.create({
 
 apiClient.defaults.withCredentials = true;
 
-// apliCLient.interceptors 토큰 문제로 주석 처리
-// apiClient.interceptors.request.use(
-//   (config: InternalAxiosRequestConfig) => {
-//     if (typeof window === 'undefined') {
-//       const cookies = parseCookies();
-//       const token = cookies.jwt;
-//       if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//       }
-//     } else {
-//       const cookies = parseCookies();
-//       const token = cookies.jwt;
-//       if (token) {
-//         config.headers.Authorization = `Bearer ${token}`;
-//       }
-//     }
-
-//     return config;
-//   },
-//   error => {
-//     return Promise.reject(error);
-//   },
-// );
+apiClient.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    if (typeof window === 'undefined') {
+      return config;
+    } else {
+      const cookies = parseCookies();
+      const token = cookies.jwt;
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
 
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => {

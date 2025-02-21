@@ -4,6 +4,7 @@ import {CartProcessTabType} from './TabContent';
 import TabContent from './TabContent';
 import CartItem from './CartItem';
 import {CartResponse} from '@/types/cart';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;

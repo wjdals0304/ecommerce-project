@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Search from '../../components/Search';
 import CartProcessTab from './cartProcess/CartProcessTab';
 import {CartResponse} from '@/types/cart';
+import {getStoredToken} from '@/utils/apiClient';
+import {useCartReload} from '@/hooks/useCartReload';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -29,7 +31,10 @@ const EmptyCartText = styled.p`
 `;
 
 export default function Cart({cart}: {cart: CartResponse}) {
-  if (!cart) {
+  const {data: updatedCart} = useCartReload();
+  let useCart = updatedCart || cart;
+
+  if (!useCart) {
     return (
       <Container>
         <Search />
@@ -48,8 +53,8 @@ export default function Cart({cart}: {cart: CartResponse}) {
       <Search />
       <InnerContainer>
         <Title>장바구니</Title>
-        {cart?.items?.length > 0 ? (
-          <CartProcessTab cart={cart} />
+        {useCart?.items?.length > 0 ? (
+          <CartProcessTab cart={useCart} />
         ) : (
           <EmptyCart>
             <EmptyCartText>장바구니가 비었습니다.</EmptyCartText>

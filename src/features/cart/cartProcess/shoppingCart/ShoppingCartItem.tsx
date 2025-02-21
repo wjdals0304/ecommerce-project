@@ -5,6 +5,7 @@ import trashIcon from 'public/images/shop/trash.svg';
 import {deleteRequest, getStoredToken} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/ApiEndPoints';
 import {useRouter} from 'next/router';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
 
 const ProductItemContainer = styled.div`
   display: flex;
@@ -65,6 +66,7 @@ const TrashIconButton = styled.button`
   border: none;
   background-color: transparent;
   padding: 10px;
+  cursor: pointer;
 `;
 
 const TrashIconImage = styled(Image)`
@@ -74,22 +76,21 @@ const TrashIconImage = styled(Image)`
 
 export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
   const {items} = cart;
-  const router = useRouter();
-  const handleTrashIconClick = async (productId: number) => {
-    try {
-      const token = getStoredToken();
-      const response = await deleteRequest({
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (productId: number) => {
+      return deleteRequest({
         url: `${API_ENDPOINTS.CART}/${productId}`,
-        config: {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
       });
-      router.reload();
-    } catch (error) {
-      console.error(error);
-    }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['cart']});
+    },
+  });
+
+  const handleTrashIconClick = (productId: number) => {
+    mutation.mutate(productId);
   };
 
   return items.map(({id, product, quantity}) => {
