@@ -7,6 +7,7 @@ import {
 } from 'react-hook-form';
 import styled from 'styled-components';
 import {ShippingFormData} from './ShoppingCheckOut';
+import {useShipInfo} from '@/hooks/useShipInfo';
 
 const InputContainer = styled.form`
   display: flex;
@@ -74,6 +75,7 @@ interface ShoppingCheckOutInfoProps {
 export default function ShoppingCheckOutInfo({
   onSubmit,
 }: ShoppingCheckOutInfoProps) {
+  const {data: shipInfo} = useShipInfo();
   const {
     control,
     handleSubmit,
@@ -118,6 +120,7 @@ export default function ShoppingCheckOutInfo({
             hasError={!!errors.name}
             {...nameField}
             placeholder="이름"
+            defaultValue={shipInfo?.name}
           />
           {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
         </InputBoxContainer>
@@ -126,6 +129,7 @@ export default function ShoppingCheckOutInfo({
             hasError={!!errors.phone}
             {...phoneField}
             placeholder="전화번호"
+            defaultValue={shipInfo?.phone}
           />
           {errors.phone && <ErrorMessage>{errors.phone.message}</ErrorMessage>}
         </InputBoxContainer>
@@ -136,6 +140,7 @@ export default function ShoppingCheckOutInfo({
           hasError={!!errors.address}
           {...addressField}
           placeholder="주소"
+          defaultValue={shipInfo?.address}
         />
         {errors.address && (
           <ErrorMessage>{errors.address.message}</ErrorMessage>
@@ -148,6 +153,7 @@ export default function ShoppingCheckOutInfo({
             hasError={!!errors.city}
             {...cityField}
             placeholder="도/시"
+            defaultValue={shipInfo?.city}
           />
           {errors.city && <ErrorMessage>{errors.city.message}</ErrorMessage>}
         </InputBoxContainer>
@@ -156,6 +162,7 @@ export default function ShoppingCheckOutInfo({
             hasError={!!errors.zipcode}
             {...zipcodeField}
             placeholder="우편번호"
+            defaultValue={shipInfo?.zipcode}
           />
           {errors.zipcode && (
             <ErrorMessage>{errors.zipcode.message}</ErrorMessage>
@@ -164,7 +171,11 @@ export default function ShoppingCheckOutInfo({
       </InputRow>
 
       <InputRow>
-        <InputBox {...memoField} placeholder="주문 메모" />
+        <InputBox
+          {...memoField}
+          placeholder="주문 메모"
+          defaultValue={shipInfo?.memo}
+        />
       </InputRow>
       <SaveButtonContainer>
         <SaveButton type="submit">저장하기</SaveButton>

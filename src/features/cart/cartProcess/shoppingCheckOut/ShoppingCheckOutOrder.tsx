@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {CartResponse} from '@/types/cart';
 import {useState} from 'react';
 import {postRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {OrderResponse} from '@/types/order';
 
 const Container = styled.div`

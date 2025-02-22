@@ -22,3 +22,17 @@ export interface OrderItem {
   created_at: string;
   product: Product;
 }
+
+export interface ShippingResponse {
+  id: number;
+  user_id: number;
+  name: string;
+  phone: string;
+  address: string;
+  city: string;
+  zipcode: string;
+  memo: string;
+  is_default: boolean;
+  created_at: string;
+  updated_at: string;
+}

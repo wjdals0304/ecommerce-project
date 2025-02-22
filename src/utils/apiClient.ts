@@ -1,5 +1,5 @@
 import axios, {AxiosResponse, InternalAxiosRequestConfig} from 'axios';
-import {API_BASE_URL} from '@/config/ApiEndPoints';
+import {API_BASE_URL} from '@/config/apiEndPoints';
 import {parseCookies} from 'nookies';
 
 const apiClient = axios.create({

@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import ShopDetail from '@/features/shopDetail/ShopDetail';
 import {ShopDetail as ShopDetailType} from '@/types/shop';
 import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 
 interface ShopDetailPageProps {
   shopDetailData: ShopDetailType;

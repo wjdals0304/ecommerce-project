@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import BlogDetail from '@/features/blogDetail/BlogDetail';
 import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/ApiEndPoints';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {BlogDetail as BlogDetailType} from '@/types/blog';
 
 interface BlogPageProps {

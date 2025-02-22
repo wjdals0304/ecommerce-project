@@ -31,6 +31,7 @@ const EmptyCartText = styled.p`
 `;
 
 export default function Cart({cart}: {cart: CartResponse}) {
+
   const {data: updatedCart} = useCartReload();
   let useCart = updatedCart || cart;
 
