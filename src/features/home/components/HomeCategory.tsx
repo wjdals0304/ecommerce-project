@@ -12,7 +12,7 @@ const CategoryList = styled.ul`
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  margin: 100px 100px;
+  margin: 100px 0;
   gap: 25px;
 `;
 

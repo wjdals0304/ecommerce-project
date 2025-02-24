@@ -3,6 +3,7 @@ import Image from 'next/image';
 import {HotProduct} from '@/types/home';
 import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
+import Link from 'next/link';
 
 interface HomeHotProductContentProps {
   hotProducts: HotProduct[];
@@ -17,29 +18,36 @@ export default function HomeHotProductContent({
         const {id, images, name, rating, soldCount, price} = hotProduct;
         return (
           <ProductItem key={id}>
-            <ImageContainer>
-              <ProductImage
-                src={images[0]}
-                alt={name}
-                width={250}
-                height={250}
-              />
-              <Rating>
-                <Image src={starIcon} alt="star" width={18} height={18} />
-                <span>{rating}</span>
-              </Rating>
-              <Heart>
-                <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
-              </Heart>
-            </ImageContainer>
-            <ItemContent>
-              <ItemTitle>{name}</ItemTitle>
-              <ItemSold>{soldCount}개 판매</ItemSold>
-              <BuySection>
-                <Price>{price}</Price>
-                <BuyButton>구매하기</BuyButton>
-              </BuySection>
-            </ItemContent>
+            <Link href={`/shop/${id}`}>
+              <ImageContainer>
+                <ProductImage
+                  src={images[0]}
+                  alt={name}
+                  width={250}
+                  height={250}
+                />
+                <Rating>
+                  <Image src={starIcon} alt="star" width={18} height={18} />
+                  <span>{rating}</span>
+                </Rating>
+                <Heart>
+                  <Image
+                    src={heartDarkIcon}
+                    alt="heart"
+                    width={18}
+                    height={18}
+                  />
+                </Heart>
+              </ImageContainer>
+              <ItemContent>
+                <ItemTitle>{name}</ItemTitle>
+                <ItemSold>{soldCount}개 판매</ItemSold>
+                <BuySection>
+                  <Price>{price.toLocaleString()}원</Price>
+                  <BuyButton>구매하기</BuyButton>
+                </BuySection>
+              </ItemContent>
+            </Link>
           </ProductItem>
         );
       })}
@@ -61,6 +69,7 @@ const ProductItem = styled.div`
   background-color: #ffffff;
   padding: 20px;
   border-radius: 15px;
+  cursor: pointer;
 `;
 
 const ImageContainer = styled.div`
@@ -129,10 +138,11 @@ const Price = styled.span`
   color: #ee9322;
 `;
 
-const BuyButton = styled.button`
+const BuyButton = styled.span`
   background-color: #001c30;
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 25px;
   width: fit-content;
+  cursor: pointer;
 `;

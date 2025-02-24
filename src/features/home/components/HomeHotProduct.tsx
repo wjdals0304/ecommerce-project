@@ -4,8 +4,9 @@ import Image from 'next/image';
 import rightIcon from 'public/images/home/rightIcon.svg';
 import {HotProduct} from '@/types/home';
 import HomeHotProductContent from './HomeHotProductContent';
+import Link from 'next/link';
 const Container = styled.div`
-  margin: 20px 100px;
+  margin: 20px 0;
 `;
 
 const Header = styled.div`
@@ -38,7 +39,7 @@ function HomeHotProduct({hotProducts}: HomeHotProductProps) {
     <Container>
       <Header>
         <Title>최신 전자제품</Title>
-        <ViewAll>
+        <ViewAll href="/shop">
           더보기 <Image src={rightIcon} alt="rightIcon" />
         </ViewAll>
       </Header>

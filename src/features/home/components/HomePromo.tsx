@@ -6,7 +6,7 @@ import {FlashDeal} from '@/types/home';
 import HomePromoContent from './HomePromoContent';
 
 const Container = styled.section`
-  margin: 50px 100px;
+  margin: 50px 0;
 `;
 
 const Header = styled.div`
@@ -56,7 +56,7 @@ function HomePromo({flashDeals}: HomePromoProps) {
           <SaleGroupTitle>반짝 세일</SaleGroupTitle>
           <Timer>05:02:00</Timer>
         </SaleGroup>
-        <ViewAll href="#">
+        <ViewAll href="/shop">
           더보기
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </ViewAll>
