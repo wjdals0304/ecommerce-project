@@ -6,7 +6,7 @@ import {FlashDeal} from '@/types/home';
 import HomePromoContent from './HomePromoContent';
 
 const Container = styled.section`
-  margin: 50px 100px;
+  margin: 50px 0;
 `;
 
 const Header = styled.div`

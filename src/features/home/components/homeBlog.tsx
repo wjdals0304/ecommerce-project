@@ -2,6 +2,7 @@ import rightIcon from 'public/images/home/rightIcon.svg';
 import Image from 'next/image';
 import styled from 'styled-components';
 import {LatestBlog} from '@/types/home';
+import Link from 'next/link';
 
 interface HomeBlogProps {
   latestBlogs: LatestBlog[];
@@ -12,7 +13,7 @@ function HomeBlog({latestBlogs}: HomeBlogProps) {
     <BlogContainer>
       <BlogTitle>
         <TitleText>최신 블로그</TitleText>
-        <ViewAll href="#">
+        <ViewAll href="/blog">
           더보기{' '}
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </ViewAll>
@@ -22,14 +23,16 @@ function HomeBlog({latestBlogs}: HomeBlogProps) {
           const {id, image, title, createdAt} = latestBlog;
           return (
             <BlogContent key={id}>
-              <BlogItem>
-                <BlogImage src={image} alt={title} width={396} height={229} />
-                <ItemContent>
-                  <ItemDate>{createdAt}</ItemDate>
-                  <ItemTitle>{title}</ItemTitle>
-                  <ItemButton>더보기</ItemButton>
-                </ItemContent>
-              </BlogItem>
+              <Link href={`/blog/${id}`}>
+                <BlogItem>
+                  <BlogImage src={image} alt={title} width={396} height={229} />
+                  <ItemContent>
+                    <ItemDate>{createdAt}</ItemDate>
+                    <ItemTitle>{title}</ItemTitle>
+                    <ItemButton>더보기</ItemButton>
+                  </ItemContent>
+                </BlogItem>
+              </Link>
             </BlogContent>
           );
         })}
@@ -40,7 +43,7 @@ function HomeBlog({latestBlogs}: HomeBlogProps) {
 
 const BlogContainer = styled.div`
   margin: auto;
-  padding: 80px 120px;
+  padding: 80px 0;
 `;
 
 const BlogTitle = styled.div`

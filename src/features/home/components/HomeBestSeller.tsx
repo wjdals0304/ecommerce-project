@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import rightIcon from 'public/images/home/rightIcon.svg';
 import arrowIcon from 'public/images/home/arrow.svg';
 import {BestSeller} from '@/types/home';
+import Link from 'next/link';
 
 const Section = styled.section`
-  margin: 50px 100px;
+  margin: 50px 0;
 `;
 
 const TitleContainer = styled.div`
@@ -19,7 +20,7 @@ const Title = styled.h2`
   font-weight: bold;
 `;
 
-const ViewAllLink = styled.a`
+const ViewAllLink = styled(Link)`
   text-decoration: none;
   color: #333;
   font-weight: bold;
@@ -45,14 +46,16 @@ const Product = styled.div`
   background-color: #ffffff;
   padding: 15px;
   border-radius: 15px;
-  width: calc(50% - 12.5px);
+  width: 349px;
   height: 148px;
   display: flex;
+  cursor: pointer;
 `;
 
 const ProductImage = styled(Image)`
   background-color: #d9d9d9;
   border-radius: 15px;
+  object-fit: cover;
 `;
 
 const ProductContent = styled.div`
@@ -73,7 +76,7 @@ const ProductTitle = styled.span`
   font-size: 18px;
 `;
 
-const ShopNowButton = styled.a`
+const ShopNowButton = styled.button`
   background-color: #0a142f;
   color: white;
   padding: 10px 20px;
@@ -93,7 +96,7 @@ const NewProduct = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-left: 175px;
+  padding-left: 250px; // 이해가 안되는 부분 pr 리뷰
 `;
 
 const NewArrivalTag = styled.span`
@@ -119,18 +122,6 @@ const TitleLine = styled.span`
   white-space: nowrap;
 `;
 
-const BuyNowButton = styled.a`
-  background-color: #677a87;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  width: fit-content;
-  margin-left: auto;
-  margin-top: 15px;
-  font-size: 16px;
-`;
-
 interface HomeBestSellerProps {
   bestSellers: BestSeller[];
 }
@@ -140,7 +131,7 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
     <Section>
       <TitleContainer>
         <Title>카테고리 별 베스트셀러</Title>
-        <ViewAllLink href="#">
+        <ViewAllLink href="/shop">
           더보기
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </ViewAllLink>
@@ -151,19 +142,21 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
             const {id, images, name} = bestSeller.product;
             const {categoryName} = bestSeller;
             return (
-              <Product key={id}>
-                <ProductImage
-                  src={images[0]}
-                  alt={name}
-                  width={118}
-                  height={118}
-                />
-                <ProductContent>
-                  <Category>{categoryName}</Category>
-                  <ProductTitle>{name}</ProductTitle>
-                  <ShopNowButton href="#">지금 구매</ShopNowButton>
-                </ProductContent>
-              </Product>
+              <Link href={`/shop/${id}`} key={id}>
+                <Product>
+                  <ProductImage
+                    src={images[0]}
+                    alt={name}
+                    width={118}
+                    height={118}
+                  />
+                  <ProductContent>
+                    <Category>{categoryName}</Category>
+                    <ProductTitle>{name}</ProductTitle>
+                    <ShopNowButton>지금 구매</ShopNowButton>
+                  </ProductContent>
+                </Product>
+              </Link>
             );
           })}
         </ProductLeft>
@@ -173,7 +166,6 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
             <TitleLine>더 쉽고 멋진</TitleLine>
             <TitleLine>삶을 만들어요</TitleLine>
           </NewProductTitle>
-          <BuyNowButton href="#">구매하기</BuyNowButton>
         </NewProduct>
       </ProductContainer>
     </Section>

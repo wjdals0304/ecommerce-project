@@ -11,7 +11,8 @@ const HeaderContainer = styled.div`
   align-items: center;
   height: 437px;
   gap: 25px;
-  margin: 50px 100px;
+  margin: 50px 0;
+  width: 100%;
 `;
 
 const Carousel = styled.div`
