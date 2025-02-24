@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
-
+import {toast} from 'react-toastify';
 interface handleAddToCartProps {
   event: React.MouseEvent<HTMLButtonElement>;
   id: number;
@@ -26,6 +26,13 @@ async function handleAddToCart({event, id}: handleAddToCartProps) {
       data: {
         productId: id,
       },
+    });
+    toast.success('장바구니에 추가되었습니다!', {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
     });
   } catch (error) {
     console.error(error);
