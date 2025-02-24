@@ -40,13 +40,13 @@ const ProductLeft = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+  flex: 1;
 `;
 
 const Product = styled.div`
   background-color: #ffffff;
   padding: 15px;
   border-radius: 15px;
-  width: 349px;
   height: 148px;
   display: flex;
   cursor: pointer;
@@ -96,7 +96,8 @@ const NewProduct = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-left: 250px; // 이해가 안되는 부분 pr 리뷰
+  flex: none;
+  width: 492px;
 `;
 
 const NewArrivalTag = styled.span`
@@ -122,6 +123,11 @@ const TitleLine = styled.span`
   white-space: nowrap;
 `;
 
+const ProductLink = styled(Link)`
+  flex: none;
+  width: 349px;
+`;
+
 interface HomeBestSellerProps {
   bestSellers: BestSeller[];
 }
@@ -142,7 +148,7 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
             const {id, images, name} = bestSeller.product;
             const {categoryName} = bestSeller;
             return (
-              <Link href={`/shop/${id}`} key={id}>
+              <ProductLink href={`/shop/${id}`} key={id}>
                 <Product>
                   <ProductImage
                     src={images[0]}
@@ -156,7 +162,7 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
                     <ShopNowButton>지금 구매</ShopNowButton>
                   </ProductContent>
                 </Product>
-              </Link>
+              </ProductLink>
             );
           })}
         </ProductLeft>

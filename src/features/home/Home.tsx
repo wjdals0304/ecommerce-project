@@ -16,7 +16,6 @@ const Container = styled.div`
 
 const HomeContainer = styled.div`
   background-color: #f5f7f8;
-  border: 1px solid transparent;
   max-width: 1240px;
   margin: 0 auto;
   width: 100%;
