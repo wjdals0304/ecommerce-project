@@ -3,9 +3,21 @@ import {FlashDeal} from '@/types/home';
 import bagIcon from 'public/images/home/bag.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 interface HomePromoContentProps {
   flashDeals: FlashDeal[];
+}
+
+interface handleAddToCartProps {
+  event: React.MouseEvent<HTMLButtonElement>;
+  id: number;
+}
+
+function handleAddToCart({event, id}: handleAddToCartProps) {
+  event.preventDefault();
+  event.stopPropagation();
+  console.log('장바구니 추가', id);
 }
 
 export default function HomePromoContent({flashDeals}: HomePromoContentProps) {
@@ -15,42 +27,38 @@ export default function HomePromoContent({flashDeals}: HomePromoContentProps) {
         const {id, images, name, originalPrice, price, stock, soldCount} =
           flashDeal;
         return (
-          <Product key={id}>
-            <ProductImage>
-              <Image src={images[0]} alt={name} width={149} height={200} />
-            </ProductImage>
-            <ProductInfo>
-              <ProductTitle>{name}</ProductTitle>
-              <PriceContainer>
-                <OriginalPrice>{originalPrice}</OriginalPrice>
-                <SalePrice>{price}</SalePrice>
-              </PriceContainer>
-              <Availability>
-                재고: <Available>{stock}</Available>
-              </Availability>
-              <ProgressContainer>
-                <ProgressBar>
-                  <ProgressFill>
-                    <ItemsSold>{soldCount}개 판매</ItemsSold>
-                  </ProgressFill>
-                </ProgressBar>
-              </ProgressContainer>
-              <ButtonGroup>
-                <AddToCart>
-                  <Image src={bagIcon} alt="bag" width={16} height={16} />
-                  장바구니
-                </AddToCart>
-                <Wishlist>
-                  <Image
-                    src={heartDarkIcon}
-                    alt="heart"
-                    width={16}
-                    height={16}
-                  />
-                </Wishlist>
-              </ButtonGroup>
-            </ProductInfo>
-          </Product>
+          <ProductLink href={`/shop/${id}`} key={id}>
+            <Product>
+              <ProductImage>
+                <Image src={images[0]} alt={name} width={149} height={200} />
+              </ProductImage>
+              <ProductInfo>
+                <ProductTitle>{name}</ProductTitle>
+                <PriceContainer>
+                  <OriginalPrice>
+                    {originalPrice.toLocaleString()}원
+                  </OriginalPrice>
+                  <SalePrice>{price.toLocaleString()}원</SalePrice>
+                </PriceContainer>
+                <Availability>
+                  재고: <Available>{stock}</Available>
+                </Availability>
+                <ProgressContainer>
+                  <ProgressBar>
+                    <ProgressFill>
+                      <ItemsSold>{soldCount}개 판매</ItemsSold>
+                    </ProgressFill>
+                  </ProgressBar>
+                </ProgressContainer>
+                <ButtonGroup>
+                  <AddToCart onClick={event => handleAddToCart({event, id})}>
+                    <Image src={bagIcon} alt="bag" width={16} height={16} />
+                    장바구니
+                  </AddToCart>
+                </ButtonGroup>
+              </ProductInfo>
+            </Product>
+          </ProductLink>
         );
       })}
     </Products>
@@ -63,12 +71,8 @@ const Products = styled.div`
   margin-top: 25px;
 `;
 
-const Product = styled.div`
-  display: flex;
-  gap: 25px;
+const ProductLink = styled(Link)`
   border-radius: 15px;
-  padding: 25px;
-  width: 100%;
 
   &:nth-child(1) {
     background-color: #fff5e6;
@@ -79,6 +83,13 @@ const Product = styled.div`
   &:nth-child(3) {
     background-color: #d2f1ca;
   }
+`;
+
+const Product = styled.div`
+  display: flex;
+  gap: 25px;
+  padding: 25px;
+  width: 100%;
 `;
 
 const ProductImage = styled.div`

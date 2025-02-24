@@ -56,7 +56,7 @@ function HomePromo({flashDeals}: HomePromoProps) {
           <SaleGroupTitle>반짝 세일</SaleGroupTitle>
           <Timer>05:02:00</Timer>
         </SaleGroup>
-        <ViewAll href="#">
+        <ViewAll href="/shop">
           더보기
           <Image src={rightIcon} alt="rightIcon" width={24} height={24} />
         </ViewAll>
