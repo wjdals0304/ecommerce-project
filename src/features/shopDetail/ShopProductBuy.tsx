@@ -52,18 +52,12 @@ const BuyButton = styled.button`
 `;
 
 export default function ShopProductBuy({productId}: {productId: string}) {
-  const token = getStoredToken();
   const handleAddToCart = async () => {
     try {
       await postRequest({
         url: API_ENDPOINTS.CART_ADD,
         data: {
           productId: parseInt(productId),
-        },
-        config: {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
         },
       });
       console.log('장바구니 추가 성공');
