@@ -104,12 +104,11 @@ function Navigation() {
           ))}
         </NavList>
         <NavList>
-          <NavItem active={false}>
-            <Image src={heartIcon} alt="heart" />
-          </NavItem>
-          <NavItem active={false}>
-            <Image src={bagIcon} alt="bag" />
-          </NavItem>
+          <Link href="/cart">
+            <NavItem active={false}>
+              <Image src={bagIcon} alt="bag" />
+            </NavItem>
+          </Link>
           <NavItem active={false}>
             <Image src={profileIcon} alt="profile" />
           </NavItem>
