@@ -4,7 +4,9 @@ import heartDarkIcon from 'public/images/home/heartDark.svg';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import {postRequest} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {toast} from 'react-toastify';
 interface handleAddToCartProps {
   event: React.MouseEvent<HTMLButtonElement>;
   id: number;
@@ -14,10 +16,27 @@ interface HomePromoContentDealProps {
   flashDeal: FlashDeal;
 }
 
-function handleAddToCart({event, id}: handleAddToCartProps) {
-  event.preventDefault();
-  event.stopPropagation();
-  console.log('장바구니 추가', id);
+async function handleAddToCart({event, id}: handleAddToCartProps) {
+  try {
+    event.preventDefault();
+    event.stopPropagation();
+
+    await postRequest({
+      url: API_ENDPOINTS.CART_ADD,
+      data: {
+        productId: id,
+      },
+    });
+    toast.success('장바구니에 추가되었습니다!', {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export default function HomePromoContentDeal({

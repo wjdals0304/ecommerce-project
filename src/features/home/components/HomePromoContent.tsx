@@ -1,9 +1,6 @@
-import Image from 'next/image';
 import {FlashDeal} from '@/types/home';
-import bagIcon from 'public/images/home/bag.svg';
-import heartDarkIcon from 'public/images/home/heartDark.svg';
 import styled from 'styled-components';
-import Link from 'next/link';
+
 import HomePromoContentDeal from './HomePromoContentDeal';
 interface HomePromoContentProps {
   flashDeals: FlashDeal[];
