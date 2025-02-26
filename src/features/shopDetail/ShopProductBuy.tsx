@@ -5,7 +5,7 @@ import shareIcon from 'public/images/shop/share.svg';
 import {getStoredToken, postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Link from 'next/link';
-
+import {toast} from 'react-toastify';
 const Container = styled.div`
   display: flex;
   margin-top: 25px;
@@ -38,6 +38,7 @@ const AddToCartButton = styled.button`
   font-size: 24px;
   font-weight: medium;
   border: 2px solid #8e96a4;
+  cursor: pointer;
 `;
 
 const BuyButton = styled.button`
@@ -49,6 +50,7 @@ const BuyButton = styled.button`
   color: #ffffff;
   font-size: 24px;
   font-weight: medium;
+  cursor: pointer;
 `;
 
 export default function ShopProductBuy({productId}: {productId: string}) {
@@ -60,7 +62,7 @@ export default function ShopProductBuy({productId}: {productId: string}) {
           productId: parseInt(productId),
         },
       });
-      console.log('장바구니 추가 성공');
+      toast.success('장바구니 추가 성공');
     } catch (error) {
       console.error(error);
     }
