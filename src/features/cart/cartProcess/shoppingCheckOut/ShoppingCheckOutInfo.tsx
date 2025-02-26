@@ -8,6 +8,7 @@ import {
 import styled from 'styled-components';
 import {ShippingFormData} from './ShoppingCheckOut';
 import {useShipInfo} from '@/hooks/useShipInfo';
+import {useEffect} from 'react';
 
 const InputContainer = styled.form`
   display: flex;
@@ -59,6 +60,7 @@ const SaveButton = styled.button`
   height: 58px;
   font-size: 24px;
   font-weight: medium;
+  cursor: pointer;
 `;
 
 const ErrorMessage = styled.span`
@@ -80,7 +82,19 @@ export default function ShoppingCheckOutInfo({
     control,
     handleSubmit,
     formState: {errors},
+    setValue,
   } = useFormContext<ShippingFormData>();
+
+  useEffect(() => {
+    if (shipInfo) {
+      setValue('name', shipInfo.name || '');
+      setValue('phone', shipInfo.phone || '');
+      setValue('address', shipInfo.address || '');
+      setValue('city', shipInfo.city || '');
+      setValue('zipcode', shipInfo.zipcode || '');
+      setValue('memo', shipInfo.memo || '');
+    }
+  }, [shipInfo, setValue]);
 
   const {field: nameField} = useController({
     name: 'name',
