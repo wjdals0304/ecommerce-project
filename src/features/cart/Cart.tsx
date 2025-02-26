@@ -24,14 +24,15 @@ const Title = styled.h1`
 
 const EmptyCart = styled.div`
   text-align: center;
+  height: 400px;
 `;
 
 const EmptyCartText = styled.p`
+  margin-top: 100px;
   font-size: 20px;
 `;
 
 export default function Cart({cart}: {cart: CartResponse}) {
-
   const {data: updatedCart} = useCartReload();
   let useCart = updatedCart || cart;
 

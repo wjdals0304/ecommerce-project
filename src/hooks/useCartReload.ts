@@ -5,7 +5,7 @@ import {API_ENDPOINTS} from '@/config/apiEndPoints';
 
 export const queryKeyCart = ['cart'];
 
-const fetchCart = async () => {
+export const fetchCart = async () => {
   const response = await getRequest<CartResponse>({
     url: API_ENDPOINTS.CART,
   });
