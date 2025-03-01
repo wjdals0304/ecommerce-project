@@ -8,6 +8,7 @@ import moreIcon from 'public/images/home/more.svg';
 import Image from 'next/image';
 import {Category} from '@/types/shop';
 import Link from 'next/link';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 
 const CategoryList = styled.ul`
   display: flex;
@@ -42,7 +43,7 @@ function HomeCategory({categories}: {categories: Category[]}) {
   return (
     <CategoryList>
       {categories.map(({id, name}) => (
-        <Link href={`/shop/category?categoryId=${id}`} key={id}>
+        <Link href={`${API_ENDPOINTS.SHOP_CATEGORY}${id}`} key={id}>
           <CategoryItem>
             <Image src="" alt="카테고리 이미지" width={94} height={70} />
             <CategoryTitle>{name}</CategoryTitle>

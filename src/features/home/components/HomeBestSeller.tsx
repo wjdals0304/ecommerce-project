@@ -4,6 +4,7 @@ import rightIcon from 'public/images/home/rightIcon.svg';
 import arrowIcon from 'public/images/home/arrow.svg';
 import {BestSeller} from '@/types/home';
 import Link from 'next/link';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 
 const Section = styled.section`
   margin: 50px 0;
@@ -148,7 +149,7 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
             const {id, images, name} = bestSeller.product;
             const {categoryName} = bestSeller;
             return (
-              <ProductLink href={`/shop/${id}`} key={id}>
+              <ProductLink href={`${API_ENDPOINTS.SHOP_DETAIL}/${id}`} key={id}>
                 <Product>
                   <ProductImage
                     src={images[0]}
