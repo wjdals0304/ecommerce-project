@@ -21,7 +21,7 @@ export async function getServerSideProps() {
       url: API_ENDPOINTS.HOME,
     });
     const homeData = response.data;
-
+    
     return {
       props: {
         homeData,

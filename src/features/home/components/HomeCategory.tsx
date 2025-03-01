@@ -6,6 +6,8 @@ import tvIcon from 'public/images/home/tv.svg';
 import cameraIcon from 'public/images/home/camera.svg';
 import moreIcon from 'public/images/home/more.svg';
 import Image from 'next/image';
+import {Category} from '@/types/shop';
+import Link from 'next/link';
 
 const CategoryList = styled.ul`
   display: flex;
@@ -27,6 +29,7 @@ const CategoryItem = styled.li`
   height: 169px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  cursor: pointer;
 `;
 
 const CategoryTitle = styled.span`
@@ -35,33 +38,17 @@ const CategoryTitle = styled.span`
   margin-top: 10px;
 `;
 
-function HomeCategory() {
+function HomeCategory({categories}: {categories: Category[]}) {
   return (
     <CategoryList>
-      <CategoryItem>
-        <Image src={gameIcon} alt="Gaming" width={94} height={70} />
-        <CategoryTitle>Gaming</CategoryTitle>
-      </CategoryItem>
-      <CategoryItem>
-        <Image src={smartphoneIcon} alt="Smartphone" width={70} height={70} />
-        <CategoryTitle>Smartphone</CategoryTitle>
-      </CategoryItem>
-      <CategoryItem>
-        <Image src={laptopIcon} alt="Laptop" width={87} height={70} />
-        <CategoryTitle>Laptop</CategoryTitle>
-      </CategoryItem>
-      <CategoryItem>
-        <Image src={tvIcon} alt="TV" width={90} height={68} />
-        <CategoryTitle>TV</CategoryTitle>
-      </CategoryItem>
-      <CategoryItem>
-        <Image src={cameraIcon} alt="Camera" width={88} height={68} />
-        <CategoryTitle>Camera</CategoryTitle>
-      </CategoryItem>
-      <CategoryItem>
-        <Image src={moreIcon} alt="More" width={68} height={68} />
-        <CategoryTitle>More</CategoryTitle>
-      </CategoryItem>
+      {categories.map(({id, name}) => (
+        <Link href={`/shop/category?categoryId=${id}`} key={id}>
+          <CategoryItem>
+            <Image src="" alt="카테고리 이미지" width={94} height={70} />
+            <CategoryTitle>{name}</CategoryTitle>
+          </CategoryItem>
+        </Link>
+      ))}
     </CategoryList>
   );
 }

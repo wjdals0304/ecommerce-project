@@ -48,10 +48,16 @@ export interface EventBanners {
   smallBanners: Banner[];
 }
 
+interface Category {
+  id: number;
+  name: string;
+}
+
 export interface HomeData {
   flashDeals: FlashDeal[];
   bestSellers: BestSeller[];
   hotProducts: HotProduct[];
   latestBlogs: LatestBlog[];
   eventBanners: EventBanners;
+  categories: Category[];
 }
