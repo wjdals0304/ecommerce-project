@@ -109,9 +109,11 @@ function Navigation() {
               <Image src={bagIcon} alt="bag" />
             </NavItem>
           </Link>
-          <NavItem active={false}>
-            <Image src={profileIcon} alt="profile" />
-          </NavItem>
+          <Link href="/profile">
+            <NavItem active={false}>
+              <Image src={profileIcon} alt="profile" />
+            </NavItem>
+          </Link>
         </NavList>
       </Nav>
     </Container>
