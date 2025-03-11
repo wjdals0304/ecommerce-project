@@ -82,19 +82,21 @@ export default function ShoppingCheckOutInfo({
     control,
     handleSubmit,
     formState: {errors},
-    setValue,
+    reset,
   } = useFormContext<ShippingFormData>();
 
   useEffect(() => {
     if (shipInfo) {
-      setValue('name', shipInfo.name || '');
-      setValue('phone', shipInfo.phone || '');
-      setValue('address', shipInfo.address || '');
-      setValue('city', shipInfo.city || '');
-      setValue('zipcode', shipInfo.zipcode || '');
-      setValue('memo', shipInfo.memo || '');
+      reset({
+        name: shipInfo.name || '',
+        phone: shipInfo.phone || '',
+        address: shipInfo.address || '',
+        city: shipInfo.city || '',
+        zipcode: shipInfo.zipcode || '',
+        memo: shipInfo.memo || '',
+      });
     }
-  }, [shipInfo, setValue]);
+  }, [shipInfo, reset]);
 
   const {field: nameField} = useController({
     name: 'name',
