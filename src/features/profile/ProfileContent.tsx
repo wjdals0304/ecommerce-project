@@ -49,7 +49,6 @@ export default function ProfileContent({
     try {
       await postRequest({
         url: API_ENDPOINTS.AUTH_LOGOUT,
-        data: {},
       });
       Cookies.remove('jwt');
       toast.success('로그아웃 성공');

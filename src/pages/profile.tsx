@@ -6,6 +6,7 @@ import {ProfileData} from '@/types/home';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {GetServerSideProps} from 'next';
 import {parseCookies} from 'nookies';
+import {getAuthHeaders} from '@/utils/headerUtils';
 
 export default function Profile({profileData}: {profileData: ProfileData}) {
   return (
@@ -33,10 +34,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const response = await getRequest<ProfileData>({
       url: API_ENDPOINTS.AUTH_ME,
       config: {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Cookie: context.req.headers.cookie,
-        },
+        headers: getAuthHeaders(context),
       },
     });
     const profileData = response.data;

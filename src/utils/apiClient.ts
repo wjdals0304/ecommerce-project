@@ -81,11 +81,11 @@ interface RequestConfig {
 
 export const postRequest = async <T>({
   url,
-  data,
-  config = {},
+  data = {},
+  config = {},  
 }: {
   url: string;
-  data: any;
+  data?: any;
   config?: RequestConfig;
 }) => {
   const response = await apiClient.post<T>(url, data, config);
