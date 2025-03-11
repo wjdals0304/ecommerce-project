@@ -5,7 +5,7 @@ import {postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {toast} from 'react-toastify';
 import Cookies from 'js-cookie';
-
+import {useAuthStore} from '@/store/authStore';
 const Container = styled.div`
   background-color: #f5f7f8;
   padding-bottom: 50px;
@@ -45,12 +45,15 @@ export default function ProfileContent({
 }: {
   profileData: ProfileData;
 }) {
+  const {logout} = useAuthStore();
+
   const handleLogout = async () => {
     try {
       await postRequest({
         url: API_ENDPOINTS.AUTH_LOGOUT,
       });
       Cookies.remove('jwt');
+      logout();
       toast.success('로그아웃 성공');
       window.location.href = '/';
     } catch (error) {
