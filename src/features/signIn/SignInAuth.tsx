@@ -6,7 +6,9 @@ import {useState} from 'react';
 import {useAuthStore} from '@/store/authStore';
 import {supabase} from '@/utils/supabase';
 import {toast} from 'react-toastify';
-import Link from 'next/link';
+import {postRequest} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {User} from '@/types/user';
 
 const Container = styled.div`
   display: flex;
@@ -76,24 +78,51 @@ const GoogleText = styled.span`
 `;
 
 export default function SignInAuth() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const {setAuth} = useAuthStore();
 
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
+      const loginMethod = 'google';
+
       const {data, error} = await supabase.auth.signInWithOAuth({
-        provider: 'google',
+        provider: loginMethod,
         options: {
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',
           },
-          redirectTo: `${window.location.origin}/auth/callback`,
+          skipBrowserRedirect: true,
         },
       });
 
       if (error) {
         throw error;
+      }
+
+      const {
+        data: {session},
+      } = await supabase.auth.getSession();
+
+      if (session?.provider_token) {
+        try {
+          const response = await postRequest<User>({
+            url: API_ENDPOINTS.AUTH_SIGNUP_GOOGLE,
+            data: {
+              access_token: session.provider_token,
+              provider: loginMethod,
+            },
+          });
+
+          setAuth(true, response.data);
+          toast.success('구글 로그인 성공');
+          router.push('/');
+        } catch (serverError) {
+          console.error('Server authentication error:', serverError);
+          toast.error('서버 인증에 실패했습니다.');
+        }
       }
     } catch (error) {
       console.error('Google sign in error:', error);
