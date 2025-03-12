@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import googleIcon from '../../../public/images/signIn/google.svg';
 import Image from 'next/image';
+import {useRouter} from 'next/router';
+import {useState} from 'react';
+import {useAuthStore} from '@/store/authStore';
+import {supabase} from '@/utils/supabase';
+import {toast} from 'react-toastify';
+import Link from 'next/link';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,6 +61,7 @@ const GoogleButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  cursor: pointer;
 `;
 
 const GoogleIcon = styled(Image)`
@@ -68,12 +76,39 @@ const GoogleText = styled.span`
 `;
 
 export default function SignInAuth() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setIsLoading(true);
+      const {data, error} = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      console.error('Google sign in error:', error);
+      toast.error('구글 로그인에 실패했습니다.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Container>
       <Or>또는</Or>
-      <GoogleButton>
+      <GoogleButton onClick={handleGoogleSignIn} disabled={isLoading}>
         <GoogleIcon src={googleIcon} alt="google" />
-        <GoogleText>구글로 로그인</GoogleText>
+        <GoogleText>{isLoading ? '로그인 중...' : '구글로 로그인'}</GoogleText>
       </GoogleButton>
     </Container>
   );
