@@ -8,6 +8,7 @@ import {
 import styled from 'styled-components';
 import {ShippingFormData} from './ShoppingCheckOut';
 import {useShipInfo} from '@/hooks/useShipInfo';
+import {useEffect} from 'react';
 
 const InputContainer = styled.form`
   display: flex;
@@ -59,6 +60,7 @@ const SaveButton = styled.button`
   height: 58px;
   font-size: 24px;
   font-weight: medium;
+  cursor: pointer;
 `;
 
 const ErrorMessage = styled.span`
@@ -80,7 +82,21 @@ export default function ShoppingCheckOutInfo({
     control,
     handleSubmit,
     formState: {errors},
+    reset,
   } = useFormContext<ShippingFormData>();
+
+  useEffect(() => {
+    if (shipInfo) {
+      reset({
+        name: shipInfo.name || '',
+        phone: shipInfo.phone || '',
+        address: shipInfo.address || '',
+        city: shipInfo.city || '',
+        zipcode: shipInfo.zipcode || '',
+        memo: shipInfo.memo || '',
+      });
+    }
+  }, [shipInfo, reset]);
 
   const {field: nameField} = useController({
     name: 'name',

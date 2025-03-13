@@ -9,6 +9,8 @@ import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
 import {useState} from 'react';
 import ShoppingCheckOutInfo from '../shoppingCheckOut/ShoppingCheckOutInfo';
 import {shippingSchema} from '@/config/validationSchema';
+import {toast} from 'react-toastify';
+
 const Container = styled.div`
   display: flex;
   gap: 25px;
@@ -86,8 +88,7 @@ export default function ShoppingCheckOut({
         url: API_ENDPOINTS.SHIPPING_ADDRESS,
         data,
       });
-      console.log('배송 정보 저장 성공');
-
+      toast.success('배송 정보 저장 성공');
       setIsFormError(false);
     } catch (error) {
       console.error(error);
