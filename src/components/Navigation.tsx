@@ -7,7 +7,8 @@ import profileIcon from 'public/images/home/profile.svg';
 import menuIcon from 'public/images/home/menu.svg';
 import {usePathname} from 'next/navigation';
 import {useAuthStore} from '@/store/authStore';
-import {useState, useEffect, useRef} from 'react';
+import CategoryMenuContainer from './CategoryMenu';
+import {useState, useRef} from 'react';
 
 const Container = styled.div`
   background-color: #001c3d;
@@ -21,54 +22,6 @@ const Nav = styled.nav`
   max-width: 1240px;
   margin: 0 auto;
   height: 54px;
-`;
-
-const CategoryContainer = styled.div`
-  position: relative;
-  height: 100%;
-`;
-
-const AllCategory = styled.div`
-  margin-right: 40px;
-  color: #001c3d;
-  background-color: #f4ce14;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0px 25px;
-  font-weight: bold;
-  cursor: pointer;
-
-  a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-`;
-
-const CategoryMenu = styled.div<{isOpen: boolean}>`
-  display: ${({isOpen}) => (isOpen ? 'block' : 'none')};
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 250px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-top: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-`;
-
-const CategoryItem = styled.div`
-  padding: 12px 20px;
-  color: #333;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #f5f5f5;
-    color: #001c3d;
-  }
 `;
 
 const NavList = styled.ul`
@@ -115,13 +68,27 @@ const NAV_ITEMS: NavItem[] = [
   {title: '문의', href: '/contact'},
 ];
 
-const CATEGORY_ITEMS = [
-  {title: '스마트폰', href: '/shop/category?categoryId=1'},
-  {title: '디지털 카메라', href: '/shop/category?categoryId=2'},
-  {title: '게임 악세사리', href: '/shop/category?categoryId=3'},
-  {title: '노트북 및 랩탑', href: '/shop/category?categoryId=4'},
-  {title: '컴퓨터/PC', href: '/shop/category?categoryId=5'},
-];
+interface CategoryItem {
+  id: number;
+  title: string;
+  href: string;
+}
+
+const CATEGORIES: Record<number, string> = {
+  1: '스마트폰',
+  2: '디지털 카메라',
+  3: '게임 악세사리',
+  4: '노트북 및 랩탑',
+  5: '컴퓨터/PC',
+};
+
+const getCategoryItems = (): CategoryItem[] => {
+  return Object.entries(CATEGORIES).map(([id, title]) => ({
+    id: Number(id),
+    title,
+    href: `/shop/category?categoryId=${id}`,
+  }));
+};
 
 function Navigation() {
   const pathname = usePathname();
@@ -130,53 +97,12 @@ function Navigation() {
   const categoryRef = useRef<HTMLDivElement>(null);
   const mouseDown = 'mousedown';
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        categoryRef.current &&
-        !categoryRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener(mouseDown, handleClickOutside);
-    return () => {
-      document.removeEventListener(mouseDown, handleClickOutside);
-    };
-  }, []);
-
-  const handleCategoryMouseEnter = () => {
-    setIsMenuOpen(true);
-  };
-
-  const handleCategoryMouseLeave = () => {
-    setIsMenuOpen(false);
-  };
+  const categoryItems = getCategoryItems();
 
   return (
     <Container>
       <Nav>
-        <CategoryContainer
-          ref={categoryRef}
-          onMouseEnter={handleCategoryMouseEnter}
-          onMouseLeave={handleCategoryMouseLeave}
-        >
-          <AllCategory>
-            <a>
-              <Image src={menuIcon} alt="menu" />
-              전체 카테고리
-            </a>
-          </AllCategory>
-          <CategoryMenu isOpen={isMenuOpen}>
-            {CATEGORY_ITEMS.map((item, index) => (
-              <Link href={item.href} key={index}>
-                <CategoryItem>{item.title}</CategoryItem>
-              </Link>
-            ))}
-          </CategoryMenu>
-        </CategoryContainer>
-
+        <CategoryMenuContainer />
         <NavList>
           {NAV_ITEMS.map((item, index) => (
             <NavItem active={pathname === item.href} key={index}>
