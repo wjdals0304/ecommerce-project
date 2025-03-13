@@ -61,3 +61,10 @@ export interface HomeData {
   eventBanners: EventBanners;
   categories: Category[];
 }
+
+export interface ProfileData {
+  id: number;
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+}

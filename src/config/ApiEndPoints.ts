@@ -15,4 +15,6 @@ export const API_ENDPOINTS = {
   ORDER_DETAIL: `/orders/:id`,
   SHOP_DETAIL: `/shop/product/`,
   SHOP_CATEGORY: `/shop/category?categoryId=`,
+  AUTH_ME: `/auth/me`,
+  AUTH_LOGOUT: `/auth/logout`,
 };
