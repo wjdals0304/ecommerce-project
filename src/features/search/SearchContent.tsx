@@ -4,7 +4,7 @@ import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 import styled from 'styled-components';
 import Link from 'next/link';
-
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 const LinkContainer = styled(Link)`
   text-decoration: none;
 `;
@@ -20,7 +20,7 @@ export default function SearchContent({shopData}: SearchContentProps) {
     <ProductContainer>
       {products.map(({id, name, price, soldCount, images, rating}) => (
         <ProductItem key={id}>
-          <LinkContainer href={`/shop/${id}`}>
+          <LinkContainer href={`${API_ENDPOINTS.SHOP_DETAIL}/${id}`}>
             <ImageContainer>
               <ProductImage
                 src={images[0]}

@@ -44,7 +44,7 @@ export default function HomePromoContentDeal({
 }: HomePromoContentDealProps) {
   const {id, images, name, originalPrice, price, stock, soldCount} = flashDeal;
   return (
-    <ProductLink href={`/shop/${id}`} key={id}>
+    <ProductLink href={`${API_ENDPOINTS.SHOP_DETAIL}/${id}`} key={id}>
       <Product>
         <ProductImage>
           <Image src={images[0]} alt={name} width={149} height={200} />

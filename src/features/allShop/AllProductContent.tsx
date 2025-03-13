@@ -4,6 +4,7 @@ import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 import styled from 'styled-components';
 import router, {useRouter} from 'next/router';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 
 interface AllProductProps {
   shopData: ShopData;
@@ -14,7 +15,10 @@ export default function AllProductContent({shopData}: AllProductProps) {
   return (
     <ProductContainer>
       {products.map(({id, name, price, soldCount, images}) => (
-        <ProductItem key={id} onClick={() => router.push(`/shop/${id}`)}>
+        <ProductItem
+          key={id}
+          onClick={() => router.push(`${API_ENDPOINTS.SHOP_DETAIL}/${id}`)}
+        >
           <ImageContainer>
             <ProductImage src={images[0]} alt={name} width={250} height={250} />
             <Rating>

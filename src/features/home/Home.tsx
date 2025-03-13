@@ -26,14 +26,20 @@ interface HomeProps {
 }
 
 function Home({homeData}: HomeProps) {
-  const {flashDeals, bestSellers, hotProducts, latestBlogs, eventBanners} =
-    homeData;
+  const {
+    flashDeals,
+    bestSellers,
+    hotProducts,
+    latestBlogs,
+    eventBanners,
+    categories,
+  } = homeData;
   return (
     <Container>
       <Search />
       <HomeContainer>
         <HomeHeader eventBanners={eventBanners} />
-        <HomeCategory />
+        <HomeCategory categories={categories} />
         <HomeProme flashDeals={flashDeals} />
         <HomeBestSeller bestSellers={bestSellers} />
         <HomeHotProduct hotProducts={hotProducts} />

@@ -5,7 +5,7 @@ import AllProduct from './AllProduct';
 import RelatedProduct from './RelatedProduct';
 import {ShopData} from '@/types/shop';
 import {useRouter} from 'next/router';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Pagination from './Pagination';
@@ -42,6 +42,13 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
   );
   const [priceValue, setPriceValue] = useState(9999999);
 
+  useEffect(() => {
+    const {categoryId} = router.query;
+    if (categoryId) {
+      setSelectedCategory(Number(categoryId));
+    }
+  }, [router.query]);
+
   const handleFilterChange = async (filterParams: any) => {
     try {
       const response = await getRequest<ShopData>({
@@ -67,7 +74,6 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // 페이지 변경 시 API 호출
     handleFilterChange({
       page: String(page),
       categoryId: String(selectedCategory),
