@@ -4,10 +4,8 @@ import Image from 'next/image';
 import trashIcon from 'public/images/shop/trash.svg';
 import {deleteRequest, getStoredToken} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {useRouter} from 'next/router';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
-import {queryKeyCart, useCartReload} from '@/hooks/useCartReload';
-import {useContext} from 'react';
+
 const ProductItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -77,7 +75,7 @@ const TrashIconImage = styled(Image)`
 
 export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
   const {items} = cart;
-  const {refetch} = useCartReload();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (productId: number) => {
@@ -86,7 +84,7 @@ export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
       });
     },
     onSuccess: () => {
-      refetch();
+      queryClient.invalidateQueries({queryKey: ['cart']});
     },
   });
 
