@@ -6,7 +6,8 @@ import {setCookie} from 'nookies';
 import {useRouter} from 'next/router';
 import Email from '../signUp/signUpInput/Email';
 import Password from '../signUp/signUpInput/Password';
-
+import {useAuthStore} from '@/store/authStore';
+import {User} from '@/types/user';
 const Container = styled.form`
   display: flex;
   flex-direction: column;
@@ -62,6 +63,7 @@ function SignInEmail() {
   const [showEmailErrorBorder, setShowEmailErrorBorder] = useState(false);
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const {setAuth} = useAuthStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -80,13 +82,15 @@ function SignInEmail() {
     }
 
     try {
-      await postRequest({
+      const response = await postRequest<User>({
         url: API_ENDPOINTS.AUTH_SIGNIN_EMAIL,
         data: dataPost,
       });
 
+      setAuth(true, response.data);
       router.push('/');
     } catch (error) {
+      console.log(error);
       if (error.status === 401) {
         setPasswordError('이메일 또는 비밀번호가 일치하지 않습니다.');
         setShowEmailErrorBorder(true);

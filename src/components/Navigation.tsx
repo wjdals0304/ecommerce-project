@@ -6,6 +6,7 @@ import bagIcon from 'public/images/home/bag.svg';
 import profileIcon from 'public/images/home/profile.svg';
 import menuIcon from 'public/images/home/menu.svg';
 import {usePathname} from 'next/navigation';
+import {useAuthStore} from '@/store/authStore';
 
 const Container = styled.div`
   background-color: #001c3d;
@@ -84,6 +85,7 @@ const NAV_ITEMS: NavItem[] = [
 
 function Navigation() {
   const pathname = usePathname();
+  const {isAuthenticated, user} = useAuthStore();
 
   return (
     <Container>
@@ -103,17 +105,30 @@ function Navigation() {
             </NavItem>
           ))}
         </NavList>
+
         <NavList>
-          <Link href="/cart">
-            <NavItem active={false}>
-              <Image src={bagIcon} alt="bag" />
-            </NavItem>
-          </Link>
-          <Link href="/profile">
-            <NavItem active={false}>
-              <Image src={profileIcon} alt="profile" />
-            </NavItem>
-          </Link>
+          {isAuthenticated ? (
+            <Link href="/cart">
+              <NavItem active={false}>
+                <Image src={bagIcon} alt="bag" />
+              </NavItem>
+            </Link>
+          ) : (
+            <Link href="/signin">
+              <span style={{color: '#ffffff'}}>로그인</span>
+            </Link>
+          )}
+          {isAuthenticated ? (
+            <Link href="/profile">
+              <NavItem active={false}>
+                <Image src={profileIcon} alt="profile" />
+              </NavItem>
+            </Link>
+          ) : (
+            <Link href="/signup">
+              <span style={{color: '#ffffff'}}>회원가입</span>
+            </Link>
+          )}
         </NavList>
       </Nav>
     </Container>
