@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import Search from '@/components/Search';
 import SignUpEmail from './SignUpEmail';
 import SignUpAuth from './SignUpAuth';
-
+import Link from 'next/link';
+import SignInAuth from '../signIn/SignInAuth';
 const Container = styled.div`
   background-color: #f5f7f8;
 `;
@@ -33,6 +34,7 @@ const SignInButton = styled.button`
   color: #56af2c;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 `;
 
 export default function SignUp() {
@@ -41,10 +43,12 @@ export default function SignUp() {
       <Search />
       <Title>회원가입</Title>
       <SignUpEmail />
-      <SignUpAuth />
+      <SignInAuth />
       <SignInContainer>
-        <AccountText>이미 회원이신가요?</AccountText>
-        <SignInButton>로그인</SignInButton>
+        <Link href="/signin">
+          <AccountText>이미 회원이신가요?</AccountText>
+          <SignInButton>로그인</SignInButton>
+        </Link>
       </SignInContainer>
     </Container>
   );

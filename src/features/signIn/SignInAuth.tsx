@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import googleIcon from '../../../public/images/signIn/google.svg';
 import Image from 'next/image';
+import {useRouter} from 'next/router';
+import {useState} from 'react';
+import {useAuthStore} from '@/store/authStore';
+import {supabase} from '@/utils/supabase';
+import {toast} from 'react-toastify';
+import {postRequest} from '@/utils/apiClient';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {User} from '@/types/user';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,6 +63,7 @@ const GoogleButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  cursor: pointer;
 `;
 
 const GoogleIcon = styled(Image)`
@@ -68,12 +78,66 @@ const GoogleText = styled.span`
 `;
 
 export default function SignInAuth() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const {setAuth} = useAuthStore();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setIsLoading(true);
+      const loginMethod = 'google';
+
+      const {data, error} = await supabase.auth.signInWithOAuth({
+        provider: loginMethod,
+        options: {
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+          skipBrowserRedirect: true,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      const {
+        data: {session},
+      } = await supabase.auth.getSession();
+
+      if (session?.provider_token) {
+        try {
+          const response = await postRequest<User>({
+            url: API_ENDPOINTS.AUTH_SIGNUP_GOOGLE,
+            data: {
+              access_token: session.provider_token,
+              provider: loginMethod,
+            },
+          });
+
+          setAuth(true, response.data);
+          toast.success('구글 로그인 성공');
+          router.push('/');
+        } catch (serverError) {
+          console.error('Server authentication error:', serverError);
+          toast.error('서버 인증에 실패했습니다.');
+        }
+      }
+    } catch (error) {
+      console.error('Google sign in error:', error);
+      toast.error('구글 로그인에 실패했습니다.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Container>
       <Or>또는</Or>
-      <GoogleButton>
+      <GoogleButton onClick={handleGoogleSignIn} disabled={isLoading}>
         <GoogleIcon src={googleIcon} alt="google" />
-        <GoogleText>구글로 로그인</GoogleText>
+        <GoogleText>{isLoading ? '로그인 중...' : '구글로 로그인'}</GoogleText>
       </GoogleButton>
     </Container>
   );

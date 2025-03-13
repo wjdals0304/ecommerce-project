@@ -48,6 +48,7 @@ const SignInButton = styled.button`
   font-weight: medium;
   color: #001c30;
   border: none;
+  cursor: pointer;
 
   &:disabled {
     background-color: #ccc;
@@ -120,10 +121,7 @@ function SignInEmail() {
         passwordValue={passwordValue}
         setPasswordValue={setPasswordValue}
       />
-      <FindPasswordContainer>
-        <FindPassword>비밀번호를 잊으셨나요?</FindPassword>
-        <PasswordClickHere>클릭하세요</PasswordClickHere>
-      </FindPasswordContainer>
+
       <SignInButton disabled={disabled}>
         {isLoading ? '로딩 중...' : '로그인'}
       </SignInButton>

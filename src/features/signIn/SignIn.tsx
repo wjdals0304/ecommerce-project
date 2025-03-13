@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Search from '../../components/Search';
 import SignInEmail from './SignInEmail';
 import SignInAuth from './SignInAuth';
+import Link from 'next/link';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -33,6 +34,7 @@ const SignUpButton = styled.button`
   color: #56af2c;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 `;
 
 function SignIn() {
@@ -44,7 +46,9 @@ function SignIn() {
       <SignInAuth />
       <SignUpContainer>
         <AccountText>아직 회원이 아니신가요?</AccountText>
-        <SignUpButton>회원가입</SignUpButton>
+        <Link href="/signup">
+          <SignUpButton>회원가입</SignUpButton>
+        </Link>
       </SignUpContainer>
     </Container>
   );
