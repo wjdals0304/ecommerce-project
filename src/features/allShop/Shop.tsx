@@ -49,6 +49,16 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
     }
   }, [router.query]);
 
+  useEffect(() => {
+    handleFilterChange({
+      page: String(currentPage),
+      categoryId: String(selectedCategory),
+      warranty: selectedWarrenty,
+      priceMin: String(0),
+      priceMax: String(priceValue),
+    });
+  }, [selectedCategory]);
+
   const handleFilterChange = async (filterParams: any) => {
     try {
       const response = await getRequest<ShopData>({
