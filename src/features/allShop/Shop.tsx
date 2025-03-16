@@ -29,9 +29,8 @@ interface ShopProps {
   shopData: ShopData;
 }
 
-export default function Shop({shopData: initialShopData}: ShopProps) {
+export default function Shop({shopData}: ShopProps) {
   const router = useRouter();
-  const [shopData, setShopData] = useState(initialShopData);
   const {categories, totalPages} = shopData;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedWarrenty, setSelectedWarrenty] = useState<string>(
@@ -49,33 +48,13 @@ export default function Shop({shopData: initialShopData}: ShopProps) {
     }
   }, [router.query]);
 
-  useEffect(() => {
-    handleFilterChange({
-      page: String(currentPage),
-      categoryId: String(selectedCategory),
-      warranty: selectedWarrenty,
-      priceMin: String(0),
-      priceMax: String(priceValue),
-    });
-  }, [selectedCategory]);
-
   const handleFilterChange = async (filterParams: any) => {
     try {
-      const response = await getRequest<ShopData>({
-        url: API_ENDPOINTS.SHOP,
-        config: {
-          params: filterParams,
-        },
-      });
-      setShopData(response.data);
-
       router.push(
         {
           pathname: router.pathname,
           query: filterParams,
-        },
-        undefined,
-        {shallow: true},
+        }
       );
     } catch (error) {
       console.error('필터링 오류:', error);
