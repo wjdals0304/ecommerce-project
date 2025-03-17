@@ -1,6 +1,5 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import AllProduct from '@/features/allShop/Shop';
 import {ShopData} from '@/types/shop';
 import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
@@ -11,12 +10,13 @@ import {
   createQueryParams,
   fetchShopData,
 } from '@/hooks/useShopData';
+import Shop from '@/features/allShop/Shop';
 
 export default function ShopPage() {
   return (
     <>
       <Navigation />
-      <AllProduct />
+      <Shop />
       <Footer />
     </>
   );

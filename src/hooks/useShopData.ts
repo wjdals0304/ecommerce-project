@@ -9,7 +9,7 @@ import {ParsedUrlQuery} from 'querystring';
 interface ShopDataParams {
   page: string;
   categoryId: string;
-  warranty: string;
+  warranty?: string;
   priceMin: string;
   priceMax: string;
 }
@@ -20,16 +20,12 @@ export const createQueryKeyShopData = (params: ShopDataParams) => {
 
 export const fetchShopData = async (queryParams: ShopDataParams) => {
   try {
-    console.log('queryParams');
-    console.log(queryParams);
     const response = await getRequest<ShopData>({
-      url: API_ENDPOINTS.SHOP_ALL,
+      url: API_ENDPOINTS.SHOP,
       config: {
         params: queryParams,
       },
     });
-    console.log('responsesssss');
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log('error');
@@ -54,17 +50,21 @@ export const createQueryParams = (queryParams: ParsedUrlQuery) => {
   const categoryId = queryParams.categoryId
     ? String(queryParams.categoryId)
     : '0';
-  const warranty = queryParams.warranty ? String(queryParams.warranty) : 'all';
   const priceMin = queryParams.priceMin ? String(queryParams.priceMin) : '0';
   const priceMax = queryParams.priceMax
     ? String(queryParams.priceMax)
     : '9999999';
 
-  return {
+  const params: ShopDataParams = {
     page,
     categoryId,
-    warranty,
     priceMin,
     priceMax,
   };
+
+  if (queryParams.warranty) {
+    params.warranty = String(queryParams.warranty);
+  }
+
+  return params;
 };

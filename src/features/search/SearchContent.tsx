@@ -20,7 +20,7 @@ export default function SearchContent({shopData}: SearchContentProps) {
     <ProductContainer>
       {products.map(({id, name, price, soldCount, images, rating}) => (
         <ProductItem key={id}>
-          <LinkContainer href={`${API_ENDPOINTS.SHOP_DETAIL}/${id}`}>
+          <LinkContainer href={`${API_ENDPOINTS.PRODUCT}/${id}`}>
             <ImageContainer>
               <ProductImage
                 src={images[0]}

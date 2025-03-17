@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {useState, useEffect, useRef} from 'react';
 import Image from 'next/image';
 import menuIcon from 'public/images/home/menu.svg';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 
 const CategoryContainer = styled.div`
   position: relative;
@@ -70,7 +71,7 @@ const getCategoryItems = (): CategoryItem[] => {
   return Object.entries(CATEGORIES).map(([id, title]) => ({
     id: Number(id),
     title,
-    href: `/shop/category?categoryId=${id}`,
+    href: `${API_ENDPOINTS.SHOP_CATEGORY}${id}`,
   }));
 }; 
 const categoryItems = getCategoryItems();

@@ -123,7 +123,7 @@ export default function FilterProduct({
               key={id}
               isSelected={selectedCategory === id}
             >
-              <Link href={`/shop/category?categoryId=${id}`}>{name}</Link>
+              <Link href={`${API_ENDPOINTS.SHOP_CATEGORY}${id}`}>{name}</Link>
             </CategoryOption>
           ))}
         </ul>
