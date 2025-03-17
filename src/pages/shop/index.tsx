@@ -27,7 +27,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const queryParams = createQueryParams(context.query);
 
   try {
-    await queryClient.prefetchQuery({
+    await queryClient.fetchQuery({
       queryKey: createQueryKeyShopData(queryParams),
       queryFn: () => fetchShopData(queryParams),
     });

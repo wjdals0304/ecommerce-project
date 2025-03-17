@@ -6,7 +6,7 @@ import {useState} from 'react';
 import {formDataEntries, getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Link from 'next/link';
-import {useShopData} from '@/hooks/useShopData';
+import {createQueryParams, useShopData} from '@/hooks/useShopData';
 import {useRouter} from 'next/router';
 
 const Container = styled.div`
@@ -84,10 +84,9 @@ export enum FilterProductEnum {
 
 export default function FilterProduct({onFilterChange}: FilterProductProps) {
   const router = useRouter();
-  const {categoryId, warranty, priceMin, priceMax} = router.query;
+  const {categoryId} = router.query;
   const {
     data: {categories},
-    isLoading,
   } = useShopData();
 
   const handleFilterSubmit = async (

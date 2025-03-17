@@ -4,7 +4,7 @@ import {useState, useEffect, useRef} from 'react';
 import Image from 'next/image';
 import menuIcon from 'public/images/home/menu.svg';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
-
+import {UrlObject} from 'url';
 const CategoryContainer = styled.div`
   position: relative;
   height: 100%;
@@ -56,7 +56,7 @@ const CategoryItem = styled.div`
 interface CategoryItem {
   id: number;
   title: string;
-  href: string;
+  href: UrlObject;
 }
 
 const CATEGORIES: Record<number, string> = {
@@ -71,7 +71,12 @@ const getCategoryItems = (): CategoryItem[] => {
   return Object.entries(CATEGORIES).map(([id, title]) => ({
     id: Number(id),
     title,
-    href: `${API_ENDPOINTS.SHOP_CATEGORY}${id}`,
+    href: {
+      pathname: API_ENDPOINTS.SHOP,
+      query: {
+        category: id,
+      },
+    },
   }));
 }; 
 const categoryItems = getCategoryItems();
