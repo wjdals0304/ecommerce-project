@@ -30,14 +30,6 @@ export default function Shop() {
   const {data: shopData} = useShopData();
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-
-  // useEffect(() => {
-  //   const {categoryId} = router.query;
-  //   if (categoryId) {
-  //     setSelectedCategory(Number(categoryId));
-  //   }
-  // }, [router.query]);
-
   const handleFilterChange = (filterParams: any) => {
     router.push({
       pathname: router.pathname,
@@ -60,11 +52,13 @@ export default function Shop() {
           <FilterProduct onFilterChange={handleFilterChange} />
           <div>
             <AllProduct shopData={shopData} />
+            {shopData.totalPages > 1 && (
             <Pagination
-              currentPage={currentPage}
-              totalPages={shopData.totalPages}
-              onPageChange={handlePageChange}
-            />
+                currentPage={currentPage}
+                totalPages={shopData.totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
           </div>
         </ProductContainer>
       </InnerContainer>
