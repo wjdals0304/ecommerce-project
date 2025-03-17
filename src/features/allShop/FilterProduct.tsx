@@ -6,6 +6,7 @@ import {useState} from 'react';
 import {formDataEntries, getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Link from 'next/link';
+import { useShopData } from '@/hooks/useShopData';
 const Container = styled.form`
   display: flex;
   flex-direction: column;
@@ -69,9 +70,7 @@ const FilterButton = styled.button`
   height: 49px;
   margin: 0px 25px 25px 0;
 `;
-
 interface FilterProductProps {
-  categories: Category[];
   onFilterChange: (filterParams: any) => void;
   selectedCategory: number;
   setSelectedCategory: (categoryId: number) => void;
@@ -86,7 +85,6 @@ export enum FilterProductEnum {
 }
 
 export default function FilterProduct({
-  categories,
   onFilterChange,
   selectedCategory,
   setSelectedCategory,
@@ -95,6 +93,8 @@ export default function FilterProduct({
   priceValue,
   setPriceValue,
 }: FilterProductProps) {
+
+  const {data: {categories}, isLoading} = useShopData();
 
   const handleFilterSubmit = async (
     event: React.FormEvent<HTMLFormElement>,

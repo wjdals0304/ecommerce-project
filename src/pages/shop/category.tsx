@@ -1,6 +1,6 @@
 // src/pages/shop/[category].tsx
 
-import {GetServerSideProps} from 'next';
+import {GetServerSidePropsContext} from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AllProduct from '@/features/allShop/Shop';
@@ -8,53 +8,48 @@ import {ShopData} from '@/types/shop';
 import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {WarrentyOptions} from '@/features/allShop/Warrenty';
+import {
+  createQueryKeyShopData,
+  createQueryParams,
+  fetchShopData,
+} from '@/hooks/useShopData';
+import {dehydrate, HydrationBoundary, QueryClient} from '@tanstack/react-query';
 
 interface ShopPageProps {
-  shopData: ShopData;
-  categoryId: string;
+  dehydratedState: any;
 }
 
-export default function ShopPage({shopData}: ShopPageProps) {
+export default function ShopPage({dehydratedState}: ShopPageProps) {
   return (
-    <>
+    <HydrationBoundary state={dehydratedState}>
       <Navigation />
-      <AllProduct shopData={shopData} />
+      <AllProduct />
       <Footer />
-    </>
+    </HydrationBoundary>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const {categoryId} = context.query;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const queryClient = new QueryClient();
+  const queryParams = createQueryParams(context.query);
 
   try {
-    const response = await getRequest<ShopData>({
-      url: API_ENDPOINTS.SHOP,
-      config: {
-        params: {
-          categoryId: categoryId,
-          page: '1',
-          warranty: WarrentyOptions.ALL.value,
-          priceMin: '0',
-          priceMax: '9999999',
-        },
-      },
+    await queryClient.prefetchQuery({
+      queryKey: createQueryKeyShopData(queryParams),
+      queryFn: () => fetchShopData(queryParams),
     });
-    const shopData = response.data;
 
     return {
       props: {
-        shopData,
-        categoryId: categoryId,
+        dehydratedState: dehydrate(queryClient),
       },
     };
   } catch (error) {
     return {
       props: {
-        shopData: null,
-        categoryId: categoryId,
+        dehydratedState: null,
         error: '데이터를 가져오는데 실패했습니다.',
       },
     };
   }
-};
+}

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Search from '@/components/Search';
 import FilterProduct, {FilterProductEnum} from './FilterProduct';
 import AllProduct from './AllProduct';
-import RelatedProduct from './RelatedProduct';
 import {ShopData} from '@/types/shop';
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
@@ -10,6 +9,8 @@ import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Pagination from './Pagination';
 import {WarrentyOptions} from './Warrenty';
+import {useQuery} from '@tanstack/react-query';
+import {useShopData} from '@/hooks/useShopData';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -25,13 +26,9 @@ const ProductContainer = styled.div`
   display: flex;
 `;
 
-interface ShopProps {
-  shopData: ShopData;
-}
-
-export default function Shop({shopData}: ShopProps) {
+export default function Shop() {
+  const {data: shopData} = useShopData();
   const router = useRouter();
-  const {categories, totalPages} = shopData;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedWarrenty, setSelectedWarrenty] = useState<string>(
     WarrentyOptions.ALL.value,
@@ -50,12 +47,10 @@ export default function Shop({shopData}: ShopProps) {
 
   const handleFilterChange = async (filterParams: any) => {
     try {
-      router.push(
-        {
-          pathname: router.pathname,
-          query: filterParams,
-        }
-      );
+      router.push({
+        pathname: router.pathname,
+        query: filterParams,
+      });
     } catch (error) {
       console.error('필터링 오류:', error);
     }
@@ -78,7 +73,6 @@ export default function Shop({shopData}: ShopProps) {
       <InnerContainer>
         <ProductContainer>
           <FilterProduct
-            categories={categories}
             onFilterChange={handleFilterChange}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
@@ -91,7 +85,7 @@ export default function Shop({shopData}: ShopProps) {
             <AllProduct shopData={shopData} />
             <Pagination
               currentPage={currentPage}
-              totalPages={totalPages}
+              totalPages={shopData.totalPages}
               onPageChange={handlePageChange}
             />
           </div>
