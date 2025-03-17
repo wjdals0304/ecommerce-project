@@ -19,7 +19,7 @@ export default function HomeHotProductContent({
         const {id, images, name, rating, soldCount, price} = hotProduct;
         return (
           <ProductItem key={id}>
-            <Link href={`${API_ENDPOINTS.SHOP_DETAIL}/${id}`}>
+            <Link href={`${API_ENDPOINTS.PRODUCT}/${id}`}>
               <ImageContainer>
                 <ProductImage
                   src={images[0]}

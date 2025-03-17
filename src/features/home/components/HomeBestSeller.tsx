@@ -149,7 +149,7 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
             const {id, images, name} = bestSeller.product;
             const {categoryName} = bestSeller;
             return (
-              <ProductLink href={`${API_ENDPOINTS.SHOP_DETAIL}/${id}`} key={id}>
+              <ProductLink href={`${API_ENDPOINTS.PRODUCT}/${id}`} key={id}>
                 <Product>
                   <ProductImage
                     src={images[0]}

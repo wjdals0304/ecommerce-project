@@ -4,12 +4,11 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f5f7f8;
   padding: 25px 25px 25px 0;
 `;
 
-const FilterTitle = styled.h2`
-  font-size: 24px;
+const FilterTitle = styled.h3`
+  font-size: 18px;
   font-weight: bold;
   color: #001c30;
   padding-bottom: 10px;
@@ -44,13 +43,10 @@ const PriceDisplay = styled.div`
   font-size: 14px;
 `;
 
-export default function Price({
-  priceValue,
-  setPriceValue,
-}: {
-  priceValue: number;
-  setPriceValue: (value: number) => void;
-}) {
+export default function Price() {
+  const maxPrice = 9999999;
+  const [priceValue, setPriceValue] = useState<number>(maxPrice);
+
   return (
     <Container>
       <FilterTitle>가격</FilterTitle>
@@ -58,10 +54,12 @@ export default function Price({
         <RangeInput
           type="range"
           min={0}
-          max={9999999}
+          max={maxPrice}
           value={priceValue}
           name="priceMax"
-          onChange={e => setPriceValue(Number(e.target.value))}
+          onChange={e => {
+            setPriceValue(Number(e.target.value));
+          }}
         />
         <PriceDisplay>
           가격: {0}원 - {priceValue.toLocaleString('ko-KR')}원

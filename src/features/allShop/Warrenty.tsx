@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import {useState} from 'react';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f5f7f8;
   padding: 0px 25px 25px 0;
 `;
 
-const FilterTitle = styled.h2`
-  font-size: 24px;
+const FilterTitle = styled.h3`
+  font-size: 18px;
   font-weight: bold;
   color: #001c30;
   margin-bottom: 16px;
@@ -46,13 +46,8 @@ export const WarrentyOptions = {
   LIFETIME: {name: '평생', value: 'LIFETIME'},
 };
 
-export default function Warrenty({
-  selectedWarrenty,
-  setSelectedWarrenty,
-}: {
-  selectedWarrenty: string;
-  setSelectedWarrenty: (warrenty: string) => void;
-}) {
+export default function Warrenty() {
+  const [selectedWarrenty, setSelectedWarrenty] = useState<string>('ALL');
   const handleWarrentyChange = (warrenty: string) => {
     setSelectedWarrenty(warrenty);
   };

@@ -17,7 +17,7 @@ export default function AllProductContent({shopData}: AllProductProps) {
       {products.map(({id, name, price, soldCount, images}) => (
         <ProductItem
           key={id}
-          onClick={() => router.push(`${API_ENDPOINTS.SHOP_DETAIL}/${id}`)}
+          onClick={() => router.push(`${API_ENDPOINTS.PRODUCT}/${id}`)}
         >
           <ImageContainer>
             <ProductImage src={images[0]} alt={name} width={250} height={250} />

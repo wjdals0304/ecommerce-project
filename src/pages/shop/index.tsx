@@ -1,41 +1,47 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import AllProduct from '@/features/allShop/Shop';
 import {ShopData} from '@/types/shop';
 import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {QueryClient, dehydrate} from '@tanstack/react-query';
+import {GetServerSidePropsContext} from 'next';
+import {
+  createQueryKeyShopData,
+  createQueryParams,
+  fetchShopData,
+} from '@/hooks/useShopData';
+import Shop from '@/features/allShop/Shop';
 
-interface ShopPageProps {
-  shopData: ShopData;
-}
-
-export default function ShopPage({shopData}: ShopPageProps) {
+export default function ShopPage() {
   return (
     <>
       <Navigation />
-      <AllProduct shopData={shopData} />
+      <Shop />
       <Footer />
     </>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const queryClient = new QueryClient();
+  const queryParams = createQueryParams(context.query);
+
   try {
-    const response = await getRequest<ShopData>({
-      url: API_ENDPOINTS.SHOP_ALL,
+    await queryClient.fetchQuery({
+      queryKey: createQueryKeyShopData(queryParams),
+      queryFn: () => fetchShopData(queryParams),
     });
-    const shopData = response.data;
 
     return {
       props: {
-        shopData,
+        dehydratedState: dehydrate(queryClient),
       },
     };
   } catch (error) {
+    console.error('Shop data fetch error:', error);
     return {
       props: {
-        shopData: null,
-        error: '데이터를 가져오는데 실패했습니다.',
+        dehydratedState: null,
       },
     };
   }

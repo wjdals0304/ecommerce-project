@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Search from '@/components/Search';
 import FilterProduct, {FilterProductEnum} from './FilterProduct';
 import AllProduct from './AllProduct';
-import RelatedProduct from './RelatedProduct';
 import {ShopData} from '@/types/shop';
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
@@ -10,6 +9,8 @@ import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Pagination from './Pagination';
 import {WarrentyOptions} from './Warrenty';
+import {useQuery} from '@tanstack/react-query';
+import {useShopData} from '@/hooks/useShopData';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -25,50 +26,21 @@ const ProductContainer = styled.div`
   display: flex;
 `;
 
-interface ShopProps {
-  shopData: ShopData;
-}
-
-export default function Shop({shopData}: ShopProps) {
+export default function Shop() {
+  const {data: shopData} = useShopData();
   const router = useRouter();
-  const {categories, totalPages} = shopData;
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedWarrenty, setSelectedWarrenty] = useState<string>(
-    WarrentyOptions.ALL.value,
-  );
-  const [selectedCategory, setSelectedCategory] = useState<number>(
-    FilterProductEnum.ALL,
-  );
-  const [priceValue, setPriceValue] = useState(9999999);
-
-  useEffect(() => {
-    const {categoryId} = router.query;
-    if (categoryId) {
-      setSelectedCategory(Number(categoryId));
-    }
-  }, [router.query]);
-
-  const handleFilterChange = async (filterParams: any) => {
-    try {
-      router.push(
-        {
-          pathname: router.pathname,
-          query: filterParams,
-        }
-      );
-    } catch (error) {
-      console.error('필터링 오류:', error);
-    }
+  const handleFilterChange = (filterParams: any) => {
+    router.push({
+      pathname: router.pathname,
+      query: {...router.query, ...filterParams},
+    });
   };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     handleFilterChange({
       page: String(page),
-      categoryId: String(selectedCategory),
-      warranty: selectedWarrenty,
-      priceMin: String(0),
-      priceMax: String(priceValue),
     });
   };
 
@@ -77,23 +49,16 @@ export default function Shop({shopData}: ShopProps) {
       <Search />
       <InnerContainer>
         <ProductContainer>
-          <FilterProduct
-            categories={categories}
-            onFilterChange={handleFilterChange}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            selectedWarrenty={selectedWarrenty}
-            setSelectedWarrenty={setSelectedWarrenty}
-            priceValue={priceValue}
-            setPriceValue={setPriceValue}
-          />
+          <FilterProduct onFilterChange={handleFilterChange} />
           <div>
             <AllProduct shopData={shopData} />
+            {shopData.totalPages > 1 && (
             <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
+                currentPage={currentPage}
+                totalPages={shopData.totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
           </div>
         </ProductContainer>
       </InnerContainer>
