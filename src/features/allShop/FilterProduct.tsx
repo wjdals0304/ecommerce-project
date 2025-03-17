@@ -8,32 +8,22 @@ import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Link from 'next/link';
 import {useShopData} from '@/hooks/useShopData';
 import {useRouter} from 'next/router';
-const Container = styled.form`
+
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f5f7f8;
-`;
-
-const FilterTitle = styled.h2`
-  font-size: 24px;
-  font-weight: bold;
-  color: #001c30;
-  margin: 50px 25px 25px 0;
-`;
-
-const CategoryContainer = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 const CategoryItem = styled.div`
   display: flex;
   flex-direction: column;
   list-style: none;
-  margin: 0px 25px 25px 0;
+  margin: 50px 25px 25px 0;
   background-color: #ffffff;
   width: 291px;
   height: auto;
+  border-radius: 10px;
 `;
 
 const CategoryTitle = styled.div`
@@ -67,11 +57,23 @@ const FilterButton = styled.button`
   border-radius: 25px;
   font-size: 16px;
   font-weight: bold;
-  width: 291px;
+  width: 250px;
   height: 49px;
   margin: 0px 25px 25px 0;
   cursor: pointer;
 `;
+
+const FilterContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 291px;
+  height: 450px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+`;
+
 interface FilterProductProps {
   onFilterChange: (filterParams: any) => void;
 }
@@ -104,21 +106,31 @@ export default function FilterProduct({onFilterChange}: FilterProductProps) {
   };
 
   return (
-    <Container onSubmit={handleFilterSubmit} method="get">
-      <FilterTitle>상품 필터</FilterTitle>
+    <Container>
       <CategoryItem>
         <CategoryTitle>카테고리</CategoryTitle>
         <ul>
           {categories.map(({id, name}) => (
             <CategoryOption key={id} isSelected={Number(categoryId) === id}>
-              <Link href={`${API_ENDPOINTS.SHOP_CATEGORY}${id}`}>{name}</Link>
+              <Link
+                href={{
+                  pathname: API_ENDPOINTS.SHOP,
+                  query: {
+                    categoryId: id,
+                  },
+                }}
+              >
+                {name}
+              </Link>
             </CategoryOption>
           ))}
         </ul>
       </CategoryItem>
-      <Price />
-      <Warrenty />
-      <FilterButton>필터 적용</FilterButton>
+      <FilterContainer onSubmit={handleFilterSubmit} method="get">
+        <Price />
+        <Warrenty />
+        <FilterButton>필터 적용</FilterButton>
+      </FilterContainer>
     </Container>
   );
 }

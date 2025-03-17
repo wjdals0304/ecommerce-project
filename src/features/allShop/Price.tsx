@@ -4,12 +4,11 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f5f7f8;
   padding: 25px 25px 25px 0;
 `;
 
-const FilterTitle = styled.h2`
-  font-size: 24px;
+const FilterTitle = styled.h3`
+  font-size: 18px;
   font-weight: bold;
   color: #001c30;
   padding-bottom: 10px;
