@@ -7,6 +7,8 @@ import profileIcon from 'public/images/home/profile.svg';
 import menuIcon from 'public/images/home/menu.svg';
 import {usePathname} from 'next/navigation';
 import {useAuthStore} from '@/store/authStore';
+import CategoryMenuContainer from './CategoryMenu';
+import {useState, useRef} from 'react';
 
 const Container = styled.div`
   background-color: #001c3d;
@@ -20,23 +22,6 @@ const Nav = styled.nav`
   max-width: 1240px;
   margin: 0 auto;
   height: 54px;
-`;
-
-const AllCategory = styled.div`
-  margin-right: 40px;
-  color: #001c3d;
-  background-color: #f4ce14;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0px 25px;
-  font-weight: bold;
-
-  a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
 `;
 
 const NavList = styled.ul`
@@ -83,19 +68,41 @@ const NAV_ITEMS: NavItem[] = [
   {title: '문의', href: '/contact'},
 ];
 
+interface CategoryItem {
+  id: number;
+  title: string;
+  href: string;
+}
+
+const CATEGORIES: Record<number, string> = {
+  1: '스마트폰',
+  2: '디지털 카메라',
+  3: '게임 악세사리',
+  4: '노트북 및 랩탑',
+  5: '컴퓨터/PC',
+};
+
+const getCategoryItems = (): CategoryItem[] => {
+  return Object.entries(CATEGORIES).map(([id, title]) => ({
+    id: Number(id),
+    title,
+    href: `/shop/category?categoryId=${id}`,
+  }));
+};
+
 function Navigation() {
   const pathname = usePathname();
   const {isAuthenticated, user} = useAuthStore();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const categoryRef = useRef<HTMLDivElement>(null);
+  const mouseDown = 'mousedown';
+
+  const categoryItems = getCategoryItems();
 
   return (
     <Container>
       <Nav>
-        <AllCategory>
-          <a>
-            <Image src={menuIcon} alt="menu" />
-            전체 카테고리
-          </a>
-        </AllCategory>
+        <CategoryMenuContainer />
         <NavList>
           {NAV_ITEMS.map((item, index) => (
             <NavItem active={pathname === item.href} key={index}>

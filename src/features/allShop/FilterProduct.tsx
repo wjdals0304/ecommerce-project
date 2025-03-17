@@ -5,7 +5,7 @@ import {Category} from '@/types/shop';
 import {useState} from 'react';
 import {formDataEntries, getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
-
+import Link from 'next/link';
 const Container = styled.form`
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ const CategoryContainer = styled.div`
   flex-direction: column;
 `;
 
-const CategoryItem = styled.ul`
+const CategoryItem = styled.div`
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -34,7 +34,7 @@ const CategoryItem = styled.ul`
   height: auto;
 `;
 
-const CategoryTitle = styled.li`
+const CategoryTitle = styled.div`
   font-size: 18px;
   font-weight: bold;
   color: #001c30;
@@ -95,9 +95,6 @@ export default function FilterProduct({
   priceValue,
   setPriceValue,
 }: FilterProductProps) {
-  const handleCategoryClick = (categoryId: number) => {
-    setSelectedCategory(categoryId);
-  };
 
   const handleFilterSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -120,15 +117,16 @@ export default function FilterProduct({
       <FilterTitle>상품 필터</FilterTitle>
       <CategoryItem>
         <CategoryTitle>카테고리</CategoryTitle>
-        {categories.map(({id, name}) => (
-          <CategoryOption
-            key={id}
-            onClick={() => handleCategoryClick(id)}
-            isSelected={selectedCategory === id}
-          >
-            {name}
-          </CategoryOption>
-        ))}
+        <ul>
+          {categories.map(({id, name}) => (
+            <CategoryOption
+              key={id}
+              isSelected={selectedCategory === id}
+            >
+              <Link href={`/shop/category?categoryId=${id}`}>{name}</Link>
+            </CategoryOption>
+          ))}
+        </ul>
       </CategoryItem>
       <Price priceValue={priceValue} setPriceValue={setPriceValue} />
       <Warrenty
