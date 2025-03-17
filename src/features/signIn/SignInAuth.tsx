@@ -106,12 +106,12 @@ export default function SignInAuth() {
         data: {session},
       } = await supabase.auth.getSession();
 
-      if (session?.provider_token) {
+      if (session?.access_token) {
         try {
           const response = await postRequest<User>({
             url: API_ENDPOINTS.AUTH_SIGNUP_GOOGLE,
             data: {
-              access_token: session.provider_token,
+              access_token: session.access_token,
               provider: loginMethod,
             },
           });
