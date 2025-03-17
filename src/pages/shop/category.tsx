@@ -13,19 +13,15 @@ import {
   createQueryParams,
   fetchShopData,
 } from '@/hooks/useShopData';
-import {dehydrate, HydrationBoundary, QueryClient} from '@tanstack/react-query';
+import {dehydrate, QueryClient} from '@tanstack/react-query';
 
-interface ShopPageProps {
-  dehydratedState: any;
-}
-
-export default function ShopPage({dehydratedState}: ShopPageProps) {
+export default function ShopPage() {
   return (
-    <HydrationBoundary state={dehydratedState}>
+    <>
       <Navigation />
       <AllProduct />
       <Footer />
-    </HydrationBoundary>
+    </>
   );
 }
 
