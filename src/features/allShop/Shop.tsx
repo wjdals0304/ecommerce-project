@@ -30,40 +30,25 @@ export default function Shop() {
   const {data: shopData} = useShopData();
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedWarrenty, setSelectedWarrenty] = useState<string>(
-    WarrentyOptions.ALL.value,
-  );
-  const [selectedCategory, setSelectedCategory] = useState<number>(
-    FilterProductEnum.ALL,
-  );
-  const [priceValue, setPriceValue] = useState(9999999);
 
-  useEffect(() => {
-    const {categoryId} = router.query;
-    if (categoryId) {
-      setSelectedCategory(Number(categoryId));
-    }
-  }, [router.query]);
+  // useEffect(() => {
+  //   const {categoryId} = router.query;
+  //   if (categoryId) {
+  //     setSelectedCategory(Number(categoryId));
+  //   }
+  // }, [router.query]);
 
-  const handleFilterChange = async (filterParams: any) => {
-    try {
-      router.push({
-        pathname: router.pathname,
-        query: filterParams,
-      });
-    } catch (error) {
-      console.error('필터링 오류:', error);
-    }
+  const handleFilterChange = (filterParams: any) => {
+    router.push({
+      pathname: router.pathname,
+      query: {...router.query, ...filterParams},
+    });
   };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     handleFilterChange({
       page: String(page),
-      categoryId: String(selectedCategory),
-      warranty: selectedWarrenty,
-      priceMin: String(0),
-      priceMax: String(priceValue),
     });
   };
 
@@ -72,15 +57,7 @@ export default function Shop() {
       <Search />
       <InnerContainer>
         <ProductContainer>
-          <FilterProduct
-            onFilterChange={handleFilterChange}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            selectedWarrenty={selectedWarrenty}
-            setSelectedWarrenty={setSelectedWarrenty}
-            priceValue={priceValue}
-            setPriceValue={setPriceValue}
-          />
+          <FilterProduct onFilterChange={handleFilterChange} />
           <div>
             <AllProduct shopData={shopData} />
             <Pagination

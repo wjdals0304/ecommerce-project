@@ -28,8 +28,6 @@ export const fetchShopData = async (queryParams: ShopDataParams) => {
     });
     return response.data;
   } catch (error) {
-    console.log('error');
-    console.log(error);
     throw new Error('배송 정보를 불러오는데 실패했습니다.');
   }
 };

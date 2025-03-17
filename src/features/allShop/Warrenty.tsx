@@ -46,13 +46,8 @@ export const WarrentyOptions = {
   LIFETIME: {name: '평생', value: 'LIFETIME'},
 };
 
-export default function Warrenty({
-  selectedWarrenty,
-  setSelectedWarrenty,
-}: {
-  selectedWarrenty: string;
-  setSelectedWarrenty: (warrenty: string) => void;
-}) {
+export default function Warrenty() {
+  const [selectedWarrenty, setSelectedWarrenty] = useState<string>('ALL');
   const handleWarrentyChange = (warrenty: string) => {
     setSelectedWarrenty(warrenty);
   };

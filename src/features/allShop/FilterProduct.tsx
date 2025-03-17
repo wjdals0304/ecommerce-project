@@ -6,7 +6,8 @@ import {useState} from 'react';
 import {formDataEntries, getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import Link from 'next/link';
-import { useShopData } from '@/hooks/useShopData';
+import {useShopData} from '@/hooks/useShopData';
+import {useRouter} from 'next/router';
 const Container = styled.form`
   display: flex;
   flex-direction: column;
@@ -69,32 +70,23 @@ const FilterButton = styled.button`
   width: 291px;
   height: 49px;
   margin: 0px 25px 25px 0;
+  cursor: pointer;
 `;
 interface FilterProductProps {
   onFilterChange: (filterParams: any) => void;
-  selectedCategory: number;
-  setSelectedCategory: (categoryId: number) => void;
-  selectedWarrenty: string;
-  setSelectedWarrenty: (warrenty: string) => void;
-  priceValue: number;
-  setPriceValue: (price: number) => void;
 }
 
 export enum FilterProductEnum {
   ALL = 0,
 }
 
-export default function FilterProduct({
-  onFilterChange,
-  selectedCategory,
-  setSelectedCategory,
-  selectedWarrenty,
-  setSelectedWarrenty,
-  priceValue,
-  setPriceValue,
-}: FilterProductProps) {
-
-  const {data: {categories}, isLoading} = useShopData();
+export default function FilterProduct({onFilterChange}: FilterProductProps) {
+  const router = useRouter();
+  const {categoryId, warranty, priceMin, priceMax} = router.query;
+  const {
+    data: {categories},
+    isLoading,
+  } = useShopData();
 
   const handleFilterSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -103,12 +95,11 @@ export default function FilterProduct({
 
     const data = formDataEntries(event);
     const filterParams = {
-      categoryId: selectedCategory,
+      categoryId: categoryId || 0,
       priceMin: 0,
       priceMax: data.priceMax,
-      warranty: selectedWarrenty,
+      warranty: data.warranty || 'ALL',
     };
-
     onFilterChange(filterParams);
   };
 
@@ -119,20 +110,14 @@ export default function FilterProduct({
         <CategoryTitle>카테고리</CategoryTitle>
         <ul>
           {categories.map(({id, name}) => (
-            <CategoryOption
-              key={id}
-              isSelected={selectedCategory === id}
-            >
+            <CategoryOption key={id} isSelected={Number(categoryId) === id}>
               <Link href={`${API_ENDPOINTS.SHOP_CATEGORY}${id}`}>{name}</Link>
             </CategoryOption>
           ))}
         </ul>
       </CategoryItem>
-      <Price priceValue={priceValue} setPriceValue={setPriceValue} />
-      <Warrenty
-        selectedWarrenty={selectedWarrenty}
-        setSelectedWarrenty={setSelectedWarrenty}
-      />
+      <Price />
+      <Warrenty />
       <FilterButton>필터 적용</FilterButton>
     </Container>
   );
