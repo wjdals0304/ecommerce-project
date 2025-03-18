@@ -6,7 +6,7 @@ import HomeCategory from './components/HomeCategory';
 import HomeProme from './components/HomePromo';
 import HomeBestSeller from './components/HomeBestSeller';
 import HomeHotProduct from './components/HomeHotProduct';
-import HomeBlog from './components/homeBlog';
+import HomeBlog from './components/HomeBlog';
 import {HomeData} from '../../types/home';
 
 const Container = styled.div`
