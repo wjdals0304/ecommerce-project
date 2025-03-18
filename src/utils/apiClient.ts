@@ -92,7 +92,7 @@ interface RequestConfig {
 export const postRequest = async <T>({
   url,
   data = {},
-  config = {},  
+  config = {},
 }: {
   url: string;
   data?: any;

@@ -43,7 +43,7 @@ function HomeCategory({categories}: {categories: Category[]}) {
   return (
     <CategoryList>
       {categories.map(({id, name}) => (
-        <Link href={`${API_ENDPOINTS.SHOP_CATEGORY}${id}`} key={id}>
+        <Link href={`${API_ENDPOINTS.SHOP}?categoryId=${id}`} key={id}>
           <CategoryItem>
             <Image src="" alt="카테고리 이미지" width={94} height={70} />
             <CategoryTitle>{name}</CategoryTitle>
