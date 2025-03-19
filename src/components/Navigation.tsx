@@ -86,7 +86,7 @@ const getCategoryItems = (): CategoryItem[] => {
   return Object.entries(CATEGORIES).map(([id, title]) => ({
     id: Number(id),
     title,
-    href: `/shop/category?categoryId=${id}`,
+    href: `/shop?categoryId=${id}`,
   }));
 };
 

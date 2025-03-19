@@ -74,7 +74,7 @@ const getCategoryItems = (): CategoryItem[] => {
     href: {
       pathname: API_ENDPOINTS.SHOP,
       query: {
-        category: id,
+        categoryId: id,
       },
     },
   }));
