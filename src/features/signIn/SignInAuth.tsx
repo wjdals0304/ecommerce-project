@@ -9,6 +9,7 @@ import {toast} from 'react-toastify';
 import {postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {User} from '@/types/user';
+import {setAuthCookie} from '@/utils/cookieUtils';
 
 const Container = styled.div`
   display: flex;
@@ -117,6 +118,7 @@ export default function SignInAuth() {
           });
 
           setAuth(true, response.data);
+          setAuthCookie(true);
           toast.success('구글 로그인 성공');
           router.push('/');
         } catch (serverError) {

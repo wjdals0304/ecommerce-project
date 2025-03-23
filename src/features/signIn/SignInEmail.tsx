@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import {useState} from 'react';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {formDataEntries, postRequest, getToken} from '@/utils/apiClient';
-import {setCookie} from 'nookies';
 import {useRouter} from 'next/router';
 import Email from '../signUp/signUpInput/Email';
 import Password from '../signUp/signUpInput/Password';
 import {useAuthStore} from '@/store/authStore';
 import {User} from '@/types/user';
+import {setAuthCookie} from '@/utils/cookieUtils';
+
 const Container = styled.form`
   display: flex;
   flex-direction: column;
@@ -89,6 +90,7 @@ function SignInEmail() {
       });
 
       setAuth(true, response.data);
+      setAuthCookie(true);
       router.push('/');
     } catch (error) {
       console.log(error);

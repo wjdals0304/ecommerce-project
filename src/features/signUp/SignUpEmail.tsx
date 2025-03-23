@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import {API_ENDPOINTS} from '../../config/apiEndPoints';
-import {useState} from 'react';
-import {useRouter} from 'next/router';
-import FullName from './signUpInput/FullName';
-import Email from './signUpInput/Email';
-import PhoneNumber from './signUpInput/PhoneNumber';
-import Password from './signUpInput/Password';
-import ErrorModal from '../../components/PopUpModal';
-import Cookies from 'js-cookie';
-import {postRequest, formDataEntries, getToken} from '@/utils/apiClient';
-import {setCookie} from 'nookies';
-import {useAuthStore} from '@/store/authStore';
+import { useAuthStore } from '@/store/authStore';
 import { User } from '@/types/user';
+import { formDataEntries, postRequest } from '@/utils/apiClient';
+import { setAuthCookie } from '@/utils/cookieUtils';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import styled from 'styled-components';
+import ErrorModal from '../../components/PopUpModal';
+import { API_ENDPOINTS } from '../../config/apiEndPoints';
+import Email from './signUpInput/Email';
+import FullName from './signUpInput/FullName';
+import Password from './signUpInput/Password';
+import PhoneNumber from './signUpInput/PhoneNumber';
+
 const SignUpContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -84,6 +84,7 @@ export default function SignUpEmail() {
       });
   
       setAuth(true, response.data);
+      setAuthCookie(true);  
       router.push('/');
     } catch (error) {
       if (error.response.status === 409) {

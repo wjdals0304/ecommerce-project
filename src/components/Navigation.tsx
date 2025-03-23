@@ -1,14 +1,14 @@
-import styled from 'styled-components';
-import Link from 'next/link';
+import {useAuthStore} from '@/store/authStore';
 import Image from 'next/image';
-import heartIcon from 'public/images/home/heart.svg';
+import Link from 'next/link';
+import {usePathname} from 'next/navigation';
+import {parseCookies} from 'nookies';
 import bagIcon from 'public/images/home/bag.svg';
 import profileIcon from 'public/images/home/profile.svg';
-import menuIcon from 'public/images/home/menu.svg';
-import {usePathname} from 'next/navigation';
-import {useAuthStore} from '@/store/authStore';
+import {useEffect, useRef, useState} from 'react';
+import styled from 'styled-components';
 import CategoryMenuContainer from './CategoryMenu';
-import {useState, useRef} from 'react';
+import {getAuthCookie} from '@/utils/cookieUtils';
 
 const Container = styled.div`
   background-color: #001c3d;
@@ -92,12 +92,14 @@ const getCategoryItems = (): CategoryItem[] => {
 
 function Navigation() {
   const pathname = usePathname();
-  const {isAuthenticated, user} = useAuthStore();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const categoryRef = useRef<HTMLDivElement>(null);
-  const mouseDown = 'mousedown';
+  const {isAuthenticated, user, setAuth} = useAuthStore();
 
-  const categoryItems = getCategoryItems();
+  useEffect(() => {
+    const isAuth = getAuthCookie();
+    if (isAuth) {
+      setAuth(true, user);
+    }
+  }, []);
 
   return (
     <Container>
