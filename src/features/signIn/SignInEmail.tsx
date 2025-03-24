@@ -1,13 +1,13 @@
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {formDataEntries, postRequest, getToken} from '@/utils/apiClient';
-import {useRouter} from 'next/router';
-import Email from '../signUp/signUpInput/Email';
-import Password from '../signUp/signUpInput/Password';
 import {useAuthStore} from '@/store/authStore';
 import {User} from '@/types/user';
+import {formDataEntries, postRequest} from '@/utils/apiClient';
 import {setAuthCookie} from '@/utils/cookieUtils';
-import styled from 'styled-components';
+import {useRouter} from 'next/router';
 import {useState} from 'react';
+import styled from 'styled-components';
+import Email from '../signUp/signUpInput/Email';
+import Password from '../signUp/signUpInput/Password';
 
 const Container = styled.form`
   display: flex;

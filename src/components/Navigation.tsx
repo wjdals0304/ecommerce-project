@@ -1,14 +1,13 @@
 import {useAuthStore} from '@/store/authStore';
+import {getAuthCookie} from '@/utils/cookieUtils';
 import Image from 'next/image';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {parseCookies} from 'nookies';
 import bagIcon from 'public/images/home/bag.svg';
 import profileIcon from 'public/images/home/profile.svg';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect} from 'react';
 import styled from 'styled-components';
 import CategoryMenuContainer from './CategoryMenu';
-import {getAuthCookie} from '@/utils/cookieUtils';
 
 const Container = styled.div`
   background-color: #001c3d;
@@ -77,7 +76,7 @@ function Navigation() {
     if (isAuth) {
       setAuth(true, user);
     }
-  }, []);
+  }, [setAuth, user]);
 
   return (
     <Container>
