@@ -68,28 +68,6 @@ const NAV_ITEMS: NavItem[] = [
   {title: '문의', href: '/contact'},
 ];
 
-interface CategoryItem {
-  id: number;
-  title: string;
-  href: string;
-}
-
-const CATEGORIES: Record<number, string> = {
-  1: '스마트폰',
-  2: '디지털 카메라',
-  3: '게임 악세사리',
-  4: '노트북 및 랩탑',
-  5: '컴퓨터/PC',
-};
-
-const getCategoryItems = (): CategoryItem[] => {
-  return Object.entries(CATEGORIES).map(([id, title]) => ({
-    id: Number(id),
-    title,
-    href: `/shop?categoryId=${id}`,
-  }));
-};
-
 function Navigation() {
   const pathname = usePathname();
   const {isAuthenticated, user, setAuth} = useAuthStore();

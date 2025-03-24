@@ -2,7 +2,7 @@ import {GetServerSidePropsContext} from 'next';
 import {parseCookies} from 'nookies';
 
 export const getAuthHeaders = (context?: GetServerSidePropsContext) => {
-  let headers: Record<string, any> = {};
+  const headers: Record<string, any> = {};
 
   if (context) {
     const token = parseCookies(context).jwt;

@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import {useState} from 'react';
-import TabContent, {ShopDetailTabType} from './TabContent';
 import {ProductDescription, Review, Specification} from '@/types/shop';
+import styled from 'styled-components';
+import TabContent, {ShopDetailTabType} from './TabContent';
 const Container = styled.div`
   max-width: 1240px;
   height: auto;

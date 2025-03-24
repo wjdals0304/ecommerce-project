@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         profileData,
       },
     };
-  } catch (error) {
+  } catch {
     return {
       redirect: {
         destination: '/signin?redirect=/profile',

@@ -41,12 +41,6 @@ const Nickname = styled.span`
   color: #001c30;
 `;
 
-const Country = styled.span`
-  font-size: 16px;
-  font-weight: bold;
-  color: #8e96a4;
-`;
-
 const StarContainer = styled.div`
   display: flex;
   align-items: center;
@@ -57,18 +51,6 @@ const ReviewDate = styled.span`
   font-size: 16px;
   font-weight: medium;
   color: #8e96a4;
-`;
-
-const ReviewContent = styled.div`
-  font-size: 16px;
-  font-weight: medium;
-  color: #8e96a4;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 15px;
 `;
 
 const CommentContent = styled.div`

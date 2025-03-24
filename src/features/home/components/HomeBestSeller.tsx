@@ -1,10 +1,9 @@
-import Image from 'next/image';
-import styled from 'styled-components';
-import rightIcon from 'public/images/home/rightIcon.svg';
-import arrowIcon from 'public/images/home/arrow.svg';
-import {BestSeller} from '@/types/home';
-import Link from 'next/link';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {BestSeller} from '@/types/home';
+import Image from 'next/image';
+import Link from 'next/link';
+import rightIcon from 'public/images/home/rightIcon.svg';
+import styled from 'styled-components';
 
 const Section = styled.section`
   margin: 50px 0;

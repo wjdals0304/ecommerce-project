@@ -1,6 +1,5 @@
-import {useState} from 'react';
 import styled from 'styled-components';
-import {inputStyles, ErrorMessage} from '../signUpInput/CommonStyle';
+import {ErrorMessage, inputStyles} from '../signUpInput/CommonStyle';
 
 const FullNameInput = styled.input<{isError: boolean}>`
   ${inputStyles};

@@ -1,8 +1,7 @@
+import {ProductDescription, Review, Specification} from '@/types/shop';
 import DescriptionTab from './DescriptionTab';
-import DetailSpesificationTab from './DetailSpesificationTab';
 import DetailReviewTab from './DetailReviewTab';
-import styled from 'styled-components';
-import {Review, Specification, ProductDescription} from '@/types/shop';
+import DetailSpesificationTab from './DetailSpesificationTab';
 
 export enum ShopDetailTabType {
   Description = 'description',

@@ -1,10 +1,10 @@
-import {Product, ShopData} from '@/types/shop';
-import Image from 'next/image';
-import starIcon from 'public/images/home/star.svg';
-import heartDarkIcon from 'public/images/home/heartDark.svg';
-import styled from 'styled-components';
-import router, {useRouter} from 'next/router';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {ShopData} from '@/types/shop';
+import Image from 'next/image';
+import router from 'next/router';
+import heartDarkIcon from 'public/images/home/heartDark.svg';
+import starIcon from 'public/images/home/star.svg';
+import styled from 'styled-components';
 
 interface AllProductProps {
   shopData: ShopData;

@@ -1,15 +1,18 @@
-import styled from 'styled-components';
-import ShopProductImage from './ShopProductImage';
-import ShopProductDesc from './ShopProductDesc';
-import DetailProductTab from './DetailProductTab/DetailProductTab';
-import SearchBar from '../../components/Search';
-import {Review, ShopDetail as ShopDetailType} from '@/types/shop';
-import {ShopDetailTabType} from './DetailProductTab/TabContent';
-import {useState} from 'react';
-import router, {useRouter} from 'next/router';
-import {getRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {ReviewResponse} from '@/types/shop';
+import {
+  Review,
+  ReviewResponse,
+  ShopDetail as ShopDetailType,
+} from '@/types/shop';
+import {getRequest} from '@/utils/apiClient';
+import {useRouter} from 'next/router';
+import {useState} from 'react';
+import styled from 'styled-components';
+import SearchBar from '../../components/Search';
+import DetailProductTab from './DetailProductTab/DetailProductTab';
+import {ShopDetailTabType} from './DetailProductTab/TabContent';
+import ShopProductDesc from './ShopProductDesc';
+import ShopProductImage from './ShopProductImage';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -18,13 +21,6 @@ const Container = styled.div`
 const InnerContainer = styled.div`
   max-width: 1240px;
   margin: 0 auto;
-`;
-
-const ShopSection = styled.span`
-  font-size: 24px;
-  font-weight: bold;
-  margin: 15px auto;
-  display: block;
 `;
 
 const ShopProductContainer = styled.div`
@@ -42,9 +38,7 @@ export default function ShopDetail({
   shopDetailData: initialShopDetailData,
 }: ShopDetailProps) {
   const router = useRouter();
-  const [shopDetailData, setShopDetailData] = useState<ShopDetailType>(
-    initialShopDetailData,
-  );
+  const [shopDetailData] = useState<ShopDetailType>(initialShopDetailData);
   const [reviews, setReviews] = useState<Review[]>([]);
 
   const {product, specifications, descriptions} = shopDetailData;

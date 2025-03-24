@@ -1,14 +1,13 @@
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import Cart from '@/features/cart/Cart';
-import {getRequest, getStoredToken} from '@/utils/apiClient';
-import {parseCookies} from 'nookies';
+import Navigation from '@/components/Navigation';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {CartResponse} from '@/types/cart';
-import {GetServerSideProps} from 'next';
-import {dehydrate, QueryClient} from '@tanstack/react-query';
-import {HydrationBoundary} from '@tanstack/react-query';
+import Cart from '@/features/cart/Cart';
 import {queryKeyCart, useCartReload} from '@/hooks/useCartReload';
+import {CartResponse} from '@/types/cart';
+import {getRequest} from '@/utils/apiClient';
+import {dehydrate, HydrationBoundary, QueryClient} from '@tanstack/react-query';
+import {GetServerSideProps} from 'next';
+import {parseCookies} from 'nookies';
 
 interface CartProps {
   dehydratedState: any;

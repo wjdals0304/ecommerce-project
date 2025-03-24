@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-import {useState} from 'react';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {formDataEntries, postRequest, getToken} from '@/utils/apiClient';
 import {useRouter} from 'next/router';
@@ -8,6 +6,8 @@ import Password from '../signUp/signUpInput/Password';
 import {useAuthStore} from '@/store/authStore';
 import {User} from '@/types/user';
 import {setAuthCookie} from '@/utils/cookieUtils';
+import styled from 'styled-components';
+import {useState} from 'react';
 
 const Container = styled.form`
   display: flex;
@@ -17,26 +17,6 @@ const Container = styled.form`
   gap: 25px;
   margin: 43px auto 0;
   width: 584px;
-`;
-
-const FindPasswordContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  align-items: center;
-  gap: 5px;
-`;
-
-const FindPassword = styled.span`
-  font-size: 16px;
-  font-weight: medium;
-  color: #738088;
-`;
-
-const PasswordClickHere = styled.span`
-  font-size: 16px;
-  font-weight: medium;
-  color: #56af2c;
 `;
 
 const SignInButton = styled.button`

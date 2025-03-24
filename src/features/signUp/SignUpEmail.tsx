@@ -1,12 +1,12 @@
-import { useAuthStore } from '@/store/authStore';
-import { User } from '@/types/user';
-import { formDataEntries, postRequest } from '@/utils/apiClient';
-import { setAuthCookie } from '@/utils/cookieUtils';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import {useAuthStore} from '@/store/authStore';
+import {User} from '@/types/user';
+import {formDataEntries, postRequest} from '@/utils/apiClient';
+import {setAuthCookie} from '@/utils/cookieUtils';
+import {useRouter} from 'next/router';
+import {useState} from 'react';
 import styled from 'styled-components';
 import ErrorModal from '../../components/PopUpModal';
-import { API_ENDPOINTS } from '../../config/apiEndPoints';
+import {API_ENDPOINTS} from '../../config/apiEndPoints';
 import Email from './signUpInput/Email';
 import FullName from './signUpInput/FullName';
 import Password from './signUpInput/Password';
@@ -82,9 +82,9 @@ export default function SignUpEmail() {
         url: API_ENDPOINTS.AUTH_SIGNUP_EMAIL,
         data: formData,
       });
-  
+
       setAuth(true, response.data);
-      setAuthCookie(true);  
+      setAuthCookie(true);
       router.push('/');
     } catch (error) {
       if (error.response.status === 409) {

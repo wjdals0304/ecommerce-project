@@ -1,13 +1,11 @@
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {useShopData} from '@/hooks/useShopData';
+import {formDataEntries} from '@/utils/apiClient';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
 import styled from 'styled-components';
 import Price from './Price';
-import Warrenty, {WarrentyOptions} from './Warrenty';
-import {Category} from '@/types/shop';
-import {useState} from 'react';
-import {formDataEntries, getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import Link from 'next/link';
-import {createQueryParams, useShopData} from '@/hooks/useShopData';
-import {useRouter} from 'next/router';
+import Warrenty from './Warrenty';
 
 const Container = styled.div`
   display: flex;
@@ -99,7 +97,7 @@ export default function FilterProduct({onFilterChange}: FilterProductProps) {
       categoryId: categoryId || 0,
       priceMin: 0,
       priceMax: data.priceMax,
-      warranty: data.warranty || 'ALL',
+      warranty: data.warranty || FilterProductEnum.ALL,
     };
     onFilterChange(filterParams);
   };

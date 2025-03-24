@@ -66,47 +66,15 @@ const ProductDesc = styled.p`
   padding-bottom: 25px;
   border-bottom: 1px solid #8e96a4;
 `;
-
-const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 25px;
-  gap: 15px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #8e96a4;
-`;
-
-const InfoItemTitle = styled.span`
-  width: 112px;
-  display: inline-block;
-  color: #001c30;
-`;
-
-const InfoItem = styled.span`
-  font-size: 16px;
-  color: #8e96a4;
-`;
-
 export default function ShopProductDesc({
   shopDetailData,
 }: {
   shopDetailData: ShopDetailType;
 }) {
-  const {product, descriptions, specifications} = shopDetailData;
+  const {product} = shopDetailData;
 
-  const {
-    id,
-    name,
-    price,
-    originalPrice,
-    rating,
-    soldCount,
-    description,
-    stock,
-    warranty,
-    categoryId,
-    reviewCount,
-  } = product;
+  const {id, name, price, originalPrice, rating, description, reviewCount} =
+    product;
 
   return (
     <Container>

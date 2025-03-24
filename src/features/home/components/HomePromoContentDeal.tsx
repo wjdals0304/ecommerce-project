@@ -1,12 +1,11 @@
-import {FlashDeal} from '@/types/home';
-import bagIcon from 'public/images/home/bag.svg';
-import heartDarkIcon from 'public/images/home/heartDark.svg';
-import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
-import {postRequest} from '@/utils/apiClient';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {FlashDeal} from '@/types/home';
+import {postRequest} from '@/utils/apiClient';
+import Image from 'next/image';
+import Link from 'next/link';
+import bagIcon from 'public/images/home/bag.svg';
 import {toast} from 'react-toastify';
+import styled from 'styled-components';
 interface handleAddToCartProps {
   event: React.MouseEvent<HTMLButtonElement>;
   id: number;
@@ -205,16 +204,4 @@ const AddToCart = styled.button`
   justify-content: center;
   gap: 8px;
   font-weight: bold;
-`;
-
-const Wishlist = styled.button`
-  width: 40px;
-  height: 40px;
-  background: white;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;

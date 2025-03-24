@@ -1,16 +1,11 @@
-import styled from 'styled-components';
 import Search from '@/components/Search';
-import FilterProduct, {FilterProductEnum} from './FilterProduct';
-import AllProduct from './AllProduct';
-import {ShopData} from '@/types/shop';
-import {useRouter} from 'next/router';
-import {useEffect, useState} from 'react';
-import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import Pagination from './Pagination';
-import {WarrentyOptions} from './Warrenty';
-import {useQuery} from '@tanstack/react-query';
 import {useShopData} from '@/hooks/useShopData';
+import {useRouter} from 'next/router';
+import {useState} from 'react';
+import styled from 'styled-components';
+import AllProduct from './AllProduct';
+import FilterProduct from './FilterProduct';
+import Pagination from './Pagination';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -53,7 +48,7 @@ export default function Shop() {
           <div>
             <AllProduct shopData={shopData} />
             {shopData.totalPages > 1 && (
-            <Pagination
+              <Pagination
                 currentPage={currentPage}
                 totalPages={shopData.totalPages}
                 onPageChange={handlePageChange}

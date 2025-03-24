@@ -1,14 +1,8 @@
-import styled from 'styled-components';
-import gameIcon from 'public/images/home/game.svg';
-import smartphoneIcon from 'public/images/home/smartphone.svg';
-import laptopIcon from 'public/images/home/laptop.svg';
-import tvIcon from 'public/images/home/tv.svg';
-import cameraIcon from 'public/images/home/camera.svg';
-import moreIcon from 'public/images/home/more.svg';
-import Image from 'next/image';
-import {Category} from '@/types/shop';
-import Link from 'next/link';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {Category} from '@/types/shop';
+import Image from 'next/image';
+import Link from 'next/link';
+import styled from 'styled-components';
 
 const CategoryList = styled.ul`
   display: flex;

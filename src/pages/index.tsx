@@ -1,9 +1,9 @@
-import Navigation from '@/components/Navigation';
-import Home from '@/features/home/Home';
 import Footer from '@/components/Footer';
-import {getRequest} from '@/utils/apiClient';
-import {API_BASE_URL, API_ENDPOINTS} from '@/config/apiEndPoints';
+import Navigation from '@/components/Navigation';
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import Home from '@/features/home/Home';
 import {HomeData} from '@/types/home';
+import {getRequest} from '@/utils/apiClient';
 
 export default function HomePage({homeData}: {homeData: HomeData}) {
   return (
@@ -21,13 +21,13 @@ export async function getServerSideProps() {
       url: API_ENDPOINTS.HOME,
     });
     const homeData = response.data;
-    
+
     return {
       props: {
         homeData,
       },
     };
-  } catch (error) {
+  } catch {
     return {
       props: {
         homeData: null,

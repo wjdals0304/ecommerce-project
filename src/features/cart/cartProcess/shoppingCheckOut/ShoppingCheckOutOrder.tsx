@@ -94,14 +94,6 @@ const PaymentLabel = styled.label`
   color: #001c30;
 `;
 
-const PrivacyText = styled.p`
-  font-size: 14px;
-  color: #8e96a4;
-  margin-top: 15px;
-  padding: 10px;
-  line-height: 1.5;
-`;
-
 const ErrorMessage = styled.span`
   color: #ff0000;
   font-size: 12px;

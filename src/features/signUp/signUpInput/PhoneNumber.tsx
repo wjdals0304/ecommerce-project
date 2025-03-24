@@ -1,6 +1,5 @@
-import {useState} from 'react';
 import styled from 'styled-components';
-import {inputStyles, ErrorMessage} from './CommonStyle';
+import {ErrorMessage, inputStyles} from './CommonStyle';
 
 const PhoneNumberInput = styled.input<{isError: boolean}>`
   ${inputStyles};

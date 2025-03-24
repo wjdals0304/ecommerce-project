@@ -1,8 +1,7 @@
-import styled from 'styled-components';
+import {CartResponse} from '@/types/cart';
 import ShoppingCart from './shoppingCart/ShoppingCart';
 import ShoppingCheckOut from './shoppingCheckOut/ShoppingCheckOut';
 import ShoppingConfirm from './ShoppingConfirm';
-import {CartResponse} from '@/types/cart';
 
 export enum CartProcessTabType {
   ShoppingCart = 0,

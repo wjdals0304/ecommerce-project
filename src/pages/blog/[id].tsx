@@ -1,10 +1,9 @@
-import {useRouter} from 'next/router';
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import BlogDetail from '@/features/blogDetail/BlogDetail';
-import {getRequest} from '@/utils/apiClient';
+import Navigation from '@/components/Navigation';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import BlogDetail from '@/features/blogDetail/BlogDetail';
 import {BlogDetail as BlogDetailType} from '@/types/blog';
+import {getRequest} from '@/utils/apiClient';
 
 interface BlogPageProps {
   blogDetailData: BlogDetailType;

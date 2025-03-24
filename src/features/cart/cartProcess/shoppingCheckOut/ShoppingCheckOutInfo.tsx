@@ -1,14 +1,8 @@
-import {
-  Control,
-  FieldErrors,
-  UseFormHandleSubmit,
-  useController,
-  useFormContext,
-} from 'react-hook-form';
-import styled from 'styled-components';
-import {ShippingFormData} from './ShoppingCheckOut';
 import {useShipInfo} from '@/hooks/useShipInfo';
 import {useEffect} from 'react';
+import {useController, useFormContext} from 'react-hook-form';
+import styled from 'styled-components';
+import {ShippingFormData} from './ShoppingCheckOut';
 
 const InputContainer = styled.form`
   display: flex;

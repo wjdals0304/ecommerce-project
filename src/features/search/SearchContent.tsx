@@ -1,10 +1,10 @@
-import {Product, SearchResponse} from '@/types/shop';
-import Image from 'next/image';
-import starIcon from 'public/images/home/star.svg';
-import heartDarkIcon from 'public/images/home/heartDark.svg';
-import styled from 'styled-components';
-import Link from 'next/link';
 import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import {SearchResponse} from '@/types/shop';
+import Image from 'next/image';
+import Link from 'next/link';
+import heartDarkIcon from 'public/images/home/heartDark.svg';
+import starIcon from 'public/images/home/star.svg';
+import styled from 'styled-components';
 const LinkContainer = styled(Link)`
   text-decoration: none;
 `;

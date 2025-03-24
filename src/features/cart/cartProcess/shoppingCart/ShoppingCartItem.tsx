@@ -1,10 +1,10 @@
+import {API_ENDPOINTS} from '@/config/apiEndPoints';
 import {CartResponse} from '@/types/cart';
-import styled from 'styled-components';
+import {deleteRequest} from '@/utils/apiClient';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
 import Image from 'next/image';
 import trashIcon from 'public/images/shop/trash.svg';
-import {deleteRequest, getStoredToken} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {useMutation, useQueryClient} from '@tanstack/react-query';
+import styled from 'styled-components';
 
 const ProductItemContainer = styled.div`
   display: flex;

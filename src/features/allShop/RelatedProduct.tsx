@@ -110,7 +110,7 @@ export default function RelatedProduct() {
       <Title>Related Product</Title>
       <ProductContainer>
         {[1, 2, 3, 4].map(item => (
-          <ProductItem>
+          <ProductItem key={item}>
             <ImageContainer>
               <ProductImage src="" alt="Product" width={251} height={251} />
               <Rating>

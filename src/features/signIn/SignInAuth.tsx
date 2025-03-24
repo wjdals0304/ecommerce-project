@@ -88,7 +88,7 @@ export default function SignInAuth() {
       setIsLoading(true);
       const loginMethod = 'google';
 
-      const {data, error} = await supabase.auth.signInWithOAuth({
+      const {error} = await supabase.auth.signInWithOAuth({
         provider: loginMethod,
         options: {
           queryParams: {

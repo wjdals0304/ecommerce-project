@@ -78,7 +78,7 @@ const getCategoryItems = (): CategoryItem[] => {
       },
     },
   }));
-}; 
+};
 const categoryItems = getCategoryItems();
 
 export default function CategoryMenuContainer() {

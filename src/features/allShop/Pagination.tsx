@@ -1,6 +1,5 @@
 // src/components/Pagination.tsx
 import styled from 'styled-components';
-import Image from 'next/image';
 
 const PaginationContainer = styled.div`
   display: flex;
