@@ -1,15 +1,16 @@
+import { useAuthStore } from '@/store/authStore';
+import { User } from '@/types/user';
+import { formDataEntries, postRequest } from '@/utils/apiClient';
+import { setAuthCookie } from '@/utils/cookieUtils';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
-import {API_ENDPOINTS} from '../../config/apiEndPoints';
-import {useState} from 'react';
-import {useRouter} from 'next/router';
-import FullName from './signUpInput/FullName';
-import Email from './signUpInput/Email';
-import PhoneNumber from './signUpInput/PhoneNumber';
-import Password from './signUpInput/Password';
 import ErrorModal from '../../components/PopUpModal';
-import Cookies from 'js-cookie';
-import {postRequest, formDataEntries, getToken} from '@/utils/apiClient';
-import {setCookie} from 'nookies';
+import { API_ENDPOINTS } from '../../config/apiEndPoints';
+import Email from './signUpInput/Email';
+import FullName from './signUpInput/FullName';
+import Password from './signUpInput/Password';
+import PhoneNumber from './signUpInput/PhoneNumber';
 
 const SignUpContainer = styled.form`
   display: flex;
@@ -49,6 +50,7 @@ export default function SignUpEmail() {
   const [passwordValue, setPasswordValue] = useState('');
   const [phoneNumberValue, setPhoneNumberValue] = useState('');
   const [fullNameValue, setFullNameValue] = useState('');
+  const {setAuth} = useAuthStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -76,16 +78,13 @@ export default function SignUpEmail() {
     }
 
     try {
-      const response = await postRequest({
+      const response = await postRequest<User>({
         url: API_ENDPOINTS.AUTH_SIGNUP_EMAIL,
         data: formData,
       });
-      const token = getToken(response);
-      setCookie(null, 'jwt', token, {
-        maxAge: 60 * 60,
-        path: '/',
-        secure: process.env.NODE_ENV === 'production',
-      });
+  
+      setAuth(true, response.data);
+      setAuthCookie(true);  
       router.push('/');
     } catch (error) {
       if (error.response.status === 409) {
