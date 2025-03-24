@@ -50,6 +50,15 @@ const Product = styled.div`
   height: 148px;
   display: flex;
   cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const ProductImage = styled(Image)`
@@ -87,6 +96,20 @@ const ShopNowButton = styled.button`
   gap: 8px;
   width: fit-content;
   margin-top: 15px;
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #0a142f;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const NewProduct = styled.div`
@@ -98,6 +121,15 @@ const NewProduct = styled.div`
   position: relative;
   flex: none;
   width: 492px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const NewArrivalTag = styled.span`

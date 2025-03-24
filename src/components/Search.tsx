@@ -62,8 +62,17 @@ const SearchButton = styled.button`
   align-items: center;
   gap: 10px;
 
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
   &:hover {
-    background-color: #e0e0e0;
+    background: #0a142f;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 

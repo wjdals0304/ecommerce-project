@@ -28,7 +28,7 @@ async function handleAddToCart({ event, id }: handleAddToCartProps) {
     });
     toast.success('장바구니에 추가되었습니다!', {
       position: 'top-center',
-      autoClose: 5000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
       pauseOnHover: true,
@@ -80,6 +80,14 @@ export default function HomePromoContentDeal({
 
 const ProductLink = styled(Link)`
   border-radius: 15px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
   &:nth-child(1) {
     background-color: #fff5e6;
@@ -206,4 +214,16 @@ const AddToCart = styled.button`
   justify-content: center;
   gap: 8px;
   font-weight: bold;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #333;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;

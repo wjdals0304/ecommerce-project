@@ -25,6 +25,15 @@ const CategoryItem = styled.li`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const CategoryTitle = styled.span`
