@@ -12,22 +12,6 @@ const Container = styled.div`
   gap: 15px;
 `;
 
-const HeartButton = styled.button`
-  width: 57px;
-  height: 57px;
-  border-radius: 50%;
-  border: none;
-  background-color: #ffffff;
-`;
-
-const ShareButton = styled.button`
-  width: 57px;
-  height: 57px;
-  border-radius: 50%;
-  border: none;
-  background-color: #ffffff;
-`;
-
 const AddToCartButton = styled.button`
   width: 217px;
   height: 58px;

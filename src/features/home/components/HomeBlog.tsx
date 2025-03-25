@@ -93,8 +93,6 @@ const BlogItem = styled.div`
 `;
 
 const BlogImage = styled(Image)`
-  width: 100%;
-  height: 229px;
   object-fit: cover;
   background-color: #d7d7d7;
   border-radius: 8px;
