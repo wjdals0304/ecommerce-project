@@ -7,7 +7,7 @@ import { useAuthStore } from '@/store/authStore';
 import { supabase } from '@/utils/supabase';
 import { toast } from 'react-toastify';
 import { postRequest } from '@/utils/apiClient';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { User } from '@/types/user';
 import { setAuthCookie } from '@/utils/cookieUtils';
 

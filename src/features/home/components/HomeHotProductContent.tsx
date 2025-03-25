@@ -4,7 +4,7 @@ import { HotProduct } from '@/types/home';
 import starIcon from 'public/images/home/star.svg';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
 import Link from 'next/link';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 
 interface HomeHotProductContentProps {
   hotProducts: HotProduct[];

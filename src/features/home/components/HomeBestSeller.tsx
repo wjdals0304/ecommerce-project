@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { BestSeller } from '@/types/home';
 import Image from 'next/image';
 import Link from 'next/link';

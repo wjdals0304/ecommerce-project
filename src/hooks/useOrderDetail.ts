@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { OrderResponse } from '@/types/order';
 import { getRequest } from '@/utils/apiClient';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 
 const queryKeyOrderDetail = ['fetchOrderDetail'];
 

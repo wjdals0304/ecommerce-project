@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { shippingSchema } from '@/config/validationSchema';
 import { CartResponse } from '@/types/cart';
 import { postRequest } from '@/utils/apiClient';

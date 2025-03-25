@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { CartResponse } from '@/types/cart';
 import { deleteRequest } from '@/utils/apiClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';

@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import Cart from '@/features/cart/Cart';
 import { queryKeyCart, useCartReload } from '@/hooks/useCartReload';
 import { CartResponse } from '@/types/cart';

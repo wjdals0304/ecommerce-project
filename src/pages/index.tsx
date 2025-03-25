@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import Home from '@/features/home/Home';
 import { HomeData } from '@/types/home';
 import { getRequest } from '@/utils/apiClient';

@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { ShopData } from '@/types/shop';
 import Image from 'next/image';
 import router from 'next/router';

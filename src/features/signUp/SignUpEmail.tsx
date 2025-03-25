@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
 import ErrorModal from '../../components/PopUpModal';
-import { API_ENDPOINTS } from '../../config/apiEndPoint';
+import { API_ENDPOINTS } from '../../config/apiEndPoints';
 import Email from './signUpInput/Email';
 import FullName from './signUpInput/FullName';
 import Password from './signUpInput/Password';

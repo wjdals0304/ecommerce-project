@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import menuIcon from 'public/images/home/menu.svg';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { UrlObject } from 'url';
 const CategoryContainer = styled.div`
   position: relative;

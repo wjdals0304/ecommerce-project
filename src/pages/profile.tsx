@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import ProfileContent from '@/features/profile/ProfileContent';
 import { getRequest } from '@/utils/apiClient';
 import { ProfileData } from '@/types/home';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
 import { getAuthHeaders } from '@/utils/headerUtils';

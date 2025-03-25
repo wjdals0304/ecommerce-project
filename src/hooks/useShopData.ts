@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { ShopData } from '@/types/shop';
 import { getRequest } from '@/utils/apiClient';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';

@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
-import { API_ENDPOINTS } from '@/config/apiEndPoint';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import BlogDetail from '@/features/blogDetail/BlogDetail';
 import { BlogDetail as BlogDetailType } from '@/types/blog';
 import { getRequest } from '@/utils/apiClient';
