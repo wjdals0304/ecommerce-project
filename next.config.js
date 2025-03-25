@@ -4,7 +4,7 @@ module.exports = {
     styledComponents: true,
   },
   images: {
-    domains: ['example.com'],
+    domains: ['pub-5221b532a77b468a92745546bdc85a27.r2.dev', 'example.com'],
   },
 
   async rewrites() {
