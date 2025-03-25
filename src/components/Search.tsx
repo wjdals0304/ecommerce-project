@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/config/apiEndPoint';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import search from 'public/images/home/search.svg';

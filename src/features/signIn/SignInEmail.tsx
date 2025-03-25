@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/config/apiEndPoint';
 import { useAuthStore } from '@/store/authStore';
 import { User } from '@/types/user';
 import { formDataEntries, postRequest } from '@/utils/apiClient';

@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/config/apiEndPoint';
 import { postRequest } from '@/utils/apiClient';
 import Image from 'next/image';
 import Link from 'next/link';

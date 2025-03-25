@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/config/apiEndPoint';
 import { useShopData } from '@/hooks/useShopData';
 import { formDataEntries } from '@/utils/apiClient';
 import Link from 'next/link';

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ProfileData } from '@/types/home';
 import ProfileInfo from './ProfileInfo';
 import { postRequest } from '@/utils/apiClient';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/config/apiEndPoint';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 import { useAuthStore } from '@/store/authStore';
