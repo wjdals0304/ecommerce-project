@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {useState} from 'react';
+import { useState } from 'react';
 
 const Container = styled.div`
   width: 595px;
@@ -32,7 +32,7 @@ const Thumbnail = styled.img`
   }
 `;
 
-export default function ShopProductImage({images}: {images: string[]}) {
+export default function ShopProductImage({ images }: { images: string[] }) {
   const [mainImage, setMainImage] = useState(images[0]);
 
   return (

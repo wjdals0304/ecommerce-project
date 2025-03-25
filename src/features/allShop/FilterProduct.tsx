@@ -1,8 +1,8 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {useShopData} from '@/hooks/useShopData';
-import {formDataEntries} from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { useShopData } from '@/hooks/useShopData';
+import { formDataEntries } from '@/utils/apiClient';
 import Link from 'next/link';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Price from './Price';
 import Warrenty from './Warrenty';
@@ -32,10 +32,10 @@ const CategoryTitle = styled.div`
   border-bottom: 1px solid #001c30;
 `;
 
-const CategoryOption = styled.li<{isSelected: boolean}>`
+const CategoryOption = styled.li<{ isSelected: boolean }>`
   font-size: 16px;
-  color: ${({isSelected}) => (isSelected ? '#001c30' : '#8e96a4')};
-  font-weight: ${({isSelected}) => (isSelected ? 'bold' : 'normal')};
+  color: ${({ isSelected }) => (isSelected ? '#001c30' : '#8e96a4')};
+  font-weight: ${({ isSelected }) => (isSelected ? 'bold' : 'normal')};
   cursor: pointer;
   padding: 15px;
   width: 100%;
@@ -80,11 +80,11 @@ export enum FilterProductEnum {
   ALL = 0,
 }
 
-export default function FilterProduct({onFilterChange}: FilterProductProps) {
+export default function FilterProduct({ onFilterChange }: FilterProductProps) {
   const router = useRouter();
-  const {categoryId} = router.query;
+  const { categoryId } = router.query;
   const {
-    data: {categories},
+    data: { categories },
   } = useShopData();
 
   const handleFilterSubmit = async (
@@ -99,6 +99,7 @@ export default function FilterProduct({onFilterChange}: FilterProductProps) {
       priceMax: data.priceMax,
       warranty: data.warranty || FilterProductEnum.ALL,
     };
+
     onFilterChange(filterParams);
   };
 
@@ -107,7 +108,7 @@ export default function FilterProduct({onFilterChange}: FilterProductProps) {
       <CategoryItem>
         <CategoryTitle>카테고리</CategoryTitle>
         <ul>
-          {categories.map(({id, name}) => (
+          {categories.map(({ id, name }) => (
             <CategoryOption key={id} isSelected={Number(categoryId) === id}>
               <Link
                 href={{

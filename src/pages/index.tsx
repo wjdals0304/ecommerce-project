@@ -1,11 +1,11 @@
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import Home from '@/features/home/Home';
-import {HomeData} from '@/types/home';
-import {getRequest} from '@/utils/apiClient';
+import { HomeData } from '@/types/home';
+import { getRequest } from '@/utils/apiClient';
 
-export default function HomePage({homeData}: {homeData: HomeData}) {
+export default function HomePage({ homeData }: { homeData: HomeData }) {
   return (
     <>
       <Navigation />

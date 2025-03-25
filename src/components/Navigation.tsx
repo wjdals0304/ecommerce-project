@@ -1,11 +1,11 @@
-import {useAuthStore} from '@/store/authStore';
-import {getAuthCookie} from '@/utils/cookieUtils';
+import { useAuthStore } from '@/store/authStore';
+import { getAuthCookie } from '@/utils/cookieUtils';
 import Image from 'next/image';
 import Link from 'next/link';
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import bagIcon from 'public/images/home/bag.svg';
 import profileIcon from 'public/images/home/profile.svg';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import CategoryMenuContainer from './CategoryMenu';
 
@@ -32,9 +32,9 @@ const NavList = styled.ul`
   align-items: center;
 `;
 
-const NavItem = styled.div<{active: boolean}>`
+const NavItem = styled.div<{ active: boolean }>`
   display: inline-block;
-  ${({active}) =>
+  ${({ active }) =>
     active &&
     `
     background-color: #f4ce14;
@@ -43,11 +43,11 @@ const NavItem = styled.div<{active: boolean}>`
   `}
 `;
 
-const NavLink = styled(Link)<{active: boolean}>`
+const NavLink = styled(Link)<{ active: boolean }>`
   text-decoration: none;
   color: #ffffff;
 
-  ${({active}) =>
+  ${({ active }) =>
     active &&
     `
     color: #001c3d;
@@ -60,19 +60,20 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  {title: '홈', href: '/'},
-  {title: '소개', href: '/about'},
-  {title: '상품', href: '/shop'},
-  {title: '블로그', href: '/blog'},
-  {title: '문의', href: '/contact'},
+  { title: '홈', href: '/' },
+  { title: '소개', href: '/about' },
+  { title: '상품', href: '/shop' },
+  { title: '블로그', href: '/blog' },
+  { title: '문의', href: '/contact' },
 ];
 
 function Navigation() {
   const pathname = usePathname();
-  const {isAuthenticated, user, setAuth} = useAuthStore();
+  const { isAuthenticated, user, setAuth } = useAuthStore();
 
   useEffect(() => {
     const isAuth = getAuthCookie();
+
     if (isAuth) {
       setAuth(true, user);
     }
@@ -101,7 +102,7 @@ function Navigation() {
             </Link>
           ) : (
             <Link href="/signin">
-              <span style={{color: '#ffffff'}}>로그인</span>
+              <span style={{ color: '#ffffff' }}>로그인</span>
             </Link>
           )}
           {isAuthenticated ? (
@@ -112,7 +113,7 @@ function Navigation() {
             </Link>
           ) : (
             <Link href="/signup">
-              <span style={{color: '#ffffff'}}>회원가입</span>
+              <span style={{ color: '#ffffff' }}>회원가입</span>
             </Link>
           )}
         </NavList>

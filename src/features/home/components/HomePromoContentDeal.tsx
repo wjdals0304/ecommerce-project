@@ -1,10 +1,10 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {FlashDeal} from '@/types/home';
-import {postRequest} from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { FlashDeal } from '@/types/home';
+import { postRequest } from '@/utils/apiClient';
 import Image from 'next/image';
 import Link from 'next/link';
 import bagIcon from 'public/images/home/bag.svg';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 interface handleAddToCartProps {
   event: React.MouseEvent<HTMLButtonElement>;
@@ -15,7 +15,7 @@ interface HomePromoContentDealProps {
   flashDeal: FlashDeal;
 }
 
-async function handleAddToCart({event, id}: handleAddToCartProps) {
+async function handleAddToCart({ event, id }: handleAddToCartProps) {
   try {
     event.preventDefault();
     event.stopPropagation();
@@ -41,7 +41,9 @@ async function handleAddToCart({event, id}: handleAddToCartProps) {
 export default function HomePromoContentDeal({
   flashDeal,
 }: HomePromoContentDealProps) {
-  const {id, images, name, originalPrice, price, stock, soldCount} = flashDeal;
+  const { id, images, name, originalPrice, price, stock, soldCount } =
+    flashDeal;
+
   return (
     <ProductLink href={`${API_ENDPOINTS.PRODUCT}/${id}`} key={id}>
       <Product>
@@ -65,7 +67,7 @@ export default function HomePromoContentDeal({
             </ProgressBar>
           </ProgressContainer>
           <ButtonGroup>
-            <AddToCart onClick={event => handleAddToCart({event, id})}>
+            <AddToCart onClick={event => handleAddToCart({ event, id })}>
               <Image src={bagIcon} alt="bag" width={16} height={16} />
               장바구니
             </AddToCart>

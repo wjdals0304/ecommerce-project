@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Search from '../../components/Search';
 import BlogContent from './BlogContent';
-import {BlogResponse} from '@/types/blog';
+import { BlogResponse } from '@/types/blog';
 
 interface BlogProps {
   blogPosts: BlogResponse;
 }
 
-function Blog({blogPosts}: BlogProps) {
+function Blog({ blogPosts }: BlogProps) {
   return (
     <Container>
       <Search />

@@ -1,6 +1,6 @@
-import {ProductDescription, Review, Specification} from '@/types/shop';
+import { ProductDescription, Review, Specification } from '@/types/shop';
 import styled from 'styled-components';
-import TabContent, {ShopDetailTabType} from './TabContent';
+import TabContent, { ShopDetailTabType } from './TabContent';
 const Container = styled.div`
   max-width: 1240px;
   height: auto;
@@ -17,13 +17,13 @@ const TabContentContainer = styled.div`
   padding: 20px;
 `;
 
-const Tab = styled.div<{isActive: boolean}>`
+const Tab = styled.div<{ isActive: boolean }>`
   flex: 1;
   padding: 15px;
   text-align: center;
   cursor: pointer;
-  background-color: ${({isActive}) => (isActive ? '#F7D358' : 'D7D7D7')};
-  font-weight: ${({isActive}) => (isActive ? 'bold' : 'normal')};
+  background-color: ${({ isActive }) => (isActive ? '#F7D358' : 'D7D7D7')};
+  font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
 `;
 
 interface DetailProductTabProps {

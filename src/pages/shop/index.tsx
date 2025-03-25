@@ -6,8 +6,8 @@ import {
   createQueryParams,
   fetchShopData,
 } from '@/hooks/useShopData';
-import {QueryClient, dehydrate} from '@tanstack/react-query';
-import {GetServerSidePropsContext} from 'next';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+import { GetServerSidePropsContext } from 'next';
 
 export default function ShopPage() {
   return (
@@ -36,6 +36,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   } catch (error) {
     console.error('Shop data fetch error:', error);
+
     return {
       props: {
         dehydratedState: null,

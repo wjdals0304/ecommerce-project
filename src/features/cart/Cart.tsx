@@ -1,5 +1,5 @@
-import {useCartReload} from '@/hooks/useCartReload';
-import {CartResponse} from '@/types/cart';
+import { useCartReload } from '@/hooks/useCartReload';
+import { CartResponse } from '@/types/cart';
 import styled from 'styled-components';
 import Search from '../../components/Search';
 import CartProcessTab from './cartProcess/CartProcessTab';
@@ -31,8 +31,8 @@ const EmptyCartText = styled.p`
   font-size: 20px;
 `;
 
-export default function Cart({cart}: {cart: CartResponse}) {
-  const {data: updatedCart} = useCartReload();
+export default function Cart({ cart }: { cart: CartResponse }) {
+  const { data: updatedCart } = useCartReload();
   const useCart = updatedCart || cart;
 
   if (!useCart) {

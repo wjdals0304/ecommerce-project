@@ -7,7 +7,7 @@ import HomeProme from './components/HomePromo';
 import HomeBestSeller from './components/HomeBestSeller';
 import HomeHotProduct from './components/HomeHotProduct';
 import HomeBlog from './components/HomeBlog';
-import {HomeData} from '../../types/home';
+import { HomeData } from '../../types/home';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -25,7 +25,7 @@ interface HomeProps {
   homeData: HomeData;
 }
 
-function Home({homeData}: HomeProps) {
+function Home({ homeData }: HomeProps) {
   const {
     flashDeals,
     bestSellers,
@@ -34,6 +34,7 @@ function Home({homeData}: HomeProps) {
     eventBanners,
     categories,
   } = homeData;
+
   return (
     <Container>
       <Search />

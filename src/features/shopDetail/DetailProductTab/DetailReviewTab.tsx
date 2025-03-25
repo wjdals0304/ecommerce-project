@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import defaultProfile from 'public/images/shop/defaultProfile.svg';
 import starIcon from 'public/images/home/star.svg';
-import {Review} from '@/types/shop';
+import { Review } from '@/types/shop';
 
 const Container = styled.div`
   display: flex;
@@ -76,10 +76,10 @@ interface DetailReviewTabProps {
   reviews: Review[];
 }
 
-export default function DetailReviewTab({reviews}: DetailReviewTabProps) {
+export default function DetailReviewTab({ reviews }: DetailReviewTabProps) {
   return (
     <Container>
-      {reviews.map(({id, user_name, rating, comment, created_at}) => (
+      {reviews.map(({ id, user_name, rating, comment, created_at }) => (
         <div key={id}>
           <ReviewContainer>
             <ProfileSection>

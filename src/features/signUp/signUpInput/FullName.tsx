@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {ErrorMessage, inputStyles} from '../signUpInput/CommonStyle';
+import { ErrorMessage, inputStyles } from '../signUpInput/CommonStyle';
 
-const FullNameInput = styled.input<{isError: boolean}>`
+const FullNameInput = styled.input<{ isError: boolean }>`
   ${inputStyles};
 `;
 
@@ -25,6 +25,7 @@ export default function FullName({
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isValid = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣\s]*$/.test(value);
+
     setFullNameValue(value);
     setFullNameError(isValid ? '' : '이름은 문자만 포함할 수 있습니다.');
   };

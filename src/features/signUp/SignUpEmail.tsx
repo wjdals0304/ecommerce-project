@@ -1,12 +1,12 @@
-import {useAuthStore} from '@/store/authStore';
-import {User} from '@/types/user';
-import {formDataEntries, postRequest} from '@/utils/apiClient';
-import {setAuthCookie} from '@/utils/cookieUtils';
-import {useRouter} from 'next/router';
-import {useState} from 'react';
+import { useAuthStore } from '@/store/authStore';
+import { User } from '@/types/user';
+import { formDataEntries, postRequest } from '@/utils/apiClient';
+import { setAuthCookie } from '@/utils/cookieUtils';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 import ErrorModal from '../../components/PopUpModal';
-import {API_ENDPOINTS} from '../../config/apiEndPoints';
+import { API_ENDPOINTS } from '../../config/apiEndPoints';
 import Email from './signUpInput/Email';
 import FullName from './signUpInput/FullName';
 import Password from './signUpInput/Password';
@@ -50,7 +50,7 @@ export default function SignUpEmail() {
   const [passwordValue, setPasswordValue] = useState('');
   const [phoneNumberValue, setPhoneNumberValue] = useState('');
   const [fullNameValue, setFullNameValue] = useState('');
-  const {setAuth} = useAuthStore();
+  const { setAuth } = useAuthStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

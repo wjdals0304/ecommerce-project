@@ -1,4 +1,4 @@
-import {CartResponse} from '@/types/cart';
+import { CartResponse } from '@/types/cart';
 import styled from 'styled-components';
 import ShoppingCartItem from '../shoppingCart/ShoppingCartItem';
 import ShoppingCartTotal from '../shoppingCart/ShoppingCartTotal';

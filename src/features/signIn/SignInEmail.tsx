@@ -1,10 +1,10 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {useAuthStore} from '@/store/authStore';
-import {User} from '@/types/user';
-import {formDataEntries, postRequest} from '@/utils/apiClient';
-import {setAuthCookie} from '@/utils/cookieUtils';
-import {useRouter} from 'next/router';
-import {useState} from 'react';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { useAuthStore } from '@/store/authStore';
+import { User } from '@/types/user';
+import { formDataEntries, postRequest } from '@/utils/apiClient';
+import { setAuthCookie } from '@/utils/cookieUtils';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Email from '../signUp/signUpInput/Email';
 import Password from '../signUp/signUpInput/Password';
@@ -45,7 +45,7 @@ function SignInEmail() {
   const [showEmailErrorBorder, setShowEmailErrorBorder] = useState(false);
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
-  const {setAuth} = useAuthStore();
+  const { setAuth } = useAuthStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

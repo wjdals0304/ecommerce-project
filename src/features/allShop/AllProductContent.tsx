@@ -1,5 +1,5 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {ShopData} from '@/types/shop';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { ShopData } from '@/types/shop';
 import Image from 'next/image';
 import router from 'next/router';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
@@ -10,11 +10,12 @@ interface AllProductProps {
   shopData: ShopData;
 }
 
-export default function AllProductContent({shopData}: AllProductProps) {
-  const {products} = shopData;
+export default function AllProductContent({ shopData }: AllProductProps) {
+  const { products } = shopData;
+
   return (
     <ProductContainer>
-      {products.map(({id, name, price, soldCount, images}) => (
+      {products.map(({ id, name, price, soldCount, images }) => (
         <ProductItem
           key={id}
           onClick={() => router.push(`${API_ENDPOINTS.PRODUCT}/${id}`)}

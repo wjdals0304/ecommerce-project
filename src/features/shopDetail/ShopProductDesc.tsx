@@ -4,7 +4,7 @@ import starIcon from 'public/images/home/star.svg';
 import QuantitySelector from './QuantitySelector';
 import ShippingMethod from './ShippingMethod';
 import ShopProductBuy from './ShopProductBuy';
-import {ShopDetail as ShopDetailType} from '@/types/shop';
+import { ShopDetail as ShopDetailType } from '@/types/shop';
 const Container = styled.div`
   width: 595px;
   height: auto;
@@ -66,14 +66,15 @@ const ProductDesc = styled.p`
   padding-bottom: 25px;
   border-bottom: 1px solid #8e96a4;
 `;
+
 export default function ShopProductDesc({
   shopDetailData,
 }: {
   shopDetailData: ShopDetailType;
 }) {
-  const {product} = shopDetailData;
+  const { product } = shopDetailData;
 
-  const {id, name, price, originalPrice, rating, description, reviewCount} =
+  const { id, name, price, originalPrice, rating, description, reviewCount } =
     product;
 
   return (

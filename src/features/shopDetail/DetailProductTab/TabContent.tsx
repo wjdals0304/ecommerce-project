@@ -1,4 +1,4 @@
-import {ProductDescription, Review, Specification} from '@/types/shop';
+import { ProductDescription, Review, Specification } from '@/types/shop';
 import DescriptionTab from './DescriptionTab';
 import DetailReviewTab from './DetailReviewTab';
 import DetailSpesificationTab from './DetailSpesificationTab';
@@ -29,8 +29,10 @@ export default function TabContent({
   switch (activeTab) {
     case ShopDetailTabType.Description:
       return <DescriptionTab descriptions={descriptions} />;
+
     case ShopDetailTabType.Specification:
       return <DetailSpesificationTab specifications={specifications} />;
+
     case ShopDetailTabType.Review:
       return <DetailReviewTab reviews={reviews} />;
   }

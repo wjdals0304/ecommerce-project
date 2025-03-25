@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import {Blog} from '@/types/blog';
+import { Blog } from '@/types/blog';
 import router from 'next/router';
 
 const Container = styled.div`
@@ -55,12 +55,14 @@ interface BlogDetailRecentProps {
   recentPosts: Blog[];
 }
 
-export default function BlogDetailRecent({recentPosts}: BlogDetailRecentProps) {
+export default function BlogDetailRecent({
+  recentPosts,
+}: BlogDetailRecentProps) {
   return (
     <Container>
       <Title>최근 게시글</Title>
       <BlogContainer>
-        {recentPosts.map(({id, title, image, createdAt}) => (
+        {recentPosts.map(({ id, title, image, createdAt }) => (
           <BlogItem key={id} onClick={() => router.push(`/blog/${id}`)}>
             <BlogImage src={image} alt={title} width={91} height={91} />
             <BlogContent>

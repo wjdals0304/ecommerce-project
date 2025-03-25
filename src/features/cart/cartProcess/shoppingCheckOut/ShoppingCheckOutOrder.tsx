@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import {CartResponse} from '@/types/cart';
-import {useState} from 'react';
-import {postRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {OrderResponse} from '@/types/order';
+import { CartResponse } from '@/types/cart';
+import { useState } from 'react';
+import { postRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { OrderResponse } from '@/types/order';
 
 const Container = styled.div`
   background-color: #fff;
@@ -123,8 +123,8 @@ export default function ShoppingCheckOutOrder({
   const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>();
   const [paymentError, setPaymentError] = useState(false);
 
-  const {subtotal, deliveryCharge, total, user} = cart;
-  const {fullName} = user;
+  const { subtotal, deliveryCharge, total, user } = cart;
+  const { fullName } = user;
 
   const handlePaymentChange = (value: PaymentMethod) => {
     setSelectedPayment(value);
@@ -135,6 +135,7 @@ export default function ShoppingCheckOutOrder({
     try {
       if (!selectedPayment) {
         setPaymentError(true);
+
         return;
       }
       if (isFormError) {
@@ -149,6 +150,7 @@ export default function ShoppingCheckOutOrder({
       });
 
       const orderId = response.data.id;
+
       setOrderId(orderId.toString());
       onNextStep();
     } catch (error) {
@@ -217,7 +219,7 @@ export default function ShoppingCheckOutOrder({
       <CheckoutButton
         onClick={handleCheckout}
         disabled={isFormError}
-        style={{opacity: isFormError ? 0.5 : 1}}
+        style={{ opacity: isFormError ? 0.5 : 1 }}
       >
         주문하기
       </CheckoutButton>

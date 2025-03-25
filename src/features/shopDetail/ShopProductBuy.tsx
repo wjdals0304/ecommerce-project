@@ -1,10 +1,10 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {postRequest} from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { postRequest } from '@/utils/apiClient';
 import Image from 'next/image';
 import Link from 'next/link';
 import heartIcon from 'public/images/home/heartDark.svg';
 import shareIcon from 'public/images/shop/share.svg';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ const BuyButton = styled.button`
   cursor: pointer;
 `;
 
-export default function ShopProductBuy({productId}: {productId: string}) {
+export default function ShopProductBuy({ productId }: { productId: string }) {
   const handleAddToCart = async () => {
     try {
       await postRequest({

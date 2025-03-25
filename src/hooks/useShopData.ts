@@ -1,9 +1,9 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {ShopData} from '@/types/shop';
-import {getRequest} from '@/utils/apiClient';
-import {keepPreviousData, useQuery} from '@tanstack/react-query';
-import {useRouter} from 'next/router';
-import {ParsedUrlQuery} from 'querystring';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { ShopData } from '@/types/shop';
+import { getRequest } from '@/utils/apiClient';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
 
 interface ShopDataParams {
   page: string;
@@ -25,6 +25,7 @@ export const fetchShopData = async (queryParams: ShopDataParams) => {
         params: queryParams,
       },
     });
+
     return response.data;
   } catch {
     throw new Error('배송 정보를 불러오는데 실패했습니다.');

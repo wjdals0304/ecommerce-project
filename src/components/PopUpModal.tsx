@@ -40,7 +40,7 @@ interface ErrorModalProps {
   onClose: () => void;
 }
 
-export default function ErrorModal({message, onClose}: ErrorModalProps) {
+export default function ErrorModal({ message, onClose }: ErrorModalProps) {
   return (
     <ModalOverlay>
       <ModalContent>

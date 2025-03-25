@@ -1,5 +1,5 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {SearchResponse} from '@/types/shop';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { SearchResponse } from '@/types/shop';
 import Image from 'next/image';
 import Link from 'next/link';
 import heartDarkIcon from 'public/images/home/heartDark.svg';
@@ -13,12 +13,12 @@ interface SearchContentProps {
   shopData: SearchResponse;
 }
 
-export default function SearchContent({shopData}: SearchContentProps) {
-  const {products} = shopData;
+export default function SearchContent({ shopData }: SearchContentProps) {
+  const { products } = shopData;
 
   return (
     <ProductContainer>
-      {products.map(({id, name, price, soldCount, images, rating}) => (
+      {products.map(({ id, name, price, soldCount, images, rating }) => (
         <ProductItem key={id}>
           <LinkContainer href={`${API_ENDPOINTS.PRODUCT}/${id}`}>
             <ImageContainer>

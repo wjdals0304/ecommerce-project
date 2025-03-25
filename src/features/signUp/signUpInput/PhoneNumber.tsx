@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {ErrorMessage, inputStyles} from './CommonStyle';
+import { ErrorMessage, inputStyles } from './CommonStyle';
 
-const PhoneNumberInput = styled.input<{isError: boolean}>`
+const PhoneNumberInput = styled.input<{ isError: boolean }>`
   ${inputStyles};
 `;
 

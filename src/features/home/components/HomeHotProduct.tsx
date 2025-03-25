@@ -1,4 +1,4 @@
-import {HotProduct} from '@/types/home';
+import { HotProduct } from '@/types/home';
 import Image from 'next/image';
 import rightIcon from 'public/images/home/rightIcon.svg';
 import styled from 'styled-components';
@@ -32,7 +32,7 @@ interface HomeHotProductProps {
   hotProducts: HotProduct[];
 }
 
-function HomeHotProduct({hotProducts}: HomeHotProductProps) {
+function HomeHotProduct({ hotProducts }: HomeHotProductProps) {
   return (
     <Container>
       <Header>

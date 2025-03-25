@@ -43,7 +43,7 @@ interface CartItemProps {
   description: string;
 }
 
-export default function CartItem({index, title, description}: CartItemProps) {
+export default function CartItem({ index, title, description }: CartItemProps) {
   return (
     <CartItemContainer>
       <CartItemNumber>{index + 1}</CartItemNumber>

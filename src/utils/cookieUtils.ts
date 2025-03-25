@@ -1,4 +1,4 @@
-import {setCookie, parseCookies} from 'nookies';
+import { setCookie, parseCookies } from 'nookies';
 
 export const setAuthCookie = (isAuthenticated: boolean) => {
   setCookie(null, 'isAuthenticated', String(isAuthenticated), {
@@ -9,6 +9,7 @@ export const setAuthCookie = (isAuthenticated: boolean) => {
 
 export const getAuthCookie = () => {
   const cookies = parseCookies();
+
   return cookies.isAuthenticated === 'true';
 };
 

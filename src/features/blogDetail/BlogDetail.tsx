@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Search from '../../components/Search';
 import BlogDetailContent from './BlogDetailContent';
 import BlogDetailRecent from './BlogDetailRecent';
-import {BlogDetail as BlogDetailType} from '@/types/blog';
+import { BlogDetail as BlogDetailType } from '@/types/blog';
 const Container = styled.div`
   background-color: #f5f7f8;
 `;
@@ -22,8 +22,9 @@ interface BlogDetailProps {
   blogDetailData: BlogDetailType;
 }
 
-export default function BlogDetail({blogDetailData}: BlogDetailProps) {
-  const {blog, recentPosts} = blogDetailData;
+export default function BlogDetail({ blogDetailData }: BlogDetailProps) {
+  const { blog, recentPosts } = blogDetailData;
+
   return (
     <Container>
       <Search />

@@ -1,7 +1,7 @@
 import Search from '@/components/Search';
-import {useShopData} from '@/hooks/useShopData';
-import {useRouter} from 'next/router';
-import {useState} from 'react';
+import { useShopData } from '@/hooks/useShopData';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 import AllProduct from './AllProduct';
 import FilterProduct from './FilterProduct';
@@ -22,13 +22,13 @@ const ProductContainer = styled.div`
 `;
 
 export default function Shop() {
-  const {data: shopData} = useShopData();
+  const { data: shopData } = useShopData();
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const handleFilterChange = (filterParams: any) => {
     router.push({
       pathname: router.pathname,
-      query: {...router.query, ...filterParams},
+      query: { ...router.query, ...filterParams },
     });
   };
 

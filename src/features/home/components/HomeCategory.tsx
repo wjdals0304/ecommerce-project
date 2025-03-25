@@ -1,5 +1,5 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {Category} from '@/types/shop';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { Category } from '@/types/shop';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -33,10 +33,10 @@ const CategoryTitle = styled.span`
   margin-top: 10px;
 `;
 
-function HomeCategory({categories}: {categories: Category[]}) {
+function HomeCategory({ categories }: { categories: Category[] }) {
   return (
     <CategoryList>
-      {categories.map(({id, name}) => (
+      {categories.map(({ id, name }) => (
         <Link href={`${API_ENDPOINTS.SHOP}?categoryId=${id}`} key={id}>
           <CategoryItem>
             <Image src="" alt="카테고리 이미지" width={94} height={70} />

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import confirmIcon from 'public/images/shop/confirm.svg';
-import {useOrderDetail} from '@/hooks/useOrderDetail';
+import { useOrderDetail } from '@/hooks/useOrderDetail';
 import ShoppingConfirmItem from './ShoppingConfirmItem';
 const Container = styled.div`
   display: flex;
@@ -105,8 +105,8 @@ interface ShoppingConfirmProps {
   orderId: string;
 }
 
-export default function ShoppingConfirm({orderId}: ShoppingConfirmProps) {
-  const {data: orderDetail, isLoading, error} = useOrderDetail(orderId);
+export default function ShoppingConfirm({ orderId }: ShoppingConfirmProps) {
+  const { data: orderDetail, isLoading, error } = useOrderDetail(orderId);
 
   if (isLoading) return <div>로딩 중...</div>;
   if (error) return <div>주문 정보를 불러오는데 실패했습니다.</div>;

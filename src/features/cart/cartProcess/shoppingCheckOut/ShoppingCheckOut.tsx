@@ -1,11 +1,11 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {shippingSchema} from '@/config/validationSchema';
-import {CartResponse} from '@/types/cart';
-import {postRequest} from '@/utils/apiClient';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {useState} from 'react';
-import {FormProvider, Resolver, useForm} from 'react-hook-form';
-import {toast} from 'react-toastify';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { shippingSchema } from '@/config/validationSchema';
+import { CartResponse } from '@/types/cart';
+import { postRequest } from '@/utils/apiClient';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { FormProvider, Resolver, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import ShoppingCheckOutInfo from '../shoppingCheckOut/ShoppingCheckOutInfo';
 import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
@@ -59,7 +59,7 @@ export default function ShoppingCheckOut({
   });
 
   const {
-    formState: {errors},
+    formState: { errors },
     watch,
   } = methods;
 

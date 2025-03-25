@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import {Blog} from '@/types/blog';
+import { Blog } from '@/types/blog';
 
 const Container = styled.div`
   flex: 4;
@@ -42,8 +42,8 @@ interface BlogDetailContentProps {
   blog: Blog;
 }
 
-export default function BlogDetailContent({blog}: BlogDetailContentProps) {
-  const {title, content, image, createdAt} = blog;
+export default function BlogDetailContent({ blog }: BlogDetailContentProps) {
+  const { title, content, image, createdAt } = blog;
 
   return (
     <Container>

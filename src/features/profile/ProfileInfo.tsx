@@ -1,4 +1,4 @@
-import {ProfileData} from '@/types/home';
+import { ProfileData } from '@/types/home';
 import styled from 'styled-components';
 
 const ProfileInfoContainer = styled.div`
@@ -18,8 +18,12 @@ const ProfileInfoItem = styled.div`
   width: 100%;
 `;
 
-export default function ProfileInfo({profileData}: {profileData: ProfileData}) {
-  const {fullName, email, phoneNumber} = profileData;
+export default function ProfileInfo({
+  profileData,
+}: {
+  profileData: ProfileData;
+}) {
+  const { fullName, email, phoneNumber } = profileData;
 
   return (
     <ProfileInfoContainer>

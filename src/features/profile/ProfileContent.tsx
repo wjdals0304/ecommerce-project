@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import {ProfileData} from '@/types/home';
+import { ProfileData } from '@/types/home';
 import ProfileInfo from './ProfileInfo';
-import {postRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {toast} from 'react-toastify';
+import { postRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
-import {useAuthStore} from '@/store/authStore';
+import { useAuthStore } from '@/store/authStore';
 const Container = styled.div`
   background-color: #f5f7f8;
   padding-bottom: 50px;
@@ -45,7 +45,7 @@ export default function ProfileContent({
 }: {
   profileData: ProfileData;
 }) {
-  const {logout} = useAuthStore();
+  const { logout } = useAuthStore();
 
   const handleLogout = async () => {
     try {

@@ -1,16 +1,16 @@
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import {
   Review,
   ReviewResponse,
   ShopDetail as ShopDetailType,
 } from '@/types/shop';
-import {getRequest} from '@/utils/apiClient';
-import {useRouter} from 'next/router';
-import {useState} from 'react';
+import { getRequest } from '@/utils/apiClient';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 import SearchBar from '../../components/Search';
 import DetailProductTab from './DetailProductTab/DetailProductTab';
-import {ShopDetailTabType} from './DetailProductTab/TabContent';
+import { ShopDetailTabType } from './DetailProductTab/TabContent';
 import ShopProductDesc from './ShopProductDesc';
 import ShopProductImage from './ShopProductImage';
 
@@ -41,8 +41,8 @@ export default function ShopDetail({
   const [shopDetailData] = useState<ShopDetailType>(initialShopDetailData);
   const [reviews, setReviews] = useState<Review[]>([]);
 
-  const {product, specifications, descriptions} = shopDetailData;
-  const {images} = product;
+  const { product, specifications, descriptions } = shopDetailData;
+  const { images } = product;
 
   const [activeTab, setActiveTab] = useState<ShopDetailTabType>(
     ShopDetailTabType.Description,
@@ -54,6 +54,7 @@ export default function ShopDetail({
       tab === ShopDetailTabType.Specification
     ) {
       setActiveTab(tab);
+
       return;
     }
     // 리뷰 탭일 경우 데이터 가져오기
@@ -67,6 +68,7 @@ export default function ShopDetail({
         },
       });
       const reviewResponse = response.data;
+
       setReviews(reviewResponse.reviews);
 
       router.push(
@@ -78,7 +80,7 @@ export default function ShopDetail({
           },
         },
         undefined,
-        {shallow: true},
+        { shallow: true },
       );
 
       setActiveTab(tab);

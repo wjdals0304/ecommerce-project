@@ -1,8 +1,8 @@
 import Search from '@/components/Search';
 import styled from 'styled-components';
 import SearchContent from './SearchContent';
-import {SearchResponse} from '@/types/shop';
-import {useState} from 'react';
+import { SearchResponse } from '@/types/shop';
+import { useState } from 'react';
 import Pagination from '../allShop/Pagination';
 
 const Container = styled.div`
@@ -29,9 +29,9 @@ const NoResult = styled.div`
   font-weight: bold;
 `;
 
-function SearchResult({searchResult}: {searchResult: SearchResponse}) {
+function SearchResult({ searchResult }: { searchResult: SearchResponse }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const {products, totalPages} = searchResult;
+  const { products, totalPages } = searchResult;
 
   return (
     <Container>

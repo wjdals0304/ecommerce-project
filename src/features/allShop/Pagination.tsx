@@ -9,20 +9,20 @@ const PaginationContainer = styled.div`
   margin: 25px 0 50px 0;
 `;
 
-const PageButton = styled.button<{isActive?: boolean}>`
+const PageButton = styled.button<{ isActive?: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid ${({isActive}) => (isActive ? '#001C30' : '#B6BBC4')};
-  background-color: ${({isActive}) => (isActive ? '#D7D7D7' : '#F5F7F8')};
-  color: ${({isActive}) => (isActive ? '#001C30' : '#8E96A4')};
+  border: 1px solid ${({ isActive }) => (isActive ? '#001C30' : '#B6BBC4')};
+  background-color: ${({ isActive }) => (isActive ? '#D7D7D7' : '#F5F7F8')};
+  color: ${({ isActive }) => (isActive ? '#001C30' : '#8E96A4')};
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   &:hover {
-    background-color: ${({isActive}) => !isActive && '#f5f5f5'};
+    background-color: ${({ isActive }) => !isActive && '#f5f5f5'};
   }
 `;
 
@@ -73,6 +73,7 @@ const getPageList = (
 
   for (let i = 0; i < perPage; i++) {
     const page = currentPage + i;
+
     if (page > 1 && page < totalPages) {
       pages.push(page);
     }

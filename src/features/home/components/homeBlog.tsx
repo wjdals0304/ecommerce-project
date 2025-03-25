@@ -1,14 +1,14 @@
 import rightIcon from 'public/images/home/rightIcon.svg';
 import Image from 'next/image';
 import styled from 'styled-components';
-import {LatestBlog} from '@/types/home';
+import { LatestBlog } from '@/types/home';
 import Link from 'next/link';
 
 interface HomeBlogProps {
   latestBlogs: LatestBlog[];
 }
 
-function HomeBlog({latestBlogs}: HomeBlogProps) {
+function HomeBlog({ latestBlogs }: HomeBlogProps) {
   return (
     <BlogContainer>
       <BlogTitle>
@@ -20,7 +20,8 @@ function HomeBlog({latestBlogs}: HomeBlogProps) {
       </BlogTitle>
       <BlogContents>
         {latestBlogs.map(latestBlog => {
-          const {id, image, title, createdAt} = latestBlog;
+          const { id, image, title, createdAt } = latestBlog;
+
           return (
             <BlogContent key={id}>
               <Link href={`/blog/${id}`}>

@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import {ShippingFormData} from '@/features/cart/cartProcess/shoppingCheckOut/ShoppingCheckOut';
+import { ShippingFormData } from '@/features/cart/cartProcess/shoppingCheckOut/ShoppingCheckOut';
 
 const phoneRegex = /^[0-9]{10,11}$/;
 const zipcodeRegex = /^[0-9]{5}$/;

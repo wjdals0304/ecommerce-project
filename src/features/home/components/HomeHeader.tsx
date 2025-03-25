@@ -3,8 +3,8 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import leftIcon from 'public/images/home/leftIcon.svg';
 import rightIcon from 'public/images/home/rightIcon.svg';
-import {EventBanners} from '@/types/home';
-import {useState} from 'react';
+import { EventBanners } from '@/types/home';
+import { useState } from 'react';
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -71,9 +71,9 @@ interface HomeHeaderProps {
   eventBanners: EventBanners;
 }
 
-function HomeHeader({eventBanners}: HomeHeaderProps) {
+function HomeHeader({ eventBanners }: HomeHeaderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const {largeBanners} = eventBanners;
+  const { largeBanners } = eventBanners;
 
   const handleNext = () => {
     setCurrentIndex(prevIndex =>

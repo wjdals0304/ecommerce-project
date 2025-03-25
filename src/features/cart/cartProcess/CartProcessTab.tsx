@@ -1,9 +1,9 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import {CartProcessTabType} from './TabContent';
+import { CartProcessTabType } from './TabContent';
 import TabContent from './TabContent';
 import CartItem from './CartItem';
-import {CartResponse} from '@/types/cart';
+import { CartResponse } from '@/types/cart';
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Container = styled.div`
   background-color: #f5f7f8;
 `;
 
-const InnerContainer = styled.div<{index: number}>`
+const InnerContainer = styled.div<{ index: number }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,7 +28,7 @@ const InnerContainer = styled.div<{index: number}>`
     left: 0%;
     width: 33.3%;
     height: 3px;
-    transform: translateX(${({index}) => index * 100}%);
+    transform: translateX(${({ index }) => index * 100}%);
     background-color: #ee9322;
     transition: transform 0.3s ease-in-out;
   }
@@ -54,7 +54,7 @@ const tabItems = [
   },
 ];
 
-export default function CartProcessTab({cart}: {cart: CartResponse}) {
+export default function CartProcessTab({ cart }: { cart: CartResponse }) {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(
     CartProcessTabType.ShoppingCart,
   );
@@ -65,6 +65,7 @@ export default function CartProcessTab({cart}: {cart: CartResponse}) {
       if (prevTabIndex === tabItems.length - 1) {
         return prevTabIndex;
       }
+
       return prevTabIndex + 1;
     });
   };
@@ -72,7 +73,7 @@ export default function CartProcessTab({cart}: {cart: CartResponse}) {
   return (
     <Container>
       <InnerContainer index={activeTabIndex}>
-        {tabItems.map(({title, description}, index) => (
+        {tabItems.map(({ title, description }, index) => (
           <CartItem
             key={index}
             index={index}

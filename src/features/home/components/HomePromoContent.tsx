@@ -1,4 +1,4 @@
-import {FlashDeal} from '@/types/home';
+import { FlashDeal } from '@/types/home';
 import styled from 'styled-components';
 
 import HomePromoContentDeal from './HomePromoContentDeal';
@@ -6,7 +6,9 @@ interface HomePromoContentProps {
   flashDeals: FlashDeal[];
 }
 
-export default function HomePromoContent({flashDeals}: HomePromoContentProps) {
+export default function HomePromoContent({
+  flashDeals,
+}: HomePromoContentProps) {
   return (
     <Products>
       {flashDeals.map(flashDeal => {
