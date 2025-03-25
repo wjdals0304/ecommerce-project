@@ -39,6 +39,19 @@ const AddToCartButton = styled.button`
   font-weight: medium;
   border: 2px solid #8e96a4;
   cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #f5f7f8;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const BuyButton = styled.button`
@@ -51,6 +64,19 @@ const BuyButton = styled.button`
   font-size: 24px;
   font-weight: medium;
   cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #001c30;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 export default function ShopProductBuy({ productId }: { productId: string }) {
@@ -70,12 +96,6 @@ export default function ShopProductBuy({ productId }: { productId: string }) {
 
   return (
     <Container>
-      <HeartButton>
-        <Image src={heartIcon} alt="heart" width={27} height={27} />
-      </HeartButton>
-      <ShareButton>
-        <Image src={shareIcon} alt="share" width={27} height={27} />
-      </ShareButton>
       <AddToCartButton onClick={handleAddToCart}>장바구니 추가</AddToCartButton>
       <Link href="/cart">
         <BuyButton>구매하기</BuyButton>

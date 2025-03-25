@@ -59,6 +59,19 @@ const FilterButton = styled.button`
   height: 49px;
   margin: 0px 25px 25px 0;
   cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #f4ce14;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const FilterContainer = styled.form`

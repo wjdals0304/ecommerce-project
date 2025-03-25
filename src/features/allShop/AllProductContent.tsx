@@ -2,7 +2,6 @@ import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { ShopData } from '@/types/shop';
 import Image from 'next/image';
 import router from 'next/router';
-import heartDarkIcon from 'public/images/home/heartDark.svg';
 import starIcon from 'public/images/home/star.svg';
 import styled from 'styled-components';
 
@@ -26,9 +25,6 @@ export default function AllProductContent({ shopData }: AllProductProps) {
               <Image src={starIcon} alt="star" width={18} height={18} />
               <span>5.0</span>
             </Rating>
-            <Heart>
-              <Image src={heartDarkIcon} alt="heart" width={18} height={18} />
-            </Heart>
           </ImageContainer>
           <ProductTitle>{name}</ProductTitle>
           <Sold>{soldCount}개 판매</Sold>
@@ -59,6 +55,15 @@ const ProductItem = styled.div`
   background-color: #ffffff;
   padding: 14.5px;
   cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const ProductImage = styled(Image)`
@@ -102,6 +107,20 @@ const BuyButton = styled.button`
   color: #fff;
   border: none;
   border-radius: 18.5px;
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #0a142f;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -118,17 +137,4 @@ const Rating = styled.div`
   background-color: #ffffff;
   padding: 5px 10px;
   border-radius: 25px;
-`;
-
-const Heart = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  width: 38px;
-  height: 38px;
 `;
