@@ -32,14 +32,6 @@ export default function HomeHotProductContent({
                   <Image src={starIcon} alt="star" width={18} height={18} />
                   <span>{rating}</span>
                 </Rating>
-                <Heart>
-                  <Image
-                    src={heartDarkIcon}
-                    alt="heart"
-                    width={18}
-                    height={18}
-                  />
-                </Heart>
               </ImageContainer>
               <ItemContent>
                 <ItemTitle>{name}</ItemTitle>
@@ -72,6 +64,15 @@ const ProductItem = styled.div`
   padding: 20px;
   border-radius: 15px;
   cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -96,19 +97,6 @@ const Rating = styled.div`
   background-color: #ffffff;
   padding: 5px 10px;
   border-radius: 25px;
-`;
-
-const Heart = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  width: 38px;
-  height: 38px;
 `;
 
 const ItemContent = styled.div`
@@ -147,4 +135,17 @@ const BuyButton = styled.span`
   border-radius: 25px;
   width: fit-content;
   cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #0a142f;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;

@@ -28,6 +28,14 @@ const BlogItem = styled.div`
   width: 100%;
   height: auto;
   cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const BlogImage = styled(Image)`
@@ -72,6 +80,19 @@ const ReadMore = styled.button`
   width: 100%;
   height: 39px;
   white-space: nowrap;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: #0a142f;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 export default BlogContent;

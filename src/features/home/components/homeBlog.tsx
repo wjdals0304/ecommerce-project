@@ -82,6 +82,14 @@ const BlogItem = styled.div`
   width: 100%;
   max-width: 396px;
   cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const BlogImage = styled(Image)`
@@ -123,8 +131,17 @@ const ItemButton = styled.button`
   cursor: pointer;
   transition: background-color 0.2s;
 
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+
   &:hover {
-    background-color: #333;
+    background: #333;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
