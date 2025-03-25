@@ -1,14 +1,15 @@
-import {setCookie, parseCookies} from 'nookies';
+import { setCookie, parseCookies } from 'nookies';
 
 export const setAuthCookie = (isAuthenticated: boolean) => {
   setCookie(null, 'isAuthenticated', String(isAuthenticated), {
-    maxAge: 30 * 24 * 60 * 60, 
+    maxAge: 30 * 24 * 60 * 60,
     path: '/',
   });
 };
 
 export const getAuthCookie = () => {
   const cookies = parseCookies();
+
   return cookies.isAuthenticated === 'true';
 };
 

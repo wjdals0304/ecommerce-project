@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {ShopData} from '@/types/shop';
+import { ShopData } from '@/types/shop';
 import AllProductContent from './AllProductContent';
 const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const Title = styled.h2`
 interface AllProductProps {
   shopData: ShopData;
 }
-export default function AllProduct({shopData}: AllProductProps) {
+export default function AllProduct({ shopData }: AllProductProps) {
   return (
     <Container>
       <Title>모든 상품</Title>

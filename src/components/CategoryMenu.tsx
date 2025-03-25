@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import {useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import menuIcon from 'public/images/home/menu.svg';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {UrlObject} from 'url';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { UrlObject } from 'url';
 const CategoryContainer = styled.div`
   position: relative;
   height: 100%;
@@ -28,8 +28,8 @@ const AllCategory = styled.div`
   }
 `;
 
-const CategoryMenu = styled.div<{isOpen: boolean}>`
-  display: ${({isOpen}) => (isOpen ? 'block' : 'none')};
+const CategoryMenu = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   position: absolute;
   top: 100%;
   left: 0;
@@ -78,7 +78,7 @@ const getCategoryItems = (): CategoryItem[] => {
       },
     },
   }));
-}; 
+};
 const categoryItems = getCategoryItems();
 
 export default function CategoryMenuContainer() {
@@ -97,6 +97,7 @@ export default function CategoryMenuContainer() {
     };
 
     document.addEventListener(mouseDown, handleClickOutside);
+
     return () => {
       document.removeEventListener(mouseDown, handleClickOutside);
     };

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const QuantityContainer = styled.div`
@@ -61,7 +61,7 @@ const TotalPrice = styled.span`
   margin-left: 5px;
 `;
 
-export default function QuantitySelector({price}: {price: number}) {
+export default function QuantitySelector({ price }: { price: number }) {
   const [quantity, setQuantity] = useState(1);
   const totalPrice = (quantity * price).toLocaleString();
 

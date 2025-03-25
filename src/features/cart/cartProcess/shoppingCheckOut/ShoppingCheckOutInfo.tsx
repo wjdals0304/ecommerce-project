@@ -1,14 +1,8 @@
-import {
-  Control,
-  FieldErrors,
-  UseFormHandleSubmit,
-  useController,
-  useFormContext,
-} from 'react-hook-form';
+import { useShipInfo } from '@/hooks/useShipInfo';
+import { useEffect } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import {ShippingFormData} from './ShoppingCheckOut';
-import {useShipInfo} from '@/hooks/useShipInfo';
-import {useEffect} from 'react';
+import { ShippingFormData } from './ShoppingCheckOut';
 
 const InputContainer = styled.form`
   display: flex;
@@ -31,17 +25,17 @@ const InputBoxContainer = styled.div`
   width: 100%;
 `;
 
-const InputBox = styled.input<{hasError?: boolean}>`
+const InputBox = styled.input<{ hasError?: boolean }>`
   flex: 1;
   height: 49px;
-  border: 1px solid ${({hasError}) => (hasError ? '#ff0000' : '#8e96a4')};
+  border: 1px solid ${({ hasError }) => (hasError ? '#ff0000' : '#8e96a4')};
   border-radius: 25px;
   background-color: #f5f7f8;
   padding: 15px;
 
   &:focus {
     outline: none;
-    border-color: ${({hasError}) => (hasError ? '#ff0000' : '#001c30')};
+    border-color: ${({ hasError }) => (hasError ? '#ff0000' : '#001c30')};
   }
 `;
 
@@ -77,11 +71,11 @@ interface ShoppingCheckOutInfoProps {
 export default function ShoppingCheckOutInfo({
   onSubmit,
 }: ShoppingCheckOutInfoProps) {
-  const {data: shipInfo} = useShipInfo();
+  const { data: shipInfo } = useShipInfo();
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
     reset,
   } = useFormContext<ShippingFormData>();
 
@@ -98,32 +92,32 @@ export default function ShoppingCheckOutInfo({
     }
   }, [shipInfo, reset]);
 
-  const {field: nameField} = useController({
+  const { field: nameField } = useController({
     name: 'name',
     control,
   });
 
-  const {field: phoneField} = useController({
+  const { field: phoneField } = useController({
     name: 'phone',
     control,
   });
 
-  const {field: addressField} = useController({
+  const { field: addressField } = useController({
     name: 'address',
     control,
   });
 
-  const {field: cityField} = useController({
+  const { field: cityField } = useController({
     name: 'city',
     control,
   });
 
-  const {field: zipcodeField} = useController({
+  const { field: zipcodeField } = useController({
     name: 'zipcode',
     control,
   });
 
-  const {field: memoField} = useController({
+  const { field: memoField } = useController({
     name: 'memo',
     control,
   });

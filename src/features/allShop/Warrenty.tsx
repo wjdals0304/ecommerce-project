@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {useState} from 'react';
+import { useState } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -25,11 +25,11 @@ const WarrentyList = styled.ul`
   margin: 0;
 `;
 
-const WarrentyOption = styled.li<{isSelected: boolean}>`
+const WarrentyOption = styled.li<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
   font-size: 14px;
-  font-weight: ${({isSelected}) => (isSelected ? 'bold' : 'medium')};
+  font-weight: ${({ isSelected }) => (isSelected ? 'bold' : 'medium')};
   color: #001c30;
   cursor: pointer;
   padding: 5px 0;
@@ -40,10 +40,10 @@ const WarrentyOption = styled.li<{isSelected: boolean}>`
 `;
 
 export const WarrentyOptions = {
-  ALL: {name: '전체', value: 'ALL'},
-  ONE_YEAR: {name: '1년', value: 'ONE_YEAR'},
-  TWO_YEAR: {name: '2년 +', value: 'TWO_YEAR'},
-  LIFETIME: {name: '평생', value: 'LIFETIME'},
+  ALL: { name: '전체', value: 'ALL' },
+  ONE_YEAR: { name: '1년', value: 'ONE_YEAR' },
+  TWO_YEAR: { name: '2년 +', value: 'TWO_YEAR' },
+  LIFETIME: { name: '평생', value: 'LIFETIME' },
 };
 
 export default function Warrenty() {
@@ -56,7 +56,7 @@ export default function Warrenty() {
     <Container>
       <FilterTitle>품질 보증</FilterTitle>
       <WarrentyList>
-        {Object.values(WarrentyOptions).map(({name, value}) => (
+        {Object.values(WarrentyOptions).map(({ name, value }) => (
           <WarrentyOption key={name} isSelected={selectedWarrenty === value}>
             <label>
               <input

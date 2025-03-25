@@ -25,7 +25,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "check": "npm run lint && tsc --noEmit && npm run build"
   },
   "eslintConfig": {
@@ -47,11 +47,19 @@
     ]
   },
   "devDependencies": {
+    "@eslint/js": "^9.23.0",
     "@hookform/devtools": "^4.3.3",
     "@types/node": "22.12.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "babel-plugin-styled-components": "^2.1.4",
-    "typescript": "5.7.3"
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.2.3",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.4",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^16.0.0",
+    "typescript": "5.7.3",
+    "typescript-eslint": "^8.27.0"
   }
 }

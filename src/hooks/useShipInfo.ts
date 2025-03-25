@@ -1,7 +1,7 @@
-import {useQuery} from '@tanstack/react-query';
-import {getRequest, getStoredToken} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {ShippingResponse} from '@/types/order';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { ShippingResponse } from '@/types/order';
+import { getRequest } from '@/utils/apiClient';
+import { useQuery } from '@tanstack/react-query';
 
 const queryKeyShipInfo = ['shipInfo'];
 
@@ -10,8 +10,9 @@ const fetchShipInfo = async () => {
     const response = await getRequest<ShippingResponse>({
       url: `${API_ENDPOINTS.SHIPPING_ADDRESS}`,
     });
+
     return response.data;
-  } catch (error) {
+  } catch {
     throw new Error('배송 정보를 불러오는데 실패했습니다.');
   }
 };

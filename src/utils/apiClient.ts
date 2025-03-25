@@ -1,6 +1,6 @@
-import axios, {AxiosResponse, InternalAxiosRequestConfig} from 'axios';
-import {API_BASE_URL} from '@/config/apiEndPoints';
-import {parseCookies, setCookie, destroyCookie} from 'nookies';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { API_BASE_URL } from '@/config/apiEndPoints';
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -17,10 +17,12 @@ apiClient.interceptors.request.use(
     } else {
       const cookies = parseCookies();
       const token = cookies.jwt;
+
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
     }
+
     return config;
   },
   error => {
@@ -31,13 +33,16 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => {
     const authHeader = response.headers['authorization'];
+
     if (authHeader) {
       const token = authHeader.split(' ')[1];
+
       setCookie(null, 'jwt', token, {
         maxAge: 60 * 60,
         path: '/',
       });
     }
+
     return response;
   },
   async error => {
@@ -50,6 +55,7 @@ apiClient.interceptors.response.use(
     if (originalRequest.url.includes('/auth/refresh')) {
       destroyCookie(null, 'jwt');
       window.location.href = '/signin';
+
       return Promise.reject(error);
     }
     if (error.response?.status === 401 && !originalRequest._retry) {
@@ -65,18 +71,22 @@ apiClient.interceptors.response.use(
           },
         );
         const newToken = response.data.accessToken;
+
         setCookie(null, 'jwt', newToken, {
           maxAge: 60 * 60,
           path: '/',
         });
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
+
         return apiClient(originalRequest);
       } catch (refreshError) {
         console.error('Refresh token error:', refreshError);
         destroyCookie(null, 'jwt');
+
         return Promise.reject(refreshError);
       }
     }
+
     return Promise.reject(error);
   },
 );
@@ -99,6 +109,7 @@ export const postRequest = async <T>({
   config?: RequestConfig;
 }) => {
   const response = await apiClient.post<T>(url, data, config);
+
   return response;
 };
 
@@ -110,12 +121,14 @@ export const deleteRequest = async <T>({
   config?: RequestConfig;
 }) => {
   const response = await apiClient.delete<T>(url, config);
+
   return response;
 };
 
 export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
   const formData = new FormData(event.target as HTMLFormElement);
   const data = Object.fromEntries(formData);
+
   return data;
 };
 
@@ -127,12 +140,14 @@ export const getRequest = async <T>({
   config?: RequestConfig;
 }): Promise<AxiosResponse<T>> => {
   const response = await apiClient.get<T>(url, config);
+
   return response;
 };
 
 export const getToken = (response: any) => {
   const authHeader = response.headers['authorization'];
   const token = authHeader.split(' ')[1];
+
   return token;
 };
 

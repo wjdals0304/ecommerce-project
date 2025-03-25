@@ -1,14 +1,8 @@
-import styled from 'styled-components';
-import gameIcon from 'public/images/home/game.svg';
-import smartphoneIcon from 'public/images/home/smartphone.svg';
-import laptopIcon from 'public/images/home/laptop.svg';
-import tvIcon from 'public/images/home/tv.svg';
-import cameraIcon from 'public/images/home/camera.svg';
-import moreIcon from 'public/images/home/more.svg';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { Category } from '@/types/shop';
 import Image from 'next/image';
-import {Category} from '@/types/shop';
 import Link from 'next/link';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import styled from 'styled-components';
 
 const CategoryList = styled.ul`
   display: flex;
@@ -39,10 +33,10 @@ const CategoryTitle = styled.span`
   margin-top: 10px;
 `;
 
-function HomeCategory({categories}: {categories: Category[]}) {
+function HomeCategory({ categories }: { categories: Category[] }) {
   return (
     <CategoryList>
-      {categories.map(({id, name}) => (
+      {categories.map(({ id, name }) => (
         <Link href={`${API_ENDPOINTS.SHOP}?categoryId=${id}`} key={id}>
           <CategoryItem>
             <Image src="" alt="카테고리 이미지" width={94} height={70} />

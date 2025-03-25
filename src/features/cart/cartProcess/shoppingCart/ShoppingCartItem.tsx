@@ -1,10 +1,10 @@
-import {CartResponse} from '@/types/cart';
-import styled from 'styled-components';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { CartResponse } from '@/types/cart';
+import { deleteRequest } from '@/utils/apiClient';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import trashIcon from 'public/images/shop/trash.svg';
-import {deleteRequest, getStoredToken} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {useMutation, useQueryClient} from '@tanstack/react-query';
+import styled from 'styled-components';
 
 const ProductItemContainer = styled.div`
   display: flex;
@@ -73,8 +73,8 @@ const TrashIconImage = styled(Image)`
   height: 22px;
 `;
 
-export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
-  const {items} = cart;
+export default function ShoppingCartItem({ cart }: { cart: CartResponse }) {
+  const { items } = cart;
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -84,7 +84,7 @@ export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['cart']});
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
   });
 
@@ -92,9 +92,10 @@ export default function ShoppingCartItem({cart}: {cart: CartResponse}) {
     mutation.mutate(productId);
   };
 
-  return items.map(({id, product, quantity}) => {
-    const {id: productId, name, price, images} = product;
+  return items.map(({ id, product, quantity }) => {
+    const { id: productId, name, price, images } = product;
     const totalPrice = price * quantity;
+
     return (
       <ProductItemContainer key={id}>
         <ProductDetail>

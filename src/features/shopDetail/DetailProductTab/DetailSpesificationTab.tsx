@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Specification} from '@/types/shop';
+import { Specification } from '@/types/shop';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ export default function DetailSpesificationTab({
 }: DetailSpesificationTabProps) {
   return (
     <Container>
-      {specifications.map(({id, attribute, value}) => (
+      {specifications.map(({ id, attribute, value }) => (
         <SpesificationContainer key={id}>
           <SpesificationTitle>{attribute} :</SpesificationTitle>
           <SpesificationContent>{value}</SpesificationContent>

@@ -1,15 +1,15 @@
-import styled from 'styled-components';
+import { Blog } from '@/types/blog';
 import Image from 'next/image';
-import {Blog} from '@/types/blog';
 import router from 'next/router';
-import {useRouter} from 'next/router';
+import styled from 'styled-components';
 
 interface BlogContentProps {
   blog: Blog;
 }
 
-function BlogContent({blog}: BlogContentProps) {
-  const {id, title, content, image, createdAt} = blog;
+function BlogContent({ blog }: BlogContentProps) {
+  const { id, title, content, image, createdAt } = blog;
+
   return (
     <BlogItem key={id} onClick={() => router.push(`/blog/${id}`)}>
       <BlogImage src={image} alt={title} width={380} height={229} />

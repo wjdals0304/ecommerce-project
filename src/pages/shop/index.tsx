@@ -1,16 +1,13 @@
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import {ShopData} from '@/types/shop';
-import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {QueryClient, dehydrate} from '@tanstack/react-query';
-import {GetServerSidePropsContext} from 'next';
+import Navigation from '@/components/Navigation';
+import Shop from '@/features/allShop/Shop';
 import {
   createQueryKeyShopData,
   createQueryParams,
   fetchShopData,
 } from '@/hooks/useShopData';
-import Shop from '@/features/allShop/Shop';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+import { GetServerSidePropsContext } from 'next';
 
 export default function ShopPage() {
   return (
@@ -39,6 +36,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   } catch (error) {
     console.error('Shop data fetch error:', error);
+
     return {
       props: {
         dehydratedState: null,

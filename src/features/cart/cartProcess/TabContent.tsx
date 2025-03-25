@@ -1,8 +1,7 @@
-import styled from 'styled-components';
+import { CartResponse } from '@/types/cart';
 import ShoppingCart from './shoppingCart/ShoppingCart';
 import ShoppingCheckOut from './shoppingCheckOut/ShoppingCheckOut';
 import ShoppingConfirm from './ShoppingConfirm';
-import {CartResponse} from '@/types/cart';
 
 export enum CartProcessTabType {
   ShoppingCart = 0,
@@ -28,6 +27,7 @@ export default function TabContent({
   switch (activeTabIndex) {
     case CartProcessTabType.ShoppingCart:
       return <ShoppingCart onNextStep={onNextStep} cart={cart} />;
+
     case CartProcessTabType.ShoppingCheckOut:
       return (
         <ShoppingCheckOut
@@ -36,8 +36,10 @@ export default function TabContent({
           setOrderId={setOrderId}
         />
       );
+
     case CartProcessTabType.ShoppingConfirm:
       return <ShoppingConfirm orderId={orderId} />;
+
     default:
       return null;
   }

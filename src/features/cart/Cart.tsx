@@ -1,9 +1,8 @@
+import { useCartReload } from '@/hooks/useCartReload';
+import { CartResponse } from '@/types/cart';
 import styled from 'styled-components';
 import Search from '../../components/Search';
 import CartProcessTab from './cartProcess/CartProcessTab';
-import {CartResponse} from '@/types/cart';
-import {getStoredToken} from '@/utils/apiClient';
-import {useCartReload} from '@/hooks/useCartReload';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -32,9 +31,9 @@ const EmptyCartText = styled.p`
   font-size: 20px;
 `;
 
-export default function Cart({cart}: {cart: CartResponse}) {
-  const {data: updatedCart} = useCartReload();
-  let useCart = updatedCart || cart;
+export default function Cart({ cart }: { cart: CartResponse }) {
+  const { data: updatedCart } = useCartReload();
+  const useCart = updatedCart || cart;
 
   if (!useCart) {
     return (

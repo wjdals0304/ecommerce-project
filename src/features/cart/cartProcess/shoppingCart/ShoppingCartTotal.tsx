@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {CartResponse} from '@/types/cart';
+import { CartResponse } from '@/types/cart';
 const Container = styled.div`
   background-color: #fff;
   width: 438px;
@@ -73,8 +73,9 @@ export default function ShoppingCartTotal({
   onNextStep: () => void;
   cart: CartResponse;
 }) {
-  const {subtotal, deliveryCharge, total, user} = cart;
-  const {fullName} = user;
+  const { subtotal, deliveryCharge, total, user } = cart;
+  const { fullName } = user;
+
   return (
     <Container>
       <TotalTitle>총 결제 금액</TotalTitle>

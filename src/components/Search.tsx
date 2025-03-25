@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import search from 'public/images/home/search.svg';
-import router from 'next/router';
-import {useRouter} from 'next/router';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 const SearchContainer = styled.div`
   width: 100%;
   background-color: #ffffff;
@@ -81,7 +80,7 @@ function Search() {
     }
     router.push({
       pathname: API_ENDPOINTS.SEARCH,
-      query: {keyword: keywordTrim},
+      query: { keyword: keywordTrim },
     });
   };
 

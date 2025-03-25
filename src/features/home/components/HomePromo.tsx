@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import rightIcon from 'public/images/home/rightIcon.svg';
-import {FlashDeal} from '@/types/home';
+import { FlashDeal } from '@/types/home';
 import HomePromoContent from './HomePromoContent';
 
 const Container = styled.section`
@@ -48,7 +48,7 @@ interface HomePromoProps {
   flashDeals: FlashDeal[];
 }
 
-function HomePromo({flashDeals}: HomePromoProps) {
+function HomePromo({ flashDeals }: HomePromoProps) {
   return (
     <Container>
       <Header>

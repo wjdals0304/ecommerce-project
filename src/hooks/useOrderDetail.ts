@@ -1,7 +1,7 @@
-import {useQuery} from '@tanstack/react-query';
-import {OrderResponse} from '@/types/order';
-import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import { useQuery } from '@tanstack/react-query';
+import { OrderResponse } from '@/types/order';
+import { getRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 
 const queryKeyOrderDetail = ['fetchOrderDetail'];
 
@@ -10,8 +10,9 @@ const fetchOrderDetail = async (orderId: string): Promise<OrderResponse> => {
     const response = await getRequest<OrderResponse>({
       url: `${API_ENDPOINTS.ORDERS}/${orderId}`,
     });
+
     return response.data;
-  } catch (error) {
+  } catch {
     throw new Error('주문 정보를 불러오는데 실패했습니다.');
   }
 };

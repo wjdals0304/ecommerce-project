@@ -1,10 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import { HotProduct } from '@/types/home';
 import Image from 'next/image';
 import rightIcon from 'public/images/home/rightIcon.svg';
-import {HotProduct} from '@/types/home';
+import styled from 'styled-components';
 import HomeHotProductContent from './HomeHotProductContent';
-import Link from 'next/link';
 const Container = styled.div`
   margin: 20px 0;
 `;
@@ -34,7 +32,7 @@ interface HomeHotProductProps {
   hotProducts: HotProduct[];
 }
 
-function HomeHotProduct({hotProducts}: HomeHotProductProps) {
+function HomeHotProduct({ hotProducts }: HomeHotProductProps) {
   return (
     <Container>
       <Header>

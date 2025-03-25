@@ -1,16 +1,17 @@
-import {useRouter} from 'next/router';
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Navigation from '@/components/Navigation';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import ShopDetail from '@/features/shopDetail/ShopDetail';
-import {ShopDetail as ShopDetailType} from '@/types/shop';
-import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import { ShopDetail as ShopDetailType } from '@/types/shop';
+import { getRequest } from '@/utils/apiClient';
 
 interface ShopDetailPageProps {
   shopDetailData: ShopDetailType;
 }
 
-export default function ShopDetailPage({shopDetailData}: ShopDetailPageProps) {
+export default function ShopDetailPage({
+  shopDetailData,
+}: ShopDetailPageProps) {
   return (
     <>
       <Navigation />
@@ -20,9 +21,9 @@ export default function ShopDetailPage({shopDetailData}: ShopDetailPageProps) {
   );
 }
 
-export async function getServerSideProps({params}) {
+export async function getServerSideProps({ params }) {
   try {
-    const {id} = params;
+    const { id } = params;
     const response = await getRequest<ShopDetailType>({
       url: `${API_ENDPOINTS.SHOP}/${id}`,
     });
@@ -35,6 +36,7 @@ export async function getServerSideProps({params}) {
     };
   } catch (error) {
     console.error('상품 상세 데이터 조회 실패:', error);
+
     return {
       props: {
         shopDetailData: null,

@@ -1,15 +1,14 @@
-import {Resolver, useForm, FormProvider} from 'react-hook-form';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { shippingSchema } from '@/config/validationSchema';
+import { CartResponse } from '@/types/cart';
+import { postRequest } from '@/utils/apiClient';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { FormProvider, Resolver, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
-import {CartResponse} from '@/types/cart';
-import {postRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import * as yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
-import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
-import {useState} from 'react';
 import ShoppingCheckOutInfo from '../shoppingCheckOut/ShoppingCheckOutInfo';
-import {shippingSchema} from '@/config/validationSchema';
-import {toast} from 'react-toastify';
+import ShoppingCheckOutOrder from '../shoppingCheckOut/ShoppingCheckOutOrder';
 
 const Container = styled.div`
   display: flex;
@@ -60,9 +59,8 @@ export default function ShoppingCheckOut({
   });
 
   const {
-    formState: {errors},
+    formState: { errors },
     watch,
-    handleSubmit,
   } = methods;
 
   const [isFormError, setIsFormError] = useState(false);

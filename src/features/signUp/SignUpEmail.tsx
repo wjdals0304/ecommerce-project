@@ -50,7 +50,7 @@ export default function SignUpEmail() {
   const [passwordValue, setPasswordValue] = useState('');
   const [phoneNumberValue, setPhoneNumberValue] = useState('');
   const [fullNameValue, setFullNameValue] = useState('');
-  const {setAuth} = useAuthStore();
+  const { setAuth } = useAuthStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -82,9 +82,9 @@ export default function SignUpEmail() {
         url: API_ENDPOINTS.AUTH_SIGNUP_EMAIL,
         data: formData,
       });
-  
+
       setAuth(true, response.data);
-      setAuthCookie(true);  
+      setAuthCookie(true);
       router.push('/');
     } catch (error) {
       if (error.response.status === 409) {

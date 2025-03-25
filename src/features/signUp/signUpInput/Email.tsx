@@ -1,8 +1,7 @@
-import {useState} from 'react';
-import {inputStyles, ErrorMessage} from './CommonStyle';
+import { inputStyles, ErrorMessage } from './CommonStyle';
 import styled from 'styled-components';
 
-const EmailInput = styled.input<{isError: boolean}>`
+const EmailInput = styled.input<{ isError: boolean }>`
   ${inputStyles};
 `;
 

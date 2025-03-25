@@ -1,10 +1,9 @@
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { BestSeller } from '@/types/home';
 import Image from 'next/image';
-import styled from 'styled-components';
-import rightIcon from 'public/images/home/rightIcon.svg';
-import arrowIcon from 'public/images/home/arrow.svg';
-import {BestSeller} from '@/types/home';
 import Link from 'next/link';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import rightIcon from 'public/images/home/rightIcon.svg';
+import styled from 'styled-components';
 
 const Section = styled.section`
   margin: 50px 0;
@@ -133,7 +132,7 @@ interface HomeBestSellerProps {
   bestSellers: BestSeller[];
 }
 
-function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
+function HomeBestSeller({ bestSellers }: HomeBestSellerProps) {
   return (
     <Section>
       <TitleContainer>
@@ -146,8 +145,9 @@ function HomeBestSeller({bestSellers}: HomeBestSellerProps) {
       <ProductContainer>
         <ProductLeft>
           {bestSellers.map(bestSeller => {
-            const {id, images, name} = bestSeller.product;
-            const {categoryName} = bestSeller;
+            const { id, images, name } = bestSeller.product;
+            const { categoryName } = bestSeller;
+
             return (
               <ProductLink href={`${API_ENDPOINTS.PRODUCT}/${id}`} key={id}>
                 <Product>

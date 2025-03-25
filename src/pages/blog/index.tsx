@@ -1,15 +1,15 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Blog from '@/features/blog/Blog';
-import {getRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {BlogResponse} from '@/types/blog';
+import { getRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { BlogResponse } from '@/types/blog';
 
 interface BlogPageProps {
   blogPosts: BlogResponse;
 }
 
-export default function BlogPage({blogPosts}: BlogPageProps) {
+export default function BlogPage({ blogPosts }: BlogPageProps) {
   return (
     <>
       <Navigation />
@@ -33,6 +33,7 @@ export async function getServerSideProps() {
     };
   } catch (error) {
     console.error(error);
+
     return {
       props: {
         error: 'Failed to fetch blog posts',

@@ -1,10 +1,10 @@
-import {Product, SearchResponse} from '@/types/shop';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { SearchResponse } from '@/types/shop';
 import Image from 'next/image';
-import starIcon from 'public/images/home/star.svg';
-import heartDarkIcon from 'public/images/home/heartDark.svg';
-import styled from 'styled-components';
 import Link from 'next/link';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
+import heartDarkIcon from 'public/images/home/heartDark.svg';
+import starIcon from 'public/images/home/star.svg';
+import styled from 'styled-components';
 const LinkContainer = styled(Link)`
   text-decoration: none;
 `;
@@ -13,12 +13,12 @@ interface SearchContentProps {
   shopData: SearchResponse;
 }
 
-export default function SearchContent({shopData}: SearchContentProps) {
-  const {products} = shopData;
+export default function SearchContent({ shopData }: SearchContentProps) {
+  const { products } = shopData;
 
   return (
     <ProductContainer>
-      {products.map(({id, name, price, soldCount, images, rating}) => (
+      {products.map(({ id, name, price, soldCount, images, rating }) => (
         <ProductItem key={id}>
           <LinkContainer href={`${API_ENDPOINTS.PRODUCT}/${id}`}>
             <ImageContainer>

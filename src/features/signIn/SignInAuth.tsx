@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import googleIcon from '../../../public/images/signIn/google.svg';
 import Image from 'next/image';
-import {useRouter} from 'next/router';
-import {useState} from 'react';
-import {useAuthStore} from '@/store/authStore';
-import {supabase} from '@/utils/supabase';
-import {toast} from 'react-toastify';
-import {postRequest} from '@/utils/apiClient';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {User} from '@/types/user';
-import {setAuthCookie} from '@/utils/cookieUtils';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useAuthStore } from '@/store/authStore';
+import { supabase } from '@/utils/supabase';
+import { toast } from 'react-toastify';
+import { postRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { User } from '@/types/user';
+import { setAuthCookie } from '@/utils/cookieUtils';
 
 const Container = styled.div`
   display: flex;
@@ -81,14 +81,14 @@ const GoogleText = styled.span`
 export default function SignInAuth() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const {setAuth} = useAuthStore();
+  const { setAuth } = useAuthStore();
 
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
       const loginMethod = 'google';
 
-      const {data, error} = await supabase.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: loginMethod,
         options: {
           queryParams: {
@@ -104,7 +104,7 @@ export default function SignInAuth() {
       }
 
       const {
-        data: {session},
+        data: { session },
       } = await supabase.auth.getSession();
 
       if (session?.access_token) {

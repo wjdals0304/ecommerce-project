@@ -1,20 +1,23 @@
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Navigation from '@/components/Navigation';
+import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import Cart from '@/features/cart/Cart';
-import {getRequest, getStoredToken} from '@/utils/apiClient';
-import {parseCookies} from 'nookies';
-import {API_ENDPOINTS} from '@/config/apiEndPoints';
-import {CartResponse} from '@/types/cart';
-import {GetServerSideProps} from 'next';
-import {dehydrate, QueryClient} from '@tanstack/react-query';
-import {HydrationBoundary} from '@tanstack/react-query';
-import {queryKeyCart, useCartReload} from '@/hooks/useCartReload';
+import { queryKeyCart, useCartReload } from '@/hooks/useCartReload';
+import { CartResponse } from '@/types/cart';
+import { getRequest } from '@/utils/apiClient';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
+import { GetServerSideProps } from 'next';
+import { parseCookies } from 'nookies';
 
 interface CartProps {
   dehydratedState: any;
 }
 
-export default function CartPage({dehydratedState}: CartProps) {
+export default function CartPage({ dehydratedState }: CartProps) {
   return (
     <HydrationBoundary state={dehydratedState}>
       <CartContent />
@@ -23,7 +26,7 @@ export default function CartPage({dehydratedState}: CartProps) {
 }
 
 function CartContent() {
-  const {data: cart} = useCartReload(true);
+  const { data: cart } = useCartReload(true);
 
   return (
     <>
@@ -40,6 +43,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const cookies = parseCookies(context);
     const token = cookies.jwt;
+
     if (!token) {
       return {
         redirect: {
@@ -70,6 +74,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     };
   } catch (error) {
     console.error('장바구니 데이터 로딩 실패:', error);
+
     return {
       redirect: {
         destination: '/signin?redirect=/cart',
