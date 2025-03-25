@@ -45,10 +45,10 @@ const CategoryTitle = styled.span`
 function HomeCategory({ categories }: { categories: Category[] }) {
   return (
     <CategoryList>
-      {categories.map(({ id, name }) => (
+      {categories.map(({ id, name, image }) => (
         <Link href={`${API_ENDPOINTS.SHOP}?categoryId=${id}`} key={id}>
           <CategoryItem>
-            <Image src="" alt="카테고리 이미지" width={94} height={70} />
+            <Image src={image} alt="카테고리 이미지" width={94} height={70} />
             <CategoryTitle>{name}</CategoryTitle>
           </CategoryItem>
         </Link>
