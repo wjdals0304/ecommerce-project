@@ -4,7 +4,7 @@ import { Blog } from '@/types/blog';
 
 const Container = styled.div`
   flex: 4;
-  padding: 50px 25px 50px 100px;
+  padding: 50px 25px 50px 0;
 `;
 
 const BlogImage = styled(Image)`

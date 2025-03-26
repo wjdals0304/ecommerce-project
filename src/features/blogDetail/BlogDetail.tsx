@@ -16,6 +16,8 @@ const Title = styled.h2`
 const BlogContainer = styled.div`
   display: flex;
   gap: 25px;
+  max-width: 1240px;
+  margin: 0 auto;
 `;
 
 interface BlogDetailProps {
