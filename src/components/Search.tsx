@@ -1,9 +1,11 @@
 import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import search from 'public/images/home/search.svg';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 const SearchContainer = styled.div`
   width: 100%;
   background-color: #ffffff;
@@ -18,10 +20,10 @@ const SearchInner = styled.div`
   padding: 20px 0;
 `;
 
-const SearchTitle = styled.span`
+const SearchTitle = styled(Link)`
   flex: none;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
   color: #1a1a1a;
   display: flex;
   align-items: center;
@@ -96,7 +98,7 @@ function Search() {
   return (
     <SearchContainer>
       <SearchInner>
-        <SearchTitle>이커머스</SearchTitle>
+        <SearchTitle href={API_ENDPOINTS.ROOT}>이커머스</SearchTitle>
         <SearchForm onSubmit={handleSubmit}>
           <SearchInput
             value={keyword}
