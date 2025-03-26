@@ -8,12 +8,10 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const cloudFrontUrl = 'https://pub-5221b532a77b468a92745546bdc85a27.r2.dev';
-
 export default function Layout({
   title = '이커머스',
   description = '이커머스입니다',
-  ogImage = `${cloudFrontUrl}/ogImage/ogImage_default.png`,
+  ogImage = `${process.env.NEXT_PUBLIC_CLOUDFLARE_URL}/ogImage/ogImage_default.png`,
   children,
 }: LayoutProps) {
   return (
@@ -32,19 +30,19 @@ export default function Layout({
           rel="icon"
           type="image/x-icon"
           sizes="16x16"
-          href={`${cloudFrontUrl}/favicon/favicon-16x16.png`}
+          href={`${process.env.NEXT_PUBLIC_CLOUDFLARE_URL}/favicon/favicon-16x16.png`}
         />
         <link
           rel="icon"
           type="image/x-icon"
           sizes="32x32"
-          href={`${cloudFrontUrl}/favicon/favicon-32x32.png`}
+          href={`${process.env.NEXT_PUBLIC_CLOUDFLARE_URL}/favicon/favicon-32x32.png`}
         />
 
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href={`${cloudFrontUrl}/favicon/apple-touch-icon.png`}
+          href={`${process.env.NEXT_PUBLIC_CLOUDFLARE_URL}/favicon/apple-touch-icon.png`}
         />
       </Head>
       <main>{children}</main>
