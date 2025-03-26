@@ -12,7 +12,7 @@ interface LayoutProps {
 export default function Layout({
   title = '이커머스',
   description = '이커머스입니다',
-  ogImage = '/default-og-image.jpg',
+  ogImage = 'https://pub-5221b532a77b468a92745546bdc85a27.r2.dev/ogImage/ogImage_default.png',
   children,
 }: LayoutProps) {
   return (
@@ -27,7 +27,24 @@ export default function Layout({
         <meta property="og:image" content={ogImage} />
         <meta property="og:type" content="website" />
 
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/x-icon"
+          sizes="16x16"
+          href="https://pub-5221b532a77b468a92745546bdc85a27.r2.dev/favicon/favicon-16x16.png"
+        />
+        <link
+          rel="icon"
+          type="image/x-icon"
+          sizes="32x32"
+          href="https://pub-5221b532a77b468a92745546bdc85a27.r2.dev/favicon/favicon-32x32.png"
+        />
+
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="https://pub-5221b532a77b468a92745546bdc85a27.r2.dev/favicon/apple-touch-icon.png"
+        />
       </Head>
       <main>{children}</main>
     </>
