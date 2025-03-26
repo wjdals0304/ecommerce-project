@@ -1,31 +1,12 @@
 import { API_ENDPOINTS } from '@/config/apiEndPoints';
 import { postRequest } from '@/utils/apiClient';
-import Image from 'next/image';
 import Link from 'next/link';
-import heartIcon from 'public/images/home/heartDark.svg';
-import shareIcon from 'public/images/shop/share.svg';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   margin-top: 25px;
   gap: 15px;
-`;
-
-const HeartButton = styled.button`
-  width: 57px;
-  height: 57px;
-  border-radius: 50%;
-  border: none;
-  background-color: #ffffff;
-`;
-
-const ShareButton = styled.button`
-  width: 57px;
-  height: 57px;
-  border-radius: 50%;
-  border: none;
-  background-color: #ffffff;
 `;
 
 const AddToCartButton = styled.button`

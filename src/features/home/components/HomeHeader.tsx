@@ -59,8 +59,6 @@ const RightCardContainer = styled.div`
 `;
 
 const Card = styled(Image)`
-  width: 100%;
-  height: 50px;
   background-color: #d3d3d3;
   border-radius: 15px;
   flex: 1;
@@ -104,7 +102,7 @@ function HomeHeader({ eventBanners }: HomeHeaderProps) {
         </RightButton>
       </Carousel>
       <RightCardContainer>
-        {eventBanners.largeBanners.map(banner => (
+        {eventBanners.smallBanners.map(banner => (
           <Card
             key={banner.id}
             src={banner.imageurl}

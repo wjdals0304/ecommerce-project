@@ -113,7 +113,7 @@ const ShopNowButton = styled.button`
 `;
 
 const NewProduct = styled.div`
-  background-color: #d7d7d7;
+  background-color: #fff;
   padding: 33px;
   border-radius: 15px;
   display: flex;
@@ -134,15 +134,15 @@ const NewProduct = styled.div`
 
 const NewArrivalTag = styled.span`
   margin-top: 30px;
-  font-size: 16px;
-  color: #fff;
+  font-size: 32px;
+  color: #000;
   margin-bottom: 10px;
 `;
 
 const NewProductTitle = styled.h3`
   font-size: 36px;
   font-weight: bold;
-  color: #fff;
+  color: #000;
   line-height: 1.2;
   margin: 10px 0;
   display: flex;
