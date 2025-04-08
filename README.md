@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# 이커머스 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 소개
 
-## Available Scripts
+이 프로젝트는 Next.js를 기반으로 한 이커머스 웹 애플리케이션입니다. 사용자 인증, 상품 조회, 장바구니, 결제 등의 기능을 제공합니다.
 
-In the project directory, you can run:
+## 주요 기능
 
-### `npm start`
+- 사용자 인증 (이메일/비밀번호, Google OAuth)
+- 상품 조회 및 검색
+- 장바구니 관리
+- 주문 및 결제
+- 반응형 디자인
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 기술 스택
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **프론트엔드**
+  - Next.js 13
+  - TypeScript
+  - Styled Components
+  - React Query
+  - NextAuth.js
 
-### `npm test`
+- **백엔드**
+  - Nest.js
+  - Supabase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 프로젝트 구조
 
-### `npm run build`
+```
+src/
+├── components/         # 공통 컴포넌트
+├── features/          # 기능별 컴포넌트
+├── hooks/            # 커스텀 훅
+├── pages/            # 페이지 컴포넌트
+├── types/            # 타입 정의
+├── utils/            # 유틸리티 함수
+└── config/           # 설정 파일
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API 엔드포인트
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `POST /auth/signup/email` - 이메일 회원가입
+- `POST /auth/signin/email` - 이메일 로그인
+- `POST /auth/signup/google` - Google OAuth 회원가입
+- `GET /shop/all` - 전체 상품 조회
+- `GET /shop/:id` - 상품 상세 조회
+- `POST /cart/add` - 장바구니 추가
+- `GET /cart` - 장바구니 조회
+- `POST /orders` - 주문 생성
