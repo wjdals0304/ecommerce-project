@@ -2,8 +2,12 @@
 
 ## 프로젝트 소개
 
-이 프로젝트는 Next.js를 기반으로 한 이커머스 웹 애플리케이션입니다. 
+Next.js 기반의 이커머스 웹 애플리케이션입니다.
 사용자 인증, 상품 조회, 장바구니, 결제 등의 기능을 제공합니다.
+
+## 프로젝트 URL
+
+- 배포 URL: https://ecommerce-project-liart-one.vercel.app/
 
 ## 주요 기능
 
@@ -16,6 +20,7 @@
 ## 기술 스택
 
 - **프론트엔드**
+
   - Next.js 13
   - TypeScript
   - Styled Components
