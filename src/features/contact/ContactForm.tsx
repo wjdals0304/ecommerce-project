@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  max-width: 1240px;
+  width: 1240px;
   margin: 0 auto;
   padding: 50px 100px;
 `;

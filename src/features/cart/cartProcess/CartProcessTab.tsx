@@ -15,8 +15,7 @@ const InnerContainer = styled.div<{ index: number }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1240px;
-  width: 100%;
+  width: 1240px;
   margin: 0 auto;
   padding: 15px 15px 0;
 
@@ -35,7 +34,7 @@ const InnerContainer = styled.div<{ index: number }>`
 `;
 
 const TabContentContainer = styled.div`
-  max-width: 1240px;
+  width: 1240px;
   margin: 50px auto;
 `;
 

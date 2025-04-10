@@ -16,7 +16,7 @@ const Title = styled.h2`
 
 const ProductContainer = styled.div`
   display: flex;
-  max-width: 1240px;
+  width: 1240px;
   gap: 25px;
   margin: 25px auto 50px;
 `;

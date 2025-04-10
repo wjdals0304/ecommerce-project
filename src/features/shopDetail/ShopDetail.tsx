@@ -19,14 +19,14 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  max-width: 1240px;
+  width: 1240px;
   margin: 0 auto;
 `;
 
 const ShopProductContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 1240px;
+  width: 1240px;
   margin: 50px auto;
 `;
 

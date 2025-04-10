@@ -11,9 +11,8 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  max-width: 1240px;
+  width: 1240px;
   margin: 0 auto;
-  width: 100%;
 `;
 
 const ProductContainer = styled.div`

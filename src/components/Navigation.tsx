@@ -18,7 +18,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #001c3d;
-  max-width: 1240px;
+  width: 1240px;
   margin: 0 auto;
   height: 54px;
 `;
