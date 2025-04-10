@@ -38,7 +38,7 @@ const Title = styled.h1`
 const BlogContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 1240px;
+  width: 1240px;
   gap: 50px;
   margin: auto;
   padding: 50px 0;

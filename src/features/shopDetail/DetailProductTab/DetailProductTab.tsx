@@ -2,7 +2,7 @@ import { ProductDescription, Review, Specification } from '@/types/shop';
 import styled from 'styled-components';
 import TabContent, { ShopDetailTabType } from './TabContent';
 const Container = styled.div`
-  max-width: 1240px;
+  width: 1240px;
   height: auto;
   margin: 0 auto;
   padding: 25px 0;

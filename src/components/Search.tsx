@@ -15,7 +15,7 @@ const SearchInner = styled.div`
   display: flex;
   align-items: center;
   gap: 25px;
-  max-width: 1240px;
+  width: 1240px;
   margin: auto;
   padding: 20px 0;
 `;

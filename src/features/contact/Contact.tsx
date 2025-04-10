@@ -11,9 +11,8 @@ const Title = styled.h1`
 
 const InnerContainer = styled.div`
   background-color: hsl(200, 17.6%, 96.7%);
-  max-width: 1240px;
+  width: 1240px;
   margin: 0 auto;
-  width: 100%;
 `;
 
 const Container = styled.div`

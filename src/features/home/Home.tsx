@@ -16,9 +16,8 @@ const Container = styled.div`
 
 const HomeContainer = styled.div`
   background-color: #f5f7f8;
-  max-width: 1240px;
+  width: 1240px;
   margin: 0 auto;
-  width: 100%;
 `;
 
 interface HomeProps {

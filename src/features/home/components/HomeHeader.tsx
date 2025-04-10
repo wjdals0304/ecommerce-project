@@ -5,6 +5,7 @@ import leftIcon from 'public/images/home/leftIcon.svg';
 import rightIcon from 'public/images/home/rightIcon.svg';
 import { EventBanners } from '@/types/home';
 import { useState } from 'react';
+
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
