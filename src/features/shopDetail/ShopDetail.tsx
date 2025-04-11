@@ -1,14 +1,14 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import {
   Review,
   ReviewResponse,
   ShopDetail as ShopDetailType,
-} from '@/types/shop';
-import { getRequest } from '@/utils/apiClient';
+} from '@/shared/types/shop';
+import { getRequest } from '@/shared/lib/apiClient';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
-import SearchBar from '../../components/Search';
+import SearchBar from '@/shared/ui/Search';
 import DetailProductTab from './DetailProductTab/DetailProductTab';
 import { ShopDetailTabType } from './DetailProductTab/TabContent';
 import ShopProductDesc from './ShopProductDesc';

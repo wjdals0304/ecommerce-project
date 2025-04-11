@@ -1,6 +1,6 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { CartResponse } from '@/types/cart';
-import { deleteRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { CartResponse } from '@/shared/types/cart';
+import { deleteRequest } from '@/shared/lib/apiClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import trashIcon from 'public/images/shop/trash.svg';

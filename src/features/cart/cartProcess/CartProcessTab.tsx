@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CartProcessTabType } from './TabContent';
 import TabContent from './TabContent';
 import CartItem from './CartItem';
-import { CartResponse } from '@/types/cart';
+import { CartResponse } from '@/shared/types/cart';
 
 const Container = styled.div`
   display: flex;

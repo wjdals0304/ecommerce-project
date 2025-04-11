@@ -1,6 +1,6 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { ShippingResponse } from '@/types/order';
-import { getRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { ShippingResponse } from '@/shared/types/order';
+import { getRequest } from '@/shared/lib/apiClient';
 import { useQuery } from '@tanstack/react-query';
 
 const queryKeyShipInfo = ['shipInfo'];

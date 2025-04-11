@@ -4,12 +4,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useAuthStore } from '@/store/authStore';
-import { supabase } from '@/utils/supabase';
+import { supabase } from '@/shared/lib/supabase';
 import { toast } from 'react-toastify';
-import { postRequest } from '@/utils/apiClient';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { User } from '@/types/user';
-import { setAuthCookie } from '@/utils/cookieUtils';
+import { postRequest } from '@/shared/lib/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { User } from '@/shared/types/user';
+import { setAuthCookie } from '@/shared/lib/cookieUtils';
 
 const Container = styled.div`
   display: flex;

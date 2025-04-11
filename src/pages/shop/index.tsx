@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
+import Footer from '@/shared/ui/Footer';
+import Navigation from '@/shared/ui/Navigation';
 import Shop from '@/features/allShop/Shop';
 import {
   createQueryKeyShopData,

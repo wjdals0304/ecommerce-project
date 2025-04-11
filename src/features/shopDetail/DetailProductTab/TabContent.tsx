@@ -1,4 +1,4 @@
-import { ProductDescription, Review, Specification } from '@/types/shop';
+import { ProductDescription, Review, Specification } from '@/shared/types/shop';
 import DescriptionTab from './DescriptionTab';
 import DetailReviewTab from './DetailReviewTab';
 import DetailSpesificationTab from './DetailSpesificationTab';

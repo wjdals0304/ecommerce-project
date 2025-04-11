@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { OrderResponse } from '@/types/order';
+import { OrderResponse } from '@/shared/types/order';
 const OrderItemContainer = styled.div`
   display: flex;
   flex-direction: column;

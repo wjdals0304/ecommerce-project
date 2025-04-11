@@ -1,7 +1,7 @@
 import { useCartReload } from '@/hooks/useCartReload';
-import { CartResponse } from '@/types/cart';
+import { CartResponse } from '@/shared/types/cart';
 import styled from 'styled-components';
-import Search from '../../components/Search';
+import Search from '@/shared/ui/Search';
 import CartProcessTab from './cartProcess/CartProcessTab';
 
 const Container = styled.div`

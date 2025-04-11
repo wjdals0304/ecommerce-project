@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { postRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { postRequest } from '@/shared/lib/apiClient';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';

@@ -1,4 +1,4 @@
-import { CartResponse } from '@/types/cart';
+import { CartResponse } from '@/shared/types/cart';
 import ShoppingCart from './shoppingCart/ShoppingCart';
 import ShoppingCheckOut from './shoppingCheckOut/ShoppingCheckOut';
 import ShoppingConfirm from './ShoppingConfirm';

@@ -1,8 +1,8 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import { useAuthStore } from '@/store/authStore';
-import { User } from '@/types/user';
-import { formDataEntries, postRequest } from '@/utils/apiClient';
-import { setAuthCookie } from '@/utils/cookieUtils';
+import { User } from '@/shared/types/user';
+import { formDataEntries, postRequest } from '@/shared/lib/apiClient';
+import { setAuthCookie } from '@/shared/lib/cookieUtils';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';

@@ -1,10 +1,10 @@
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import Footer from '@/shared/ui/Footer';
+import Navigation from '@/shared/ui/Navigation';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import Cart from '@/features/cart/Cart';
 import { queryKeyCart, useCartReload } from '@/hooks/useCartReload';
-import { CartResponse } from '@/types/cart';
-import { getRequest } from '@/utils/apiClient';
+import { CartResponse } from '@/shared/types/cart';
+import { getRequest } from '@/shared/lib/apiClient';
 import {
   dehydrate,
   HydrationBoundary,
