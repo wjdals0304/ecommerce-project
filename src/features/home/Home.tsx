@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Search from '../../components/Search';
+import Search from '@/shared/ui/Search';
 import HomeHeader from './components/HomeHeader';
 import HomeCategory from './components/HomeCategory';
 import HomeProme from './components/HomePromo';
 import HomeBestSeller from './components/HomeBestSeller';
 import HomeHotProduct from './components/HomeHotProduct';
 import HomeBlog from './components/HomeBlog';
-import { HomeData } from '../../types/home';
+import { HomeData } from '@/shared/types/home';
 
 const Container = styled.div`
   background-color: #f5f7f8;

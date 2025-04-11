@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import defaultProfile from 'public/images/shop/defaultProfile.svg';
 import starIcon from 'public/images/home/star.svg';
-import { Review } from '@/types/shop';
+import { Review } from '@/shared/types/shop';
 
 const Container = styled.div`
   display: flex;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import rightIcon from 'public/images/home/rightIcon.svg';
-import { FlashDeal } from '@/types/home';
+import { FlashDeal } from '@/shared/types/home';
 import HomePromoContent from './HomePromoContent';
 
 const Container = styled.section`

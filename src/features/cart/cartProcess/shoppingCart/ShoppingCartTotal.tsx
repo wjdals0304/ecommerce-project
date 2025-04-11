@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CartResponse } from '@/types/cart';
+import { CartResponse } from '@/shared/types/cart';
 const Container = styled.div`
   background-color: #fff;
   width: 438px;

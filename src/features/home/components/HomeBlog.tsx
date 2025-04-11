@@ -1,7 +1,7 @@
 import rightIcon from 'public/images/home/rightIcon.svg';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { LatestBlog } from '@/types/home';
+import { LatestBlog } from '@/shared/types/home';
 import Link from 'next/link';
 
 interface HomeBlogProps {

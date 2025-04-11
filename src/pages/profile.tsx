@@ -1,12 +1,12 @@
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/shared/ui/Navigation';
+import Footer from '@/shared/ui/Footer';
 import ProfileContent from '@/features/profile/ProfileContent';
-import { getRequest } from '@/utils/apiClient';
-import { ProfileData } from '@/types/home';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { getRequest } from '@/shared/lib/apiClient';
+import { ProfileData } from '@/shared/types/home';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
-import { getAuthHeaders } from '@/utils/headerUtils';
+import { getAuthHeaders } from '@/shared/lib/headerUtils';
 
 export default function Profile({ profileData }: { profileData: ProfileData }) {
   return (

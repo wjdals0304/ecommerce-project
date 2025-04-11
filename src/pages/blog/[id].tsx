@@ -1,9 +1,9 @@
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import Footer from '@/shared/ui/Footer';
+import Navigation from '@/shared/ui/Navigation';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import BlogDetail from '@/features/blogDetail/BlogDetail';
-import { BlogDetail as BlogDetailType } from '@/types/blog';
-import { getRequest } from '@/utils/apiClient';
+import { BlogDetail as BlogDetailType } from '@/shared/types/blog';
+import { getRequest } from '@/shared/lib/apiClient';
 
 interface BlogPageProps {
   blogDetailData: BlogDetailType;

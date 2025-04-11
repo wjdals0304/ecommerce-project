@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { SearchResponse } from '@/types/shop';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { SearchResponse } from '@/shared/types/shop';
 import Image from 'next/image';
 import Link from 'next/link';
 import heartDarkIcon from 'public/images/home/heartDark.svg';

@@ -1,7 +1,7 @@
-import Search from '@/components/Search';
+import Search from '@/shared/ui/Search';
 import Link from 'next/link';
 import styled from 'styled-components';
-import SignInAuth from '../signIn/SignInAuth';
+import SignInAuth from '@/features/auth/SignInAuth';
 import SignUpEmail from './SignUpEmail';
 const Container = styled.div`
   background-color: #f5f7f8;

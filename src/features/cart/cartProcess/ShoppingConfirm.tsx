@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import confirmIcon from 'public/images/shop/confirm.svg';
-import { useOrderDetail } from '@/hooks/useOrderDetail';
+import { useOrderDetail } from '@/shared/hooks/useOrderDetail';
 import ShoppingConfirmItem from './ShoppingConfirmItem';
 const Container = styled.div`
   display: flex;

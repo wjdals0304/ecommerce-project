@@ -1,4 +1,4 @@
-import { ProfileData } from '@/types/home';
+import { ProfileData } from '@/shared/types/home';
 import styled from 'styled-components';
 
 const ProfileInfoContainer = styled.div`

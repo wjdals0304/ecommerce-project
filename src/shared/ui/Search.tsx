@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

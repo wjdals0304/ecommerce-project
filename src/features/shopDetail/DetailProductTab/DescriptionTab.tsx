@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import checkIcon from 'public/images/shop/check.svg';
 import Image from 'next/image';
-import { ProductDescription } from '@/types/shop';
+import { ProductDescription } from '@/shared/types/shop';
 const Container = styled.div`
   width: 100%;
   height: 100%;

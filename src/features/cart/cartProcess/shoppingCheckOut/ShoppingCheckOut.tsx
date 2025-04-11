@@ -1,7 +1,7 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { shippingSchema } from '@/config/validationSchema';
-import { CartResponse } from '@/types/cart';
-import { postRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { shippingSchema } from '@/shared/config/validationSchema';
+import { CartResponse } from '@/shared/types/cart';
+import { postRequest } from '@/shared/lib/apiClient';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { FormProvider, Resolver, useForm } from 'react-hook-form';

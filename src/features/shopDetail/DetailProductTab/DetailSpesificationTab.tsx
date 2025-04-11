@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Specification } from '@/types/shop';
+import { Specification } from '@/shared/types/shop';
 const Container = styled.div`
   display: flex;
   flex-direction: column;

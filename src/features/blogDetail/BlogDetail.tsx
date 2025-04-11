@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Search from '../../components/Search';
+import Search from '@/shared/ui/Search';
 import BlogDetailContent from './BlogDetailContent';
 import BlogDetailRecent from './BlogDetailRecent';
-import { BlogDetail as BlogDetailType } from '@/types/blog';
+import { BlogDetail as BlogDetailType } from '@/shared/types/blog';
 const Container = styled.div`
   background-color: #f5f7f8;
 `;

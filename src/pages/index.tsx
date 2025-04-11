@@ -1,9 +1,9 @@
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import Footer from '@/shared/ui/Footer';
+import Navigation from '@/shared/ui/Navigation';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import Home from '@/features/home/Home';
-import { HomeData } from '@/types/home';
-import { getRequest } from '@/utils/apiClient';
+import { HomeData } from '@/shared/types/home';
+import { getRequest } from '@/shared/lib/apiClient';
 
 export default function HomePage({ homeData }: { homeData: HomeData }) {
   return (

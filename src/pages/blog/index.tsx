@@ -1,9 +1,9 @@
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/shared/ui/Navigation';
+import Footer from '@/shared/ui/Footer';
 import Blog from '@/features/blog/Blog';
-import { getRequest } from '@/utils/apiClient';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { BlogResponse } from '@/types/blog';
+import { getRequest } from '@/shared/lib/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { BlogResponse } from '@/shared/types/blog';
 
 interface BlogPageProps {
   blogPosts: BlogResponse;

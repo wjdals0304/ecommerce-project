@@ -4,7 +4,7 @@ import starIcon from 'public/images/home/star.svg';
 import QuantitySelector from './QuantitySelector';
 import ShippingMethod from './ShippingMethod';
 import ShopProductBuy from './ShopProductBuy';
-import { ShopDetail as ShopDetailType } from '@/types/shop';
+import { ShopDetail as ShopDetailType } from '@/shared/types/shop';
 const Container = styled.div`
   width: 595px;
   height: auto;

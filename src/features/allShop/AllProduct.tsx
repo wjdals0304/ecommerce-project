@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ShopData } from '@/types/shop';
+import { ShopData } from '@/shared/types/shop';
 import AllProductContent from './AllProductContent';
 const Container = styled.div`
   display: flex;

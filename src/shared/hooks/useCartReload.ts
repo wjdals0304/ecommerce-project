@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { getRequest } from '@/utils/apiClient';
-import { CartResponse } from '@/types/cart';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
+import { getRequest } from '@/shared/lib/apiClient';
+import { CartResponse } from '@/shared/types/cart';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 
 export const queryKeyCart = ['cart'];
 

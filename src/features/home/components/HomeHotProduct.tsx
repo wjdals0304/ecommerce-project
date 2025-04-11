@@ -1,4 +1,4 @@
-import { HotProduct } from '@/types/home';
+import { HotProduct } from '@/shared/types/home';
 import Image from 'next/image';
 import rightIcon from 'public/images/home/rightIcon.svg';
 import styled from 'styled-components';
