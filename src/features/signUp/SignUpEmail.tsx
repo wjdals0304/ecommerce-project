@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/store/authStore';
+import { useAuthStore } from '@/features/auth/model/store/authStore';
 import { User } from '@/shared/types/user';
 import { formDataEntries, postRequest } from '@/shared/lib/apiClient';
 import { setAuthCookie } from '@/shared/lib/cookieUtils';

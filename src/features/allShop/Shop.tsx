@@ -1,5 +1,5 @@
 import Search from '@/shared/ui/Search';
-import { useShopData } from '@/hooks/useShopData';
+import { useShopData } from '@/shared/hooks/useShopData';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';

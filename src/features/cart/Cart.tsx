@@ -1,4 +1,4 @@
-import { useCartReload } from '@/hooks/useCartReload';
+import { useCartReload } from '@/shared/hooks/useCartReload';
 import { CartResponse } from '@/shared/types/cart';
 import styled from 'styled-components';
 import Search from '@/shared/ui/Search';

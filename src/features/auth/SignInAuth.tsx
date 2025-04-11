@@ -3,7 +3,7 @@ import googleIcon from '../../../public/images/signIn/google.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useAuthStore } from '@/store/authStore';
+import { useAuthStore } from '@/features/auth/model/store/authStore';
 import { supabase } from '@/shared/lib/supabase';
 import { toast } from 'react-toastify';
 import { postRequest } from '@/shared/lib/apiClient';

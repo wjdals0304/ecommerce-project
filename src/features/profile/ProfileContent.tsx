@@ -5,7 +5,7 @@ import { postRequest } from '@/shared/lib/apiClient';
 import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
-import { useAuthStore } from '@/store/authStore';
+import { useAuthStore } from '@/features/auth/model/store/authStore';
 const Container = styled.div`
   background-color: #f5f7f8;
   padding-bottom: 50px;

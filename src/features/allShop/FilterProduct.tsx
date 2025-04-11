@@ -1,5 +1,5 @@
 import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
-import { useShopData } from '@/hooks/useShopData';
+import { useShopData } from '@/shared/hooks/useShopData';
 import { formDataEntries } from '@/shared/lib/apiClient';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

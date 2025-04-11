@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/store/authStore';
+import { useAuthStore } from '@/features/auth/model/store/authStore';
 import { getAuthCookie } from '@/shared/lib/cookieUtils';
 import Image from 'next/image';
 import Link from 'next/link';

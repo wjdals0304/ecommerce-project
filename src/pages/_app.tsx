@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import '@/styles/reset.css';
+import '@/app/styles/reset.css';
 import {
   QueryClient,
   QueryClientProvider,

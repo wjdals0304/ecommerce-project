@@ -5,7 +5,7 @@ import {
   createQueryKeyShopData,
   createQueryParams,
   fetchShopData,
-} from '@/hooks/useShopData';
+} from '@/shared/hooks/useShopData';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
 
