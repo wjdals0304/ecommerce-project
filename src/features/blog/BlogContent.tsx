@@ -1,4 +1,4 @@
-import { Blog } from '@/types/blog';
+import { Blog } from '@/shared/types/blog';
 import Image from 'next/image';
 import router from 'next/router';
 import styled from 'styled-components';

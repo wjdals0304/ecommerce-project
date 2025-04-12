@@ -96,9 +96,7 @@ export enum FilterProductEnum {
 export default function FilterProduct({ onFilterChange }: FilterProductProps) {
   const router = useRouter();
   const { categoryId } = router.query;
-  const {
-    data: { categories },
-  } = useShopData();
+  const { data: { categories } = { categories: [] } } = useShopData();
 
   const handleFilterSubmit = async (
     event: React.FormEvent<HTMLFormElement>,

@@ -22,7 +22,8 @@ const ProductContainer = styled.div`
 `;
 
 export default function Shop() {
-  const { data: shopData } = useShopData();
+  const { data: shopData = { products: [], categories: [], totalPages: 0 } } =
+    useShopData();
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const handleFilterChange = (filterParams: any) => {

@@ -74,7 +74,7 @@ function Navigation() {
   useEffect(() => {
     const isAuth = getAuthCookie();
 
-    if (isAuth) {
+    if (isAuth && user) {
       setAuth(true, user);
     }
   }, [setAuth, user]);

@@ -28,6 +28,10 @@ export default function CartPage({ dehydratedState }: CartProps) {
 function CartContent() {
   const { data: cart } = useCartReload(true);
 
+  if (!cart) {
+    return <div>장바구니 데이터를 불러오는 중입니다...</div>;
+  }
+
   return (
     <>
       <Navigation />
