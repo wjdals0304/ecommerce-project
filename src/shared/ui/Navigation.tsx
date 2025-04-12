@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/features/auth/model/store/authStore';
-import { getAuthCookie } from '@/shared/lib/cookieUtils';
+import { getAuthCookie, getUserDataCookie } from '@/shared/lib/cookieUtils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -69,15 +69,16 @@ const NAV_ITEMS: NavItem[] = [
 
 function Navigation() {
   const pathname = usePathname();
-  const { isAuthenticated, user, setAuth } = useAuthStore();
+  const { isAuthenticated, setAuth } = useAuthStore();
 
   useEffect(() => {
     const isAuth = getAuthCookie();
+    const userData = getUserDataCookie();
 
-    if (isAuth && user) {
-      setAuth(true, user);
+    if (isAuth && userData) {
+      setAuth(true, userData);
     }
-  }, [setAuth, user]);
+  }, [setAuth]);
 
   return (
     <Container>

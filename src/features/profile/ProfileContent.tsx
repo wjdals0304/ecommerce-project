@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { ProfileData } from '@/shared/types/home';
-import ProfileInfo from './ProfileInfo';
-import { postRequest } from '@/shared/lib/apiClient';
-import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
-import { toast } from 'react-toastify';
-import Cookies from 'js-cookie';
 import { useAuthStore } from '@/features/auth/model/store/authStore';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { postRequest } from '@/shared/lib/apiClient';
+import { removeAuthCookie } from '@/shared/lib/cookieUtils';
+import { ProfileData } from '@/shared/types/home';
+import { toast } from 'react-toastify';
+import styled from 'styled-components';
+import ProfileInfo from './ProfileInfo';
 const Container = styled.div`
   background-color: #f5f7f8;
   padding-bottom: 50px;
@@ -51,7 +51,7 @@ export default function ProfileContent({
       await postRequest({
         url: API_ENDPOINTS.AUTH_LOGOUT,
       });
-      Cookies.remove('jwt');
+      removeAuthCookie();
       logout();
       toast.success('로그아웃 성공');
       window.location.href = '/';

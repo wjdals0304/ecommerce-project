@@ -118,7 +118,7 @@ export default function SignInAuth() {
           });
 
           setAuth(true, response.data);
-          setAuthCookie(true);
+          setAuthCookie(true, response.data);
           toast.success('구글 로그인 성공');
           router.push('/');
         } catch (serverError) {

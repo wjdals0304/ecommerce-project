@@ -70,7 +70,7 @@ function SignInEmail() {
       });
 
       setAuth(true, response.data);
-      setAuthCookie(true);
+      setAuthCookie(true, response.data);
       router.push('/');
     } catch (error) {
       console.log(error);
