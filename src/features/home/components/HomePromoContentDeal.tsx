@@ -1,6 +1,6 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { FlashDeal } from '@/types/home';
-import { postRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { FlashDeal } from '@/shared/types/home';
+import { postRequest } from '@/shared/lib/apiClient';
 import Image from 'next/image';
 import Link from 'next/link';
 import bagIcon from 'public/images/home/bag.svg';

@@ -1,7 +1,7 @@
-import Search from '@/components/Search';
+import Search from '@/shared/ui/Search';
 import styled from 'styled-components';
 import SearchContent from './SearchContent';
-import { SearchResponse } from '@/types/shop';
+import { SearchResponse } from '@/shared/types/shop';
 import { useState } from 'react';
 import Pagination from '../allShop/Pagination';
 

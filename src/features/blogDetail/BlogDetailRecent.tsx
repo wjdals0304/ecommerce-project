@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { Blog } from '@/types/blog';
+import { Blog } from '@/shared/types/blog';
 import router from 'next/router';
 
 const Container = styled.div`

@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { Category } from '@/types/shop';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { Category } from '@/shared/types/shop';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';

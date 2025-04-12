@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { Blog } from '@/types/blog';
+import { Blog } from '@/shared/types/blog';
 
 const Container = styled.div`
   flex: 4;

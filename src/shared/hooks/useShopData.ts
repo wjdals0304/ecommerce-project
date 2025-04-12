@@ -1,6 +1,6 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { ShopData } from '@/types/shop';
-import { getRequest } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { ShopData } from '@/shared/types/shop';
+import { getRequest } from '@/shared/lib/apiClient';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';

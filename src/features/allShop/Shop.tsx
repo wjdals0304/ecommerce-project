@@ -1,5 +1,5 @@
-import Search from '@/components/Search';
-import { useShopData } from '@/hooks/useShopData';
+import Search from '@/shared/ui/Search';
+import { useShopData } from '@/shared/hooks/useShopData';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -22,7 +22,8 @@ const ProductContainer = styled.div`
 `;
 
 export default function Shop() {
-  const { data: shopData } = useShopData();
+  const { data: shopData = { products: [], categories: [], totalPages: 0 } } =
+    useShopData();
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const handleFilterChange = (filterParams: any) => {

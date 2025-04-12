@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { ShopData } from '@/types/shop';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { ShopData } from '@/shared/types/shop';
 import Image from 'next/image';
 import router from 'next/router';
 import starIcon from 'public/images/home/star.svg';

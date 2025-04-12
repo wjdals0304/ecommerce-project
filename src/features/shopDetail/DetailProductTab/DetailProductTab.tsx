@@ -1,4 +1,4 @@
-import { ProductDescription, Review, Specification } from '@/types/shop';
+import { ProductDescription, Review, Specification } from '@/shared/types/shop';
 import styled from 'styled-components';
 import TabContent, { ShopDetailTabType } from './TabContent';
 const Container = styled.div`

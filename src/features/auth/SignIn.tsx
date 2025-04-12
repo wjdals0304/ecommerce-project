@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Search from '../../components/Search';
+import Search from '@/shared/ui/Search';
 import SignInEmail from './SignInEmail';
 import SignInAuth from './SignInAuth';
 import Link from 'next/link';

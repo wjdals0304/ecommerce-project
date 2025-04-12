@@ -1,6 +1,6 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { useShopData } from '@/hooks/useShopData';
-import { formDataEntries } from '@/utils/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { useShopData } from '@/shared/hooks/useShopData';
+import { formDataEntries } from '@/shared/lib/apiClient';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -96,9 +96,7 @@ export enum FilterProductEnum {
 export default function FilterProduct({ onFilterChange }: FilterProductProps) {
   const router = useRouter();
   const { categoryId } = router.query;
-  const {
-    data: { categories },
-  } = useShopData();
+  const { data: { categories } = { categories: [] } } = useShopData();
 
   const handleFilterSubmit = async (
     event: React.FormEvent<HTMLFormElement>,

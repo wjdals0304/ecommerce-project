@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { HotProduct } from '@/types/home';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { HotProduct } from '@/shared/types/home';
 import Image from 'next/image';
 import Link from 'next/link';
 import starIcon from 'public/images/home/star.svg';

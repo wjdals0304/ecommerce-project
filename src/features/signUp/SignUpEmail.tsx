@@ -1,12 +1,12 @@
-import { useAuthStore } from '@/store/authStore';
-import { User } from '@/types/user';
-import { formDataEntries, postRequest } from '@/utils/apiClient';
-import { setAuthCookie } from '@/utils/cookieUtils';
+import { useAuthStore } from '@/features/auth/model/store/authStore';
+import { User } from '@/shared/types/user';
+import { formDataEntries, postRequest } from '@/shared/lib/apiClient';
+import { setAuthCookie } from '@/shared/lib/cookieUtils';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
-import ErrorModal from '../../components/PopUpModal';
-import { API_ENDPOINTS } from '../../config/apiEndPoints';
+import ErrorModal from '@/shared/ui/PopUpModal';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
 import Email from './signUpInput/Email';
 import FullName from './signUpInput/FullName';
 import Password from './signUpInput/Password';

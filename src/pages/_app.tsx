@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import '@/styles/reset.css';
+import '@/app/styles/reset.css';
 import {
   QueryClient,
   QueryClientProvider,
@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Layout from '@/components/Layout';
+import Layout from '@/shared/ui/Layout';
 
 const queryClient = new QueryClient();
 

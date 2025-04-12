@@ -1,9 +1,9 @@
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/shared/ui/Navigation';
+import Footer from '@/shared/ui/Footer';
 import SearchResult from '@/features/search/SearchResult';
-import { getRequest } from '@/utils/apiClient';
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { SearchResponse } from '@/types/shop';
+import { getRequest } from '@/shared/lib/apiClient';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { SearchResponse } from '@/shared/types/shop';
 
 interface SearchProps {
   searchResult: SearchResponse;

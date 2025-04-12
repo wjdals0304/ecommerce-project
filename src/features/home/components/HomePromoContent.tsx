@@ -1,4 +1,4 @@
-import { FlashDeal } from '@/types/home';
+import { FlashDeal } from '@/shared/types/home';
 import styled from 'styled-components';
 
 import HomePromoContentDeal from './HomePromoContentDeal';

@@ -1,4 +1,4 @@
-import { useShipInfo } from '@/hooks/useShipInfo';
+import { useShipInfo } from '@/shared/hooks/useShipInfo';
 import { useEffect } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';

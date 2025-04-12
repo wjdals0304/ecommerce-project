@@ -1,5 +1,5 @@
-import { useAuthStore } from '@/store/authStore';
-import { getAuthCookie } from '@/utils/cookieUtils';
+import { useAuthStore } from '@/features/auth/model/store/authStore';
+import { getAuthCookie } from '@/shared/lib/cookieUtils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -74,7 +74,7 @@ function Navigation() {
   useEffect(() => {
     const isAuth = getAuthCookie();
 
-    if (isAuth) {
+    if (isAuth && user) {
       setAuth(true, user);
     }
   }, [setAuth, user]);

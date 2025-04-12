@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Search from '../../components/Search';
+import Search from '@/shared/ui/Search';
 import AboutTheCompany from './AboutTheCompany';
 import OurMission from './OurMission';
 import OurTeam from './OurTeam';

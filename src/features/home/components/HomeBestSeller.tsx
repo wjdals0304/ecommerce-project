@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from '@/config/apiEndPoints';
-import { BestSeller } from '@/types/home';
+import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
+import { BestSeller } from '@/shared/types/home';
 import Image from 'next/image';
 import Link from 'next/link';
 import rightIcon from 'public/images/home/rightIcon.svg';

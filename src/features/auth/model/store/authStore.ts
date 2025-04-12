@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { User } from '@/types/user';
+import { User } from '@/shared/types/user';
 interface AuthStore {
   isAuthenticated: boolean;
   user: User | null;
