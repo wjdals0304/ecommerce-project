@@ -86,12 +86,26 @@ src/
 ```
 docs/
 ├── troubleshooting/    # 문제 해결 관련 문서
-│   └── auth-state-persistence.md  # 인증 상태 유지 관련 트러블슈팅
+│   ├── auth-state-persistence.md  # 인증 상태 유지 관련 트러블슈팅
+│   ├── api-requset-jwt.md     # API 요청 JWT 인증 관련 트러블슈팅
+│   └── api-response-jwt.md    # API 응답 JWT 인증 관련 트러블슈팅
 └── README.md          # 문서 가이드
 ```
 
 ### 주요 문서
 
 - [인증 상태 유지 트러블슈팅](./docs/troubleshooting/auth-state-persistence.md)
+
   - 로그인 후 새로고침 시 인증 상태 유지 문제 해결 방법
   - 쿠키 기반 인증 상태 관리 구현
+
+- [API 요청 JWT 인증 트러블슈팅](./docs/troubleshooting/api-requset-jwt.md)
+
+  - SSR 환경에서의 토큰 처리 문제 해결 방법
+  - 서버/클라이언트 환경별 토큰 처리 방식
+  - 보안 강화를 위한 환경 구분 처리
+
+- [API 응답 JWT 인증 트러블슈팅](./docs/troubleshooting/api-response-jwt.md)
+  - 토큰 만료 시 자동 갱신 문제 해결 방법
+  - 동시 요청 시 토큰 갱신 충돌 해결
+  - 인증 관련 API 요청 예외 처리
