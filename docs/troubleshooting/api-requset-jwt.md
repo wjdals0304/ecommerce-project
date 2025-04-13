@@ -21,18 +21,27 @@
 ## 해결 방법
 
 ```typescript
-if (typeof window === 'undefined') {
-  // 서버 사이드 환경
-  return config;
-} else {
-  // 클라이언트 사이드 환경
-  const cookies = parseCookies();
-  const token = cookies.jwt;
+apiClient.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    if (typeof window === 'undefined') {
+      // 서버 사이드 환경
+      return config;
+    } else {
+      // 클라이언트 사이드 환경
+      const cookies = parseCookies();
+      const token = cookies.jwt;
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-}
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    }
+
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
 ```
 
 ## 개선 효과
