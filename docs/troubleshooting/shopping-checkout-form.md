@@ -119,7 +119,54 @@ const methods = useForm<ShippingFormData>({
 - 타입 안정성을 위한 `Resolver` 타입 캐스팅
 - `FormProvider`를 통한 폼 상태 공유
 
-2. **에러 상태 관리**
+2. **컨트롤러 기반 폼 필드 관리**
+
+```typescript
+// ShoppingCheckOutInfo.tsx
+const {
+  control,
+  handleSubmit,
+  formState: { errors },
+  reset,
+} = useFormContext<ShippingFormData>();
+
+const { field: nameField } = useController({
+  name: 'name',
+  control,
+});
+
+const { field: phoneField } = useController({
+  name: 'phone',
+  control,
+});
+
+// ... 다른 필드들
+```
+
+- `useFormContext`로 부모 폼 컨텍스트 접근
+- `useController`로 개별 필드 컨트롤
+- 필드별 에러 상태 관리
+- 초기값 설정 및 리셋 기능
+
+3. **폼 필드 렌더링**
+
+```typescript
+// ShoppingCheckOutInfo.tsx
+<InputBox
+  hasError={!!errors.name}
+  {...nameField}
+  placeholder="이름"
+  defaultValue={shipInfo?.name}
+/>
+{errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+```
+
+- 스타일드 컴포넌트와 통합
+- 에러 상태에 따른 스타일링
+- 에러 메시지 표시
+- 기본값 설정
+
+4. **에러 상태 관리**
 
 ```typescript
 // ShoppingCheckOut.tsx
@@ -139,7 +186,7 @@ const hasFormErrors = !!(
 - 빈 필드 체크
 - 유효성 검사 에러 체크
 
-3. **폼 제출 최적화**
+5. **폼 제출 최적화**
 
 ```typescript
 // ShoppingCheckOut.tsx
