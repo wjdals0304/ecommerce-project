@@ -1,12 +1,11 @@
-import Navigation from '@/shared/ui/Navigation';
-import Footer from '@/shared/ui/Footer';
 import ProfileContent from '@/features/profile/ProfileContent';
-import { getRequest } from '@/shared/lib/apiClient';
-import { ProfileData } from '@/shared/types/home';
 import { API_ENDPOINTS } from '@/shared/config/apiEndPoints';
-import { GetServerSideProps } from 'next';
-import { parseCookies } from 'nookies';
+import { getRequest } from '@/shared/lib/apiClient';
 import { getAuthHeaders } from '@/shared/lib/headerUtils';
+import { ProfileData } from '@/shared/types/home';
+import Footer from '@/shared/ui/Footer';
+import Navigation from '@/shared/ui/Navigation';
+import { GetServerSideProps } from 'next';
 
 export default function Profile({ profileData }: { profileData: ProfileData }) {
   return (
@@ -20,18 +19,6 @@ export default function Profile({ profileData }: { profileData: ProfileData }) {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const cookies = parseCookies(context);
-    const token = cookies.jwt;
-
-    if (!token) {
-      return {
-        redirect: {
-          destination: '/signin?redirect=/profile',
-          permanent: false,
-        },
-      };
-    }
-
     const response = await getRequest<ProfileData>({
       url: API_ENDPOINTS.AUTH_ME,
       config: {

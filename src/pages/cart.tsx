@@ -48,15 +48,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const cookies = parseCookies(context);
     const token = cookies.jwt;
 
-    if (!token) {
-      return {
-        redirect: {
-          destination: '/signin?redirect=/cart',
-          permanent: false,
-        },
-      };
-    }
-
     await queryClient.prefetchQuery({
       queryKey: queryKeyCart,
       queryFn: () =>
