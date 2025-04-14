@@ -88,7 +88,9 @@ docs/
 ├── troubleshooting/    # 문제 해결 관련 문서
 │   ├── auth-state-persistence.md  # 인증 상태 유지 관련 트러블슈팅
 │   ├── api-requset-jwt.md     # API 요청 JWT 인증 관련 트러블슈팅
-│   └── api-response-jwt.md    # API 응답 JWT 인증 관련 트러블슈팅
+│   ├── api-response-jwt.md    # API 응답 JWT 인증 관련 트러블슈팅
+│   ├── shopping-hydrate.md    # 장바구니 하이드레이션 관련 트러블슈팅
+│   └── shopping-checkout-form.md  # 장바구니 결제 폼 관련 트러블슈팅
 └── README.md          # 문서 가이드
 ```
 
@@ -106,6 +108,18 @@ docs/
   - 보안 강화를 위한 환경 구분 처리
 
 - [API 응답 JWT 인증 트러블슈팅](./docs/troubleshooting/api-response-jwt.md)
+
   - 토큰 만료 시 자동 갱신 문제 해결 방법
   - 동시 요청 시 토큰 갱신 충돌 해결
   - 인증 관련 API 요청 예외 처리
+
+- [장바구니 하이드레이션 트러블슈팅](./docs/troubleshooting/shopping-hydrate.md)
+
+  - 서버-클라이언트 데이터 동기화 문제 해결 방법
+  - React Query를 활용한 하이드레이션 처리
+  - 장바구니 데이터 업데이트 최적화
+
+- [장바구니 결제 폼 트러블슈팅](./docs/troubleshooting/shopping-checkout-form.md)
+  - React Hook Form과 Yup을 활용한 폼 관리
+  - 실시간 유효성 검사 및 에러 처리
+  - 폼 제출 최적화 및 상태 관리
