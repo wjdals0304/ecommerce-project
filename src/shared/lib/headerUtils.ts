@@ -1,8 +1,14 @@
 import { GetServerSidePropsContext } from 'next';
 import { parseCookies } from 'nookies';
 
+interface AuthHeaders {
+  Authorization?: string;
+  Cookie?: string;
+  [key: string]: string | undefined;
+}
+
 export const getAuthHeaders = (context?: GetServerSidePropsContext) => {
-  const headers: Record<string, any> = {};
+  const headers: AuthHeaders = {};
 
   if (context) {
     const token = parseCookies(context).jwt;

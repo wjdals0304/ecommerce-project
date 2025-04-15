@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import AllProduct from './AllProduct';
 import FilterProduct from './FilterProduct';
 import Pagination from './Pagination';
+import { FilterParams } from '@/shared/types/shop';
 
 const Container = styled.div`
   background-color: #f5f7f8;
@@ -26,7 +27,9 @@ export default function Shop() {
     useShopData();
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
-  const handleFilterChange = (filterParams: any) => {
+
+  const handleFilterChange = (filterParams: FilterParams) => {
+    console.log({ filterParams });
     router.push({
       pathname: router.pathname,
       query: { ...router.query, ...filterParams },

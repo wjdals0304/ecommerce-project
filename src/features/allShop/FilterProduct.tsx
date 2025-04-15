@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Price from './Price';
 import Warrenty from './Warrenty';
+import { FilterParams } from '@/shared/types/shop';
 
 const Container = styled.div`
   display: flex;
@@ -85,12 +86,12 @@ const FilterContainer = styled.form`
   border-radius: 10px;
 `;
 
-interface FilterProductProps {
-  onFilterChange: (filterParams: any) => void;
-}
-
 export enum FilterProductEnum {
   ALL = 0,
+}
+
+interface FilterProductProps {
+  onFilterChange: (filterParams: FilterParams) => void;
 }
 
 export default function FilterProduct({ onFilterChange }: FilterProductProps) {
@@ -104,11 +105,11 @@ export default function FilterProduct({ onFilterChange }: FilterProductProps) {
     event.preventDefault();
 
     const data = formDataEntries(event);
-    const filterParams = {
-      categoryId: categoryId || 0,
+    const filterParams: FilterParams = {
+      categoryId: categoryId ? Number(categoryId) : undefined,
       priceMin: 0,
-      priceMax: data.priceMax,
-      warranty: data.warranty || FilterProductEnum.ALL,
+      priceMax: Number(data.priceMax),
+      warranty: data.warranty ? Number(data.warranty) : undefined,
     };
 
     onFilterChange(filterParams);

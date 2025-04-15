@@ -94,20 +94,20 @@ apiClient.interceptors.response.use(
 export default apiClient;
 
 interface RequestConfig {
-  params?: Record<string, any>;
-  headers?: Record<string, any>;
+  params?: Record<string, string | number | boolean>;
+  headers?: Record<string, string>;
   token?: string;
 }
 
-export const postRequest = async <T>({
+export const postRequest = async <T, D = Record<string, unknown>>({
   url,
-  data = {},
+  data = {} as D,
   config = {},
 }: {
   url: string;
-  data?: any;
+  data?: D;
   config?: RequestConfig;
-}) => {
+}): Promise<AxiosResponse<T>> => {
   const response = await apiClient.post<T>(url, data, config);
 
   return response;
@@ -119,17 +119,19 @@ export const deleteRequest = async <T>({
 }: {
   url: string;
   config?: RequestConfig;
-}) => {
+}): Promise<AxiosResponse<T>> => {
   const response = await apiClient.delete<T>(url, config);
 
   return response;
 };
 
-export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
+export const formDataEntries = (
+  event: React.FormEvent<HTMLFormElement>,
+): Record<string, string> => {
   const formData = new FormData(event.target as HTMLFormElement);
   const data = Object.fromEntries(formData);
 
-  return data;
+  return data as Record<string, string>;
 };
 
 export const getRequest = async <T>({
@@ -144,13 +146,13 @@ export const getRequest = async <T>({
   return response;
 };
 
-export const getToken = (response: any) => {
+export const getToken = (response: AxiosResponse): string => {
   const authHeader = response.headers['authorization'];
   const token = authHeader.split(' ')[1];
 
   return token;
 };
 
-export const getStoredToken = () => {
+export const getStoredToken = (): string | undefined => {
   return parseCookies().jwt;
 };

@@ -9,12 +9,13 @@ import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
+  DehydratedState,
 } from '@tanstack/react-query';
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
 
 interface CartProps {
-  dehydratedState: any;
+  dehydratedState: DehydratedState;
 }
 
 export default function CartPage({ dehydratedState }: CartProps) {

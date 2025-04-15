@@ -62,3 +62,11 @@ export interface SearchResponse {
   products: Product[];
   totalPages: number;
 }
+
+export interface FilterParams {
+  categoryId?: number;
+  priceMin?: number;
+  priceMax?: number;
+  warranty?: number;
+  page?: string;
+}
