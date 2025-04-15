@@ -29,7 +29,6 @@ export default function Shop() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleFilterChange = (filterParams: FilterParams) => {
-    console.log({ filterParams });
     router.push({
       pathname: router.pathname,
       query: { ...router.query, ...filterParams },
