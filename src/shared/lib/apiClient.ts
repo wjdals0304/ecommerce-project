@@ -1,4 +1,8 @@
-import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 import { API_BASE_URL } from '@/shared/config/apiEndPoints';
 import { parseCookies, setCookie, destroyCookie } from 'nookies';
 
@@ -93,12 +97,6 @@ apiClient.interceptors.response.use(
 
 export default apiClient;
 
-interface RequestConfig {
-  params?: Record<string, string | number | boolean>;
-  headers?: Record<string, string>;
-  token?: string;
-}
-
 export const postRequest = async <T, D = Record<string, unknown>>({
   url,
   data = {} as D,
@@ -106,7 +104,7 @@ export const postRequest = async <T, D = Record<string, unknown>>({
 }: {
   url: string;
   data?: D;
-  config?: RequestConfig;
+  config?: AxiosRequestConfig;
 }): Promise<AxiosResponse<T>> => {
   const response = await apiClient.post<T>(url, data, config);
 
@@ -118,7 +116,7 @@ export const deleteRequest = async <T>({
   config = {},
 }: {
   url: string;
-  config?: RequestConfig;
+  config?: AxiosRequestConfig;
 }): Promise<AxiosResponse<T>> => {
   const response = await apiClient.delete<T>(url, config);
 
@@ -139,7 +137,7 @@ export const getRequest = async <T>({
   config = {},
 }: {
   url: string;
-  config?: RequestConfig;
+  config?: AxiosRequestConfig;
 }): Promise<AxiosResponse<T>> => {
   const response = await apiClient.get<T>(url, config);
 

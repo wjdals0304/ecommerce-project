@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
           config: {
             headers: {
               Authorization: `Bearer ${token}`,
-              Cookie: context.req.headers.cookie,
+              Cookie: context.req.headers.cookie ?? '',
             },
           },
         }).then(res => res.data),

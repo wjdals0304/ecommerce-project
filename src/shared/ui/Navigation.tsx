@@ -8,7 +8,7 @@ import profileIcon from 'public/images/home/profile.svg';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import CategoryMenuContainer from './CategoryMenu';
-
+import { User } from '@/shared/types/user';
 const Container = styled.div`
   background-color: #001c3d;
 `;
@@ -76,7 +76,7 @@ function Navigation() {
     const userData = getUserDataCookie();
 
     if (isAuth && userData) {
-      setAuth(true, userData);
+      setAuth(true, userData as User);
     }
   }, [setAuth]);
 

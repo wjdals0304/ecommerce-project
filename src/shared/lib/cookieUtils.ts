@@ -1,11 +1,10 @@
 import { setCookie, parseCookies } from 'nookies';
 
 interface UserData {
-  id: string;
+  id: number;
   email: string;
-  name: string;
+  name?: string;
   role?: string;
-  [key: string]: unknown;
 }
 
 export const setAuthCookie = (

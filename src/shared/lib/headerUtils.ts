@@ -1,25 +1,17 @@
 import { GetServerSidePropsContext } from 'next';
 import { parseCookies } from 'nookies';
 
-interface AuthHeaders {
-  Authorization?: string;
-  Cookie?: string;
-  [key: string]: string | undefined;
-}
+export const getAuthHeaders = (
+  context?: GetServerSidePropsContext,
+): Record<string, string> | undefined => {
+  if (!context) return undefined;
 
-export const getAuthHeaders = (context?: GetServerSidePropsContext) => {
-  const headers: AuthHeaders = {};
+  const headers: Record<string, string> = {};
+  const token = parseCookies(context).jwt;
+  const cookie = context.req.headers.cookie;
 
-  if (context) {
-    const token = parseCookies(context).jwt;
+  if (token) headers.Authorization = `Bearer ${token}`;
+  if (cookie) headers.Cookie = cookie;
 
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
-    if (context.req.headers.cookie) {
-      headers.Cookie = context.req.headers.cookie;
-    }
-
-    return headers;
-  }
+  return headers;
 };
