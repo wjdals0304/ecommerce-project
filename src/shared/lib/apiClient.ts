@@ -127,9 +127,13 @@ export const formDataEntries = (
   event: React.FormEvent<HTMLFormElement>,
 ): Record<string, string> => {
   const formData = new FormData(event.target as HTMLFormElement);
-  const data = Object.fromEntries(formData);
+  const formEntries = Array.from(formData.entries());
+  const stringEntries = formEntries.map(([key, value]) => {
+    return [key, String(value)];
+  });
+  const result = Object.fromEntries(stringEntries);
 
-  return data as Record<string, string>;
+  return result;
 };
 
 export const getRequest = async <T>({
