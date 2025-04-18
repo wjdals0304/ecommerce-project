@@ -73,7 +73,6 @@ function SignInEmail() {
       setAuthCookie(true, response.data);
       router.push('/');
     } catch (error) {
-      console.log(error);
       if (error.status === 401) {
         setPasswordError('이메일 또는 비밀번호가 일치하지 않습니다.');
         setShowEmailErrorBorder(true);

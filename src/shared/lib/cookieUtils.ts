@@ -1,6 +1,16 @@
 import { setCookie, parseCookies } from 'nookies';
 
-export const setAuthCookie = (isAuthenticated: boolean, userData?: any) => {
+interface UserData {
+  id: number;
+  email: string;
+  name?: string;
+  role?: string;
+}
+
+export const setAuthCookie = (
+  isAuthenticated: boolean,
+  userData?: UserData,
+) => {
   setCookie(null, 'isAuthenticated', String(isAuthenticated), {
     maxAge: 30 * 24 * 60 * 60,
     path: '/',
@@ -20,7 +30,7 @@ export const getAuthCookie = () => {
   return cookies.isAuthenticated === 'true';
 };
 
-export const getUserDataCookie = () => {
+export const getUserDataCookie = (): UserData | null => {
   const cookies = parseCookies();
   const userData = cookies.userData;
 

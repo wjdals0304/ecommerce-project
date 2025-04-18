@@ -1,4 +1,8 @@
-import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 import { API_BASE_URL } from '@/shared/config/apiEndPoints';
 import { parseCookies, setCookie, destroyCookie } from 'nookies';
 
@@ -93,21 +97,15 @@ apiClient.interceptors.response.use(
 
 export default apiClient;
 
-interface RequestConfig {
-  params?: Record<string, any>;
-  headers?: Record<string, any>;
-  token?: string;
-}
-
-export const postRequest = async <T>({
+export const postRequest = async <T, D = Record<string, unknown>>({
   url,
-  data = {},
+  data = {} as D,
   config = {},
 }: {
   url: string;
-  data?: any;
-  config?: RequestConfig;
-}) => {
+  data?: D;
+  config?: AxiosRequestConfig;
+}): Promise<AxiosResponse<T>> => {
   const response = await apiClient.post<T>(url, data, config);
 
   return response;
@@ -118,18 +116,24 @@ export const deleteRequest = async <T>({
   config = {},
 }: {
   url: string;
-  config?: RequestConfig;
-}) => {
+  config?: AxiosRequestConfig;
+}): Promise<AxiosResponse<T>> => {
   const response = await apiClient.delete<T>(url, config);
 
   return response;
 };
 
-export const formDataEntries = (event: React.FormEvent<HTMLFormElement>) => {
+export const formDataEntries = (
+  event: React.FormEvent<HTMLFormElement>,
+): Record<string, string> => {
   const formData = new FormData(event.target as HTMLFormElement);
-  const data = Object.fromEntries(formData);
+  const formEntries = Array.from(formData.entries());
+  const stringEntries = formEntries.map(([key, value]) => {
+    return [key, String(value)];
+  });
+  const result = Object.fromEntries(stringEntries);
 
-  return data;
+  return result;
 };
 
 export const getRequest = async <T>({
@@ -137,20 +141,20 @@ export const getRequest = async <T>({
   config = {},
 }: {
   url: string;
-  config?: RequestConfig;
+  config?: AxiosRequestConfig;
 }): Promise<AxiosResponse<T>> => {
   const response = await apiClient.get<T>(url, config);
 
   return response;
 };
 
-export const getToken = (response: any) => {
+export const getToken = (response: AxiosResponse): string => {
   const authHeader = response.headers['authorization'];
   const token = authHeader.split(' ')[1];
 
   return token;
 };
 
-export const getStoredToken = () => {
+export const getStoredToken = (): string | undefined => {
   return parseCookies().jwt;
 };

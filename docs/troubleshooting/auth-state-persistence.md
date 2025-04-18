@@ -22,7 +22,7 @@
 
    ```typescript
    // cookieUtils.ts 수정
-   export const setAuthCookie = (isAuthenticated: boolean, userData?: any) => {
+   export const setAuthCookie = (isAuthenticated: boolean, userData?: UserData) => {
      setCookie(null, 'isAuthenticated', String(isAuthenticated), {
        maxAge: 30 * 24 * 60 * 60,
        path: '/',
